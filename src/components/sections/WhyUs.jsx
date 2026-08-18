@@ -8,14 +8,14 @@ export default function WhyUs({ t }) {
   const icons = [Plane, ShieldCheck, Headphones, CreditCard];
 
   return (
-    <section id="why-us" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
+    <section id="why-us" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* 100% Pure, Crystal-Clear Shahrisabz Oqsaroy Background - ZERO OPACITY */}
+      {/* 100% Pure, Crystal-Clear Shahrisabz Oqsaroy Background - ZERO OPACITY & NO BLACK BORDERS */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
           src="/images/landmarks/oqsaroy-shahrisabz.png"
           alt="Shahrisabz Oqsaroy Historic Monument"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center scale-125"
         />
       </div>
 

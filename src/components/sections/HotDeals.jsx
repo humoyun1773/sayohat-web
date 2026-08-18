@@ -15,14 +15,14 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
   };
 
   return (
-    <section id="deals" className="py-24 relative overflow-hidden bg-slate-900 border-y border-slate-200">
+    <section id="deals" className="py-24 relative overflow-hidden bg-white border-y border-slate-200">
       
-      {/* 100% Pure, Crystal-Clear Khiva Ichan Kala Background - ZERO OPACITY */}
+      {/* 100% Pure, Crystal-Clear Khiva Ichan Kala Background - ZERO OPACITY & NO BLACK BORDERS */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
           src="/images/landmarks/khiva-ichan-kala.png"
           alt="Khiva Ichan Kala Historical City"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center scale-120"
         />
       </div>
 

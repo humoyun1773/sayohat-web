@@ -4,14 +4,14 @@ import { REVIEWS } from '../../data/travelData';
 
 export default function Reviews({ t, lang = 'uz' }) {
   return (
-    <section id="reviews" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
+    <section id="reviews" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* 100% Pure, Crystal-Clear Samarkand Registan Background - ZERO OPACITY */}
+      {/* 100% Pure, Crystal-Clear Samarkand Registan Background - ZERO OPACITY & NO BLACK BORDERS */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
           src="/images/landmarks/samarkand-registan.png"
           alt="Samarkand Registan Historical Ensemble"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center scale-120"
         />
       </div>
 
