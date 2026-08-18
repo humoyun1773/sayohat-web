@@ -40,14 +40,13 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
   return (
     <section id="hero" className="relative min-h-[88vh] pt-28 sm:pt-36 pb-16 sm:pb-20 flex items-center justify-center overflow-hidden bg-white">
       
-      {/* 100% Pure, Razor-Sharp Uzbekistan Samarkand Registan Historical Background */}
+      {/* 100% Pure, Crystal-Clear Samarkand Registan Background - ZERO OPACITY */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
           src="/images/landmarks/samarkand-registan.png"
           alt="Samarkand Registan Square Historical Architecture"
-          className="w-full h-full object-cover object-center filter brightness-100 contrast-105 scale-100"
+          className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/30 to-white"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">

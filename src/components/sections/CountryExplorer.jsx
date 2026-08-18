@@ -68,16 +68,15 @@ export default function CountryExplorer({
   const currentPrice = currentCountry.basePriceUSD || currentCountry.priceUSD || 80;
 
   return (
-    <section id="countries" className="py-20 sm:py-24 relative overflow-hidden bg-white border-y border-slate-200">
+    <section id="countries" className="py-20 sm:py-24 relative overflow-hidden bg-slate-900 border-y border-slate-200">
       
-      {/* 100% Verified Bukhara Ark Landmark Full-Bleed Background */}
+      {/* 100% Pure, Crystal-Clear Bukhara Ark Background - ZERO OPACITY */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
           src="/images/landmarks/bukhara-ark.png"
           alt="Bukhara Ark Historical Architecture"
-          className="w-full h-full object-cover object-center filter brightness-100 contrast-105"
+          className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white/90"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
