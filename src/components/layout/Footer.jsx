@@ -81,13 +81,13 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
             </div>
           </div>
 
-          {/* Col 3: Ommabop Davlatlar */}
+          {/* Col 3: O'zbekiston Viloyatlari */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              Ommabop Davlatlar
+              O'zbekiston Viloyatlari
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
-              {COUNTRIES.slice(0, 6).map((c) => (
+              {COUNTRIES.map((c) => (
                 <li key={c.id}>
                   <button
                     onClick={() => {
@@ -107,15 +107,15 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
           {/* Col 4: Xizmatlar */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              Xizmatlarimiz
+              Ichki Turizm Xizmatlari
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Aviachiptalar bron qilish</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Umra & Ziyorat turlari</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">VIP Cho'l & Orol safarlari</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Viza hujjatlarini rasmiylashtirish</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Tibbiy sug'urta xizmati</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Gid va tarjimon xizmatlari</li>
+              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Afrosiyob & VIP poyezd chiptalari</li>
+              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Viloyatlararo aviaparvozlar</li>
+              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Tarixiy shaharlar bo'ylab shaxsiy gid</li>
+              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Tog' & Ekoturizm (Zomin, Boysun, Hisor)</li>
+              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Qadimiy Qal'alar (Ellikqal'a) ekspeditsiyasi</li>
+              <li className="hover:text-[#10b981] cursor-pointer transition-colors">VIP mehmonxonalar va transport</li>
             </ul>
           </div>
 

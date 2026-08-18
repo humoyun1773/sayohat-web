@@ -49,8 +49,7 @@ export default function ContactModal({ isOpen, onClose }) {
       label: c.name,
       flag: c.flag
     })),
-    { value: 'umrah', label: 'Saudiya Arabistoni (Umra ziyorati)', flag: '🇸🇦' },
-    { value: 'other', label: 'Boshqa xalqaro yo\'nalish', flag: '🌍' }
+    { value: 'custom', label: 'Boshqa viloyat yoki shahar', flag: '🇺🇿' }
   ];
 
   const handleSubmit = (e) => {

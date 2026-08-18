@@ -31,12 +31,13 @@ export default function HomePage() {
     }
   });
 
-  // Persisted Selected Country
+  // Persisted Selected Region
   const [selectedCountryId, setSelectedCountryId] = useState(() => {
     try {
-      return localStorage.getItem('lotos_field_country') || 'turkey';
+      const saved = localStorage.getItem('lotos_field_country');
+      return (saved && saved !== 'turkey') ? saved : 'samarkand';
     } catch {
-      return 'turkey';
+      return 'samarkand';
     }
   });
 

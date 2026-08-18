@@ -1,413 +1,127 @@
+// ==========================================
+// LOTOS FIELD - O'ZBEKISTON ICHKI TURIZMI & VILOYATLAR
+// ==========================================
+
 export const EXCHANGE_RATE = 12850; // 1 USD = 12,850 UZS
 
 export const AIRPLANES_FLEET = [
   {
     id: 'boeing-787',
     name: 'Boeing 787-8 Dreamliner',
-    type: 'Uzoq masofali keng fyuzelyajli layner',
-    airline: 'Uzbekistan Airways & Qatar Airways',
+    title: 'Zamonaviy Orzu Layneri',
+    routes: 'Toshkent ➔ Urganch / Nukus / Termiz',
     speed: '913 km/soat',
     range: '14,140 km',
     capacity: '246 o\'rin',
     altitude: '13,100 metr',
-    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1400&q=85',
-    cabinImage: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80',
+    description: 'Katta oynalar, toza havo filtrlari va shovqinsiz dvigatellar bilan jihozlangan eng zamonaviy keng fuzelyajli layner.',
     gallery: [
-      { title: 'Bulutlar ustida parvoz', url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'VIP 180° Yotadigan Biznes Klass', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Qanot va motor manzarasi', url: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Quyosh botishidagi parvoz', url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Uchuvchilar kabinasi (Cockpit)', url: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=85' }
+      { title: 'Tashqi ko\'rinish', url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80' },
+      { title: 'VIP Biznes Salon', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=80' },
+      { title: 'Keng va qulay salon', url: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80' }
     ],
-    features: ['Shaxsiy 4K multimedia monitor', 'Wi-Fi internet parvoz davomida', '180° yotadigan VIP Biznes o\'rindiqlar', 'Shovqinsiz motor texnologiyasi']
-  },
-  {
-    id: 'airbus-a380',
-    name: 'Airbus A380 Super Jumbo (Ikki Qavatli)',
-    type: 'Dunyoning eng yirik 2 qavatli hashamatli layneri',
-    airline: 'Emirates & Singapore Airlines',
-    speed: '945 km/soat',
-    range: '15,700 km',
-    capacity: '525 o\'rin',
-    altitude: '13,150 metr',
-    image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1400&q=85',
-    cabinImage: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1400&q=85',
-    gallery: [
-      { title: 'Ikki qavatli gigant A380', url: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Yuqori qavatdagi VIP Bar & Lounge', url: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'First Class Shaxsiy Kvartira', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Uchish-qo\'nish yo\'lagida', url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85' }
-    ],
-    features: ['Bortdagi shaxsiy dush va kurort', 'VIP Lounge bar va gurme restorani', 'Yulduzli osmon effektli shift', 'Keng ikki qavatli shinam salon']
-  },
-  {
-    id: 'airbus-a350',
-    name: 'Airbus A350-900 XWB Ultra',
-    type: 'Yangi avlod kompozit tejamkor va jim layner',
-    airline: 'Turkish Airlines & Lufthansa',
-    speed: '903 km/soat',
-    range: '15,000 km',
-    capacity: '315 o\'rin',
-    altitude: '12,800 metr',
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=85',
-    cabinImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1400&q=85',
-    gallery: [
-      { title: 'Tog\'lar uzra sokin parvoz', url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'LED Mood Lighting Salon', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Panoramik katta oynalar', url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Qanot aerodinamikasi', url: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=85' }
-    ],
-    features: ['Toza tog\' havosi filtratsiyasi HEPA', 'Panoramali quyosh nurlari nazorati', 'First Class Suite shaxsiy xonalar', 'Gurme taomlar va xushbo\'y qahva']
-  },
-  {
-    id: 'boeing-777',
-    name: 'Boeing 777-300ER Triple Seven',
-    type: "Quvvatli qit'alararo yo'lovchi layneri",
-    airline: 'Emirates & Turkish Airlines',
-    speed: '905 km/soat',
-    range: '13,650 km',
-    capacity: '396 o\'rin',
-    altitude: '13,100 metr',
-    image: 'https://images.unsplash.com/photo-1520437358207-323b43b50729?auto=format&fit=crop&w=1400&q=85',
-    cabinImage: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1400&q=85',
-    gallery: [
-      { title: 'Boeing 777 aeroportda', url: 'https://images.unsplash.com/photo-1520437358207-323b43b50729?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Premium Biznes Klass O\'rindiqlari', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Balandlikdan yer manzarasi', url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85' }
-    ],
-    features: ['Eng yirik GE90 reaktiv dvigatellari', 'Premium shaxsiy audio garnitura', 'Keng bagaj javonlari', 'Tungi parvozlar uchun yumshoq o\'rindiq']
+    features: ['180° yotadigan VIP o\'rindiqlar', 'Wi-Fi va multimedia ekrani', 'O\'zbek milliy tansiq taomlari', 'Keng bagaj joyi']
   },
   {
     id: 'airbus-a321neo',
-    name: 'Airbus A321neo LR',
-    type: 'O\'rta masofali eng tejamkor va sokin layner',
-    airline: 'FlyDubai, Air Arabia & WizzAir',
+    name: 'Airbus A321neo',
+    title: 'Tezkor va Tejamkor Ekologik Layner',
+    routes: 'Toshkent ➔ Samarqand / Buxoro / Qarshi',
     speed: '876 km/soat',
     range: '7,400 km',
-    capacity: '190 o\'rin',
-    altitude: '11,900 metr',
-    image: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1400&q=85',
-    cabinImage: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1400&q=85',
+    capacity: '188 o\'rin',
+    altitude: '12,000 metr',
+    image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80',
+    description: 'Yangi avlod tejamkor dvigatellari va kengaytirilgan qulay saloniga ega tezyurar samolyot.',
     gallery: [
-      { title: 'A321neo osmonda', url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Qulay ergonomik charm o\'rindiqlar', url: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Zamonaviy LED yoritish', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' }
+      { title: 'Aeroport perronida', url: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80' },
+      { title: 'Yorug\' va zamonaviy interyer', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=80' }
     ],
-    features: ['Keng oyoq joyi (Extra Legroom)', 'USB va Type-C tezkor quvvatlash', 'O\'zbek va xalqaro issiq taomlar', 'Silliq va xavfsiz parvoz']
+    features: ['Ultra zamonaviy LED chiroqlar', 'USB zaryadlash portlari', 'Shovqinsiz kabina', 'Maxsus ichimliklar servisi']
   },
   {
-    id: 'gulfstream-g650',
-    name: 'Gulfstream G650ER Private Jet',
-    type: 'Shaxsiy VIP Biznes Jet charter parvozlari',
-    airline: 'LOTOS VIP Charter Aviation',
-    speed: '982 km/soat',
-    range: '13,890 km',
-    capacity: '14 VIP o\'rin',
-    altitude: '15,500 metr',
-    image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1400&q=85',
-    cabinImage: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1400&q=85',
+    id: 'airbus-a320',
+    name: 'Airbus A320-200',
+    title: 'Viloyatlararo Asosiy Qatnov Layneri',
+    routes: 'Barcha O\'zbekiston aeroportlari bo\'ylab',
+    speed: '840 km/soat',
+    range: '6,100 km',
+    capacity: '150 o\'rin',
+    altitude: '11,900 metr',
+    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+    description: 'O\'zbekiston viloyatlari o\'rtasidagi eng ommabop, ishonchli va xavfsiz layner.',
     gallery: [
-      { title: 'Shaxsiy VIP Charter samolyot', url: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Prezident darajasidagi charm divanlar', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Oliy toifali shaxsiy oshpaz servisi', url: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=85' }
+      { title: 'Bulutlar uzra parvoz', url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80' },
+      { title: 'Qulay o\'rindiqlar', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=80' }
     ],
-    features: ['100% maxfiylik va VIP terminal', 'Parvoz vaqtini o\'zingiz belgilash', 'Shaxsiy styuardessa va oshpaz', 'Eng yuqori 15,500m balandlikda parvoz']
+    features: ['Har kuni qatnovlar', 'Tezkor ro\'yxatdan o\'tish', 'Katta yotoqli biznes klass', 'Professional bort kuzatuvchilari']
+  },
+  {
+    id: 'afrosiyob-express',
+    name: 'Afrosiyob Tezyurar Poyezdi',
+    title: 'Ispaniyaning Talgo 250 Tezyurar Ekspressi',
+    routes: 'Toshkent ➔ Samarqand ➔ Buxoro ➔ Qarshi',
+    speed: '250 km/soat',
+    range: '900 km',
+    capacity: '287 o\'rin',
+    altitude: 'Yer usti magistrali',
+    image: 'https://images.unsplash.com/photo-1532103054090-a0840b28e579?auto=format&fit=crop&w=1200&q=80',
+    description: 'Toshkentdan Samarqandga bor-yo\'g\'i 2 soat 10 daqiqada eltuvchi hashamatli tezyurar poyezd.',
+    gallery: [
+      { title: 'Tezyurar poyezd yo\'lda', url: 'https://images.unsplash.com/photo-1532103054090-a0840b28e579?auto=format&fit=crop&w=1200&q=80' },
+      { title: 'VIP Vagon saloni', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=80' }
+    ],
+    features: ['VIP, Biznes va Ekonom klasslar', 'Issiq choy, qahva va shirinliklar', 'Klimat-kontrol tizimi', 'Panoramali derazalar']
   }
 ];
 
 export const LIVE_FLIGHTS = [
-  { flightNo: 'HY-271', from: 'Toshkent (TAS)', to: 'Istanbul (IST)', plane: 'Boeing 787', time: '08:40', status: 'Bortga Chiqish', statusColor: 'emerald', gate: 'B-04' },
-  { flightNo: 'FZ-768', from: 'Toshkent (TAS)', to: 'Dubay (DXB)', plane: 'Airbus A321', time: '11:15', status: 'Registratsiya', statusColor: 'cyan', gate: 'A-02' },
-  { flightNo: 'TK-371', from: 'Samarqand (SKD)', to: 'Antaliya (AYT)', plane: 'Boeing 737', time: '13:50', status: 'Rejada', statusColor: 'amber', gate: 'C-01' },
-  { flightNo: 'SV-842', from: 'Toshkent (TAS)', to: 'Jidda / Makka (JED)', plane: 'Airbus A330', time: '16:20', status: 'Rejada', statusColor: 'purple', gate: 'B-07' },
-  { flightNo: 'HY-501', from: 'Toshkent (TAS)', to: 'Parij (CDG)', plane: 'Boeing 787', time: '19:00', status: 'Rejada', statusColor: 'blue', gate: 'A-05' },
-  { flightNo: 'HY-705', from: 'Toshkent (TAS)', to: 'Tokio (NRT)', plane: 'Boeing 787', time: '22:30', status: 'Rejada', statusColor: 'indigo', gate: 'B-01' },
+  { flightNo: 'HY-011', from: 'Toshkent (TAS)', to: 'Samarqand (SKD)', plane: 'Airbus A320', time: '07:30', status: 'Bortga Chiqish', gate: 'D-01' },
+  { flightNo: 'HY-023', from: 'Toshkent (TAS)', to: 'Buxoro (BHK)', plane: 'Airbus A320', time: '08:45', status: 'Registratsiya', gate: 'D-03' },
+  { flightNo: 'HY-051', from: 'Toshkent (TAS)', to: 'Urganch / Xiva (UGC)', plane: 'Boeing 787', time: '09:20', status: 'Rejada', gate: 'A-02' },
+  { flightNo: 'HY-065', from: 'Toshkent (TAS)', to: 'Termiz (TMJ)', plane: 'Airbus A320', time: '11:10', status: 'Rejada', gate: 'D-02' },
+  { flightNo: 'HY-071', from: 'Toshkent (TAS)', to: 'Qarshi (KSQ)', plane: 'Airbus A320', time: '14:30', status: 'Rejada', gate: 'D-04' },
+  { flightNo: 'HY-085', from: 'Toshkent (TAS)', to: 'Nukus (NCU)', plane: 'Boeing 787', time: '17:00', status: 'Rejada', gate: 'A-01' }
 ];
 
 export const CATEGORIES = [
-  { id: 'all', name: 'Barcha Yo\'nalishlar' },
-  { id: 'beach', name: '🏖️ Dengiz & Plyaj' },
-  { id: 'culture', name: '🕌 Ziyorat & Tarix' },
-  { id: 'mountain', name: '🏔️ Tog\' & Tabiat' },
-  { id: 'luxury', name: '🏙️ Megapolis & Lyuks' },
+  { id: 'all', name: 'Barcha Viloyat va Shaharlar' },
+  { id: 'history', name: '🕌 Qadimiy & Tarixiy Shaharlar' },
+  { id: 'nature', name: '🏔️ Tog\' & Tabiat Qo\'riqxonalari' },
+  { id: 'ancient', name: '🏰 Qadimiy Qal\'alar & Arxeologiya' }
 ];
 
+// O'ZBEKISTON VILOYATLARI VA SAYOHAT MARKAZLARI
 export const COUNTRIES = [
   {
-    id: 'turkey',
-    name: 'Turkiya (Istanbul & Antaliya)',
-    nameEn: 'Turkey',
-    flag: '🇹🇷',
-    capital: 'Anqara / Istanbul',
-    category: 'beach',
-    tagline: 'Bosfor sehri, Kapadokiya sharlari va Antaliya moviy dengizi',
-    coverImage: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '4.5 soat (To\'g\'ridan-to\'g\'ri har kuni)',
-    visa: '30 kungacha vizasiz erkin rejim',
-    bestTime: 'May - Noyabr (Dengiz), Yil bo\'yi (Istanbul)',
-    currency: 'TRY (Turk lirasi) / USD / EUR',
-    language: 'Turkcha / Ruscha / Inglizcha',
-    temp: '+27°C',
-    weatherDesc: 'Iliq va quyoshli dengiz havosi',
-    rating: 4.95,
-    reviewsCount: 4210,
-    basePriceUSD: 490,
-    highlights: [
-      'Kapadokiyada quyosh chiqishida havo sharlarida parvoz',
-      'Aya Sofiya, Moviy Masjid va Topkapi saroyi',
-      'Antaliya, Belek va Kemerda All-Inclusive 5★ dam olish',
-      'Bosfor bo\'ylab kechki yaxta sayri va jonli musiqalar',
-      'Pamukkale oq travertinlari va Kleopatra issiq bulog\'i'
-    ],
-    description: 'Turkiya – Sharq va G\'arb sivilizatsiyasi chorrahasi. Dunyoga mashhur turk mehmondo\'stligi, shohona 5 yulduzli kurortlar, O\'rta Yer va Egey dengizining billur toza suvlari, lazzatli kaboblar va shirinliklar.',
-    images: [
-      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80'
-    ],
-    spots: [
-      { name: 'Kapadokiya Göreme', desc: 'Sehrli g\'or mehmonxonalar va yuzlab havo sharlari parvozi', img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Istanbul Bosfor Bo\'g\'ozi', desc: 'Ikki qit\'ani birlashtiruvchi afsonaviy shahar manzarasi', img: 'https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Antaliya & Belek Sohillari', desc: 'Oltin qumli plyajlar va ultra lyuks all-inclusive mehmonxonalar', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Pamukkale Travertinlari', desc: 'Tabiiy oppoq kalsiy terrasalar va shifobaxsh termal suvlar', img: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80' }
-    ]
-  },
-  {
-    id: 'uae',
-    name: 'BAA (Dubay & Abu-Dabi)',
-    nameEn: 'United Arab Emirates',
-    flag: '🇦🇪',
-    capital: 'Abu-Dabi / Dubay',
-    category: 'luxury',
-    tagline: 'Kelajak megapolisi, osmono\'par binolar va cho\'l jip safari',
-    coverImage: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '3.5 soat (FlyDubai va Uzbekistan Airways)',
-    visa: '30 kungacha vizasiz',
-    bestTime: 'Oktyabr - May (Eng ideal fasl)',
-    currency: 'AED (BAA Dirhami) / USD',
-    language: 'Arabcha / Inglizcha / Ruscha',
-    temp: '+32°C',
-    weatherDesc: 'Quyoshli va musaffo osmon',
-    rating: 4.98,
-    reviewsCount: 3890,
-    basePriceUSD: 550,
-    highlights: [
-      'Burj Khalifa 148-qavatidan butun Dubay panoramasi',
-      'Palm Jumeirah sun\'iy oroli va Atlantis akvaparki',
-      'Qizil cho\'lda VIP 4x4 Jip Safari va barbekyu kechasi',
-      'Dubay Mall, musiqali favvoralar va Miracle Garden gul bog\'i',
-      'Kelajak Muzeyi (Museum of the Future)'
-    ],
-    description: 'Dubay – har bir burchagida hashamat va mo\'jiza mujassam bo\'lgan shahar. Dengiz bo\'yidagi Marina villalari, superkarlar, dunyodagi eng baland osmono\'parlar va shohona xarid maskanlari.',
-    images: [
-      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1546412414-8035e1776c9a?auto=format&fit=crop&w=1200&q=80'
-    ],
-    spots: [
-      { name: 'Burj Khalifa & Favvoralar', desc: '828 metr balandlikdagi dunyoning eng baland binosi', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Palm Jumeirah & Atlantis', desc: 'Fors ko\'rfazi uzra qurilgan afsonaviy palma shaklidagi orol', img: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Qizil Cho\'l Safari & VIP Shou', desc: 'Duna bo\'ylab ekstremal avto-poyga va arabcha shou', img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Kelajak Muzeyi', desc: 'Arab xattotligi bilan bezatilgan jahon arxitekturasi durdonasi', img: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?auto=format&fit=crop&w=800&q=80' }
-    ]
-  },
-  {
-    id: 'maldives',
-    name: 'Maldiv Orollari (Hind Okeani)',
-    nameEn: 'Maldives',
-    flag: '🇲🇻',
-    capital: 'Male',
-    category: 'beach',
-    tagline: 'Hind okeanidagi moviy lagunalar va suv ustidagi lyuks villalar',
-    coverImage: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '6 soat (Dubay orqali qulay ulanish)',
-    visa: 'Aeroportda 30 kunga bepul beriladi',
-    bestTime: 'Noyabr - May (Iliq va shamolsiz fasl)',
-    currency: 'USD ($) / MVR',
-    language: 'Divexi / Inglizcha',
-    temp: '+30°C',
-    weatherDesc: 'Iliq tropik okean shabadasi',
-    rating: 4.99,
-    reviewsCount: 2150,
-    basePriceUSD: 1100,
-    highlights: [
-      'Okean ustidagi xususiy basseynli shohona villalar',
-      'Gidrosamolyotda (Seaplane) orollar ustida go\'zal parvoz',
-      'Delfinlar, ulkan toshbaqalar va manta skatlari bilan suzish',
-      '5 metr suv ostida joylashgan akvarium-restoranda tushlik',
-      'Yulduzli osmon ostida qumli plyajda shaxsiy romantik oqshom'
-    ],
-    description: 'Maldiv orollari – yer yuzidagi haqiqiy jannat. Shovqindan uzoq, shaffof feruza okean, mayin oppoq marjon qumi va eng yuqori darajadagi shaxsiy servis.',
-    images: [
-      'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80'
-    ],
-    spots: [
-      { name: 'Suv Ustidagi VIP Villalar', desc: 'Basseynli xususiy villa va to\'g\'ridan-to\'g\'ri okeanga tushish', img: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Ba Atoll Rif Snorkeling', desc: 'Dunyoning eng toza marjon riflari va ekzotik baliqlar', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Vaadhoo Neon Plyaji', desc: 'Kechasi bioluminessensiya tufayli moviy nur sochuvchi sohil', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Ithaa Suv Osti Restorani', desc: 'Akulalar va rang-barang dengiz hayoti qurshovida gurme taomlar', img: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=80' }
-    ]
-  },
-  {
-    id: 'saudi',
-    name: 'Saudiya Arabistoni (Umra & Ziyorat)',
-    nameEn: 'Saudi Arabia',
-    flag: '🇸🇦',
-    capital: 'Ar-Riyod / Makka / Madina',
-    category: 'historical',
-    tagline: 'Muqaddas Ka\'batulloh, Masjidun Nabaviy va ruhiy sokinlik',
-    coverImage: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '4.5 soat (Toshkentdan to\'g\'ridan-to\'g\'ri Jiddaga)',
-    visa: 'Elektron Umra va Turistik viza 24 soatda',
-    bestTime: 'Yil bo\'yi (Ayniqsa qish va bahor oylarida)',
-    currency: 'SAR (Saudiya Riyoli) / USD',
-    language: 'Arabcha / O\'zbekcha ellikboshi',
-    temp: '+31°C',
-    weatherDesc: 'Quruq va iliq quyoshli iqlim',
-    rating: 5.0,
-    reviewsCount: 5900,
-    basePriceUSD: 850,
-    highlights: [
-      'Masjidul Haramda Ka\'batulloh tavofi va Sa\'y amallari',
-      'Masjidun Nabaviyda Payg\'ambarimiz (s.a.v.) ravzalarini ziyorat qilish',
-      'Qubo masjidi, Uhud tog\'i va Qiblatayn masjidi ekskursiyalari',
-      'Haramga yaqin 5★ mehmonxonalar va 3 mahal o\'zbek milliy taomlari',
-      'Tajribali diniy ulamolar va shifokorlar doimiy hamrohligi'
-    ],
-    description: 'Umra ziyorati – har bir musulmon orzu qiladigan muborak safar. Biz bilan to\'g\'ridan-to\'g\'ri reyslar, Haram maydoniga piyoda masofadagi lyuks mehmonxonalar va barcha sharoitlar yaratilgan.',
-    images: [
-      'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80'
-    ],
-    spots: [
-      { name: 'Masjidul Haram & Ka\'ba', desc: 'Dunyodagi eng muqaddas masjid va nurli tavof maydoni', img: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Masjidun Nabaviy Madina', desc: 'Payg\'ambarimiz (s.a.v.) masjidi va ulug\'vor soyabonlar', img: 'https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Uhud Tog\'i va Shuhodolar', desc: 'Islom tarixidagi buyuk sahobalar qadamjosi', img: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Qubo Masjidi', desc: 'Islom tarixida qurilgan ilk muqaddas masjid', img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80' }
-    ]
-  },
-  {
-    id: 'switzerland',
-    name: 'Shveytsariya (Alp Tog\'lari)',
-    nameEn: 'Switzerland',
-    flag: '🇨🇭',
-    capital: 'Bern / Syurix / Jeneva',
-    category: 'nature',
-    tagline: 'Alp cho\'qqilari, billurdek toza ko\'llar va panoramik poyezdlar',
-    coverImage: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1520437358207-323b43b50729?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '7 soat (Frankfurt yoki Istanbul orqali)',
-    visa: 'Shengen vizasi (Biz to\'liq tayyorlab beramiz)',
-    bestTime: 'May - Oktyabr (Tabiat), Dekabr - Mart (Chang\'i)',
-    currency: 'CHF (Shveytsariya Franki) / EUR',
-    language: 'Nemis / Fransuz / Italyan / Inglizcha',
-    temp: '+19°C',
-    weatherDesc: 'Musaffo va toza tog\' havosi',
-    rating: 4.97,
-    reviewsCount: 1980,
-    basePriceUSD: 1250,
-    highlights: [
-      'Matterhorn afsonaviy piramidasimon cho\'qqisi (Zermatt)',
-      'Glacier Express shaffof panoramali tog\' poyezdida sayohat',
-      'Lauterbrunnen vodiysi va 72 ta sharshara manzarasi',
-      'Lyutsern ko\'li bo\'ylab paroxodda sayr',
-      'Haqiqiy shveysar pishloqlari va shokolad fabrikalari'
-    ],
-    description: 'Shveytsariya – Yevropaning eng go\'zal va xavfsiz mamlakati. Yam-yashil vodiylar, billurdek toza muzlik suvlari, Alp tog\'laridagi ertaknamo qishloqlar sizni maftun etadi.',
-    images: [
-      'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80'
-    ],
-    spots: [
-      { name: 'Lauterbrunnen Vodiysi', desc: 'Tik qoyalardan oqib tushuvchi sharsharalar va yashil vodiylar', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Matterhorn Zermatt', desc: 'Dunyodagi eng mashhur qorli cho\'qqi va chang\'i kurorti', img: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Glacier Express Poyezdi', desc: 'Alp tog\'lari aro oyna vagonlarda afsonaviy temir yo\'l safari', img: 'https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Lyutsern & Kapellbryukke', desc: 'O\'rta asrlarga oid yog\'och ko\'prik va moviy ko\'l', img: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80' }
-    ]
-  },
-  {
-    id: 'japan',
-    name: 'Yaponiya (Tokio & Kioto)',
-    nameEn: 'Japan',
-    flag: '🇯🇵',
-    capital: 'Tokio',
-    category: 'luxury',
-    tagline: 'Sakura gullari, Fuji tog\'i va kelajak texnologiyasi',
-    coverImage: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '7.5 soat (Toshkentdan to\'g\'ridan-to\'g\'ri reys)',
-    visa: 'Elektron viza (Osonlashtirilgan tartib)',
-    bestTime: 'Mart - May (Sakura mavsumi), Sentabr - Noyabr',
-    currency: 'JPY (Yapon Yenasi) / USD',
-    language: 'Yaponcha / Inglizcha',
-    temp: '+22°C',
-    weatherDesc: 'Yoqimli quyoshli ob-havo',
-    rating: 4.96,
-    reviewsCount: 2400,
-    basePriceUSD: 1190,
-    highlights: [
-      'Fuji tog\'ining maftunkor manzaralari va Kawaguchiko ko\'li',
-      'Shinkansen tezyurar samolyot-poyezdida 320 km/soat tezlikda parvoz',
-      'Kioto shahrining 10,000 ta qizil Torii darvozalari',
-      'Tokio Shibuya, Shinjuku va Akihabara neon ko\'chalari',
-      'Haqiqiy yapon sushisi, ramen va choy marosimlari'
-    ],
-    description: 'Kunchiqar mamlakat Yaponiya – qadimiy samuray va geysha madaniyati bilan eng ilg\'or kelajak robot texnologiyalari birlashgan mo\'jizaviy diyor.',
-    images: [
-      'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1200&q=80'
-    ],
-    spots: [
-      { name: 'Muqaddas Fuji Tog\'i', desc: 'Qor bilan qoplangan Yaponiyaning bosh ramzi', img: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Kioto Fushimi Inari', desc: 'Tog\' bo\'ylab cho\'zilgan cheksiz qizil ma\'bad koridori', img: 'https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Tokio Shibuya Crossing', desc: 'Dunyoning eng gavjum va yorqin neonli chorrahasi', img: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Akihabara Texno Shahri', desc: 'Anime, robotlar va zamonaviy texnologiyalar markazi', img: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80' }
-    ]
-  },
-  {
-    id: 'uzbekistan',
-    name: 'O\'zbekiston (Samarqand, Buxoro, Xiva)',
-    nameEn: 'Uzbekistan',
-    flag: '🇺🇿',
-    capital: 'Toshkent',
-    category: 'historical',
-    tagline: 'Buyuk Ipak Yo\'li yuragi, moviy gumbazlar va Zomin tabiati',
+    id: 'samarkand',
+    name: 'Samarqand Viloyati',
+    nameEn: 'Samarkand',
+    flag: '🏛️',
+    capital: 'Samarqand shahri',
+    category: 'history',
+    tagline: 'Sayqali Ro\'yi Zamin — Registon maydoni, Go\'ri Amir va Boqiy Shahar',
     coverImage: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: 'Ichki parvozlar (Afrosiyob poyezdi va reyslar)',
-    visa: 'O\'zbekiston fuqarolari uchun erkin',
-    bestTime: 'Mart - Iyun, Sentabr - Noyabr',
-    currency: 'UZS (So\'m)',
-    language: 'O\'zbek tili',
+    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+    flightDuration: '50 daqiqa (Samolyot) / 2 soat (Afrosiyob)',
+    visa: 'O\'zbekiston fuqarolari uchun to\'liq erkin',
+    bestTime: 'Mart - Iyun, Sentyabr - Noyabr',
+    currency: 'UZS (So\'m) / USD',
+    language: 'O\'zbekcha / Ruscha / Inglizcha',
     temp: '+26°C',
-    weatherDesc: 'Iliq va oftobli ob-havo',
-    rating: 4.98,
-    reviewsCount: 3100,
-    basePriceUSD: 250,
+    weatherDesc: 'Musaffo quyoshli osmon va mayin shabada',
+    rating: 4.99,
+    reviewsCount: 5420,
+    basePriceUSD: 85,
     highlights: [
-      'Registon maydoni, Go\'ri Amir va Shohi Zinda ziyoratlari',
-      'Buxoroyi Sharif Poi Kalon va Ark qal\'asi sirlari',
-      'Xiva Ichan Qal\'a ochiq osmon ostidagi tirik muzey',
-      'Zomin Milliy Bog\'ining toza archazor tog\' havosi',
-      'O\'zbek milliy tansiq taomlari va palov ustalari mahorati'
+      'Registon maydonidagi 3 ta muazzam madrasa bo\'ylab ekskursiya',
+      'Amir Temur va Temuriylar maqbarasi (Go\'ri Amir)',
+      'Afsonaviy Shohi Zinda moviy koshinlar majmuasi',
+      'Silk Road Samarkand — "Boqiy Shahar" etno-parki va yaxtalar kanali',
+      'Mashhur Samarqand noni va to\'y palovi degustatsiyasi'
     ],
-    description: 'O\'zbekiston – sharqona ertaklar mamlakati. Ming yillik tarixga ega obidalar, samoviy naqshlar, dunyoga mashhur mehmondo\'stlik va boy madaniy meros.',
+    description: 'Samarqand – 2750 yildan ortiq boy tarixga ega Sharq gavhari. Buyuk Ipak Yo\'lining yuragi, Temuriylar saltanati poytaxti va dunyo sivilizatsiyasining buyuk me\'moriy durdonasi.',
     images: [
       'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=1200&q=80',
@@ -415,184 +129,390 @@ export const COUNTRIES = [
       'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
-      { name: 'Samarqand Registon', desc: 'Sharq durdonasi va betakror koshinkor madrasalar', img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Buxoro Poi Kalon', desc: 'Ulug\'vor minorai Kalon va qadimiy karvonsaroylar', img: 'https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Xiva Ichan Qal\'a', desc: 'Loy devorlar bilan o\'ralgan haqiqiy ming yillik shahar', img: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Zomin Shveytsariyasi', desc: 'Muazzam qarag\'ayzorlar va osma shisha ko\'prik', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' }
+      { name: 'Registon Maydoni', desc: 'Tillakori, Ulug\'bek va Sherdor madrasalarining tillarang jilosi', img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Go\'ri Amir Maqbarasi', desc: 'Sohibqiron Amir Temur va ulug\' allomalarning mangu maskani', img: 'https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Shohi Zinda Majmuasi', desc: 'Sharq miniatyurasining eng go\'zal moviy koshinlar xazinasi', img: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Boqiy Shahar (Silk Road)', desc: 'Zamonaviy xalqaro turizm markazi va hunarmandlar rastalari', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' }
     ]
   },
   {
-    id: 'indonesia',
-    name: 'Indoneziya (Bali Oroli)',
-    nameEn: 'Indonesia (Bali)',
-    flag: '🇮🇩',
-    capital: 'Jakarta / Denpasar',
-    category: 'beach',
-    tagline: 'Tropik sharsharalar, sholi terrasalari va okean syorfingi',
-    coverImage: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1600&q=80',
+    id: 'bukhara',
+    name: 'Buxoro Viloyati',
+    nameEn: 'Bukhara',
+    flag: '🕌',
+    capital: 'Buxoro shahri',
+    category: 'history',
+    tagline: 'Buxoroyi Sharif — Minorai Kalon, Ark Qal\'asi va Labi Hovuz',
+    coverImage: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1600&q=80',
     planeImage: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '8.5 soat',
-    visa: 'Aeroportda elektron viza (VoA)',
-    bestTime: 'Aprel - Noyabr',
-    currency: 'IDR (Indoneziya Rupiyasi) / USD',
-    language: 'Indonezcha / Inglizcha',
-    temp: '+29°C',
-    weatherDesc: 'Tropik iliq okean iqlimi',
-    rating: 4.95,
-    reviewsCount: 3300,
-    basePriceUSD: 780,
+    flightDuration: '1 soat (Samolyot) / 3.5 soat (Afrosiyob)',
+    visa: 'Erkin kirish',
+    bestTime: 'Bahor & Kuz oylari',
+    currency: 'UZS (So\'m) / USD',
+    language: 'O\'zbekcha / Tojikcha / Ruscha',
+    temp: '+27°C',
+    weatherDesc: 'Quyoshli va musaffo sharqona iqlim',
+    rating: 4.98,
+    reviewsCount: 4890,
+    basePriceUSD: 80,
     highlights: [
-      'Nusa Penida Kelingking plyaji (Dinozavr qoyasi)',
-      'Ubudning yam-yashil sholi maydonlari va afsonaviy Bali mayatnigi (Swing)',
-      'Uluwatu qoyasida quyosh botishi va olovli Kechak raqsi',
-      'Ekzotik tropik sharsharalar ostida cho\'milish',
-      'Xususiy tropik villalar va suzuvchi nonushta (Floating Breakfast)'
+      'Minorai Kalon va Poi Kalon masjid-madrasasi sirlari',
+      'Buxoro amirlarining qadimiy qarorgohi — Ark Qal\'asi',
+      'Asriy chinorlar soyasidagi mashhur Labi Hovuz ansambli',
+      'Sitorai Mohi Xosa — Amirning naqshinkor yozgi saroyi',
+      'Buxoro zardo\'zlik va pichoqchilik san\'ati mahorat darslari'
     ],
-    description: 'Sehrli Bali – ruhiy sokinlik, betakror yashil tabiat, vulqonlar, ekzotik ibodatxonalar va Hind okeanining qudratli to\'lqinlari yurti.',
+    description: 'Buxoro – islom olamining muqaddas madaniyat poytaxti. Yuzlab qadimiy gumbazlar, karvonsaroylar, zardo\'zlik ustalari va sharqona ertak muhiti.',
     images: [
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
-      { name: 'Nusa Penida Kelingking', desc: 'Okean uzra yuksalgan dinozavr shaklidagi qoyatosh sohili', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Ubud Tegalalang', desc: 'Zumrad rang sholi terrasalari va baland belanchaklar', img: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Uluwatu Qoyalari', desc: 'To\'lqinlar ustidagi qadimiy ibodatxona va Kechak olov shousi', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Gili Toshbaqalar Orollari', desc: 'Toza moviy suvlar va ulkan dengiz toshbaqalari bilan snorkeling', img: 'https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=800&q=80' }
+      { name: 'Poi Kalon & Minorai Kalon', desc: '48 metrli afsonaviy minora va ulug\'vor masjid', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Buxoro Ark Qal\'asi', desc: 'Buxoro hukmdorlarining ulkan g\'ishtin qal\'asi', img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Labi Hovuz & Nodir Devonbegi', desc: 'Markaziy hovuz bo\'yidagi choyxona va jonli musiqalar', img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Sitorai Mohi Xosa Saroyi', desc: 'Oyna va naqshlar bilan bezatilgan shohona saroy', img: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80' }
     ]
   },
   {
-    id: 'france',
-    name: 'Fransiya (Parij & Kot d\'Azur)',
-    nameEn: 'France',
-    flag: '🇫🇷',
-    capital: 'Parij',
-    category: 'luxury',
-    tagline: 'Romantika, Eyfel minorasi, Luvr san\'ati va Fransiya Rivyerasi',
-    coverImage: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1600&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
-    flightDuration: '6.5 soat (Toshkentdan to\'g\'ridan-to\'g\'ri qatnov)',
-    visa: 'Shengen vizasi',
-    bestTime: 'Aprel - Oktyabr',
-    currency: 'EUR (Yevro) / USD',
-    language: 'Fransuzcha / Inglizcha',
-    temp: '+23°C',
-    weatherDesc: 'Yoqimli bahor-yoz havosi',
-    rating: 4.90,
-    reviewsCount: 2800,
-    basePriceUSD: 980,
+    id: 'khorezm',
+    name: 'Xorazm (Xiva Ichan Qal\'a)',
+    nameEn: 'Khorezm & Khiva',
+    flag: '🏰',
+    capital: 'Urganch / Xiva shahri',
+    category: 'history',
+    tagline: 'Ochiq Osmon Ostidagi Tirik Muzey — Ichan Qal\'a va Kalta Minor',
+    coverImage: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1600&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80',
+    flightDuration: '1.5 soat (Toshkent ➔ Urganch reysi)',
+    visa: 'Erkin kirish',
+    bestTime: 'Aprel - Iyun, Sentyabr - Oktyabr',
+    currency: 'UZS (So\'m) / USD',
+    language: 'Xorazm shevasi / O\'zbekcha / Ruscha',
+    temp: '+25°C',
+    weatherDesc: 'Quruq va toza cho\'l-voha havosi',
+    rating: 4.99,
+    reviewsCount: 3950,
+    basePriceUSD: 95,
     highlights: [
-      'Eyfel minorasi tepasidan Parij nurlariga boqish',
-      'Luvr muzeyida Mona Liza va san\'at durdonalari',
-      'Sen daryosi bo\'ylab romantik panoramali kema safari',
-      'Disneylend Parij – barcha yoshdagilar uchun ertaklar olami',
-      'Nitssa, Kann va Monako sohillaridagi lyuks dam olish'
+      'UNESCO merosi Ichan Qal\'a ichida kechki chiroqlar sayri',
+      'Mashhur Kalta Minor va Islomxo\'ja minorasiga chiqish',
+      '218 ta betakror yog\'och o\'ymakor ustunli Juma Masjidi',
+      'Tosh Hovli va Nurullaboy shoh saroylari zallari',
+      'Xorazmcha tuxumbarak, shivit oshi va daryo balig\'i'
     ],
-    description: 'Parij – orzular va muhabbat poytaxti. Tarixiy qasrlar, mashhur kruassanlar, Yelisey dalalari va fransuz nafosati.',
+    description: 'Xiva – qadimgi Xorazm sivilizatsiyasining saqlanib qolgan yagona tirik qal\'a-shahri. Gilamlar, doiralar sadolari va ming yillik loy devorlar.',
     images: [
-      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
-      { name: 'Eyfel Minorasi', desc: 'Parijning afsonaviy ramzi va kechki yorqin chiroqlari', img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Luvr Muzeyi & Piramida', desc: 'Dunyodagi eng boy san\'at xazinasi va shoh saroyi', img: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Disneylend Parij', desc: 'Mikki Maus, qasrlar va attraksionlar saltanati', img: 'https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?auto=format&fit=crop&w=800&q=80' },
-      { name: 'Nitssa & Kot d\'Azur', desc: 'Moviy qirg\'oq va O\'rta yer dengizining lyuks kurorti', img: 'https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?auto=format&fit=crop&w=800&q=80' }
+      { name: 'Ichan Qal\'a Majmuasi', desc: 'To\'liq saqlangan afsonaviy o\'rta asrlar qal\'asi', img: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Kalta Minor & Islomxo\'ja', desc: 'Moviy feruza koshinli ulkan minora', img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Juma Masjidi', desc: 'Har biri alohida naqsh bilan o\'yilgan 218 ta ustun', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Nurullaboy Saroyi', desc: 'Yevropa va Sharq uslubi uyg\'unlashgan xon saroyi', img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80' }
+    ]
+  },
+  {
+    id: 'ellikqala',
+    name: 'Ellikqal\'a (Qoraqalpog\'iston)',
+    nameEn: 'Ellikqala & Ancient Fortresses',
+    flag: '🏜️',
+    capital: 'Bo\'ston / Nukus',
+    category: 'ancient',
+    tagline: '50 Qal\'a Saltanati — Ayozqal\'a, Toproqqal\'a va Qizilqum Mo\'jizalari',
+    coverImage: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+    flightDuration: '1.5 soat (Nukus yoki Urganch orqali)',
+    visa: 'Erkin kirish',
+    bestTime: 'Aprel - May, Sentyabr - Oktyabr',
+    currency: 'UZS (So\'m)',
+    language: 'Qoraqalpoqcha / O\'zbekcha / Ruscha',
+    temp: '+28°C',
+    weatherDesc: 'Qizilqum oftobli va tiniq havosi',
+    rating: 4.96,
+    reviewsCount: 2120,
+    basePriceUSD: 110,
+    highlights: [
+      'Ayozqal\'a (mil.avv. IV asr) tepaligidan Qizilqum cho\'li panoramasi',
+      'Qadimgi Xorazmshohlar bosh qarorgohi — Toproqqal\'a saroyi',
+      'Ayozko\'l bo\'yida qoraqalpoq o\'tovlarida (yurtlarda) tunash',
+      'Tuyalarda cho\'l safari va ochiq osmon ostida yulduzlarni kuzatish',
+      'Savitskiy nomidagi jahonga mashhur Nukus tasviriy san\'at muzeyi'
+    ],
+    description: 'Ellikqal\'a – qadimgi Xorazmning 50 dan ortiq qudratli qal\'alar tizimi joylashgan sirli maskan. Bu yerda siz o\'zingizni 2000 yil avvalgi dunyoda his qilasiz.',
+    images: [
+      'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80'
+    ],
+    spots: [
+      { name: 'Ayozqal\'a Qadimiy Qal\'asi', desc: 'Baland qumtosh tepalik uzra qad ko\'targan ulkan qasr', img: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Toproqqal\'a Shoh Saroyi', desc: 'Qadimgi freskalar va arxeologik topilmalar beshigi', img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Ayozko\'l O\'tovlar Lageri', desc: 'Milliy o\'tovlarda dam olish va cho\'l barbekyusi', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Savitskiy San\'at Muzeyi', desc: 'Dunyoga mashhur rus avangard san\'ati to\'plami', img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80' }
+    ]
+  },
+  {
+    id: 'shahrisabz',
+    name: 'Shahrisabz (Kesh)',
+    nameEn: 'Shahrisabz',
+    flag: '👑',
+    capital: 'Shahrisabz shahri',
+    category: 'history',
+    tagline: 'Sohibqiron Vatani — Oqsaroy, Dorus-Saodat va Taxtaqoracha Dovoni',
+    coverImage: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+    flightDuration: 'Samarqanddan mashinada 1.5 soat / Qarshi orqali',
+    visa: 'Erkin kirish',
+    bestTime: 'Aprel - Noyabr',
+    currency: 'UZS (So\'m)',
+    language: 'O\'zbekcha / Tojikcha',
+    temp: '+26°C',
+    weatherDesc: 'Tog\' etagi toza va salqin havosi',
+    rating: 4.95,
+    reviewsCount: 3100,
+    basePriceUSD: 70,
+    highlights: [
+      'Amir Temurning ulkan Oqsaroy darvozasi peshtoqi (65m balandlik)',
+      'Dorus-Saodat va Jahongir Mirzo maqbarasi',
+      'Dorut-Tilovat majmuasi va Ko\'k Gumbaz masjidi',
+      'Taxtaqoracha tog\' dovonida tandir go\'shti tanovul qilish',
+      'Muzdek tog\' buloqlari va qadimiy chinorlar sayri'
+    ],
+    description: 'Shahrisabz – Amir Temur tavallud topgan muqaddas vatan. Yashil bog\'lar, Temuriylar arxitekturasi va Zarafshon tog\' tizmasining purviqor manzaralari.',
+    images: [
+      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80'
+    ],
+    spots: [
+      { name: 'Oqsaroy Majmuasi', desc: '"Qudratimizga shubha qilsang, biz qurgan imoratlarga boq"', img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Dorus-Saodat Majmuasi', desc: 'Temuriylar sulolaviy xilxonasi va maqbaralari', img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Ko\'k Gumbaz Masjidi', desc: 'Ulug\'bek tomonidan qurdirilgan muhtasham moviy masjid', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Taxtaqoracha Tog\' Dovoni', desc: 'Tog\' cho\'qqisidagi mashhur tandir go\'shti va manzaralar', img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80' }
+    ]
+  },
+  {
+    id: 'qashqadaryo',
+    name: 'Qashqadaryo (Kitob & Hisor)',
+    nameEn: 'Kashkadarya & Kitob',
+    flag: '🔭',
+    capital: 'Qarshi shahri',
+    category: 'nature',
+    tagline: 'Koinot Rasadxonasi, Amir Temur G\'ori va Hisor Tog\'lari',
+    coverImage: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1600&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80',
+    flightDuration: '1 soat (Toshkent ➔ Qarshi reysi)',
+    visa: 'Erkin kirish',
+    bestTime: 'May - Oktyabr',
+    currency: 'UZS (So\'m)',
+    language: 'O\'zbekcha / Tojikcha',
+    temp: '+25°C',
+    weatherDesc: 'Toza musaffo tog\' havosi',
+    rating: 4.97,
+    reviewsCount: 2750,
+    basePriceUSD: 85,
+    highlights: [
+      'Kitob Baland Tog\' Maydanak Astronomiya Rasadxonasi (Yulduzlar olami)',
+      'Dengiz sathidan 2500m balanddagi sirli Amir Temur g\'ori',
+      'Hisor Davlat Qo\'riqxonasi va Qizilsuv kanyonlari',
+      'Qarshi daryosi ustidagi tarixiy Amir Temur ko\'prigi va Odina masjidi',
+      'Haqiqiy Qashqadaryo tandir go\'shti va archa xushbo\'y havosi'
+    ],
+    description: 'Qashqadaryo – bepoyon yaylovlar, baland Hisor cho\'qqilari, koinot sirlarini ochuvchi yirik observatoriyalar va betakror mehmondo\'stlik maskani.',
+    images: [
+      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80'
+    ],
+    spots: [
+      { name: 'Maydanak & Kitob Rasadxonasi', desc: 'Dunyoning eng tiniq osmonli baland tog\' teleskoplari', img: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Hisor Tog\' Qo\'riqxonasi', desc: 'Baland sharsharalar, archazorlar va yovvoyi tabiat', img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Amir Temur Qadimiy Ko\'prigi', desc: 'Qarshi daryosi uzra qurilgan XVI asr me\'moriy obidasi', img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Miraki Oromgohi', desc: 'Qashqadaryo tog\' etaklaridagi go\'zal dam olish maskani', img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80' }
+    ]
+  },
+  {
+    id: 'surkhandarya',
+    name: 'Surxondaryo (Boysun & Termiz)',
+    nameEn: 'Surkhandarya & Boysun',
+    flag: '⛰️',
+    capital: 'Termiz shahri',
+    category: 'nature',
+    tagline: 'UNESCO Boysun Madaniyati, Sangardak Sharsharasi va Hakim at-Termiziy',
+    coverImage: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1600&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+    flightDuration: '1 soat (Toshkent ➔ Termiz reysi)',
+    visa: 'Erkin kirish',
+    bestTime: 'Aprel - Iyun, Sentyabr - Noyabr',
+    currency: 'UZS (So\'m)',
+    language: 'O\'zbekcha / Tojikcha',
+    temp: '+29°C',
+    weatherDesc: 'Iliq subtropik sharqiy iqlim',
+    rating: 4.98,
+    reviewsCount: 2900,
+    basePriceUSD: 90,
+    highlights: [
+      'UNESCO nomoddiy madaniy merosi ro\'yxatidagi afsonaviy Boysun tog\'lari',
+      'Qoyalardan otilib chiquvchi mashhur Sangardak sharsharasi',
+      'Qadimiy Baqtriya va Fayoztepa budda ibodatxonalari',
+      'Al-Hakim at-Termiziy va Sulton Saodat muqaddas ziyoratgohlari',
+      'Omonxona shifobaxsh ma\'danli suvlari va Qirqqiz qal\'asi'
+    ],
+    description: 'Surxondaryo – O\'zbekistonning eng janubiy va eng qadimiy vohasi. Boysun folklori, Baqtriya madaniyati, sharsharalar va muqaddas ziyoratgohlar yurti.',
+    images: [
+      'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80'
+    ],
+    spots: [
+      { name: 'Boysun Qishloqlari & Omonxona', desc: 'Baland qoyalar bag\'ridagi shifobaxsh ma\'danli suv bulog\'i', img: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Sangardak Sharsharasi', desc: 'Yashil moxli qoyatoshlardan tushuvchi ajoyib sharshara', img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Fayoztepa & Qoratepa', desc: 'Milodiy I-III asrlarga oid qadimgi Budda stupalari', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Hakim at-Termiziy Majmuasi', desc: 'Amudaryo sohilidagi ulug\' alloma ziyoratgohi', img: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80' }
+    ]
+  },
+  {
+    id: 'tashkent-zomin',
+    name: 'Toshkent & Zomin Tog\'lari',
+    nameEn: 'Tashkent & Zaamin Mountains',
+    flag: '🌲',
+    capital: 'Toshkent shahri / Jizzax',
+    category: 'nature',
+    tagline: 'O\'zbekiston Shveytsariyasi — Zomin Qarag\'ayzori va Zamonaviy Poytaxt',
+    coverImage: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80',
+    flightDuration: 'Poytaxt markazi / Mashinada 2.5 soat (Zomin)',
+    visa: 'Erkin kirish',
+    bestTime: 'Yil bo\'yi (Qishda chang\'i, yozda salqin)',
+    currency: 'UZS (So\'m)',
+    language: 'O\'zbekcha / Ruscha / Inglizcha',
+    temp: '+24°C',
+    weatherDesc: 'Salqin tog\' archazori va poytaxt nurlari',
+    rating: 4.99,
+    reviewsCount: 6100,
+    basePriceUSD: 60,
+    highlights: [
+      'Zomin Milliy Bog\'idagi ulkan Osma Shisha Ko\'prik (Glass Bridge)',
+      '2000 metr balandlikdagi dor yo\'li (kanat) va archazorlar',
+      'Hazrati Imom (Hastimom) majmuasidagi VII asr Usmon Qur\'oni',
+      'Amirsoy & Chimyon tog\' kurortlarida lyuks dam olish',
+      'Chorsu bozori va Toshkent metropolitenining naqshinkor bekatlari'
+    ],
+    description: 'Toshkent va Zomin – zamonaviy megapolis qulayliklari hamda toza tog\' archazorlarining ajoyib uyg\'unligi. Shisha ko\'priklar, kurortlar va boy madaniyat.',
+    images: [
+      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80'
+    ],
+    spots: [
+      { name: 'Zomin Osma Shisha Ko\'prigi', desc: 'Tog\' darasi uzra qurilgan hayajonli panoramali shisha ko\'prik', img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Hazrati Imom (Hastimom)', desc: 'Poytaxtning bosh islomiy obidasi va nodir qo\'lyozmalar', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Amirsoy Mountain Resort', desc: 'Xalqaro toifadagi qishki va yozgi tog\' kurorti', img: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80' },
+      { name: 'Chorsu Bozor & Toshkent Teleminorasi', desc: 'Sharqona bozor muhiti va 375 metrli teleminora', img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80' }
     ]
   }
 ];
 
+// O'ZBEKISTON ICHKI TURIZMI UCHUN QAYNOQ TUR PAKETLARI
 export const HOT_DEALS = [
   {
     id: 'deal-1',
-    countryId: 'turkey',
-    title: 'Antaliya All-Inclusive 5★ Ultra Lyuks Ta\'til',
-    country: 'Turkiya',
-    days: '7 kecha / 8 kun',
-    badge: 'QAYNOQ TAKLIF -25%',
-    oldPriceUSD: 680,
-    newPriceUSD: 510,
-    image: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80',
-    includes: ['To\'g\'ridan-to\'g\'ri aviaqatnov', '5★ Ultra All Inclusive Mehmonxona', 'Transfer & Sug\'urta', 'Gid xizmati'],
+    countryId: 'samarkand',
+    title: 'Samarqand & Buxoro VIP Afrosiyob Ekspress Turi',
+    country: 'Samarqand & Buxoro',
+    days: '3 kecha / 4 kun',
+    badge: 'ENG KO\'P TANLANGAN -25%',
+    oldPriceUSD: 240,
+    newPriceUSD: 180,
+    image: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1532103054090-a0840b28e579?auto=format&fit=crop&w=800&q=80',
+    includes: ['Afrosiyob VIP poyezd chiptalari', '4-5★ Tarixiy Mehmonxonalar', 'Shaxsiy gid & barcha muzey chiptalari', 'Milliy to\'y oshi va kechki dasturlar'],
     expiresInHours: 14
   },
   {
     id: 'deal-2',
-    countryId: 'uae',
-    title: 'Dubay VIP Sayohat + Safari va Burj Khalifa',
-    country: 'BAA',
-    days: '5 kecha / 6 kun',
-    badge: 'ENG KO\'P SOTILGAN -30%',
-    oldPriceUSD: 790,
-    newPriceUSD: 550,
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80',
-    includes: ['Parvoz + bagaj 23kg', 'Marina bo\'yidagi 4★+ Mehmonxona', 'Jip Safari & Kechki ovqat', 'Burj Khalifa chiptasi'],
+    countryId: 'khorezm',
+    title: 'Xiva Ichan Qal\'a & Ellikqal\'a Qadimiy Qal\'alar Ekspeditsiyasi',
+    country: 'Xorazm & Ellikqal\'a',
+    days: '3 kecha / 4 kun',
+    badge: 'EKSKLYUZIV -30%',
+    oldPriceUSD: 290,
+    newPriceUSD: 210,
+    image: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=800&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80',
+    includes: ['Toshkent-Urganch to\'g\'ridan-to\'g\'ri aviaparvoz', 'Ichan Qal\'a ichidagi sharqona mehmonxona', 'Ayozqal\'a & Toproqqal\'a jip safari', 'Xorazm milliy tansiq taomlari'],
     expiresInHours: 9
   },
   {
     id: 'deal-3',
-    countryId: 'saudi',
-    title: 'Umra Ziyorati 2026 (To\'g\'ridan-to\'g\'ri Toshkent-Jidda)',
-    country: 'Saudiya Arabistoni',
-    days: '14 kun',
-    badge: 'BARCHA QULAYLIKLAR BILAN',
-    oldPriceUSD: 980,
-    newPriceUSD: 850,
-    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=800&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1520437358207-323b43b50729?auto=format&fit=crop&w=800&q=80',
-    includes: ['To\'g\'ridan-to\'g\'ri charter reys', 'Haramga yaqin 5★ mehmonxonalar', 'Tajribali ellikboshi', 'Viza, tibbiy sug\'urta va sovg\'alar'],
-    expiresInHours: 28
+    countryId: 'surkhandarya',
+    title: 'Surxondaryo Boysun, Omonxona & Sangardak Sharsharasi Safari',
+    country: 'Surxondaryo (Termiz)',
+    days: '2 kecha / 3 kun',
+    badge: 'TABIAT VA SIHAT -20%',
+    oldPriceUSD: 220,
+    newPriceUSD: 160,
+    image: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=800&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80',
+    includes: ['Toshkent-Termiz aviaparvozi', 'Boysun tog\' eko-kottejlari', 'Sangardak sharsharasiga VIP transfer', 'Omonxona shifobaxsh suvi va tog\' nonushtasi'],
+    expiresInHours: 24
   },
   {
     id: 'deal-4',
-    countryId: 'maldives',
-    title: 'Maldiv Orollari Suv Villasi Romantik Ta\'til',
-    country: 'Maldiv',
-    days: '6 kecha / 7 kun',
-    badge: 'LYUKS CHEGIRMA -20%',
-    oldPriceUSD: 1450,
-    newPriceUSD: 1150,
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
-    planeImage: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80',
-    includes: ['Gidrosamolyotda transfer', 'Suv ustidagi shaxsiy villa', 'Full Board (3 mahal taom)', 'Snorkeling va kanoe'],
-    expiresInHours: 19
+    countryId: 'qashqadaryo',
+    title: 'Qashqadaryo Kitob Rasadxonasi & Shahrisabz Oqsaroy Turi',
+    country: 'Qashqadaryo & Shahrisabz',
+    days: '2 kecha / 3 kun',
+    badge: 'KOINOT SIRLARI -25%',
+    oldPriceUSD: 190,
+    newPriceUSD: 140,
+    image: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80',
+    planeImage: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80',
+    includes: ['Afrosiyob poyezdi yoki samolyot', 'Maydanak observatoriyasida yulduzlarni kuzatish', 'Oqsaroy va Dorus-Saodat ekskursiyasi', 'Taxtaqoracha tandir go\'shti ziyofati'],
+    expiresInHours: 18
   }
 ];
 
 export const REVIEWS = [
   {
     id: 1,
-    name: 'Bobur Mirzayev',
+    name: 'Sardor Rahimov',
     role: 'Tadbirkor, Toshkent',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
     rating: 5,
-    country: 'Dubay (BAA)',
-    text: 'Dubayga oilaviy sayohatimiz ajoyib o\'tdi! Samolyot chiptalaridan tortib mehmonxonagacha barchasi yuqori darajada tashkil qilingan. Ayniqsa Telegram orqali 24/7 yordam berishgani juda ma\'qul bo\'ldi.',
+    country: 'Samarqand & Buxoro turi',
+    text: 'Oilamiz bilan Afrosiyob poyezdida Samarqand va Buxoroga 4 kunlik sayohatga bordik. LOTOS FIELD tashkilotchiligi juda ajoyib bo\'ldi – mehmonxonalar toza, gidlar nihoyatda bilimdon!',
     date: '3 kun oldin'
   },
   {
     id: 2,
-    name: 'Nigora Karimova',
-    role: 'Dizayner, Samarqand',
+    name: 'Dilnoza Karimova',
+    role: 'Shifokor, Farg\'ona',
     avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
     rating: 5,
-    country: 'Kapadokiya (Turkiya)',
-    text: 'Kapadokiyadagi havo sharlarida parvoz – hayotimdagi eng unutilmas lahzalar bo\'ldi! Narxlari juda qulay va barcha ekskursiyalar vaqtida amalga oshirildi. Hammaga tavsiya qilaman!',
+    country: 'Xiva & Ellikqal\'a ekspeditsiyasi',
+    text: 'Ichan Qal\'aning kechki chiroqlari va Ellikqal\'adagi Ayozqal\'a qadimiy manzaralari butun umrga yodda qoladigan bo\'ldi. O\'z yurtimiz naqadar go\'zal va boy tarixga ega ekanligiga yana bir bor amin bo\'ldik.',
     date: '1 hafta oldin'
   },
   {
     id: 3,
-    name: 'Sherzodbek Alimov',
-    role: 'Dasturchi, Farg\'ona',
+    name: 'Jasurbek Mahmudov',
+    role: 'Arxitektor, Namangan',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
     rating: 5,
-    country: 'Bali (Indoneziya)',
-    text: 'Sayt orqali to\'g\'ridan-to\'g\'ri WhatsAppda operator bilan bog\'landim, 10 daqiqa ichida barcha vizaviy va tur hujjatlarimni rasmiylashtirib berishdi. Haqiqiy professional jamoa!',
+    country: 'Surxondaryo Sangardak & Boysun',
+    text: 'Sangardak sharsharasi va Boysun tog\'laridagi toza havo, Omonxona bulog\'i haqiqiy tabiat mo\'jizasi! Transport, mehmonxona va ovqatlanish 100% vaqtida va oliy darajada tashkil qilindi.',
     date: '2 hafta oldin'
   }
 ];
@@ -607,5 +527,5 @@ export const CONTACT_INFO = {
   instagram: 'https://instagram.com/lotos.field',
   email: 'info@lotosfield.uz',
   address: 'Toshkent shahri, Amir Temur shoh ko\'chasi, 107-B bino',
-  workHours: 'Har kuni 08:00 dan 22:00 gacha (24/7 qo\'llab-quvvatlash)'
+  workHours: 'Har kuni 08:00 dan 22:00 gacha (24/7 ichki turizm markazi)'
 };

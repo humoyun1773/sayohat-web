@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import { 
   Search, Plane, MapPin, Calendar, 
-  ShieldCheck, Compass 
+  ShieldCheck, Compass, Sparkles 
 } from 'lucide-react';
 import { COUNTRIES } from '../../data/travelData';
 import CustomSelect from '../ui/CustomSelect';
 
 export default function Hero({ onSelectCountry, onOpenBooking }) {
   const [origin, setOrigin] = useState('TAS');
-  const [selectedDest, setSelectedDest] = useState('turkey');
+  const [selectedDest, setSelectedDest] = useState('samarkand');
   const [date, setDate] = useState('2026-09-15');
 
   const originOptions = [
     { value: 'TAS', label: 'Toshkent Xalqaro (TAS)', icon: Plane },
     { value: 'SKD', label: 'Samarqand (SKD)', icon: Plane },
     { value: 'BHK', label: 'Buxoro (BHK)', icon: Plane },
-    { value: 'NMA', label: 'Namangan (NMA)', icon: Plane },
-    { value: 'FEG', label: 'Farg\'ona (FEG)', icon: Plane },
-    { value: 'UGC', label: 'Urganch (UGC)', icon: Plane },
+    { value: 'UGC', label: 'Urganch / Xiva (UGC)', icon: Plane },
+    { value: 'KSQ', label: 'Qarshi (KSQ)', icon: Plane },
+    { value: 'TMJ', label: 'Termiz (TMJ)', icon: Plane },
+    { value: 'FEG', label: 'Farg\'ona vodiysi (FEG)', icon: Plane },
+    { value: 'NCU', label: 'Nukus (NCU)', icon: Plane },
   ];
 
   const destinationOptions = COUNTRIES.map((c) => ({
@@ -38,11 +40,11 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
   return (
     <section id="hero" className="relative min-h-[88vh] pt-28 sm:pt-36 pb-16 sm:pb-20 flex items-center justify-center overflow-hidden bg-white">
       
-      {/* 100% Pure, Razor-Sharp, Crystal-Clear Airport Terminal Interior Background */}
+      {/* 100% Pure, Razor-Sharp, Crystal-Clear Airport Terminal & Travel Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=2600&q=100"
-          alt="Modern Luxury Airport Terminal Interior"
+          alt="Modern Luxury Travel Interior"
           className="w-full h-full object-cover object-center scale-100 filter brightness-105 contrast-105"
         />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
@@ -52,16 +54,21 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         
         {/* Main Title & Hero Banner */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">
-          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/85 backdrop-blur-md border border-white/70 shadow-lg space-y-3">
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-lg space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#10b981]" />
+              <span>O'zbekiston Bo'ylab Ichki Turizm & VIP Sayohatlar</span>
+            </div>
+            
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
-              Orzuingizdagi Sayohat — <br />
+              O'zbekiston Bo'ylab Sayohat — <br />
               <span className="text-[#10b981]">
-                Dunyoning Har Qaysi Nuqtasiga!
+                Qadimiy Shaharlar va So'lim Tog'lar!
               </span>
             </h1>
 
             <p className="text-sm sm:text-base lg:text-lg text-slate-700 max-w-2xl mx-auto font-medium leading-relaxed">
-              Zamonaviy Boeing & Airbus laynerlari, 100% rasmiy vizalar, 5 yulduzli mehmonxonalar va to'g'ridan-to'g'ri reyslar.
+              Samarqand, Buxoro, Xiva, Shahrisabz, Qashqadaryo, Surxondaryo, Ellikqal'a va Zomin bo'ylab eng sara VIP turlar, Afrosiyob poyezdlari va qulay aviaparvozlar.
             </p>
           </div>
         </div>
@@ -77,15 +84,15 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
                 </div>
                 <div>
                   <span className="text-sm sm:text-base font-extrabold uppercase tracking-wider text-slate-900 block">
-                    Tezkor Tur & Aviachipta Qidiruvi
+                    Viloyat & Shaharlar Bo'ylab Tezkor Qidiruv
                   </span>
-                  <span className="text-xs text-slate-500 font-medium">To'g'ridan-to'g'ri qatnovlar va rasmiy narxlar</span>
+                  <span className="text-xs text-slate-500 font-medium">To'g'ridan-to'g'ri qatnovlar, Afrosiyob poyezdlari va rasmiy narxlar</span>
                 </div>
               </div>
 
               <span className="text-xs sm:text-sm text-[#065f46] font-bold bg-[#ecfdf5] px-4 py-1.5 rounded-full border border-[#a7f3d0] flex items-center gap-2 self-start sm:self-auto shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-[#10b981]" />
-                <span>100% Rasmiy Kafolat & Litsenziya</span>
+                <span>100% Rasmiy Kafolat & VIP Servis</span>
               </span>
             </div>
 
@@ -95,7 +102,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
                   <Plane className="w-4 h-4 text-[#10b981] transform -rotate-45" />
-                  Qayerdan uchiladi?
+                  Qayerdan jo'nab ketiladi?
                 </label>
                 <CustomSelect
                   value={origin}
@@ -108,7 +115,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-[#10b981]" />
-                  Qaysi davlatga borasiz?
+                  Qaysi viloyat / shaharga borasiz?
                 </label>
                 <CustomSelect
                   value={selectedDest}
@@ -138,16 +145,16 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
                   className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
                 >
                   <Search className="w-5 h-5" />
-                  <span>QIDIRISH VA NARXLAR</span>
+                  <span>QIDIRISH VA TURLAR</span>
                 </button>
               </div>
 
             </form>
 
-            {/* Quick Country Direct Buttons */}
+            {/* Quick Region Direct Buttons */}
             <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2.5 text-xs sm:text-sm">
-              <span className="text-slate-600 font-bold mr-1">Ommabop yo'nalishlar:</span>
-              {COUNTRIES.slice(0, 6).map((c) => (
+              <span className="text-slate-600 font-bold mr-1">Ommabop viloyatlar:</span>
+              {COUNTRIES.map((c) => (
                 <button
                   key={c.id}
                   type="button"
@@ -170,27 +177,27 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           
           <div className="card-light p-6 rounded-3xl text-left bg-white">
-            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">50+</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900">Dunyo Davlatlari</div>
-            <p className="text-xs text-slate-500 mt-1">To'g'ridan-to'g'ri reyslar va eksklyuziv turlar</p>
+            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">14+</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900">Viloyat va Manzillar</div>
+            <p className="text-xs text-slate-500 mt-1">O'zbekistonning barcha go'zal go'shalari</p>
           </div>
 
           <div className="card-light p-6 rounded-3xl text-left bg-white">
             <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">100%</div>
             <div className="text-xs sm:text-sm font-bold text-slate-900">Rasmiy Kafolat</div>
-            <p className="text-xs text-slate-500 mt-1">Davlat litsenziyasi va to'liq sug'urta</p>
+            <p className="text-xs text-slate-500 mt-1">Litsenziyalangan gidlar va VIP transport</p>
           </div>
 
           <div className="card-light p-6 rounded-3xl text-left bg-white">
-            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">4.9 ★</div>
+            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">4.99 ★</div>
             <div className="text-xs sm:text-sm font-bold text-slate-900">Mijozlar Bahosi</div>
-            <p className="text-xs text-slate-500 mt-1">20,000 dan ortiq mamnun sayohatchilar</p>
+            <p className="text-xs text-slate-500 mt-1">30,000 dan ortiq mamnun sayohatchilar</p>
           </div>
 
           <div className="card-light p-6 rounded-3xl text-left bg-white">
             <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">24/7</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900">Shaxsiy Menejer</div>
-            <p className="text-xs text-slate-500 mt-1">Sayohatning har bir daqiqasida yoningizda</p>
+            <div className="text-xs sm:text-sm font-bold text-slate-900">Shaxsiy Kurator</div>
+            <p className="text-xs text-slate-500 mt-1">Har bir shaharda siz bilan birga</p>
           </div>
 
         </div>

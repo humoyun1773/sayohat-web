@@ -4,7 +4,7 @@ import {
   ArrowRight, Maximize2, Sparkles, Plane, 
   MapPin, Check 
 } from 'lucide-react';
-import { COUNTRIES, EXCHANGE_RATE } from '../../data/travelData';
+import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
 
 export default function CountryExplorer({ 
   selectedCountryId, 
@@ -15,14 +15,6 @@ export default function CountryExplorer({
 }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
-
-  const categories = [
-    { id: 'all', label: 'Barcha Davlatlar' },
-    { id: 'beach', label: '🏖️ Dengiz & Plyaj' },
-    { id: 'culture', label: '🕌 Ziyorat & Tarix' },
-    { id: 'mountain', label: '🏔️ Tog\' & Tabiat' },
-    { id: 'luxury', label: '🏙️ Megapolis & Lyuks' },
-  ];
 
   const filteredCountries = selectedCategory === 'all'
     ? COUNTRIES
@@ -55,19 +47,19 @@ export default function CountryExplorer({
   const activePhotoUrl = galleryPhotos[activePhotoIdx]?.url || currentCountry.coverImage;
   const activePhotoTitle = galleryPhotos[activePhotoIdx]?.title || currentCountry.name;
 
-  const currentPrice = currentCountry.basePriceUSD || currentCountry.priceUSD || 500;
+  const currentPrice = currentCountry.basePriceUSD || currentCountry.priceUSD || 80;
 
   return (
     <section id="countries" className="py-24 relative overflow-hidden bg-white">
       
-      {/* 100% Pure, Razor-Sharp Aerial Tropical Islands & Ocean from Plane Window */}
+      {/* 100% Pure, Razor-Sharp Aerial Landscape Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2600&q=100"
-          alt="Tropical Paradise from Sky"
+          src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=2600&q=100"
+          alt="Uzbekistan Historic Landmarks"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-900/35"></div>
+        <div className="absolute inset-0 bg-slate-900/40"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
@@ -77,23 +69,23 @@ export default function CountryExplorer({
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
               <Globe className="w-3.5 h-3.5 text-[#10b981]" />
-              <span>Butun Dunyo Davlatlari & Jonli Media Galereyasi</span>
+              <span>O'zbekiston Viloyatlari & Jonli Media Galereyasi</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-              Istalgan Davlatni Tanlang — <br />
+              Istalgan Viloyatni Tanlang — <br />
               <span className="text-[#10b981]">
-                Rasmlari, Parvozlari va Narxlari
+                Qadimiy Obidalar, Tog'lar va Qal'alar
               </span>
             </h2>
             <p className="text-slate-700 text-sm sm:text-base font-medium">
-              Qaysi davlat ustiga bossangiz, uning barcha HD fotosuratlari, samolyot qatnovlari, ob-havosi, viza shartlari va arzon narxlari bir zumda chiqadi!
+              Samarqand, Buxoro, Xiva, Shahrisabz, Qashqadaryo, Surxondaryo, Ellikqal'a va Zominning barcha HD fotosuratlari, qatnovlari va arzon VIP turlari!
             </p>
           </div>
         </div>
 
         {/* Category Tabs */}
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8">
-          {categories.map((cat) => (
+          {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
@@ -103,16 +95,16 @@ export default function CountryExplorer({
                   : 'bg-white/90 hover:bg-white text-slate-700 border border-slate-200'
               }`}
             >
-              {cat.label}
+              {cat.name}
             </button>
           ))}
         </div>
 
-        {/* Horizontal Countries Selector Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
+        {/* Horizontal Regions Selector Bar */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-10">
           {filteredCountries.map((c) => {
             const isSelected = c.id === currentCountry.id;
-            const price = c.basePriceUSD || c.priceUSD || 500;
+            const price = c.basePriceUSD || c.priceUSD || 80;
             return (
               <button
                 key={c.id}
@@ -125,13 +117,13 @@ export default function CountryExplorer({
               >
                 <div className="text-2xl leading-none">{c.flag}</div>
                 <div className="font-bold text-xs text-slate-900 truncate w-full">{c.name}</div>
-                <div className="text-[11px] font-black text-[#10b981]">{formatPrice(price)}</div>
+                <div className="text-[11px] font-black text-[#10b981]">{formatPrice(price)} dan</div>
               </button>
             );
           })}
         </div>
 
-        {/* Active Country Rich Media & Details Canvas */}
+        {/* Active Region Rich Media & Details Canvas */}
         <div className="bg-white rounded-3xl sm:rounded-[36px] overflow-hidden border border-slate-200 shadow-2xl grid grid-cols-1 lg:grid-cols-12 mb-16">
           
           {/* Left: Dynamic HD Media Viewer (7 cols) */}
@@ -155,7 +147,7 @@ export default function CountryExplorer({
                 </span>
                 <span className="px-3 py-1 rounded-full bg-[#10b981] text-white text-xs font-black shadow-md flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 fill-white" />
-                  <span>{currentCountry.rating || '4.95'}</span>
+                  <span>{currentCountry.rating || '4.99'}</span>
                 </span>
               </div>
 
@@ -194,13 +186,13 @@ export default function CountryExplorer({
                 {activePhotoTitle}
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-white drop-shadow-md">
-                {currentCountry.name} — {currentCountry.tagline || currentCountry.title}
+                {currentCountry.name} — {currentCountry.tagline}
               </h3>
             </div>
 
           </div>
 
-          {/* Right: Comprehensive Info, Flights, Weather & Booking (5 cols) */}
+          {/* Right: Comprehensive Info, Transport, Weather & Booking (5 cols) */}
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
             
             <div className="space-y-6">
@@ -209,10 +201,10 @@ export default function CountryExplorer({
               <div>
                 <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#10b981] mb-1">
                   <Sparkles className="w-4 h-4" />
-                  <span>To'liq Tur Paketi & Qulayliklar</span>
+                  <span>To'liq Tur Paketi & VIP Qulayliklar</span>
                 </div>
                 <h4 className="text-2xl font-black text-slate-900">
-                  {currentCountry.name} Ta'tili
+                  {currentCountry.name} Sayri
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                   {currentCountry.description}
@@ -226,23 +218,23 @@ export default function CountryExplorer({
                     <Sun className="w-4 h-4 text-amber-500" />
                     <span>Hozirgi Harorat</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.temp || '+28°C'}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.temp || '+26°C'}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
                     <Shield className="w-4 h-4 text-[#10b981]" />
-                    <span>Viza Rejimi</span>
+                    <span>Kirish Rejimi</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.visa || 'Vizasiz'}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.visa || 'Erkin'}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
                     <Plane className="w-4 h-4 text-sky-600" />
-                    <span>Parvoz Davomiyligi</span>
+                    <span>Yetib Borish Vaqti</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.flightDuration || '4 soat'}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.flightDuration}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
@@ -250,14 +242,14 @@ export default function CountryExplorer({
                     <Star className="w-4 h-4 text-amber-500" />
                     <span>Eng Yaxshi Fasl</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.bestTime || 'Yil bo\'yi'}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.bestTime || 'Bahor & Kuz'}</div>
                 </div>
               </div>
 
               {/* Highlights List */}
               <div className="space-y-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-700 block">
-                  Tur Paketiga Kiritilgan Asosiy Xizmatlar:
+                  Ushbu Viloyat Sayriga Kiritilgan Asosiy Qulayliklar:
                 </span>
                 <div className="space-y-1.5">
                   {currentCountry.highlights?.map((h, idx) => (
@@ -284,7 +276,7 @@ export default function CountryExplorer({
                   </div>
                 </div>
                 <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-                  Aviachipta + 5★ Mehmonxona
+                  Afrosiyob / Avia + 4-5★ Mehmonxona + Gid
                 </span>
               </div>
 
@@ -292,14 +284,14 @@ export default function CountryExplorer({
                 <button
                   onClick={() => onOpenBooking({
                     country: `${currentCountry.name}`,
-                    flightClass: 'Ekonom / Biznes',
-                    hotelStar: '5★ Luxury Resort',
+                    flightClass: 'Afrosiyob VIP / Avia',
+                    hotelStar: '4-5★ Tarixiy Mehmonxona',
                     priceUSD: currentPrice
                   })}
                   className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-2"
                 >
                   <Plane className="w-4 h-4" />
-                  <span>Ushbu Davlatga Turni Hoziroq Bron Qilish</span>
+                  <span>Ushbu Viloyatga Turni Hoziroq Bron Qilish</span>
                 </button>
               </div>
 
