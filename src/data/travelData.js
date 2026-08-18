@@ -1,6 +1,6 @@
 // ==========================================
 // LOTOS FIELD - MULTILINGUAL TRAVEL DATA
-// (UZBEKISTAN REGIONS & DOMESTIC TOURISM)
+// (UZBEKISTAN REGIONS & AUTHENTIC LANDMARK PHOTOS)
 // ==========================================
 
 export const EXCHANGE_RATE = 12850; // 1 USD = 12,850 UZS
@@ -65,7 +65,7 @@ export const COUNTRIES = [
       'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
@@ -94,7 +94,7 @@ export const COUNTRIES = [
         descUz: 'Zamonaviy xalqaro turizm markazi va hunarmandlar rastalari',
         descRu: 'Международный туристический комплекс и ремесленные мастерские',
         descEn: 'Modern world-class tourism center with artisan workshops and canals',
-        img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -148,8 +148,8 @@ export const COUNTRIES = [
     ],
     images: [
       'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
@@ -165,14 +165,14 @@ export const COUNTRIES = [
         descUz: 'Buxoro hukmdorlarining ulkan g\'ishtin qal\'asi',
         descRu: 'Грандиозная крепость правителей Бухары',
         descEn: 'Massive fortress residence of the historic Bukhara emirs',
-        img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Labi Hovuz Ansambli', nameRu: 'Ансамбль Ляби-Хауз', nameEn: 'Lyabi-Hauz Ensemble',
         descUz: 'Markaziy hovuz bo\'yidagi choyxona va jonli musiqalar',
         descRu: 'Уютные чайханы и восточная музыка вокруг старинного пруда',
         descEn: 'Cozy teahouses and serene waters under ancient sycamores',
-        img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Sitorai Mohi Xosa Saroyi', nameRu: 'Дворец Ситораи Мохи-Хоса', nameEn: 'Sitorai Mokhi-Khosa Palace',
@@ -194,7 +194,7 @@ export const COUNTRIES = [
     taglineUz: 'Ochiq Osmon Ostidagi Tirik Muzey — Ichan Qal\'a va Kalta Minor',
     taglineRu: 'Живой Музей Под Открытым Небом — Ичан-Кала и Кальта-Минар',
     taglineEn: 'Living Open-Air Museum — Ichan Kala & Kalta Minor',
-    coverImage: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1600&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=1600&q=80',
     flightDurationUz: '1.5 soat (Toshkent ➔ Urganch reysi)',
     flightDurationRu: '1.5 часа (Рейс Ташкент ➔ Ургенч)',
     flightDurationEn: '1.5 hours (Tashkent ➔ Urgench flight)',
@@ -232,10 +232,10 @@ export const COUNTRIES = [
       'Authentic Khorezm culinary specialties: tukhum-barak & shivit oshi'
     ],
     images: [
-      'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
@@ -243,28 +243,28 @@ export const COUNTRIES = [
         descUz: 'To\'liq saqlangan afsonaviy o\'rta asrlar qal\'asi',
         descRu: 'Полностью сохраненная средневековая цитадель',
         descEn: 'Fully intact fortified medieval inner town',
-        img: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Kalta Minor & Islomxo\'ja', nameRu: 'Кальта-Минар и Ислам-Ходжа', nameEn: 'Kalta Minor & Islam Khodja',
         descUz: 'Moviy feruza koshinli ulkan minora',
         descRu: 'Бирюзовый гигантский минарет и панорама города',
         descEn: 'Cobalt glazed minaret and city panoramic towers',
-        img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Juma Masjidi', nameRu: 'Джума-мечеть', nameEn: 'Juma Mosque',
         descUz: 'Har biri alohida naqsh bilan o\'yilgan 218 ta ustun',
         descRu: '218 колонн с неповторимой резьбой по дереву',
         descEn: '218 distinctively carved wooden columns with skylights',
-        img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Nurullaboy Saroyi', nameRu: 'Дворец Нуруллабая', nameEn: 'Nurullabay Palace',
         descUz: 'Yevropa va Sharq uslubi uyg\'unlashgan xon saroyi',
         descRu: 'Ханский дворец европейско-восточного стиля',
         descEn: 'Royal palace harmonizing European and oriental artistry',
-        img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -318,9 +318,9 @@ export const COUNTRIES = [
     ],
     images: [
       'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
@@ -335,21 +335,21 @@ export const COUNTRIES = [
         descUz: 'Qadimgi freskalar va arxeologik topilmalar beshigi',
         descRu: 'Древний дворец хорезмских царей с фресками',
         descEn: 'Palatial residence of ancient Khorezmian monarchs',
-        img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Ayozko\'l O\'tovlar Lageri', nameRu: 'Юртовый лагерь Аязколь', nameEn: 'Ayazkul Yurt Camp',
         descUz: 'Milliy o\'tovlarda dam olish va cho\'l barbekyusi',
         descRu: 'Отдых в аутентичных юртах и ужин у костра',
         descEn: 'Nomadic yurt experience, campfire barbecue and folk songs',
-        img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Savitskiy San\'at Muzeyi', nameRu: 'Музей Савицкого (Нукус)', nameEn: 'Savitsky Museum of Art',
         descUz: 'Dunyoga mashhur rus avangard san\'ati to\'plami',
         descRu: 'Вторая в мире коллекция русского авангарда',
         descEn: 'The world-famous "Louvre in the Desert" avant-garde art repository',
-        img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -403,9 +403,9 @@ export const COUNTRIES = [
     ],
     images: [
       'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
@@ -420,21 +420,21 @@ export const COUNTRIES = [
         descUz: 'Temuriylar sulolaviy xilxonasi va maqbaralari',
         descRu: 'Усыпальница сыновей и потомков Тимура',
         descEn: 'Dynastic burial vault and shrines of the Timurid house',
-        img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Ko\'k Gumbaz Masjidi', nameRu: 'Мечеть Кок-Гумбаз', nameEn: 'Kok-Gumbaz Mosque',
         descUz: 'Ulug\'bek tomonidan qurdirilgan muhtasham moviy masjid',
         descRu: 'Голубая купольная мечеть, возведенная Улугбеком',
         descEn: 'Stunning blue dome Friday Mosque commissioned by Ulugh Beg',
-        img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Taxtaqoracha Tog\' Dovoni', nameRu: 'Перевал Тахтакарача', nameEn: 'Takhtakaracha Mountain Pass',
         descUz: 'Tog\' cho\'qqisidagi mashhur tandir go\'shti va manzaralar',
         descRu: 'Высокогорный перевал с захватывающими панорамами',
         descEn: 'Breathtaking high-altitude pass bridging Samarkand & Kashkadarya',
-        img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -449,7 +449,7 @@ export const COUNTRIES = [
     taglineUz: 'Koinot Rasadxonasi, Amir Temur G\'ori va Hisor Tog\'lari',
     taglineRu: 'Астрономическая Обсерватория, Пещера Тимура и горы Гиссара',
     taglineEn: 'Astronomy Observatory, Timur\'s Cave & Hissar Mountains',
-    coverImage: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1600&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80',
     flightDurationUz: '1 soat (Toshkent ➔ Qarshi reysi)',
     flightDurationRu: '1 час (Рейс Ташкент ➔ Карши)',
     flightDurationEn: '1 hour (Tashkent ➔ Karshi flight)',
@@ -487,10 +487,10 @@ export const COUNTRIES = [
       'Authentic cedar-smoked tandir kebab tasting in mountain lodges'
     ],
     images: [
-      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
@@ -498,28 +498,28 @@ export const COUNTRIES = [
         descUz: 'Dunyoning eng tiniq osmonli baland tog\' teleskoplari',
         descRu: 'Телескопы мирового уровня под чистейшим звездным небом',
         descEn: 'One of the world’s clearest night-sky observation summits',
-        img: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Hisor Tog\' Qo\'riqxonasi', nameRu: 'Гиссарский Заповедник', nameEn: 'Hissar Nature Reserve',
         descUz: 'Baland sharsharalar, archazorlar va yovvoyi tabiat',
         descRu: 'Горные водопады, арчовые леса и первозданная природа',
         descEn: 'Cascading waterfalls, juniper forests, and pristine wilderness',
-        img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Amir Temur Qadimiy Ko\'prigi', nameRu: 'Мост Амира Тимура в Карши', nameEn: 'Amir Timur Bridge in Karshi',
         descUz: 'Qarshi daryosi uzra qurilgan XVI asr me\'moriy obidasi',
         descRu: 'Памятник средневековой инженерии XVI века',
         descEn: 'Historic brick arch bridge spanning across Kashkadarya river',
-        img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Miraki Oromgohi', nameRu: 'Курорт Мираки', nameEn: 'Miraki Mountain Resort',
         descUz: 'Qashqadaryo tog\' etaklaridagi go\'zal dam olish maskani',
         descRu: 'Живописная зона отдыха у подножия гор',
         descEn: 'Picturesque alpine wellness resort nestled in foothills',
-        img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -534,7 +534,7 @@ export const COUNTRIES = [
     taglineUz: 'UNESCO Boysun Madaniyati, Sangardak Sharsharasi va Hakim at-Termiziy',
     taglineRu: 'Культура Байсуна (ЮНЕСКО), Водопад Сангардак и Термез',
     taglineEn: 'UNESCO Boysun Culture, Sangardak Waterfall & Termez Heritage',
-    coverImage: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1600&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=80',
     flightDurationUz: '1 soat (Toshkent ➔ Termiz reysi)',
     flightDurationRu: '1 час (Рейс Ташкент ➔ Термез)',
     flightDurationEn: '1 hour (Tashkent ➔ Termez flight)',
@@ -572,10 +572,10 @@ export const COUNTRIES = [
       'Healing mineral water springs of Omonkhona & 40-Girls fortress'
     ],
     images: [
-      'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
@@ -583,28 +583,28 @@ export const COUNTRIES = [
         descUz: 'Baland qoyalar bag\'ridagi shifobaxsh ma\'danli suv bulog\'i',
         descRu: 'Целебный минеральный источник среди отвесных скал',
         descEn: 'Sacred mineral healing springs nestled deep inside high canyon rocks',
-        img: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Sangardak Sharsharasi', nameRu: 'Водопад Сангардак', nameEn: 'Sangardak Waterfall',
         descUz: 'Yashil moxli qoyatoshlardan tushuvchi ajoyib sharshara',
         descRu: 'Живописный водопад, бьющий сквозь изумрудный мох скал',
         descEn: 'Spectacular waterfall gushing out from lush moss-covered cliffs',
-        img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Fayoztepa & Qoratepa', nameRu: 'Фаязтепа и Каратепа', nameEn: 'Fayaztepa & Karatepa',
         descUz: 'Milodiy I-III asrlarga oid qadimgi Budda stupalari',
         descRu: 'Древние буддийские ступы и монастыри I-III веков',
         descEn: 'Ancient Silk Road Buddhist stupas and monastic cave complexes',
-        img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Hakim at-Termiziy Majmuasi', nameRu: 'Комплекс Аль-Хаким ат-Термези', nameEn: 'Al-Hakim at-Termizi Complex',
         descUz: 'Amudaryo sohilidagi ulug\' alloma ziyoratgohi',
         descRu: 'Мавзолей великого ученого-суфия на берегу Амударьи',
         descEn: 'Holy shrine of the great Sufi philosopher on the banks of Amu Darya',
-        img: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -619,7 +619,7 @@ export const COUNTRIES = [
     taglineUz: 'O\'zbekiston Shveytsariyasi — Zomin Qarag\'ayzori va Zamonaviy Poytaxt',
     taglineRu: 'Швейцария Узбекистана — Сосновые леса Заамина и Столица',
     taglineEn: 'Switzerland of Uzbekistan — Zaamin Pine Forests & Capital',
-    coverImage: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80',
     flightDurationUz: 'Poytaxt markazi / Mashinada 2.5 soat (Zomin)',
     flightDurationRu: 'Центр столицы / 2.5 часа на авто (Заамин)',
     flightDurationEn: 'Capital hub / 2.5 hours drive to Zaamin',
@@ -657,9 +657,9 @@ export const COUNTRIES = [
       'Iconic Chorsu dome bazaar and artistic Tashkent metro stations'
     ],
     images: [
-      'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
@@ -668,21 +668,21 @@ export const COUNTRIES = [
         descUz: 'Tog\' darasi uzra qurilgan hayajonli panoramali shisha ko\'prik',
         descRu: 'Панорамный стеклянный мост над живописным ущельем',
         descEn: 'Thrilling glass-bottom suspension bridge over mountain gorge',
-        img: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Hazrati Imom (Hastimom)', nameRu: 'Комплекс Хазрати Имам', nameEn: 'Hazrati Imam Complex',
         descUz: 'Poytaxtning bosh islomiy obidasi va nodir qo\'lyozmalar',
         descRu: 'Главная исламская святыня столицы с древнейшими рукописями',
         descEn: 'Historic Islamic intellectual center housing ancient holy manuscripts',
-        img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Amirsoy Mountain Resort', nameRu: 'Курорт Амирсой', nameEn: 'Amirsoy Mountain Resort',
         descUz: 'Xalqaro toifadagi qishki va yozgi tog\' kurorti',
         descRu: 'Всесезонный горный курорт международного уровня',
         descEn: 'World-class all-season mountain wellness & ski resort',
-        img: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80'
+        img: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80'
       },
       { 
         nameUz: 'Chorsu Bozor & Teleminora', nameRu: 'Базар Чорсу и Телебашня', nameEn: 'Chorsu Bazaar & TV Tower',
@@ -729,7 +729,7 @@ export const HOT_DEALS = [
     badgeEn: 'EXCLUSIVE -30%',
     oldPriceUSD: 290,
     newPriceUSD: 210,
-    image: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=800&q=80',
     includesUz: ['Toshkent-Urganch to\'g\'ridan-to\'g\'ri aviaparvoz', 'Ichan Qal\'a ichidagi sharqona mehmonxona', 'Ayozqal\'a & Toproqqal\'a jip safari', 'Xorazm milliy tansiq taomlari'],
     includesRu: ['Прямой авиаперелет Ташкент-Ургенч', 'Восточный отель внутри Ичан-Калы', 'Джип-сафари в Аяз-кала и Топрак-кала', 'Хорезмские национальные блюда'],
     includesEn: ['Direct round-trip flights Tashkent-Urgench', 'Boutique hotel inside Ichan Kala', '4x4 Jeep safari to Ayaz Kala & Toprak Kala', 'Gourmet regional culinary banquets']
@@ -748,7 +748,7 @@ export const HOT_DEALS = [
     badgeEn: 'NATURE & HEALTH -20%',
     oldPriceUSD: 220,
     newPriceUSD: 160,
-    image: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
     includesUz: ['Toshkent-Termiz aviaparvozi', 'Boysun tog\' eko-kottejlari', 'Sangardak sharsharasiga VIP transfer', 'Omonxona shifobaxsh suvi va tog\' nonushtasi'],
     includesRu: ['Авиаперелет Ташкент-Термез', 'Эко-коттеджи в горах Байсуна', 'VIP-трансфер к водопаду Сангардак', 'Целебная вода Омонхоны и горные завтраки'],
     includesEn: ['Direct round-trip flights Tashkent-Termez', 'Alpine eco-cottages in Boysun mountains', 'VIP transit to Sangardak Waterfall', 'Omonkhona healing waters & breakfasts']
@@ -767,7 +767,7 @@ export const HOT_DEALS = [
     badgeEn: 'STARGAZING & HISTORY -25%',
     oldPriceUSD: 190,
     newPriceUSD: 140,
-    image: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     includesUz: ['Afrosiyob poyezdi yoki samolyot', 'Maydanak observatoriyasida yulduzlarni kuzatish', 'Oqsaroy va Dorus-Saodat ekskursiyasi', 'Taxtaqoracha tandir go\'shti ziyofati'],
     includesRu: ['Поезд Афросиаб или авиаперелет', 'Наблюдение за звездами в обсерватории Майданак', 'Экскурсия в Аксарай и Дорус-Саодат', 'Ужин с кашкадарьинским тандыр-кабобом'],
     includesEn: ['Afrosiyob bullet train or flight tickets', 'Stargazing at Mount Maydanak Observatory', 'Guided tour of Ak-Saray & Dorus-Saodat', 'Traditional mountain feast on pass']
