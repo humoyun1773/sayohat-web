@@ -3,7 +3,7 @@ import {
   Plane, Phone, Send, MessageCircle, Mail, 
   MapPin, Clock 
 } from 'lucide-react';
-import { CONTACT_INFO, COUNTRIES } from '../data/travelData';
+import { CONTACT_INFO, COUNTRIES } from '../../data/travelData';
 
 export default function Footer({ onSelectCountry, onOpenContact }) {
   return (
@@ -143,13 +143,6 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
                 <Clock className="w-4 h-4 text-[#10b981] shrink-0" />
                 <span className="text-slate-300">Har kuni 08:00 - 22:00</span>
               </div>
-
-              <button
-                onClick={onOpenContact}
-                className="w-full mt-3 py-3 rounded-2xl btn-primary-emerald text-white text-xs font-bold transition-all shadow-md hover:scale-105"
-              >
-                Operatorga Yozish
-              </button>
             </div>
           </div>
 

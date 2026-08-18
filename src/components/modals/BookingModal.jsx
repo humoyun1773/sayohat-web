@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  X, Plane, CheckCircle2, User, 
-  Phone, Calendar, MapPin, Download, Printer, ShieldCheck 
+  X, CheckCircle2, Plane, 
+  Calendar, Users, ShieldCheck, Printer, 
+  Phone
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
-import { EXCHANGE_RATE } from '../data/travelData';
+import { EXCHANGE_RATE } from '../../data/travelData';
 
 export default function BookingModal({ 
   isOpen, 
   onClose, 
   bookingData, 
-  currency, 
-  currentUser 
+  currency = 'USD' 
 }) {
-  const [fullName, setFullName] = useState(currentUser?.name || '');
+  const [fullName, setFullName] = useState('');
   const [phoneDigits, setPhoneDigits] = useState('');
-  const [passport, setPassport] = useState('');
-  const [travelDate, setTravelDate] = useState('2026-09-20');
-  const [passengers, setPassengers] = useState(bookingData?.adultsCount || 2);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [bookingRef, setBookingRef] = useState('');
+  const [travelDate, setTravelDate] = useState('');
+  const [passengers, setPassengers] = useState(2);
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   // Format 9 digits nicely for display: e.g. 90 123 45 67
   const formatDisplayDigits = (val) => {
@@ -60,19 +57,11 @@ export default function BookingModal({
 
   const handleConfirmBooking = (e) => {
     e.preventDefault();
-    const randomRef = 'LF-' + Math.floor(100000 + Math.random() * 900000);
-    setBookingRef(randomRef);
-    setIsSuccess(true);
-
-    try {
-      confetti({
-        particleCount: 120,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    } catch (err) {
-      console.error(err);
+    if (phoneDigits.length < 9) {
+      alert('Iltimos, 9 xonali telefon raqamingizni to\'liq kiriting');
+      return;
     }
+    setIsConfirmed(true);
   };
 
   const handlePrint = () => {
@@ -98,53 +87,56 @@ export default function BookingModal({
             <div>
               <div className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase">LOTOS FIELD AIRLINES</div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                {isSuccess ? 'Buyurtma Tasdiqlandi!' : 'Chipta & Tur Paketi Bron Qilish'}
+                {isConfirmed ? 'Rasmiy Chipta & Vaucher' : 'Tur va Chiptani Bron Qilish'}
               </h3>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-2xl bg-white text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-all border border-slate-200"
+            className="p-2 rounded-full hover:bg-slate-200 text-slate-400 hover:text-slate-700 transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-5">
+        {/* Scrollable Content Body */}
+        <div className="p-6 overflow-y-auto space-y-5">
           
-          {isSuccess ? (
-            /* Luxury Airline Boarding Pass / Voucher */
-            <div className="space-y-5 print:text-black">
+          {isConfirmed ? (
+            /* Digital Boarding Pass Ticket */
+            <div className="space-y-5 animate-in fade-in zoom-in-95 duration-300">
               
-              <div className="p-6 rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-xl relative overflow-hidden space-y-4">
+              <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden border border-slate-700">
                 
-                <div className="flex items-center justify-between border-b border-slate-700 pb-3">
-                  <div className="flex items-center gap-2">
-                    <Plane className="w-6 h-6 text-[#10b981]" />
-                    <span className="font-black text-sm tracking-wider uppercase">LOTOS FIELD OFFICIAL VAUCHER</span>
-                  </div>
-                  <span className="text-xs font-mono font-bold text-white bg-[#10b981]/60 px-3 py-1 rounded-xl border border-[#10b981]/40">
-                    {bookingRef}
-                  </span>
+                {/* Airplane Watermark */}
+                <div className="absolute right-[-20px] bottom-[-20px] text-white/5 pointer-events-none">
+                  <Plane className="w-48 h-48 transform -rotate-45" />
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                <div className="flex justify-between items-start border-b border-slate-700 pb-4 mb-4">
+                  <div>
+                    <span className="text-[11px] uppercase tracking-widest text-[#a7f3d0] font-bold block">ELEKTRON SAYOHAT VAUCHERI</span>
+                    <h4 className="text-xl font-black text-white">{bookingData.country}</h4>
+                    <p className="text-xs text-slate-300">Litsenziyalangan xalqaro charter parvozi</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[10px] uppercase text-slate-400 block font-mono">Status</span>
+                    <span className="text-xs font-bold text-[#a7f3d0] bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-full">
+                      Tasdiqlandi
+                    </span>
+                  </div>
+                </div>
+
+                {/* Ticket Details Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mb-4">
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Yo'nalish</span>
-                    <span className="font-bold text-white text-sm">{bookingData.country}</span>
+                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Yo'lovchi</span>
+                    <span className="font-bold text-white truncate block">{fullName}</span>
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">Parvoz Sanasi</span>
-                    <span className="font-bold text-white text-sm">{travelDate}</span>
-                  </div>
-                  <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Sayohatchi</span>
-                    <span className="font-bold text-white text-sm truncate block">{fullName || 'Mijoz'}</span>
-                  </div>
-                  <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Telefon</span>
-                    <span className="font-mono text-[#a7f3d0] font-bold">+998 {formatDisplayDigits(phoneDigits)}</span>
+                    <span className="font-bold text-white">{travelDate || '15-Oktabr, 2026'}</span>
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">Odamlar soni</span>
@@ -201,7 +193,7 @@ export default function BookingModal({
 
             </div>
           ) : (
-            /* Booking Form */
+            /* Clean Booking Form (Without Passport Input) */
             <form onSubmit={handleConfirmBooking} className="space-y-4">
               
               {/* Tour Summary Banner */}
@@ -283,19 +275,6 @@ export default function BookingModal({
                     className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
                   />
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Xorijga chiqish pasporti raqami (ixtiyoriy):
-                </label>
-                <input
-                  type="text"
-                  placeholder="Masalan: FA 1234567"
-                  value={passport}
-                  onChange={(e) => setPassport(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none uppercase font-mono"
-                />
               </div>
 
               <div className="p-3.5 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] text-xs text-[#065f46] flex items-center gap-2.5">

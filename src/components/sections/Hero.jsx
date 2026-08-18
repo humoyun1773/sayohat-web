@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { 
-  Plane, MapPin, Calendar, Search, 
+  Search, Plane, MapPin, Calendar, 
   ShieldCheck, Compass 
 } from 'lucide-react';
-import { COUNTRIES } from '../data/travelData';
-import CustomSelect from './CustomSelect';
+import { COUNTRIES } from '../../data/travelData';
+import CustomSelect from '../ui/CustomSelect';
 
 export default function Hero({ onSelectCountry, onOpenBooking }) {
-  const [selectedDest, setSelectedDest] = useState('turkey');
   const [origin, setOrigin] = useState('TAS');
+  const [selectedDest, setSelectedDest] = useState('turkey');
   const [date, setDate] = useState('2026-09-15');
 
   const originOptions = [
@@ -45,7 +45,6 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
           alt="Modern Luxury Airport Terminal Interior"
           className="w-full h-full object-cover object-center scale-100 filter brightness-105 contrast-105"
         />
-        {/* Only a subtle bottom fade to transition to the next section cleanly */}
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </div>
 
@@ -67,9 +66,9 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
           </div>
         </div>
 
-        {/* Grand, Spacious Search & Booking Panel */}
+        {/* Grand Search & Booking Panel */}
         <div className="w-full max-w-[1536px] mx-auto mb-14">
-          <div className="bg-white/98 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
+          <div className="bg-white/98 backdrop-blur-2xl p-5 sm:p-10 lg:p-12 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 border-b border-slate-100 pb-5 gap-3">
               <div className="flex items-center gap-3">
@@ -148,28 +147,18 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
             {/* Quick Country Direct Buttons */}
             <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2.5 text-xs sm:text-sm">
               <span className="text-slate-600 font-bold mr-1">Ommabop yo'nalishlar:</span>
-              {[
-                { id: 'turkey', label: '🇹🇷 Turkiya' },
-                { id: 'uae', label: '🇦🇪 Dubay' },
-                { id: 'maldives', label: '🇲🇻 Maldiv' },
-                { id: 'saudi', label: '🇸🇦 Umra' },
-                { id: 'switzerland', label: '🇨🇭 Shveytsariya' },
-                { id: 'japan', label: '🇯🇵 Yaponiya' },
-                { id: 'uzbekistan', label: '🇺🇿 O\'zbekiston' },
-                { id: 'indonesia', label: '🇮🇩 Bali' },
-                { id: 'france', label: '🇫🇷 Parij' }
-              ].map((item) => (
+              {COUNTRIES.slice(0, 6).map((c) => (
                 <button
-                  key={item.id}
+                  key={c.id}
                   type="button"
                   onClick={() => {
-                    setSelectedDest(item.id);
-                    onSelectCountry(item.id);
+                    onSelectCountry(c.id);
                     document.querySelector('#countries')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#ecfdf5] text-slate-800 hover:text-[#10b981] border border-slate-200 transition-all font-bold"
+                  className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-[#ecfdf5] hover:text-[#065f46] border border-slate-200 text-slate-700 font-bold transition-all flex items-center gap-1.5 shadow-2xs hover:scale-105"
                 >
-                  {item.label}
+                  <span>{c.flag}</span>
+                  <span>{c.name}</span>
                 </button>
               ))}
             </div>
@@ -177,49 +166,31 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
           </div>
         </div>
 
-        {/* Feature Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1536px] mx-auto">
+        {/* 4 Grand Trust Pillars */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
-            <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=200&q=80"
-                alt="Airplane"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div>
-              <h4 className="text-base font-bold text-slate-900">Boeing 787 & Airbus Laynerlari</h4>
-              <p className="text-xs text-slate-500 mt-1">Shovqinsiz motorlar va toza tog' havosi filtratsiyasi</p>
-            </div>
+          <div className="card-light p-6 rounded-3xl text-left bg-white">
+            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">50+</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900">Dunyo Davlatlari</div>
+            <p className="text-xs text-slate-500 mt-1">To'g'ridan-to'g'ri reyslar va eksklyuziv turlar</p>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
-            <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=200&q=80"
-                alt="Luxury Hotel"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div>
-              <h4 className="text-base font-bold text-slate-900">5★ Ultra All-Inclusive Kurortlar</h4>
-              <p className="text-xs text-slate-500 mt-1">Xususiy villalar, dengiz bo'yi va premium xizmat</p>
-            </div>
+          <div className="card-light p-6 rounded-3xl text-left bg-white">
+            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">100%</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900">Rasmiy Kafolat</div>
+            <p className="text-xs text-slate-500 mt-1">Davlat litsenziyasi va to'liq sug'urta</p>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
-            <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=200&q=80"
-                alt="Guide"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div>
-              <h4 className="text-base font-bold text-slate-900">Tajribali O'zbek Gidlari & Viza</h4>
-              <p className="text-xs text-slate-500 mt-1">Har bir sayohatchiga shaxsiy kurator va 24/7 yordam</p>
-            </div>
+          <div className="card-light p-6 rounded-3xl text-left bg-white">
+            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">4.9 ★</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900">Mijozlar Bahosi</div>
+            <p className="text-xs text-slate-500 mt-1">20,000 dan ortiq mamnun sayohatchilar</p>
+          </div>
+
+          <div className="card-light p-6 rounded-3xl text-left bg-white">
+            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">24/7</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900">Shaxsiy Menejer</div>
+            <p className="text-xs text-slate-500 mt-1">Sayohatning har bir daqiqasida yoningizda</p>
           </div>
 
         </div>

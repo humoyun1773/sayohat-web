@@ -1,6 +1,6 @@
 import React from 'react';
-import { Star, CheckCircle, MapPin } from 'lucide-react';
-import { REVIEWS } from '../data/travelData';
+import { Star, Quote, CheckCircle2, MapPin } from 'lucide-react';
+import { REVIEWS } from '../../data/travelData';
 
 export default function Reviews() {
   return (
@@ -38,49 +38,50 @@ export default function Reviews() {
         </div>
 
         {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {REVIEWS.map((rev) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {REVIEWS.map((r) => (
             <div
-              key={rev.id}
-              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 hover:border-[#10b981] flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
+              key={r.id}
+              className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
             >
-              <div className="space-y-4">
-                
-                {/* Rating stars */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#10b981] text-[#10b981]" />
+              <div>
+                {/* Rating & Quote Icon */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-1 text-amber-400">
+                    {[...Array(r.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <span className="text-xs text-[#065f46] font-bold flex items-center gap-1 bg-[#ecfdf5] px-2.5 py-1 rounded-full border border-[#a7f3d0]">
-                    <MapPin className="w-3.5 h-3.5 text-[#10b981]" />
-                    {rev.country}
-                  </span>
+                  <Quote className="w-8 h-8 text-emerald-100 group-hover:text-emerald-300 transition-colors" />
                 </div>
 
                 {/* Review Text */}
-                <p className="text-slate-700 text-sm leading-relaxed italic">
-                  "{rev.text}"
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-6">
+                  "{r.comment}"
                 </p>
               </div>
 
-              {/* User Avatar and Info */}
-              <div className="flex items-center gap-3 pt-6 border-t border-slate-100 mt-4">
-                <img
-                  src={rev.avatar}
-                  alt={rev.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[#10b981] shadow-sm"
-                />
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-bold text-slate-900 text-sm">{rev.name}</span>
-                    <CheckCircle className="w-3.5 h-3.5 text-[#10b981]" />
+              {/* Author Info */}
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={r.avatar}
+                    alt={r.name}
+                    className="w-11 h-11 rounded-full object-cover border-2 border-[#10b981] shadow-xs"
+                  />
+                  <div>
+                    <h4 className="text-sm font-black text-slate-900 leading-tight">{r.name}</h4>
+                    <span className="text-[11px] text-slate-400 font-medium block">{r.city}</span>
                   </div>
-                  <span className="text-xs text-slate-500 block">{rev.role}</span>
+                </div>
+
+                <div className="text-right">
+                  <span className="text-[10px] font-bold text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-2.5 py-1 rounded-full block">
+                    {r.country}
+                  </span>
+                  <span className="text-[10px] text-slate-400 mt-1 block font-medium">{r.date}</span>
                 </div>
               </div>
-
             </div>
           ))}
         </div>

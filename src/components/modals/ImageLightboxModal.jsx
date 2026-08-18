@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react';
-import { X, ZoomIn } from 'lucide-react';
+import { X } from 'lucide-react';
 
 export default function ImageLightboxModal({ isOpen, imageUrl, onClose }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+      }
     };
+
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
