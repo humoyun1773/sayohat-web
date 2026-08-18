@@ -364,7 +364,7 @@ export const COUNTRIES = [
     taglineUz: 'Sohibqiron Vatani — Oqsaroy, Dorus-Saodat va Taxtaqoracha Dovoni',
     taglineRu: 'Родина Тамерлана — Дворец Аксарай и перевал Тахтакарача',
     taglineEn: 'Birthplace of Tamerlane — Ak-Saray Palace & Takhtakaracha Pass',
-    coverImage: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80',
+    coverImage: '/images/landmarks/oqsaroy-shahrisabz.png',
     flightDurationUz: 'Samarqanddan mashinada 1.5 soat / Qarshi orqali',
     flightDurationRu: '1.5 часа на авто из Самарканда / через Карши',
     flightDurationEn: '1.5 hours by car from Samarkand / via Karshi',
@@ -402,7 +402,7 @@ export const COUNTRIES = [
       'Cool mountain springs and ancient plane tree groves'
     ],
     images: [
-      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
+      '/images/landmarks/oqsaroy-shahrisabz.png',
       'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'
@@ -413,7 +413,7 @@ export const COUNTRIES = [
         descUz: '"Qudratimizga shubha qilsang, biz qurgan imoratlarga boq"',
         descRu: '«Если сомневаешься в нашем величии — взгляни на наши постройки»',
         descEn: '"If you doubt our power, gaze upon our magnificent buildings"',
-        img: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80'
+        img: '/images/landmarks/oqsaroy-shahrisabz.png'
       },
       { 
         nameUz: 'Dorus-Saodat Majmuasi', nameRu: 'Комплекс Дорус-Саодат', nameEn: 'Dorus-Saodat Complex',
@@ -767,7 +767,7 @@ export const HOT_DEALS = [
     badgeEn: 'STARGAZING & HISTORY -25%',
     oldPriceUSD: 190,
     newPriceUSD: 140,
-    image: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    image: '/images/landmarks/oqsaroy-shahrisabz.png',
     includesUz: ['Afrosiyob poyezdi yoki samolyot', 'Maydanak observatoriyasida yulduzlarni kuzatish', 'Oqsaroy va Dorus-Saodat ekskursiyasi', 'Taxtaqoracha tandir go\'shti ziyofati'],
     includesRu: ['Поезд Афросиаб или авиаперелет', 'Наблюдение за звездами в обсерватории Майданак', 'Экскурсия в Аксарай и Дорус-Саодат', 'Ужин с кашкадарьинским тандыр-кабобом'],
     includesEn: ['Afrosiyob bullet train or flight tickets', 'Stargazing at Mount Maydanak Observatory', 'Guided tour of Ak-Saray & Dorus-Saodat', 'Traditional mountain feast on pass']
