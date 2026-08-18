@@ -15,6 +15,32 @@ export default function ContactModal({ isOpen, onClose }) {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Strict Phone Handler: only digits, +998 is permanent
+  const handlePhoneChange = (e) => {
+    const rawVal = e.target.value;
+    let digits = rawVal.replace(/\D/g, '');
+    if (digits.startsWith('998')) {
+      digits = digits.slice(3);
+    }
+    digits = digits.slice(0, 9);
+
+    let formatted = '+998';
+    if (digits.length > 0) {
+      formatted += ' (' + digits.slice(0, 2);
+    }
+    if (digits.length >= 2) {
+      formatted += ') ' + digits.slice(2, 5);
+    }
+    if (digits.length >= 5) {
+      formatted += '-' + digits.slice(5, 7);
+    }
+    if (digits.length >= 7) {
+      formatted += '-' + digits.slice(7, 9);
+    }
+
+    setFormData(prev => ({ ...prev, phone: formatted }));
+  };
+
   // Freeze background page scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -178,10 +204,11 @@ export default function ContactModal({ isOpen, onClose }) {
                     <input
                       type="tel"
                       required
+                      inputMode="numeric"
                       placeholder="+998 (90) 123-45-67"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] outline-none font-mono"
+                      onChange={handlePhoneChange}
+                      className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] outline-none font-mono font-bold"
                     />
                   </div>
                 </div>

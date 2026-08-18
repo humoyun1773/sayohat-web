@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Plane, User, Phone, Lock, ArrowLeft, 
   CheckCircle2, ShieldCheck, Ticket, LogOut, 
-  Award, CreditCard, Sparkles, ArrowRight, Eye, EyeOff 
+  Award, CreditCard, ArrowRight, Eye, EyeOff 
 } from 'lucide-react';
 
 export default function AuthPage({ 
@@ -23,12 +23,49 @@ export default function AuthPage({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  // Strict Phone Handler: only digits, +998 is permanent
+  const handlePhoneChange = (e) => {
+    const rawVal = e.target.value;
+    
+    // Extract only digits
+    let digits = rawVal.replace(/\D/g, '');
+    
+    // If starts with 998, strip it to get the local 9 digits
+    if (digits.startsWith('998')) {
+      digits = digits.slice(3);
+    }
+    
+    // Max 9 digits (e.g. 901234567)
+    digits = digits.slice(0, 9);
+
+    // Format strictly as +998 (XX) XXX-XX-XX
+    let formatted = '+998';
+    if (digits.length > 0) {
+      formatted += ' (' + digits.slice(0, 2);
+    }
+    if (digits.length >= 2) {
+      formatted += ') ' + digits.slice(2, 5);
+    }
+    if (digits.length >= 5) {
+      formatted += '-' + digits.slice(5, 7);
+    }
+    if (digits.length >= 7) {
+      formatted += '-' + digits.slice(7, 9);
+    }
+
+    setPhone(formatted);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!phone || phone.trim().length < 9) {
-      setError('Iltimos, telefon raqamingizni to\'liq kiriting');
+    
+    // Validate that 9 full local digits were entered
+    const digitsOnly = phone.replace(/\D/g, '');
+    if (digitsOnly.length < 12) { // 998 + 9 digits = 12 total digits
+      setError('Iltimos, telefon raqamingizni to\'liq kiriting (masalan: +998 (90) 123-45-67)');
       return;
     }
+
     if (!password || password.trim().length < 4) {
       setError('Parol kamida 4 ta belgidan iborat bo\'lishi kerak');
       return;
@@ -335,17 +372,18 @@ export default function AuthPage({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Telefon Raqamingiz:
+                    Telefon Raqamingiz (Faqat raqamlar):
                   </label>
                   <div className="relative">
-                    <Phone className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
+                    <Phone className="w-4 h-4 text-[#10b981] absolute left-4 top-3.5" />
                     <input
                       type="tel"
                       required
-                      placeholder="+998 90 123 45 67"
+                      inputMode="numeric"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-slate-50 hover:bg-white border border-slate-200 focus:border-[#10b981] rounded-2xl pl-11 pr-4 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none font-mono transition-all"
+                      onChange={handlePhoneChange}
+                      placeholder="+998 (90) 123-45-67"
+                      className="w-full bg-slate-50 hover:bg-white border border-slate-200 focus:border-[#10b981] rounded-2xl pl-11 pr-4 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none font-mono font-bold transition-all"
                     />
                   </div>
                 </div>
