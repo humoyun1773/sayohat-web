@@ -11,7 +11,7 @@ export default function LanguageSwitcher({ currentLang, onChangeLang }) {
             key={lang.code}
             type="button"
             onClick={() => onChangeLang(lang.code)}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-black transition-all ${
+            className={`flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-black transition-all cursor-pointer ${
               isActive
                 ? 'bg-[#10b981] text-white shadow-xs scale-105'
                 : 'text-slate-700 hover:text-slate-950 hover:bg-white/60'
