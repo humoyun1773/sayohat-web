@@ -112,13 +112,10 @@ export default function App() {
           href={CONTACT_INFO.telegram}
           target="_blank"
           rel="noreferrer"
-          className="w-11 h-11 rounded-full bg-[#229ED9] hover:bg-[#1a8bc4] text-white shadow-md shadow-sky-500/25 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 group relative"
+          className="w-11 h-11 rounded-full bg-[#229ED9] hover:bg-[#1a8bc4] text-white shadow-md shadow-sky-500/25 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
           title="Telegram"
         >
           <Send className="w-5 h-5 ml-[-1px] mt-[1px]" />
-          <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-lg border border-slate-700">
-            Telegram
-          </span>
         </a>
 
         {/* WhatsApp */}
@@ -126,25 +123,19 @@ export default function App() {
           href={CONTACT_INFO.whatsapp}
           target="_blank"
           rel="noreferrer"
-          className="w-11 h-11 rounded-full bg-[#25D366] hover:bg-[#1eb956] text-white shadow-md shadow-emerald-500/25 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 group relative"
+          className="w-11 h-11 rounded-full bg-[#25D366] hover:bg-[#1eb956] text-white shadow-md shadow-emerald-500/25 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
           title="WhatsApp"
         >
           <MessageCircle className="w-5 h-5" />
-          <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-lg border border-slate-700">
-            WhatsApp
-          </span>
         </a>
 
         {/* Phone Call */}
         <a
           href={`tel:${CONTACT_INFO.phoneClean}`}
-          className="w-11 h-11 rounded-full bg-[#0f172a] hover:bg-[#10b981] text-white shadow-md shadow-slate-900/25 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 group relative"
+          className="w-11 h-11 rounded-full bg-[#0f172a] hover:bg-[#10b981] text-white shadow-md shadow-slate-900/25 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
           title="To'g'ridan-to'g'ri qo'ng'iroq"
         >
           <Phone className="w-4 h-4" />
-          <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-lg border border-slate-700 font-mono">
-            {CONTACT_INFO.phone}
-          </span>
         </a>
 
       </div>
