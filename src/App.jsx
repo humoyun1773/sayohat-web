@@ -104,48 +104,53 @@ export default function App() {
         onOpenContact={() => setIsContactOpen(true)}
       />
 
-      {/* Floating 1-Tap Quick Action Dock */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
+      {/* Luxury Floating Quick Action Capsule Dock */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end group/dock">
         
-        {/* Telegram Shortcut */}
-        <a
-          href={CONTACT_INFO.telegram}
-          target="_blank"
-          rel="noreferrer"
-          className="w-12 h-12 rounded-2xl bg-[#10b981] hover:bg-[#059669] text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative shadow-emerald-500/20"
-          title="Telegramda bog'lanish"
-        >
-          <Send className="w-5 h-5" />
-          <span className="absolute right-14 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-semibold shadow-md pointer-events-none">
-            Telegram
-          </span>
-        </a>
+        {/* Sleek Frosted Glass Capsule */}
+        <div className="bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-2xl shadow-slate-400/25 p-2 rounded-full flex flex-col items-center gap-2.5 transition-all hover:shadow-slate-500/30">
+          
+          {/* Telegram */}
+          <a
+            href={CONTACT_INFO.telegram}
+            target="_blank"
+            rel="noreferrer"
+            className="w-11 h-11 rounded-full bg-[#229ED9] hover:bg-[#1a8bc4] text-white shadow-md shadow-sky-500/25 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group relative"
+            title="Telegram"
+          >
+            <Send className="w-5 h-5 ml-[-1px] mt-[1px]" />
+            <span className="absolute right-14 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-xl border border-slate-700">
+              Telegram Kanal
+            </span>
+          </a>
 
-        {/* WhatsApp Shortcut */}
-        <a
-          href={CONTACT_INFO.whatsapp}
-          target="_blank"
-          rel="noreferrer"
-          className="w-12 h-12 rounded-2xl bg-[#10b981] hover:bg-[#059669] text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative shadow-emerald-500/20"
-          title="WhatsAppda bog'lanish"
-        >
-          <MessageCircle className="w-5 h-5" />
-          <span className="absolute right-14 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-semibold shadow-md pointer-events-none">
-            WhatsApp
-          </span>
-        </a>
+          {/* WhatsApp */}
+          <a
+            href={CONTACT_INFO.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            className="w-11 h-11 rounded-full bg-[#25D366] hover:bg-[#1eb956] text-white shadow-md shadow-emerald-500/25 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group relative"
+            title="WhatsApp"
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span className="absolute right-14 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-xl border border-slate-700">
+              WhatsApp Chat
+            </span>
+          </a>
 
-        {/* Phone Call Shortcut */}
-        <a
-          href={`tel:${CONTACT_INFO.phoneClean}`}
-          className="w-12 h-12 rounded-2xl bg-slate-900 hover:bg-[#10b981] text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative"
-          title="To'g'ridan-to'g'ri qo'ng'iroq"
-        >
-          <Phone className="w-5 h-5" />
-          <span className="absolute right-14 bg-slate-900 text-white text-xs px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-semibold shadow-md pointer-events-none">
-            {CONTACT_INFO.phone}
-          </span>
-        </a>
+          {/* Phone Call */}
+          <a
+            href={`tel:${CONTACT_INFO.phoneClean}`}
+            className="w-11 h-11 rounded-full bg-[#0f172a] hover:bg-[#10b981] text-white shadow-md shadow-slate-900/25 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 group relative"
+            title="To'g'ridan-to'g'ri qo'ng'iroq"
+          >
+            <Phone className="w-4 h-4" />
+            <span className="absolute right-14 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-xl border border-slate-700 font-mono">
+              {CONTACT_INFO.phone}
+            </span>
+          </a>
+
+        </div>
 
       </div>
 
