@@ -38,33 +38,33 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
   return (
     <section id="hero" className="relative min-h-[92vh] pt-36 pb-20 flex items-center justify-center overflow-hidden bg-white">
       
-      {/* 100% Crystal Clear Full HD Airport Terminal Interior Background */}
+      {/* 100% Pure, Razor-Sharp, Crystal-Clear Airport Terminal Interior Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=2600&q=100"
           alt="Modern Luxury Airport Terminal Interior"
-          className="w-full h-full object-cover object-center scale-100"
+          className="w-full h-full object-cover object-center scale-100 filter brightness-105 contrast-105"
         />
-        {/* Subtle base gradient so text and card remain readable without washing out the photo */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-white/40"></div>
-        <div className="absolute inset-0 bg-white/20"></div>
+        {/* Only a subtle bottom fade to transition to the next section cleanly */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
         
         {/* Main Title & Hero Banner */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">
-          
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-tight">
-            Orzuingizdagi Sayohat — <br />
-            <span className="text-[#10b981]">
-              Dunyoning Har Qaysi Nuqtasiga!
-            </span>
-          </h1>
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/85 backdrop-blur-md border border-white/70 shadow-lg space-y-3">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
+              Orzuingizdagi Sayohat — <br />
+              <span className="text-[#10b981]">
+                Dunyoning Har Qaysi Nuqtasiga!
+              </span>
+            </h1>
 
-          <p className="text-base sm:text-lg lg:text-xl text-slate-700 max-w-3xl mx-auto font-medium leading-relaxed">
-            Zamonaviy Boeing & Airbus laynerlari, 100% rasmiy vizalar, 5 yulduzli mehmonxonalar va to'g'ridan-to'g'ri reyslar.
-          </p>
+            <p className="text-sm sm:text-base lg:text-lg text-slate-700 max-w-2xl mx-auto font-medium leading-relaxed">
+              Zamonaviy Boeing & Airbus laynerlari, 100% rasmiy vizalar, 5 yulduzli mehmonxonalar va to'g'ridan-to'g'ri reyslar.
+            </p>
+          </div>
         </div>
 
         {/* Grand, Spacious Search & Booking Panel */}

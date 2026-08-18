@@ -33,33 +33,33 @@ export default function HotDeals({ currency, onOpenBooking }) {
   };
 
   return (
-    <section id="deals" className="py-24 relative overflow-hidden bg-slate-50 border-y border-slate-200">
+    <section id="deals" className="py-24 relative overflow-hidden bg-slate-900 border-y border-slate-200">
       
-      {/* 100% Crystal Clear Sunset Airplane Flight Background */}
+      {/* 100% Pure, Razor-Sharp Sunset Airplane Flight Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=2600&q=100"
           alt="Sunset Airplane Flight"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center filter brightness-110 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-50/75"></div>
+        <div className="absolute inset-0 bg-slate-950/40"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="space-y-3">
+        {/* Header in High Contrast Glass Card */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 p-6 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl">
+          <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
               <Flame className="w-4 h-4 text-[#10b981]" />
               <span>Qaynoq Chegirmalar va Maxsus Takliflar</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              Cheklangan Muddatli <br />
-              <span className="text-[#10b981]">
-                Super Qaynoq Turlar
-              </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              Shoshiling! Bugungi <span className="text-[#10b981]">Flash Sale</span> Narxlari
             </h2>
+            <p className="text-slate-600 text-sm font-medium">
+              Ushbu narxlar cheklangan miqdorda bo'lib, taymer tugashi bilan o'zgaradi.
+            </p>
           </div>
 
           {/* Flash Sale Countdown Timer */}

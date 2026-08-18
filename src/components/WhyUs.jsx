@@ -29,35 +29,37 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-24 relative overflow-hidden bg-slate-50 border-t border-slate-200">
+    <section id="why-us" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
       
-      {/* 100% Crystal Clear High Altitude Airplane Wing Background Photo */}
+      {/* 100% Pure, Razor-Sharp High Altitude Airplane Wing Background Photo */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1517400508447-88cca5584458?auto=format&fit=crop&w=2600&q=100"
           alt="Airplane Wing in Clouds"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-50/70"></div>
+        <div className="absolute inset-0 bg-slate-950/45"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Award className="w-3.5 h-3.5 text-[#10b981]" />
-            <span>Kafolatlangan Sifat va Ishonch</span>
+        {/* Section Header in Glass Card */}
+        <div className="text-center max-w-4xl mx-auto mb-16 space-y-3">
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+              <Award className="w-3.5 h-3.5 text-[#10b981]" />
+              <span>Kafolatlangan Sifat va Ishonch</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              Nega Minglab Sayohatchilar <br />
+              <span className="text-[#10b981]">
+                LOTOS FIELDni Tanlashadi?
+              </span>
+            </h2>
+            <p className="text-slate-700 text-sm sm:text-base font-medium">
+              Biz faqatgina tur sotmaymiz — biz sizga butun umr yodda qoladigan unutilmas xotiralar va betakror qulaylik ulashamiz.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Nega Minglab Sayohatchilar <br />
-            <span className="text-[#10b981]">
-              LOTOS FIELDni Tanlashadi?
-            </span>
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Biz faqatgina tur sotmaymiz — biz sizga butun umr yodda qoladigan unutilmas xotiralar va betakror qulaylik ulashamiz.
-          </p>
         </div>
 
         {/* Feature Cards Grid */}

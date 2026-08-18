@@ -85,35 +85,34 @@ export default function PriceCalculator({
   };
 
   return (
-    <section id="calculator" className="py-24 relative overflow-hidden bg-white">
+    <section id="calculator" className="py-24 relative overflow-hidden bg-slate-900">
       
-      {/* 100% Unique: Crystal Clear Alps Mountains & Sky from Airplane Window */}
+      {/* 100% Pure, Razor-Sharp Alps Mountains & Sky from Airplane Window */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=2600&q=100"
           alt="Alps Mountain Peaks from Sky"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-white/70"></div>
+        <div className="absolute inset-0 bg-slate-950/40"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Calculator className="w-3.5 h-3.5 text-[#10b981]" />
-            <span>Tur Narxini Hisoblash & To'g'ridan-to'g'ri Narxlar</span>
+        {/* Section Title in Glass Card */}
+        <div className="text-center max-w-4xl mx-auto mb-14 space-y-3">
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+              <Calculator className="w-3.5 h-3.5 text-[#10b981]" />
+              <span>Smart Shaffof Narxlar & Qulay Tanlov</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              Sayohat Narxini <span className="text-[#10b981]">Onlayn Hisoblang</span>
+            </h2>
+            <p className="text-slate-700 text-sm sm:text-base font-medium">
+              Samolyot klassi, mehmonxona yulduzi, sayohat muddatini tanlang — yakuniy real narxni darhol bilib oling!
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Sayohat Narxini <br />
-            <span className="text-[#10b981]">
-              Jonli Hisoblang!
-            </span>
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Parvoz klassi, mehmonxona darajasi, sayohatchilar soni va qo'shimcha qulayliklarni tanlang — narx bir zumda hisoblanadi.
-          </p>
         </div>
 
         {/* Interactive Calculator Body */}

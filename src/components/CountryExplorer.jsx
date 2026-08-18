@@ -35,34 +35,35 @@ export default function CountryExplorer({
   return (
     <section id="countries" className="py-24 relative overflow-hidden bg-white">
       
-      {/* 100% Unique: Crystal Clear Aerial Tropical Islands & Ocean from Plane Window */}
+      {/* 100% Pure, Razor-Sharp Aerial Tropical Islands & Ocean from Plane Window */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2600&q=100"
           alt="Tropical Paradise from Sky"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-white/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+        <div className="absolute inset-0 bg-slate-900/35"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Globe className="w-3.5 h-3.5 text-[#10b981]" />
-            <span>Butun Dunyo Davlatlari & Jonli Media Galereyasi</span>
+        <div className="text-center max-w-4xl mx-auto mb-12 space-y-3">
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+              <Globe className="w-3.5 h-3.5 text-[#10b981]" />
+              <span>Butun Dunyo Davlatlari & Jonli Media Galereyasi</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              Istalgan Davlatni Tanlang — <br />
+              <span className="text-[#10b981]">
+                Rasmlari, Parvozlari va Narxlari
+              </span>
+            </h2>
+            <p className="text-slate-700 text-sm sm:text-base font-medium">
+              Qaysi davlat ustiga bossangiz, uning barcha HD fotosuratlari, samolyot qatnovlari, ob-havosi, viza shartlari va arzon narxlari bir zumda chiqadi!
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Istalgan Davlatni Tanlang — <br />
-            <span className="text-[#10b981]">
-              Rasmlari, Parvozlari va Narxlari
-            </span>
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base">
-            Qaysi davlat ustiga bossangiz, uning barcha HD fotosuratlari, samolyot qatnovlari, ob-havosi, viza shartlari va arzon narxlari bir zumda chiqadi!
-          </p>
         </div>
 
         {/* Category Tabs */}

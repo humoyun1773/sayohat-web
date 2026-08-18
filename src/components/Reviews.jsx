@@ -4,36 +4,37 @@ import { REVIEWS } from '../data/travelData';
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
+    <section id="reviews" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
       
-      {/* 100% Unique: Ultra-Luxury VIP First Class Aircraft Cabin Background */}
+      {/* 100% Pure, Razor-Sharp VIP First Class Aircraft Cabin Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=2600&q=100"
           alt="VIP First Class Cabin"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-white/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+        <div className="absolute inset-0 bg-slate-950/40"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Star className="w-3.5 h-3.5 fill-[#10b981] text-[#10b981]" />
-            <span>Haqiqiy Fikrlar & Taassurotlar</span>
+        {/* Header in Glass Card */}
+        <div className="text-center max-w-4xl mx-auto mb-16 space-y-3">
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+              <Star className="w-3.5 h-3.5 fill-[#10b981] text-[#10b981]" />
+              <span>Haqiqiy Fikrlar & Taassurotlar</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              Mijozlarimiz Biz Haqimizda <br />
+              <span className="text-[#10b981]">
+                Nima Deyishadi?
+              </span>
+            </h2>
+            <p className="text-slate-700 text-sm sm:text-base font-medium">
+              Har bir sayohat – bu yangi bir hayot. LOTOS FIELD xizmatlaridan foydalangan yurtdoshlarimizning samimiy fikrlari.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Mijozlarimiz Biz Haqimizda <br />
-            <span className="text-[#10b981]">
-              Nima Deyishadi?
-            </span>
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Har bir sayohat – bu yangi bir hayot. LOTOS FIELD xizmatlaridan foydalangan yurtdoshlarimizning samimiy fikrlari.
-          </p>
         </div>
 
         {/* Reviews Grid */}
