@@ -37,21 +37,23 @@ export default function AirplaneFleet({ onOpenBooking, onOpenImageLightbox }) {
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Plane className="w-3.5 h-3.5 transform -rotate-45 text-[#10b981]" />
-            <span>Zamonaviy Aviapark & HD Samolyotlar Galereyasi</span>
+        {/* Section Header in Glass Card */}
+        <div className="text-center max-w-4xl mx-auto mb-14 space-y-3">
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+              <Plane className="w-3.5 h-3.5 transform -rotate-45 text-[#10b981]" />
+              <span>Zamonaviy Aviapark & HD Samolyotlar Galereyasi</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              Eng Xavfsiz va Hashamatli <br />
+              <span className="text-[#10b981]">
+                Boeing & Airbus Laynerlari
+              </span>
+            </h2>
+            <p className="text-slate-700 text-sm sm:text-base font-medium">
+              Har bir samolyot ustiga bosing — uning tashqi ko'rinishi, VIP saloni, uchuvchilar kabinasi va bulutlar ustidagi HD fotosuratlarini tomosha qiling!
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Eng Xavfsiz va Hashamatli <br />
-            <span className="text-[#10b981]">
-              Boeing & Airbus Laynerlari
-            </span>
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base">
-            Har bir samolyot ustiga bosing — uning tashqi ko'rinishi, VIP saloni, uchuvchilar kabinasi va bulutlar ustidagi HD fotosuratlarini tomosha qiling!
-          </p>
         </div>
 
         {/* 6 Planes Selector Grid */}
