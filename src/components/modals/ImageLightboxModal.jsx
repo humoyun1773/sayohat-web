@@ -11,17 +11,35 @@ export default function ImageLightboxModal({ isOpen, imageUrl, onClose }) {
 
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
-      document.body.classList.add('modal-open');
-      document.documentElement.classList.add('modal-open');
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
-      document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     };
   }, [isOpen, onClose]);
 

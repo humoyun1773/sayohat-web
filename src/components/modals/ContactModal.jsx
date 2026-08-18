@@ -29,19 +29,37 @@ export default function ContactModal({ isOpen, onClose, t, lang = 'uz' }) {
     setPhoneDigits(raw.slice(0, 9));
   };
 
-  // 100% Solid Freeze background page scroll when modal is open
+  // 100% Iron-Clad Scroll Freeze (Prevents 100% background movement on mousewheel & touch)
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('modal-open');
-      document.documentElement.classList.add('modal-open');
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
       setIsSubmitted(false);
     } else {
-      document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
     return () => {
-      document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     };
   }, [isOpen]);
 
