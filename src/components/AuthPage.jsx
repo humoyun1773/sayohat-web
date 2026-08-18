@@ -12,7 +12,7 @@ export default function AuthPage({
   onBackToHome 
 }) {
   const [tab, setTab] = useState('login'); // 'login' or 'register'
-  const [phoneDigits, setPhoneDigits] = useState(''); // Stores only the 9 digits
+  const [phoneDigits, setPhoneDigits] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -71,24 +71,24 @@ export default function AuthPage({
   return (
     <div className="min-h-screen relative flex flex-col justify-between overflow-hidden bg-slate-900">
       
-      {/* 100% Pure, Razor-Sharp High Altitude Flight Background */}
+      {/* 100% Real Commercial Airliner in Clear Daylight Sky Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2600&q=100"
-          alt="Airliner in Sky"
-          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2600&q=100"
+          alt="Commercial Airliner in Blue Sky"
+          className="w-full h-full object-cover object-center filter brightness-100"
         />
-        <div className="absolute inset-0 bg-slate-950/45 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-[3px]"></div>
       </div>
 
-      {/* Top Simple Navigation Bar */}
-      <header className="bg-white/90 backdrop-blur-xl border-b border-white/40 sticky top-0 z-30 px-4 sm:px-8 py-3.5 shadow-sm">
+      {/* Top Navigation Bar */}
+      <header className="bg-white/95 backdrop-blur-xl border-b border-slate-200/80 sticky top-0 z-30 px-4 sm:px-8 py-3.5 shadow-sm">
         <div className="max-w-[1536px] mx-auto flex items-center justify-between">
           
           <button
             type="button"
             onClick={onBackToHome}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-bold transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-bold transition-all shadow-xs"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Bosh sahifaga qaytish</span>
@@ -109,7 +109,7 @@ export default function AuthPage({
           </div>
 
           <div className="w-24 sm:w-36 text-right">
-            <span className="text-[11px] font-bold text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-2.5 py-1 rounded-full hidden sm:inline-block">
+            <span className="text-[11px] font-bold text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-3 py-1 rounded-full hidden sm:inline-block shadow-xs">
               24/7 Xavfsiz Tizim
             </span>
           </div>
@@ -117,12 +117,12 @@ export default function AuthPage({
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main className="max-w-[1536px] mx-auto px-4 sm:px-8 py-10 sm:py-16 w-full flex-1 flex items-center justify-center">
+      {/* Main Form Center Area */}
+      <main className="max-w-[1536px] mx-auto px-4 sm:px-8 py-10 sm:py-16 w-full flex-1 flex items-center justify-center relative z-10">
         
         {currentUser ? (
           /* Logged In: Full Personal Profile Dashboard */
-          <div className="w-full max-w-4xl bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-300">
+          <div className="w-full max-w-4xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-300">
             
             {/* Profile Header Banner */}
             <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 sm:p-12 text-white relative overflow-hidden">
@@ -157,7 +157,7 @@ export default function AuthPage({
             </div>
 
             {/* Dashboard Body */}
-            <div className="p-6 sm:p-10 space-y-8">
+            <div className="p-6 sm:p-10 space-y-8 bg-white">
               
               {/* Stats 3 Columns */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -247,18 +247,18 @@ export default function AuthPage({
 
           </div>
         ) : (
-          /* Not Logged In: Split Screen Login & Register Page */
+          /* Solid, Ultra-Clean Luxury Split Card (White & Slate) */
           <div className="w-full max-w-5xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 animate-in fade-in zoom-in-95 duration-300">
             
             {/* Left Col: Visual Brand & Perks Banner (5 cols) */}
             <div className="lg:col-span-5 relative bg-slate-950 p-8 sm:p-12 text-white flex flex-col justify-between overflow-hidden min-h-[380px] lg:min-h-[620px]">
               
-              {/* Background Photo */}
+              {/* Airplane in Sky Photo */}
               <div className="absolute inset-0 z-0">
                 <img
-                  src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=85"
-                  alt="Airlines flight"
-                  className="w-full h-full object-cover opacity-35"
+                  src="https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85"
+                  alt="Airliner in Golden Sky"
+                  className="w-full h-full object-cover opacity-35 filter brightness-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40"></div>
               </div>
@@ -297,11 +297,11 @@ export default function AuthPage({
 
             </div>
 
-            {/* Right Col: Interactive Form (7 cols) */}
-            <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-center space-y-6">
+            {/* Right Col: Solid White Form (7 cols) */}
+            <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-center space-y-6 bg-white">
               
               <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
                   {tab === 'login' ? 'Hisobingizga Kiring' : 'Yangi Hisob Ochish'}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 mt-1">
@@ -317,7 +317,7 @@ export default function AuthPage({
                   type="button"
                   onClick={() => { setTab('login'); setError(''); }}
                   className={`py-3 rounded-xl transition-all ${
-                    tab === 'login' ? 'bg-white text-slate-900 shadow-md font-extrabold' : 'text-slate-500 hover:text-slate-900'
+                    tab === 'login' ? 'bg-white text-slate-900 shadow-md font-black' : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   Kirish (Login)
@@ -326,7 +326,7 @@ export default function AuthPage({
                   type="button"
                   onClick={() => { setTab('register'); setError(''); }}
                   className={`py-3 rounded-xl transition-all ${
-                    tab === 'register' ? 'bg-white text-slate-900 shadow-md font-extrabold' : 'text-slate-500 hover:text-slate-900'
+                    tab === 'register' ? 'bg-white text-slate-900 shadow-md font-black' : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   Ro'yxatdan o'tish
@@ -356,7 +356,7 @@ export default function AuthPage({
                         placeholder="Masalan: Sardor Rahimov"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        className="w-full bg-slate-50 hover:bg-white border border-slate-200 focus:border-[#10b981] rounded-2xl pl-11 pr-4 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none transition-all"
+                        className="w-full bg-slate-50 hover:bg-white border border-slate-300 focus:border-[#10b981] rounded-2xl pl-11 pr-4 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none transition-all font-medium"
                       />
                     </div>
                   </div>
@@ -367,8 +367,8 @@ export default function AuthPage({
                     Telefon Raqamingiz:
                   </label>
                   
-                  {/* Clean Prefix Box with Unrestricted Editable Numbers */}
-                  <div className="flex items-center bg-slate-50 hover:bg-white border border-slate-200 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden transition-all">
+                  {/* Fixed +998 Prefix Box with Clean White Input */}
+                  <div className="flex items-center bg-slate-50 hover:bg-white border border-slate-300 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden transition-all">
                     <div className="flex items-center gap-2 pl-4 pr-3 py-3.5 text-slate-800 font-mono font-black text-xs sm:text-sm select-none border-r border-slate-200 shrink-0">
                       <Phone className="w-4 h-4 text-[#10b981]" />
                       <span>+998</span>
@@ -397,7 +397,7 @@ export default function AuthPage({
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full bg-slate-50 hover:bg-white border border-slate-200 focus:border-[#10b981] rounded-2xl pl-11 pr-11 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none transition-all"
+                      className="w-full bg-slate-50 hover:bg-white border border-slate-300 focus:border-[#10b981] rounded-2xl pl-11 pr-11 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none transition-all font-medium"
                     />
                     <button
                       type="button"
@@ -411,7 +411,7 @@ export default function AuthPage({
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs sm:text-sm font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg hover:scale-[1.01] active:scale-95 transition-all mt-3"
+                  className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs sm:text-sm font-black tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg hover:scale-[1.01] active:scale-95 transition-all mt-3"
                 >
                   <span>{tab === 'login' ? 'TIZIMGA KIRISH' : 'RO\'YXATDAN O\'TISH VA BONUS OLISH'}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -433,7 +433,7 @@ export default function AuthPage({
       </main>
 
       {/* Page Footer */}
-      <footer className="bg-white/90 backdrop-blur-xl border-t border-white/40 py-5 px-4 text-center text-xs text-slate-600 font-medium">
+      <footer className="bg-white/95 backdrop-blur-xl border-t border-slate-200 py-5 px-4 text-center text-xs text-slate-600 font-medium relative z-10">
         © 2026 LOTOS FIELD Airlines & Luxury Travel. Barcha huquqlar himoyalangan.
       </footer>
 
