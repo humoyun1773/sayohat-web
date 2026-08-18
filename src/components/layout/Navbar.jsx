@@ -119,16 +119,11 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
               />
             </div>
 
-            {/* Mobile Right Controls: Compact Lang Switcher & Hamburger */}
-            <div className="flex items-center gap-1.5 md:hidden">
-              <LanguageSwitcher
-                currentLang={lang}
-                onChangeLang={onChangeLang}
-              />
-              
+            {/* Mobile Right Controls: Only Menu Button */}
+            <div className="flex items-center md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-2 rounded-xl bg-[#10b981] text-white shadow-md hover:bg-[#059669] transition-all active:scale-95 cursor-pointer shrink-0"
+                className="p-2.5 rounded-xl bg-[#10b981] text-white shadow-md hover:bg-[#059669] transition-all active:scale-95 cursor-pointer shrink-0"
                 aria-label="Menyuni ochish"
               >
                 <Menu className="w-5 h-5 text-white" />
