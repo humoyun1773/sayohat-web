@@ -16,11 +16,23 @@ import ContactModal from '../components/modals/ContactModal';
 import BookingModal from '../components/modals/BookingModal';
 import ImageLightboxModal from '../components/modals/ImageLightboxModal';
 
+// Translations
+import { translations } from '../data/translations';
+
 // Floating Messengers Widget Icons
 import { Send, MessageCircle, Phone } from 'lucide-react';
 import { CONTACT_INFO } from '../data/travelData';
 
 export default function HomePage() {
+  // Multilingual State ('uz', 'ru', 'en')
+  const [lang, setLang] = useState(() => {
+    try {
+      return localStorage.getItem('lotos_field_lang') || 'uz';
+    } catch {
+      return 'uz';
+    }
+  });
+
   // Persisted Currency ('USD' or 'UZS')
   const [currency, setCurrency] = useState(() => {
     try {
@@ -46,13 +58,13 @@ export default function HomePage() {
   const [bookingDetails, setBookingDetails] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
 
-  const handleCurrencyChange = (curr) => {
+  const handleLangChange = (newLang) => {
     try {
-      localStorage.setItem('lotos_field_currency', curr);
+      localStorage.setItem('lotos_field_lang', newLang);
     } catch (e) {
       console.error(e);
     }
-    setCurrency(curr);
+    setLang(newLang);
   };
 
   const handleCountryChange = (cId) => {
@@ -69,43 +81,63 @@ export default function HomePage() {
     setIsBookingOpen(true);
   };
 
+  const t = translations[lang] || translations.uz;
+
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased">
       
       {/* 1. Top Navbar */}
-      <Navbar />
+      <Navbar
+        lang={lang}
+        onChangeLang={handleLangChange}
+        t={t}
+      />
 
       {/* 2. Main Hero Section */}
       <Hero
         onSelectCountry={handleCountryChange}
         onOpenBooking={handleOpenBooking}
+        t={t}
+        lang={lang}
       />
 
-      {/* 3. Country Explorer & HD Photo Gallery */}
+      {/* 3. Country / Region Explorer & HD Photo Gallery */}
       <CountryExplorer
         selectedCountryId={selectedCountryId}
         onSelectCountry={handleCountryChange}
         currency={currency}
         onOpenBooking={handleOpenBooking}
         onOpenImageLightbox={(img) => setLightboxImage(img)}
+        t={t}
+        lang={lang}
       />
 
-      {/* 4. Hot Deals & Flash Sale Countdown */}
+      {/* 4. Hot Deals & Flash Sale */}
       <HotDeals
         currency={currency}
         onOpenBooking={handleOpenBooking}
+        t={t}
+        lang={lang}
       />
 
       {/* 5. Why Choose Us */}
-      <WhyUs />
+      <WhyUs
+        t={t}
+        lang={lang}
+      />
 
       {/* 6. Verified Traveler Reviews */}
-      <Reviews />
+      <Reviews
+        t={t}
+        lang={lang}
+      />
 
       {/* 7. Clean Luxury Footer */}
       <Footer
         onSelectCountry={handleCountryChange}
         onOpenContact={() => setIsContactOpen(true)}
+        t={t}
+        lang={lang}
       />
 
       {/* Direct Luxury Floating Contact Buttons */}
@@ -148,6 +180,8 @@ export default function HomePage() {
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
+        t={t}
+        lang={lang}
       />
 
       <BookingModal
@@ -155,6 +189,8 @@ export default function HomePage() {
         onClose={() => setIsBookingOpen(false)}
         bookingData={bookingDetails}
         currency={currency}
+        t={t}
+        lang={lang}
       />
 
       <ImageLightboxModal

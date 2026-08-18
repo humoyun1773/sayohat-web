@@ -4,7 +4,7 @@ import {
 } from 'lucide-react';
 import { HOT_DEALS, EXCHANGE_RATE } from '../../data/travelData';
 
-export default function HotDeals({ currency = 'USD', onOpenBooking }) {
+export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'uz' }) {
   // Safe price formatter with defensive number fallback
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;
@@ -34,16 +34,16 @@ export default function HotDeals({ currency = 'USD', onOpenBooking }) {
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
               <Flame className="w-4 h-4 text-[#10b981]" />
-              <span>Qaynoq Chegirmalar va Maxsus Takliflar</span>
+              <span>{t.deals.badge}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-              Eng Ommabop va Qaynoq <br />
+              {t.deals.title1} <br />
               <span className="text-[#10b981]">
-                Maxsus Tur Takliflari
+                {t.deals.title2}
               </span>
             </h2>
             <p className="text-slate-700 text-sm sm:text-base font-medium">
-              Eksklyuziv narxlar, to'g'ridan-to'g'ri aviaparvozlar va 5 yulduzli lyuks mehmonxonalar to'plami.
+              {t.deals.desc}
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function HotDeals({ currency = 'USD', onOpenBooking }) {
           {HOT_DEALS.map((deal) => {
             const oldPrice = deal.oldPriceUSD || deal.originalPriceUSD || 700;
             const newPrice = deal.newPriceUSD || deal.discountedPriceUSD || 500;
-            const duration = deal.days || deal.duration || '7 kun';
+            const duration = deal.days || deal.duration || '3 kun';
             const badgeText = deal.badge || 'QAYNOQ CHEGIRMA';
 
             return (
@@ -88,7 +88,7 @@ export default function HotDeals({ currency = 'USD', onOpenBooking }) {
                   <div className="space-y-2">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
                       <Plane className="w-3.5 h-3.5 text-[#10b981]" />
-                      <span>LOTOS FIELD Charter • To'g'ridan-to'g'ri</span>
+                      <span>{t.deals.charterTag}</span>
                     </div>
 
                     <h3 className="text-base sm:text-lg font-black text-slate-900 leading-snug line-clamp-2">
@@ -121,13 +121,13 @@ export default function HotDeals({ currency = 'USD', onOpenBooking }) {
                     <button
                       onClick={() => onOpenBooking({
                         country: deal.title,
-                        flightClass: 'Ekonom / Biznes',
-                        hotelStar: '5★ All Inclusive',
+                        flightClass: 'VIP Tour',
+                        hotelStar: '4-5★ Hotel',
                         priceUSD: newPrice
                       })}
                       className="py-3 px-4 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all"
                     >
-                      <span>Band qilish</span>
+                      <span>{t.deals.bookBtn}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>

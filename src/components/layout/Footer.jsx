@@ -5,15 +5,15 @@ import {
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../../data/travelData';
 
-export default function Footer({ onSelectCountry, onOpenContact }) {
+export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' }) {
   return (
     <footer className="relative bg-slate-950 text-white pt-16 pb-12 overflow-hidden border-t border-slate-800">
       
-      {/* 100% Verified Pure Razor-Sharp Twilight Airliner Background */}
+      {/* 100% Verified Pure Razor-Sharp Twilight Travel Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=2600&q=100"
-          alt="Airliner in Twilight"
+          alt="Historic Landmarks in Twilight"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
         <div className="absolute inset-0 bg-slate-950/85"></div>
@@ -36,7 +36,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
             </div>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm font-medium">
-              LOTOS FIELD — O'zbekistonning eng ishonchli xalqaro turizm va aviachiptalar platformasi. Dunyoning 50 dan ortiq davlatlariga to'g'ridan-to'g'ri reyslar, VIP lyuks xizmat va unutilmas sarguzashtlar.
+              {t.footer.bio}
             </p>
 
             {/* Social & Messenger Links */}
@@ -84,7 +84,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
           {/* Col 3: O'zbekiston Viloyatlari */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              O'zbekiston Viloyatlari
+              {t.footer.regionsTitle}
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
               {COUNTRIES.map((c) => (
@@ -97,7 +97,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
                     className="hover:text-[#10b981] transition-colors flex items-center gap-1.5 text-left"
                   >
                     <span>{c.flag}</span>
-                    <span>{c.name}</span>
+                    <span>{lang === 'en' ? c.nameEn : c.name}</span>
                   </button>
                 </li>
               ))}
@@ -107,22 +107,21 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
           {/* Col 4: Xizmatlar */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              Ichki Turizm Xizmatlari
+              {t.footer.servicesTitle}
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Afrosiyob & VIP poyezd chiptalari</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Viloyatlararo aviaparvozlar</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Tarixiy shaharlar bo'ylab shaxsiy gid</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Tog' & Ekoturizm (Zomin, Boysun, Hisor)</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">Qadimiy Qal'alar (Ellikqal'a) ekspeditsiyasi</li>
-              <li className="hover:text-[#10b981] cursor-pointer transition-colors">VIP mehmonxonalar va transport</li>
+              {t.footer.services.map((serv, idx) => (
+                <li key={idx} className="hover:text-[#10b981] cursor-pointer transition-colors">
+                  {serv}
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Col 5: Kontakt & Manzil */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              Aloqa Markazi
+              {t.footer.contactTitle}
             </h4>
             <div className="space-y-3 text-xs text-slate-300">
               <div className="flex items-center gap-2">
@@ -141,7 +140,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#10b981] shrink-0" />
-                <span className="text-slate-300">Har kuni 08:00 - 22:00</span>
+                <span className="text-slate-300">{t.footer.workHours}</span>
               </div>
             </div>
           </div>
@@ -151,14 +150,14 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
           <div>
-            © 2026 LOTOS FIELD. Barcha huquqlar himoyalangan. Litsenziya: #LF-88921-UZ
+            {t.footer.copyright}
           </div>
           <div className="flex items-center gap-4">
-            <span className="hover:text-white cursor-pointer transition-colors">Maxfiylik siyosati</span>
+            <span className="hover:text-white cursor-pointer transition-colors">{t.footer.privacy}</span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">Foydalanish shartlari</span>
+            <span className="hover:text-white cursor-pointer transition-colors">{t.footer.terms}</span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">Ommaviy oferta</span>
+            <span className="hover:text-white cursor-pointer transition-colors">{t.footer.offer}</span>
           </div>
         </div>
 

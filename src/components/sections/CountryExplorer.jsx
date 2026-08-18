@@ -11,7 +11,9 @@ export default function CountryExplorer({
   onSelectCountry, 
   currency = 'USD', 
   onOpenBooking, 
-  onOpenImageLightbox
+  onOpenImageLightbox,
+  t,
+  lang = 'uz'
 }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
@@ -39,7 +41,7 @@ export default function CountryExplorer({
   // Safe gallery images fallback
   const galleryPhotos = currentCountry.images?.map((url, i) => ({
     url,
-    title: currentCountry.spots?.[i]?.name || `${currentCountry.name} Manzarasi ${i + 1}`
+    title: currentCountry.spots?.[i]?.name || `${currentCountry.name} ${i + 1}`
   })) || [
     { url: currentCountry.coverImage, title: currentCountry.name }
   ];
@@ -69,35 +71,50 @@ export default function CountryExplorer({
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
               <Globe className="w-3.5 h-3.5 text-[#10b981]" />
-              <span>O'zbekiston Viloyatlari & Jonli Media Galereyasi</span>
+              <span>{t.regions.badge}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-              Istalgan Viloyatni Tanlang — <br />
+              {t.regions.title1} <br />
               <span className="text-[#10b981]">
-                Qadimiy Obidalar, Tog'lar va Qal'alar
+                {t.regions.title2}
               </span>
             </h2>
             <p className="text-slate-700 text-sm sm:text-base font-medium">
-              Samarqand, Buxoro, Xiva, Shahrisabz, Qashqadaryo, Surxondaryo, Ellikqal'a va Zominning barcha HD fotosuratlari, qatnovlari va arzon VIP turlari!
+              {t.regions.desc}
             </p>
           </div>
         </div>
 
         {/* Category Tabs */}
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all shadow-xs ${
-                selectedCategory === cat.id
-                  ? 'btn-primary-emerald scale-105 shadow-md'
-                  : 'bg-white/90 hover:bg-white text-slate-700 border border-slate-200'
-              }`}
-            >
-              {cat.name}
-            </button>
-          ))}
+          {CATEGORIES.map((cat) => {
+            let catName = cat.name;
+            if (lang === 'ru') {
+              if (cat.id === 'all') catName = 'Все Регионы и Города';
+              if (cat.id === 'history') catName = '🕌 Древние и Исторические Города';
+              if (cat.id === 'nature') catName = '🏔️ Горы и Заповедники';
+              if (cat.id === 'ancient') catName = '🏰 Древние Крепости';
+            } else if (lang === 'en') {
+              if (cat.id === 'all') catName = 'All Regions & Cities';
+              if (cat.id === 'history') catName = '🕌 Historic & Ancient Cities';
+              if (cat.id === 'nature') catName = '🏔️ Mountains & Nature Reserves';
+              if (cat.id === 'ancient') catName = '🏰 Ancient Fortresses';
+            }
+
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all shadow-xs ${
+                  selectedCategory === cat.id
+                    ? 'btn-primary-emerald scale-105 shadow-md'
+                    : 'bg-white/90 hover:bg-white text-slate-700 border border-slate-200'
+                }`}
+              >
+                {catName}
+              </button>
+            );
+          })}
         </div>
 
         {/* Horizontal Regions Selector Bar */}
@@ -105,6 +122,7 @@ export default function CountryExplorer({
           {filteredCountries.map((c) => {
             const isSelected = c.id === currentCountry.id;
             const price = c.basePriceUSD || c.priceUSD || 80;
+            const displayName = lang === 'en' ? c.nameEn : c.name;
             return (
               <button
                 key={c.id}
@@ -116,8 +134,8 @@ export default function CountryExplorer({
                 }`}
               >
                 <div className="text-2xl leading-none">{c.flag}</div>
-                <div className="font-bold text-xs text-slate-900 truncate w-full">{c.name}</div>
-                <div className="text-[11px] font-black text-[#10b981]">{formatPrice(price)} dan</div>
+                <div className="font-bold text-xs text-slate-900 truncate w-full">{displayName}</div>
+                <div className="text-[11px] font-black text-[#10b981]">{formatPrice(price)} {t.regions.fromPrice}</div>
               </button>
             );
           })}
@@ -143,7 +161,7 @@ export default function CountryExplorer({
             <div className="relative z-10 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 <span className="px-3.5 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold shadow-sm">
-                  {currentCountry.flag} {currentCountry.name}
+                  {currentCountry.flag} {lang === 'en' ? currentCountry.nameEn : currentCountry.name}
                 </span>
                 <span className="px-3 py-1 rounded-full bg-[#10b981] text-white text-xs font-black shadow-md flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 fill-white" />
@@ -156,7 +174,7 @@ export default function CountryExplorer({
                 className="px-3.5 py-1.5 rounded-full bg-slate-900/80 hover:bg-white text-white hover:text-slate-900 backdrop-blur-md border border-white/30 text-xs font-bold flex items-center gap-2 transition-all shadow-md"
               >
                 <Maximize2 className="w-3.5 h-3.5" />
-                <span>HD Rasmni Ochish</span>
+                <span>{t.regions.openHD}</span>
               </button>
             </div>
 
@@ -186,7 +204,7 @@ export default function CountryExplorer({
                 {activePhotoTitle}
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-white drop-shadow-md">
-                {currentCountry.name} — {currentCountry.tagline}
+                {lang === 'en' ? currentCountry.nameEn : currentCountry.name} — {currentCountry.tagline}
               </h3>
             </div>
 
@@ -201,10 +219,10 @@ export default function CountryExplorer({
               <div>
                 <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#10b981] mb-1">
                   <Sparkles className="w-4 h-4" />
-                  <span>To'liq Tur Paketi & VIP Qulayliklar</span>
+                  <span>{t.regions.packageTitle}</span>
                 </div>
                 <h4 className="text-2xl font-black text-slate-900">
-                  {currentCountry.name} Sayri
+                  {lang === 'en' ? currentCountry.nameEn : currentCountry.name} {t.regions.tourSuffix}
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                   {currentCountry.description}
@@ -216,7 +234,7 @@ export default function CountryExplorer({
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
                     <Sun className="w-4 h-4 text-amber-500" />
-                    <span>Hozirgi Harorat</span>
+                    <span>{t.regions.facts.temp}</span>
                   </div>
                   <div className="text-sm font-extrabold text-slate-900">{currentCountry.temp || '+26°C'}</div>
                 </div>
@@ -224,15 +242,15 @@ export default function CountryExplorer({
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
                     <Shield className="w-4 h-4 text-[#10b981]" />
-                    <span>Kirish Rejimi</span>
+                    <span>{t.regions.facts.visa}</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.visa || 'Erkin'}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{lang === 'ru' ? 'Свободный' : lang === 'en' ? 'Free entry' : currentCountry.visa}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
                     <Plane className="w-4 h-4 text-sky-600" />
-                    <span>Yetib Borish Vaqti</span>
+                    <span>{t.regions.facts.duration}</span>
                   </div>
                   <div className="text-sm font-extrabold text-slate-900">{currentCountry.flightDuration}</div>
                 </div>
@@ -240,16 +258,16 @@ export default function CountryExplorer({
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
                     <Star className="w-4 h-4 text-amber-500" />
-                    <span>Eng Yaxshi Fasl</span>
+                    <span>{t.regions.facts.season}</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.bestTime || 'Bahor & Kuz'}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{lang === 'ru' ? 'Весна и Осень' : lang === 'en' ? 'Spring & Autumn' : (currentCountry.bestTime || 'Bahor & Kuz')}</div>
                 </div>
               </div>
 
               {/* Highlights List */}
               <div className="space-y-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-700 block">
-                  Ushbu Viloyat Sayriga Kiritilgan Asosiy Qulayliklar:
+                  {t.regions.highlightsTitle}
                 </span>
                 <div className="space-y-1.5">
                   {currentCountry.highlights?.map((h, idx) => (
@@ -270,28 +288,28 @@ export default function CountryExplorer({
               
               <div className="flex items-baseline justify-between">
                 <div>
-                  <span className="text-xs text-slate-400 font-bold block">Boshlang'ich Narx (1 kishi):</span>
+                  <span className="text-xs text-slate-400 font-bold block">{t.regions.priceLabel}</span>
                   <div className="text-3xl font-black text-[#10b981]">
                     {formatPrice(currentPrice)}
                   </div>
                 </div>
                 <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-                  Afrosiyob / Avia + 4-5★ Mehmonxona + Gid
+                  {t.regions.includedNote}
                 </span>
               </div>
 
               <div className="pt-2">
                 <button
                   onClick={() => onOpenBooking({
-                    country: `${currentCountry.name}`,
+                    country: `${lang === 'en' ? currentCountry.nameEn : currentCountry.name}`,
                     flightClass: 'Afrosiyob VIP / Avia',
-                    hotelStar: '4-5★ Tarixiy Mehmonxona',
+                    hotelStar: '4-5★ Hotel',
                     priceUSD: currentPrice
                   })}
                   className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-2"
                 >
                   <Plane className="w-4 h-4" />
-                  <span>Ushbu Viloyatga Turni Hoziroq Bron Qilish</span>
+                  <span>{t.regions.bookBtn}</span>
                 </button>
               </div>
 

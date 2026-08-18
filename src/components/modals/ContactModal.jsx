@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  X, Send, Phone, User, 
-  MapPin, CheckCircle2
+  X, Send, Phone, MessageSquare, 
+  MapPin, CheckCircle2, Headphones 
 } from 'lucide-react';
 import { COUNTRIES } from '../../data/travelData';
 import CustomSelect from '../ui/CustomSelect';
 
-export default function ContactModal({ isOpen, onClose }) {
-  const [name, setName] = useState('');
+export default function ContactModal({ isOpen, onClose, t, lang = 'uz' }) {
+  const [fullName, setFullName] = useState('');
   const [phoneDigits, setPhoneDigits] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState('turkey');
+  const [selectedRegion, setSelectedRegion] = useState('samarkand');
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Format 9 digits nicely: e.g. 90 123 45 67
+  // Format 9 digits nicely for display: e.g. 90 123 45 67
   const formatDisplayDigits = (val) => {
     let digits = val.replace(/\D/g, '').slice(0, 9);
     let res = '';
@@ -33,6 +33,7 @@ export default function ContactModal({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      setIsSubmitted(false);
     } else {
       document.body.style.overflow = '';
     }
@@ -46,16 +47,16 @@ export default function ContactModal({ isOpen, onClose }) {
   const countryOptions = [
     ...COUNTRIES.map((c) => ({
       value: c.id,
-      label: c.name,
+      label: lang === 'en' ? c.nameEn : c.name,
       flag: c.flag
     })),
-    { value: 'custom', label: 'Boshqa viloyat yoki shahar', flag: '🇺🇿' }
+    { value: 'custom', label: lang === 'ru' ? 'Другой город или область' : lang === 'en' ? 'Other Region / City' : 'Boshqa viloyat yoki shahar', flag: '🇺🇿' }
   ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (phoneDigits.length < 9) {
-      alert('Iltimos, 9 xonali telefon raqamingizni to\'liq kiriting');
+      alert(lang === 'ru' ? 'Пожалуйста, введите 9-значный номер телефона полностью' : lang === 'en' ? 'Please enter your 9-digit phone number' : 'Iltimos, 9 xonali telefon raqamingizni to\'liq kiriting');
       return;
     }
     setIsSubmitted(true);
@@ -67,24 +68,24 @@ export default function ContactModal({ isOpen, onClose }) {
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-2xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden modal-card-animate"
+        className="relative w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col modal-card-animate"
         onClick={(e) => e.stopPropagation()}
       >
         
-        {/* Modal Top Banner */}
-        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 bg-slate-50">
+        {/* Modal Top Header */}
+        <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-[#10b981] text-white flex items-center justify-center shadow-md">
-              <Phone className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-center text-[#10b981] shadow-xs">
+              <Headphones className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-extrabold tracking-wider text-[#065f46] uppercase">LOTOS FIELD</span>
-                <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#ecfdf5] text-[#065f46] font-bold border border-[#a7f3d0]">
-                  24/7 Aktiv
-                </span>
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                {t.contactModal.title}
+              </h3>
+              <div className="flex items-center gap-2 text-[11px] text-slate-500 font-medium">
+                <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
+                <span>{t.contactModal.activeBadge}</span>
               </div>
-              <h3 className="text-base sm:text-xl font-bold text-slate-900">Biz Bilan Bog'lanish & Konsultatsiya</h3>
             </div>
           </div>
 
@@ -97,102 +98,109 @@ export default function ContactModal({ isOpen, onClose }) {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8">
+        <div className="p-6 overflow-y-auto space-y-4">
+          
           {isSubmitted ? (
-            <div className="text-center py-8 space-y-4 animate-in fade-in zoom-in-95 duration-200">
-              <div className="w-16 h-16 rounded-full bg-[#ecfdf5] border-2 border-[#a7f3d0] text-[#10b981] flex items-center justify-center mx-auto shadow-md">
+            /* Success Feedback State */
+            <div className="text-center py-6 space-y-4 animate-in fade-in zoom-in-95 duration-300">
+              <div className="w-16 h-16 rounded-full bg-[#ecfdf5] border-2 border-[#10b981] flex items-center justify-center text-[#10b981] mx-auto shadow-sm">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h4 className="text-xl font-black text-slate-900">Arizangiz Muvaffaqiyatli Qabul Qilindi!</h4>
-              <p className="text-sm text-slate-600 max-w-md mx-auto">
-                Rahmat, <strong className="text-slate-900">{name || 'Hurmatli mijoz'}</strong>. 
-                5-10 daqiqa ichida shaxsiy turizm menejeri siz bilan bog'lanib, eng qulay narxlar va parvozlarni taqdim etadi.
-              </p>
+
+              <div className="space-y-1">
+                <h4 className="text-xl font-black text-slate-900">{t.contactModal.successTitle}</h4>
+                <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
+                  {t.contactModal.successDesc}
+                </p>
+              </div>
+
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-4 px-8 py-3 rounded-2xl btn-primary-emerald font-bold text-xs uppercase tracking-wider"
+                className="w-full py-3.5 rounded-2xl btn-primary-emerald text-white text-xs font-bold uppercase tracking-wider shadow-md"
               >
-                Tushundim
+                {t.contactModal.gotItBtn}
               </button>
             </div>
           ) : (
+            /* Consultation Request Form */
             <form onSubmit={handleSubmit} className="space-y-4">
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Ismingiz:
-                  </label>
-                  <div className="relative">
-                    <User className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
-                    <input
-                      type="text"
-                      required
-                      placeholder="Sardor Rahimov"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-300 rounded-2xl pl-11 pr-4 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
-                    />
-                  </div>
-                </div>
+              {/* Full Name */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  {t.contactModal.nameLabel}
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder={lang === 'ru' ? 'Сардор Рахимов' : lang === 'en' ? 'Sardor Rahimov' : 'Sardor Rahimov'}
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
+                />
+              </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Telefon raqamingiz:
-                  </label>
-                  <div className="flex items-center bg-slate-50 border border-slate-300 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden">
-                    <div className="flex items-center gap-1.5 pl-3 pr-2 py-3 text-slate-800 font-mono font-bold text-xs select-none border-r border-slate-200 shrink-0">
-                      <Phone className="w-3.5 h-3.5 text-[#10b981]" />
-                      <span>+998</span>
-                    </div>
-                    <input
-                      type="tel"
-                      required
-                      inputMode="numeric"
-                      placeholder="90 123 45 67"
-                      value={formatDisplayDigits(phoneDigits)}
-                      onChange={handlePhoneInput}
-                      className="w-full bg-transparent px-3 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 outline-none font-mono font-bold"
-                    />
+              {/* Phone with Clean +998 Prefix */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  {t.contactModal.phoneLabel}
+                </label>
+                <div className="flex items-center bg-slate-50 border border-slate-300 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden">
+                  <div className="flex items-center gap-1.5 pl-3 pr-2 py-3 text-slate-800 font-mono font-bold text-xs select-none border-r border-slate-200 shrink-0">
+                    <Phone className="w-3.5 h-3.5 text-[#10b981]" />
+                    <span>+998</span>
                   </div>
+                  <input
+                    type="tel"
+                    required
+                    inputMode="numeric"
+                    placeholder="90 123 45 67"
+                    value={formatDisplayDigits(phoneDigits)}
+                    onChange={handlePhoneInput}
+                    className="w-full bg-transparent px-3 py-3 text-xs text-slate-900 placeholder-slate-400 outline-none font-mono font-bold"
+                  />
                 </div>
               </div>
 
+              {/* Selected Country / Region */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Qiziqtirayotgan Davlat / Yo'nalish:
+                  {t.contactModal.regionLabel}
                 </label>
                 <CustomSelect
-                  value={selectedCountry}
-                  onChange={setSelectedCountry}
+                  value={selectedRegion}
+                  onChange={setSelectedRegion}
                   options={countryOptions}
                 />
               </div>
 
+              {/* Message */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Savolingiz yoki Qo'shimcha Istaklar (Ixtiyoriy):
+                  {t.contactModal.messageLabel}
                 </label>
                 <textarea
                   rows="3"
-                  placeholder="Masalan: 4 kishilik oilaviy tur, dengiz bo'yi mehmonxonasi va to'g'ridan-to'g'ri reys kerak..."
+                  placeholder={t.contactModal.messagePlaceholder}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-2xl p-4 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none resize-none"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-2xl p-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none resize-none"
                 ></textarea>
               </div>
 
+              {/* Submit CTA */}
               <button
                 type="submit"
-                className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs sm:text-sm font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all mt-2"
+                className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
               >
                 <Send className="w-4 h-4" />
-                <span>ARIZANI YUBORISH (BEPUL KONSULTATSIYA)</span>
+                <span>{t.contactModal.submitBtn}</span>
               </button>
 
             </form>
           )}
+
         </div>
 
       </div>

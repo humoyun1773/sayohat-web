@@ -4,33 +4,8 @@ import {
   Plane, Headphones, CreditCard, Sparkles 
 } from 'lucide-react';
 
-export default function WhyUs() {
-  const advantages = [
-    {
-      icon: Plane,
-      title: "To'g'ridan-to'g'ri & Arzon Aviachiptalar",
-      desc: "Uzbekistan Airways, Turkish Airlines, FlyDubai, Emirates va 200+ xalqaro aviakompaniyalar bilan rasmiy hamkorlik.",
-      badge: "Eng Arzon Narxlar"
-    },
-    {
-      icon: ShieldCheck,
-      title: "100% Rasmiy Viza va Sug'urta",
-      desc: "Barcha davlatlar bo'yicha elchixona talablariga mos to'liq hujjatlar to'plami, Shengen, AQSH va Dubay vizalari ko'magi.",
-      badge: "Kafolatlangan Natija"
-    },
-    {
-      icon: Headphones,
-      title: "24/7 Shaxsiy Menejer va Gid",
-      desc: "Sayohat boshidan to qaytib kelguningizcha telefon, Telegram va WhatsApp orqali doimiy qo'llab-quvvatlash.",
-      badge: "Har Doim Aloqada"
-    },
-    {
-      icon: CreditCard,
-      title: "Qulay To'lov & Bo'lib To'lash",
-      desc: "Click, Payme, Uzum Bank, Visa, Mastercard, xalqaro o'tkazmalar hamda ortiqcha foizsiz qulay muddatli to'lovlar.",
-      badge: "0% Ortiqcha To'lov"
-    }
-  ];
+export default function WhyUs({ t }) {
+  const icons = [Plane, ShieldCheck, Headphones, CreditCard];
 
   return (
     <section id="why-us" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
@@ -52,24 +27,24 @@ export default function WhyUs() {
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
               <Award className="w-3.5 h-3.5 text-[#10b981]" />
-              <span>Kafolatlangan Sifat va Ishonch</span>
+              <span>{t.whyUs.badge}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-              Nega Minglab Sayohatchilar <br />
+              {t.whyUs.title1} <br />
               <span className="text-[#10b981]">
-                LOTOS FIELDni Tanlashadi?
+                {t.whyUs.title2}
               </span>
             </h2>
             <p className="text-slate-700 text-sm sm:text-base font-medium">
-              Biz faqatgina tur sotmaymiz — biz sizga butun umr yodda qoladigan unutilmas xotiralar va betakror qulaylik ulashamiz.
+              {t.whyUs.desc}
             </p>
           </div>
         </div>
 
         {/* Feature Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {advantages.map((item, index) => {
-            const Icon = item.icon;
+          {t.whyUs.pillars.map((item, index) => {
+            const Icon = icons[index % icons.length];
             return (
               <div
                 key={index}
@@ -94,7 +69,7 @@ export default function WhyUs() {
                 </div>
 
                 <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-1 text-xs font-bold text-[#10b981]">
-                  <span>100% Kafolat</span>
+                  <span>{t.whyUs.guaranteeTag}</span>
                 </div>
               </div>
             );

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   X, CheckCircle2, Plane, 
-  Calendar, Users, ShieldCheck, Printer, 
-  Phone
+  ShieldCheck, Printer, Phone
 } from 'lucide-react';
 import { EXCHANGE_RATE } from '../../data/travelData';
 
@@ -10,7 +9,9 @@ export default function BookingModal({
   isOpen, 
   onClose, 
   bookingData, 
-  currency = 'USD' 
+  currency = 'USD',
+  t,
+  lang = 'uz'
 }) {
   const [fullName, setFullName] = useState('');
   const [phoneDigits, setPhoneDigits] = useState('');
@@ -59,7 +60,7 @@ export default function BookingModal({
   const handleConfirmBooking = (e) => {
     e.preventDefault();
     if (phoneDigits.length < 9) {
-      alert('Iltimos, 9 xonali telefon raqamingizni to\'liq kiriting');
+      alert(lang === 'ru' ? 'Пожалуйста, введите 9-значный номер телефона полностью' : lang === 'en' ? 'Please enter your 9-digit phone number' : 'Iltimos, 9 xonali telefon raqamingizni to\'liq kiriting');
       return;
     }
     setIsConfirmed(true);
@@ -68,6 +69,8 @@ export default function BookingModal({
   const handlePrint = () => {
     window.print();
   };
+
+  const currentPrice = bookingData.priceUSD || 80;
 
   return (
     <div 
@@ -86,9 +89,9 @@ export default function BookingModal({
               <Plane className="w-5 h-5 transform -rotate-45" />
             </div>
             <div>
-              <div className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase">LOTOS FIELD AIRLINES</div>
+              <div className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase">{t.bookingModal.airlineTag}</div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                {isConfirmed ? 'Rasmiy Chipta & Vaucher' : 'Tur va Chiptani Bron Qilish'}
+                {isConfirmed ? t.bookingModal.voucherTitle : t.bookingModal.headerTitle}
               </h3>
             </div>
           </div>
@@ -117,14 +120,14 @@ export default function BookingModal({
 
                 <div className="flex justify-between items-start border-b border-slate-700 pb-4 mb-4">
                   <div>
-                    <span className="text-[11px] uppercase tracking-widest text-[#a7f3d0] font-bold block">ELEKTRON SAYOHAT VAUCHERI</span>
+                    <span className="text-[11px] uppercase tracking-widest text-[#a7f3d0] font-bold block">{t.bookingModal.passTitle}</span>
                     <h4 className="text-xl font-black text-white">{bookingData.country}</h4>
-                    <p className="text-xs text-slate-300">Litsenziyalangan xalqaro charter parvozi</p>
+                    <p className="text-xs text-slate-300">{t.bookingModal.passSub}</p>
                   </div>
                   <div className="text-right">
                     <span className="text-[10px] uppercase text-slate-400 block font-mono">Status</span>
                     <span className="text-xs font-bold text-[#a7f3d0] bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-full">
-                      Tasdiqlandi
+                      {t.bookingModal.statusConfirmed}
                     </span>
                   </div>
                 </div>
@@ -132,20 +135,20 @@ export default function BookingModal({
                 {/* Ticket Details Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mb-4">
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Yo'lovchi</span>
-                    <span className="font-bold text-white truncate block">{fullName}</span>
+                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.passenger}</span>
+                    <span className="font-bold text-white truncate block">{fullName || 'Sayohatchi'}</span>
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Parvoz Sanasi</span>
+                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.travelDate}</span>
                     <span className="font-bold text-white">{travelDate || '15-Oktabr, 2026'}</span>
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Odamlar soni</span>
-                    <span className="font-bold text-white">{passengers} kishi</span>
+                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.peopleCount}</span>
+                    <span className="font-bold text-white">{passengers}</span>
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
-                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">Jami To'lov</span>
-                    <span className="font-bold text-[#a7f3d0] text-sm">{formatPrice(bookingData.priceUSD)}</span>
+                    <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.totalPrice}</span>
+                    <span className="font-bold text-[#a7f3d0] text-sm">{formatPrice(currentPrice)}</span>
                   </div>
                 </div>
 
@@ -168,9 +171,7 @@ export default function BookingModal({
 
               <div className="p-4 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] text-xs text-[#065f46] flex items-center gap-3">
                 <CheckCircle2 className="w-7 h-7 text-[#10b981] shrink-0" />
-                <span>
-                  Sizning buyurtmangiz tasdiqlandi. 10 daqiqa ichida LOTOS FIELD kuratoringiz qo'ng'iroq qiladi va barcha rasmiy chiptalarni Telegram orqali yuboradi!
-                </span>
+                <span>{t.bookingModal.successMsg}</span>
               </div>
 
               <div className="flex gap-2">
@@ -180,7 +181,7 @@ export default function BookingModal({
                   className="flex-1 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center gap-2 transition-all border border-slate-200"
                 >
                   <Printer className="w-4 h-4" />
-                  <span>Chop etish (Vaucher)</span>
+                  <span>{t.bookingModal.printBtn}</span>
                 </button>
 
                 <button
@@ -188,7 +189,7 @@ export default function BookingModal({
                   onClick={onClose}
                   className="flex-1 py-3 rounded-2xl btn-primary-emerald text-white text-xs font-bold uppercase tracking-wider shadow-md"
                 >
-                  Yopish
+                  {t.bookingModal.closeBtn}
                 </button>
               </div>
 
@@ -200,27 +201,27 @@ export default function BookingModal({
               {/* Tour Summary Banner */}
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                 <div>
-                  <div className="text-[11px] text-slate-500 font-semibold">Tanlangan Yo'nalish:</div>
+                  <div className="text-[11px] text-slate-500 font-semibold">{t.bookingModal.destLabel}</div>
                   <div className="text-base font-bold text-slate-900">{bookingData.country}</div>
                   {bookingData.flightClass && (
                     <div className="text-[11px] text-[#10b981] font-medium">{bookingData.flightClass} • {bookingData.hotelStar}</div>
                   )}
                 </div>
                 <div className="text-right">
-                  <div className="text-[11px] text-slate-500 font-semibold">Jami Narx:</div>
-                  <div className="text-lg font-black text-[#10b981]">{formatPrice(bookingData.priceUSD)}</div>
+                  <div className="text-[11px] text-slate-500 font-semibold">{t.bookingModal.priceLabel}</div>
+                  <div className="text-lg font-black text-[#10b981]">{formatPrice(currentPrice)}</div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    To'liq Ism va Familiya:
+                    {t.bookingModal.nameLabel}
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="Masalan: Sardor Rahimov"
+                    placeholder={t.bookingModal.namePlaceholder}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
@@ -229,7 +230,7 @@ export default function BookingModal({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Telefon raqam (Telegram / WhatsApp):
+                    {t.bookingModal.phoneLabel}
                   </label>
                   <div className="flex items-center bg-slate-50 border border-slate-300 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden">
                     <div className="flex items-center gap-1.5 pl-3 pr-2 py-3 text-slate-800 font-mono font-bold text-xs select-none border-r border-slate-200 shrink-0">
@@ -252,7 +253,7 @@ export default function BookingModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Sayohat boshlanish sanasi:
+                    {t.bookingModal.dateLabel}
                   </label>
                   <input
                     type="date"
@@ -265,7 +266,7 @@ export default function BookingModal({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Sayohatchilar soni:
+                    {t.bookingModal.passengersLabel}
                   </label>
                   <input
                     type="number"
@@ -280,7 +281,7 @@ export default function BookingModal({
 
               <div className="p-3.5 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] text-xs text-[#065f46] flex items-center gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-[#10b981] shrink-0" />
-                <span>Bron qilish bepul! To'lov faqat shartnoma imzolangandan so'ng amalga oshiriladi.</span>
+                <span>{t.bookingModal.freeBookingNote}</span>
               </div>
 
               <button
@@ -288,7 +289,7 @@ export default function BookingModal({
                 className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
               >
                 <Plane className="w-4 h-4" />
-                <span>BUYURTMANI TASDIQLASH VA VAUCHER OLISH</span>
+                <span>{t.bookingModal.confirmBtn}</span>
               </button>
             </form>
           )}
