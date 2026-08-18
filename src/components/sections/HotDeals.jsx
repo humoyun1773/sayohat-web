@@ -1,33 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
-  Flame, Clock, Plane, ArrowRight, 
-  Sparkles, CheckCircle2 
+  Flame, Plane, ArrowRight 
 } from 'lucide-react';
 import { HOT_DEALS, EXCHANGE_RATE } from '../../data/travelData';
 
 export default function HotDeals({ currency = 'USD', onOpenBooking }) {
-  const [timeLeft, setTimeLeft] = useState({
-    hours: 14,
-    minutes: 32,
-    seconds: 45
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 };
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: 59, seconds: 59 };
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        }
-        return { hours: 23, minutes: 59, seconds: 59 };
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
   // Safe price formatter with defensive number fallback
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;
@@ -53,36 +30,21 @@ export default function HotDeals({ currency = 'USD', onOpenBooking }) {
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Header in High Contrast Glass Card */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 p-6 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl">
-          <div className="space-y-2">
+        <div className="text-center max-w-4xl mx-auto mb-14 space-y-3">
+          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
               <Flame className="w-4 h-4 text-[#10b981]" />
               <span>Qaynoq Chegirmalar va Maxsus Takliflar</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Shoshiling! Bugungi <span className="text-[#10b981]">Flash Sale</span> Narxlari
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              Eng Ommabop va Qaynoq <br />
+              <span className="text-[#10b981]">
+                Maxsus Tur Takliflari
+              </span>
             </h2>
-            <p className="text-slate-600 text-sm font-medium">
-              Ushbu narxlar cheklangan miqdorda bo'lib, taymer tugashi bilan o'zgaradi.
+            <p className="text-slate-700 text-sm sm:text-base font-medium">
+              Eksklyuziv narxlar, to'g'ridan-to'g'ri aviaparvozlar va 5 yulduzli lyuks mehmonxonalar to'plami.
             </p>
-          </div>
-
-          {/* Flash Sale Countdown Timer */}
-          <div className="flex items-center gap-3 bg-slate-900 p-3.5 rounded-2xl border border-slate-700 shadow-md text-white shrink-0">
-            <Clock className="w-5 h-5 text-[#10b981] animate-pulse" />
-            <div className="flex items-center gap-1.5 font-mono text-base sm:text-lg font-black">
-              <span className="bg-slate-800 px-2.5 py-1 rounded-xl border border-slate-700">
-                {String(timeLeft.hours).padStart(2, '0')}
-              </span>
-              <span className="text-[#10b981]">:</span>
-              <span className="bg-slate-800 px-2.5 py-1 rounded-xl border border-slate-700">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </span>
-              <span className="text-[#10b981]">:</span>
-              <span className="bg-slate-800 px-2.5 py-1 rounded-xl border border-slate-700 text-[#10b981]">
-                {String(timeLeft.seconds).padStart(2, '0')}
-              </span>
-            </div>
           </div>
         </div>
 
