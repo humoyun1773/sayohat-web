@@ -38,16 +38,16 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
   return (
     <section id="hero" className="relative min-h-[92vh] pt-36 pb-20 flex items-center justify-center overflow-hidden bg-white">
       
-      {/* Real Giant Airplane Hero Background Photo */}
+      {/* Ultra-HD Crystal Clear Airport Terminal Interior Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2400&q=90"
-          alt="Majestic Airplane Flying in Sky"
-          className="w-full h-full object-cover object-center scale-105 animate-in fade-in duration-1000"
+          src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=2600&q=95"
+          alt="Modern Luxury Airport Terminal Interior"
+          className="w-full h-full object-cover object-center scale-100 filter brightness-105"
         />
-        {/* Soft, clean, luminous white gradient overlay that keeps airplane clearly visible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/30"></div>
+        {/* Soft, crisp white lighting gradient that enhances the airport view while ensuring high text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/35"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
