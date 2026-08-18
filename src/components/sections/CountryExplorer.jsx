@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Globe, Star, Sun, Shield, 
   ArrowRight, Maximize2, Sparkles, Plane, 
-  MapPin, Check 
+  Check 
 } from 'lucide-react';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
 
@@ -38,16 +38,32 @@ export default function CountryExplorer({
     setActivePhotoIdx(0);
   };
 
-  // Safe gallery images fallback
-  const galleryPhotos = currentCountry.images?.map((url, i) => ({
-    url,
-    title: currentCountry.spots?.[i]?.name || `${currentCountry.name} ${i + 1}`
-  })) || [
-    { url: currentCountry.coverImage, title: currentCountry.name }
+  // Localized country attributes
+  const countryName = lang === 'ru' ? (currentCountry.nameRu || currentCountry.name) : lang === 'en' ? (currentCountry.nameEn || currentCountry.name) : currentCountry.name;
+  const countryTagline = lang === 'ru' ? (currentCountry.taglineRu || currentCountry.taglineUz) : lang === 'en' ? (currentCountry.taglineEn || currentCountry.taglineUz) : currentCountry.taglineUz;
+  const countryDescription = lang === 'ru' ? (currentCountry.descriptionRu || currentCountry.descriptionUz) : lang === 'en' ? (currentCountry.descriptionEn || currentCountry.descriptionUz) : currentCountry.descriptionUz;
+  const countryHighlights = lang === 'ru' ? (currentCountry.highlightsRu || currentCountry.highlightsUz) : lang === 'en' ? (currentCountry.highlightsEn || currentCountry.highlightsUz) : currentCountry.highlightsUz;
+  const countryVisa = lang === 'ru' ? (currentCountry.visaRu || currentCountry.visaUz) : lang === 'en' ? (currentCountry.visaEn || currentCountry.visaUz) : currentCountry.visaUz;
+  const countryFlight = lang === 'ru' ? (currentCountry.flightDurationRu || currentCountry.flightDurationUz) : lang === 'en' ? (currentCountry.flightDurationEn || currentCountry.flightDurationUz) : currentCountry.flightDurationUz;
+  const countryBestTime = lang === 'ru' ? (currentCountry.bestTimeRu || currentCountry.bestTimeUz) : lang === 'en' ? (currentCountry.bestTimeEn || currentCountry.bestTimeUz) : currentCountry.bestTimeUz;
+
+  // Safe gallery images & localized spot names
+  const galleryPhotos = currentCountry.images?.map((url, i) => {
+    const spot = currentCountry.spots?.[i];
+    let spotTitle = countryName;
+    if (spot) {
+      spotTitle = lang === 'ru' ? (spot.nameRu || spot.nameUz) : lang === 'en' ? (spot.nameEn || spot.nameUz) : spot.nameUz;
+    }
+    return {
+      url,
+      title: spotTitle
+    };
+  }) || [
+    { url: currentCountry.coverImage, title: countryName }
   ];
 
   const activePhotoUrl = galleryPhotos[activePhotoIdx]?.url || currentCountry.coverImage;
-  const activePhotoTitle = galleryPhotos[activePhotoIdx]?.title || currentCountry.name;
+  const activePhotoTitle = galleryPhotos[activePhotoIdx]?.title || countryName;
 
   const currentPrice = currentCountry.basePriceUSD || currentCountry.priceUSD || 80;
 
@@ -88,18 +104,7 @@ export default function CountryExplorer({
         {/* Category Tabs */}
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8">
           {CATEGORIES.map((cat) => {
-            let catName = cat.name;
-            if (lang === 'ru') {
-              if (cat.id === 'all') catName = 'Все Регионы и Города';
-              if (cat.id === 'history') catName = '🕌 Древние и Исторические Города';
-              if (cat.id === 'nature') catName = '🏔️ Горы и Заповедники';
-              if (cat.id === 'ancient') catName = '🏰 Древние Крепости';
-            } else if (lang === 'en') {
-              if (cat.id === 'all') catName = 'All Regions & Cities';
-              if (cat.id === 'history') catName = '🕌 Historic & Ancient Cities';
-              if (cat.id === 'nature') catName = '🏔️ Mountains & Nature Reserves';
-              if (cat.id === 'ancient') catName = '🏰 Ancient Fortresses';
-            }
+            const catName = lang === 'ru' ? cat.ru : lang === 'en' ? cat.en : cat.uz;
 
             return (
               <button
@@ -122,7 +127,7 @@ export default function CountryExplorer({
           {filteredCountries.map((c) => {
             const isSelected = c.id === currentCountry.id;
             const price = c.basePriceUSD || c.priceUSD || 80;
-            const displayName = lang === 'en' ? c.nameEn : c.name;
+            const displayName = lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name;
             return (
               <button
                 key={c.id}
@@ -161,7 +166,7 @@ export default function CountryExplorer({
             <div className="relative z-10 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 <span className="px-3.5 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold shadow-sm">
-                  {currentCountry.flag} {lang === 'en' ? currentCountry.nameEn : currentCountry.name}
+                  {currentCountry.flag} {countryName}
                 </span>
                 <span className="px-3 py-1 rounded-full bg-[#10b981] text-white text-xs font-black shadow-md flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 fill-white" />
@@ -204,7 +209,7 @@ export default function CountryExplorer({
                 {activePhotoTitle}
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-white drop-shadow-md">
-                {lang === 'en' ? currentCountry.nameEn : currentCountry.name} — {currentCountry.tagline}
+                {countryName} — {countryTagline}
               </h3>
             </div>
 
@@ -222,10 +227,10 @@ export default function CountryExplorer({
                   <span>{t.regions.packageTitle}</span>
                 </div>
                 <h4 className="text-2xl font-black text-slate-900">
-                  {lang === 'en' ? currentCountry.nameEn : currentCountry.name} {t.regions.tourSuffix}
+                  {countryName} {t.regions.tourSuffix}
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                  {currentCountry.description}
+                  {countryDescription}
                 </p>
               </div>
 
@@ -244,7 +249,7 @@ export default function CountryExplorer({
                     <Shield className="w-4 h-4 text-[#10b981]" />
                     <span>{t.regions.facts.visa}</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{lang === 'ru' ? 'Свободный' : lang === 'en' ? 'Free entry' : currentCountry.visa}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{countryVisa}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
@@ -252,7 +257,7 @@ export default function CountryExplorer({
                     <Plane className="w-4 h-4 text-sky-600" />
                     <span>{t.regions.facts.duration}</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.flightDuration}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{countryFlight}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
@@ -260,7 +265,7 @@ export default function CountryExplorer({
                     <Star className="w-4 h-4 text-amber-500" />
                     <span>{t.regions.facts.season}</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{lang === 'ru' ? 'Весна и Осень' : lang === 'en' ? 'Spring & Autumn' : (currentCountry.bestTime || 'Bahor & Kuz')}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{countryBestTime}</div>
                 </div>
               </div>
 
@@ -270,7 +275,7 @@ export default function CountryExplorer({
                   {t.regions.highlightsTitle}
                 </span>
                 <div className="space-y-1.5">
-                  {currentCountry.highlights?.map((h, idx) => (
+                  {countryHighlights?.map((h, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs font-medium text-slate-700">
                       <div className="w-4 h-4 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-center text-[#10b981] shrink-0">
                         <Check className="w-2.5 h-2.5" />
@@ -301,7 +306,7 @@ export default function CountryExplorer({
               <div className="pt-2">
                 <button
                   onClick={() => onOpenBooking({
-                    country: `${lang === 'en' ? currentCountry.nameEn : currentCountry.name}`,
+                    country: countryName,
                     flightClass: 'Afrosiyob VIP / Avia',
                     hotelStar: '4-5★ Hotel',
                     priceUSD: currentPrice

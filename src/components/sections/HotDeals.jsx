@@ -51,10 +51,14 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
         {/* Hot Deals Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {HOT_DEALS.map((deal) => {
-            const oldPrice = deal.oldPriceUSD || deal.originalPriceUSD || 700;
-            const newPrice = deal.newPriceUSD || deal.discountedPriceUSD || 500;
-            const duration = deal.days || deal.duration || '3 kun';
-            const badgeText = deal.badge || 'QAYNOQ CHEGIRMA';
+            const oldPrice = deal.oldPriceUSD || 240;
+            const newPrice = deal.newPriceUSD || 180;
+            
+            // Dynamic language fields
+            const dealTitle = lang === 'ru' ? deal.titleRu : lang === 'en' ? deal.titleEn : deal.titleUz;
+            const duration = lang === 'ru' ? deal.daysRu : lang === 'en' ? deal.daysEn : deal.daysUz;
+            const badgeText = lang === 'ru' ? deal.badgeRu : lang === 'en' ? deal.badgeEn : deal.badgeUz;
+            const inclusions = lang === 'ru' ? deal.includesRu : lang === 'en' ? deal.includesEn : deal.includesUz;
 
             return (
               <div 
@@ -66,7 +70,7 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={deal.image}
-                    alt={deal.title}
+                    alt={dealTitle}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   
@@ -92,12 +96,12 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
                     </div>
 
                     <h3 className="text-base sm:text-lg font-black text-slate-900 leading-snug line-clamp-2">
-                      {deal.title}
+                      {dealTitle}
                     </h3>
 
-                    {deal.includes && (
+                    {inclusions && (
                       <div className="space-y-1 pt-1">
-                        {deal.includes.slice(0, 3).map((item, idx) => (
+                        {inclusions.slice(0, 3).map((item, idx) => (
                           <div key={idx} className="flex items-center gap-1.5 text-[11px] text-slate-600">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
                             <span className="truncate">{item}</span>
@@ -120,7 +124,7 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
 
                     <button
                       onClick={() => onOpenBooking({
-                        country: deal.title,
+                        country: dealTitle,
                         flightClass: 'VIP Tour',
                         hotelStar: '4-5★ Hotel',
                         priceUSD: newPrice
