@@ -1,6 +1,8 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
 import { REVIEWS } from '../../data/travelData';
+import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
+import { Badge } from '../ui/badge';
 
 export default function Reviews({ t, lang = 'uz' }) {
   return (
@@ -32,8 +34,8 @@ export default function Reviews({ t, lang = 'uz' }) {
           </div>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Reviews Grid with shadcn/ui Card */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {REVIEWS.map((r) => {
             const reviewText = lang === 'ru' ? r.textRu : lang === 'en' ? r.textEn : r.textUz;
             const roleText = lang === 'ru' ? r.roleRu : lang === 'en' ? r.roleEn : r.roleUz;
@@ -41,49 +43,51 @@ export default function Reviews({ t, lang = 'uz' }) {
             const dateText = lang === 'ru' ? r.dateRu : lang === 'en' ? r.dateEn : r.dateUz;
 
             return (
-              <div
+              <Card
                 key={r.id}
-                className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
+                className="flex flex-col justify-between group hover:shadow-xl hover:border-[#10b981]/50 transition-all duration-300 hover:-translate-y-1.5"
               >
                 <div>
-                  {/* Rating & Quote Icon */}
-                  <div className="flex items-center justify-between mb-4">
+                  {/* Card Header with Rating & Quote Icon */}
+                  <CardHeader className="p-6 pb-3 flex flex-row items-center justify-between space-y-0">
                     <div className="flex items-center gap-1 text-amber-400">
                       {[...Array(r.rating || 5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
-                    <Quote className="w-8 h-8 text-emerald-100 group-hover:text-emerald-300 transition-colors" />
-                  </div>
+                    <Quote className="w-7 h-7 text-emerald-100 group-hover:text-emerald-300 transition-colors" />
+                  </CardHeader>
 
-                  {/* Review Text */}
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-6">
-                    "{reviewText}"
-                  </p>
+                  {/* Review Body */}
+                  <CardContent className="p-6 pt-0">
+                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+                      "{reviewText}"
+                    </p>
+                  </CardContent>
                 </div>
 
-                {/* Author Info */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                {/* Author Info in Card Footer */}
+                <CardFooter className="p-6 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
                   <div className="flex items-center gap-3">
                     <img
                       src={r.avatar}
                       alt={r.name}
-                      className="w-11 h-11 rounded-full object-cover border-2 border-[#10b981] shadow-xs"
+                      className="w-10 h-10 rounded-full object-cover border-2 border-[#10b981] shadow-xs"
                     />
                     <div>
-                      <h4 className="text-sm font-black text-slate-900 leading-tight">{r.name}</h4>
-                      <span className="text-[11px] text-slate-400 font-medium block">{roleText}</span>
+                      <h4 className="text-sm font-bold text-slate-900 leading-tight">{r.name}</h4>
+                      <span className="text-[11px] text-slate-500 font-medium block">{roleText}</span>
                     </div>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[10px] font-bold text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-2.5 py-1 rounded-full block">
+                    <Badge variant="emeraldSubtle" className="text-[10px] font-bold block mb-1">
                       {countryText}
-                    </span>
-                    <span className="text-[10px] text-slate-400 mt-1 block font-medium">{dateText}</span>
+                    </Badge>
+                    <span className="text-[10px] text-slate-400 block font-medium">{dateText}</span>
                   </div>
-                </div>
-              </div>
+                </CardFooter>
+              </Card>
             );
           })}
         </div>

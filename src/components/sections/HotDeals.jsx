@@ -1,10 +1,12 @@
 import React from 'react';
 import { 
-  Flame, Plane, ArrowRight 
+  Flame, ArrowRight, Plane
 } from 'lucide-react';
 import { HOT_DEALS, EXCHANGE_RATE } from '../../data/travelData';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Badge } from '../ui/badge';
 
-export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'uz' }) {
+export default function HotDeals({ onOpenBooking, currency = 'USD', t, lang = 'uz' }) {
   // Safe price formatter with defensive number fallback
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;
@@ -42,97 +44,97 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
           </div>
         </div>
 
-        {/* Hot Deals Cards Grid */}
+        {/* Deals Grid using shadcn/ui Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {HOT_DEALS.map((deal) => {
-            const oldPrice = deal.oldPriceUSD || 240;
-            const newPrice = deal.newPriceUSD || 180;
-            
-            // Dynamic language fields
-            const dealTitle = lang === 'ru' ? deal.titleRu : lang === 'en' ? deal.titleEn : deal.titleUz;
-            const duration = lang === 'ru' ? deal.daysRu : lang === 'en' ? deal.daysEn : deal.daysUz;
-            const badgeText = lang === 'ru' ? deal.badgeRu : lang === 'en' ? deal.badgeEn : deal.badgeUz;
+            const oldPrice = deal.oldPriceUSD || 200;
+            const newPrice = deal.newPriceUSD || 150;
+            const dealTitle = lang === 'ru' ? (deal.titleRu || deal.titleUz) : lang === 'en' ? (deal.titleEn || deal.titleUz) : deal.titleUz;
+            const duration = lang === 'ru' ? (deal.daysRu || deal.daysUz) : lang === 'en' ? (deal.daysEn || deal.daysUz) : deal.daysUz;
+            const badgeText = lang === 'ru' ? (deal.badgeRu || deal.badgeUz) : lang === 'en' ? (deal.badgeEn || deal.badgeUz) : deal.badgeUz;
             const inclusions = lang === 'ru' ? deal.includesRu : lang === 'en' ? deal.includesEn : deal.includesUz;
 
             return (
-              <div 
+              <Card 
                 key={deal.id}
-                className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
+                className="overflow-hidden flex flex-col justify-between group hover:shadow-xl hover:border-[#10b981]/50 transition-all duration-300 hover:-translate-y-1.5"
               >
-                
-                {/* Photo & Badges */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={deal.image}
-                    alt={dealTitle}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  
-                  <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-                    <span className="px-3 py-1 rounded-full bg-[#10b981] text-white text-[11px] font-black shadow-md flex items-center gap-1">
-                      <Flame className="w-3.5 h-3.5" />
-                      <span>{badgeText}</span>
-                    </span>
+                <div>
+                  {/* Photo & Badges */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={deal.image}
+                      alt={dealTitle}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    
+                    <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                      <Badge variant="emerald" className="shadow-md flex items-center gap-1">
+                        <Flame className="w-3.5 h-3.5" />
+                        <span>{badgeText}</span>
+                      </Badge>
+                    </div>
+
+                    <div className="absolute bottom-3 right-3">
+                      <Badge variant="secondary" className="bg-white/95 backdrop-blur-md shadow-xs font-bold text-slate-900">
+                        {duration}
+                      </Badge>
+                    </div>
                   </div>
 
-                  <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 font-bold text-xs shadow-sm">
-                    {duration}
-                  </div>
-                </div>
-
-                {/* Body */}
-                <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                  
-                  <div className="space-y-2">
+                  {/* Header */}
+                  <CardHeader className="p-5 pb-3 space-y-1.5">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
                       <Plane className="w-3.5 h-3.5 text-[#10b981]" />
                       <span>{t.deals.charterTag}</span>
                     </div>
 
-                    <h3 className="text-base sm:text-lg font-black text-slate-900 leading-snug line-clamp-2">
+                    <CardTitle className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-2">
                       {dealTitle}
-                    </h3>
+                    </CardTitle>
+                  </CardHeader>
 
+                  {/* Content */}
+                  <CardContent className="p-5 pt-0 space-y-2">
                     {inclusions && (
-                      <div className="space-y-1 pt-1">
+                      <div className="space-y-1.5 pt-1">
                         {inclusions.slice(0, 3).map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-1.5 text-[11px] text-slate-600">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                          <div key={idx} className="flex items-center gap-2 text-xs text-slate-600">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] shrink-0"></span>
                             <span className="truncate">{item}</span>
                           </div>
                         ))}
                       </div>
                     )}
-                  </div>
-
-                  {/* Pricing & CTA */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-                    <div>
-                      <span className="text-[11px] text-slate-400 line-through block font-medium">
-                        {formatPrice(oldPrice)}
-                      </span>
-                      <div className="text-2xl font-black text-[#10b981]">
-                        {formatPrice(newPrice)}
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => onOpenBooking({
-                        country: dealTitle,
-                        flightClass: 'VIP Tour',
-                        hotelStar: '4-5★ Hotel',
-                        priceUSD: newPrice
-                      })}
-                      className="py-3 px-4 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all"
-                    >
-                      <span>{t.deals.bookBtn}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-
+                  </CardContent>
                 </div>
 
-              </div>
+                {/* Footer with Pricing & CTA */}
+                <CardFooter className="p-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2 mt-auto">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[11px] text-slate-400 line-through block font-medium truncate">
+                      {formatPrice(oldPrice)}
+                    </span>
+                    <div className="text-sm sm:text-base font-black text-[#10b981] truncate">
+                      {formatPrice(newPrice)}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => onOpenBooking({
+                      country: dealTitle,
+                      flightClass: 'VIP Tour',
+                      hotelStar: '4-5★ Hotel',
+                      priceUSD: newPrice
+                    })}
+                    className="py-2.5 px-3.5 rounded-xl btn-primary-emerald font-bold text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all shrink-0 cursor-pointer"
+                  >
+                    <span>{t.deals.bookBtn}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </CardFooter>
+
+              </Card>
             );
           })}
         </div>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { 
-  ShieldCheck, Award, Clock, HeartHandshake, 
-  Plane, Headphones, CreditCard, Sparkles 
+  ShieldCheck, 
+  Plane, Headphones, CreditCard, CheckCircle2
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../ui/card';
+import { Badge } from '../ui/badge';
 
 export default function WhyUs({ t }) {
   const icons = [Plane, ShieldCheck, Headphones, CreditCard];
@@ -36,37 +38,44 @@ export default function WhyUs({ t }) {
           </div>
         </div>
 
-        {/* Feature Cards Grid */}
+        {/* Feature Cards Grid with shadcn/ui Card */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {t.whyUs.pillars.map((item, index) => {
             const Icon = icons[index % icons.length];
             return (
-              <div
+              <Card
                 key={index}
-                className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-2"
+                className="flex flex-col justify-between group hover:shadow-xl hover:border-[#10b981]/50 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
               >
                 <div>
-                  <div className="w-14 h-14 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-center text-[#10b981] mb-6 group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all shadow-xs">
-                    <Icon className="w-7 h-7" />
-                  </div>
+                  <CardHeader className="p-6 pb-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-center text-[#10b981] mb-4 group-hover:scale-110 group-hover:bg-[#10b981] group-hover:text-white transition-all shadow-xs">
+                      <Icon className="w-6 h-6" />
+                    </div>
 
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-3 py-1 rounded-full inline-block mb-3">
-                    {item.badge}
-                  </span>
+                    <div className="mb-2">
+                      <Badge variant="emeraldSubtle" className="text-[10px] font-bold uppercase tracking-wider">
+                        {item.badge}
+                      </Badge>
+                    </div>
 
-                  <h3 className="text-lg font-black text-slate-900 mb-2 leading-snug">
-                    {item.title}
-                  </h3>
+                    <CardTitle className="text-lg font-bold text-slate-900 leading-snug">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
 
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                    {item.desc}
-                  </p>
+                  <CardContent className="p-6 pt-0">
+                    <CardDescription className="text-xs text-slate-600 leading-relaxed font-normal">
+                      {item.desc}
+                    </CardDescription>
+                  </CardContent>
                 </div>
 
-                <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-1 text-xs font-bold text-[#10b981]">
+                <CardFooter className="p-6 pt-4 border-t border-slate-100 mt-auto flex items-center gap-1.5 text-xs font-bold text-[#10b981]">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>{t.whyUs.guaranteeTag}</span>
-                </div>
-              </div>
+                </CardFooter>
+              </Card>
             );
           })}
         </div>
