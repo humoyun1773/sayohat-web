@@ -69,10 +69,20 @@ export default function AuthPage({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-between">
+    <div className="min-h-screen relative flex flex-col justify-between overflow-hidden bg-slate-900">
       
+      {/* 100% Pure, Razor-Sharp High Altitude Flight Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2600&q=100"
+          alt="Airliner in Sky"
+          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+        />
+        <div className="absolute inset-0 bg-slate-950/45 backdrop-blur-[2px]"></div>
+      </div>
+
       {/* Top Simple Navigation Bar */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 px-4 sm:px-8 py-3.5">
+      <header className="bg-white/90 backdrop-blur-xl border-b border-white/40 sticky top-0 z-30 px-4 sm:px-8 py-3.5 shadow-sm">
         <div className="max-w-[1536px] mx-auto flex items-center justify-between">
           
           <button
@@ -423,7 +433,7 @@ export default function AuthPage({
       </main>
 
       {/* Page Footer */}
-      <footer className="bg-white border-t border-slate-200 py-6 px-4 text-center text-xs text-slate-500">
+      <footer className="bg-white/90 backdrop-blur-xl border-t border-white/40 py-5 px-4 text-center text-xs text-slate-600 font-medium">
         © 2026 LOTOS FIELD Airlines & Luxury Travel. Barcha huquqlar himoyalangan.
       </footer>
 
