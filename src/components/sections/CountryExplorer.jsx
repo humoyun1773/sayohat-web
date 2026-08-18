@@ -256,32 +256,68 @@ export default function CountryExplorer({
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">{countryDescription}</p>
               </div>
 
-              {/* Inside Card Transport Selector Switch */}
-              <div className="p-2 bg-slate-100 rounded-2xl border border-slate-200/80">
-                <div className="grid grid-cols-2 gap-1.5">
-                  <button
+              {/* Inside Card Transport Selector (2 Large Visual Option Cards) */}
+              <div className="space-y-2">
+                <label className="text-xs font-black text-slate-900 uppercase tracking-wider block">
+                  Transport Turini Tanlang:
+                </label>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  
+                  {/* Option 1: BUS */}
+                  <div
                     onClick={() => onChangeTransportMode && onChangeTransportMode('bus')}
-                    className={`py-2 px-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`p-3 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
                       transportMode === 'bus'
-                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'border-[#10b981] bg-[#ecfdf5] shadow-xs ring-2 ring-[#10b981]/20 scale-[1.01]'
+                        : 'border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300'
                     }`}
                   >
-                    <Bus className="w-3.5 h-3.5 text-[#10b981]" />
-                    <span className="truncate">{lang === 'ru' ? 'Автобус / Газель' : lang === 'en' ? 'Coach / Van' : 'Avtobus / Gazel'}</span>
-                  </button>
+                    <div className="flex items-center justify-between gap-1.5">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold ${transportMode === 'bus' ? 'bg-[#10b981] text-white' : 'bg-slate-200 text-slate-700'}`}>
+                          <Bus className="w-4 h-4" />
+                        </div>
+                        <span className="font-extrabold text-xs text-slate-900">
+                          {lang === 'ru' ? 'Автобус / Газель' : lang === 'en' ? 'Coach / Van' : 'Avtobus / Gazel'}
+                        </span>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${transportMode === 'bus' ? 'border-[#10b981] bg-[#10b981]' : 'border-slate-300'}`}>
+                        {transportMode === 'bus' && <div className="w-1.5 h-1.5 rounded-full bg-white"></div>}
+                      </div>
+                    </div>
+                    <div className="mt-2 text-[11px] font-black text-[#10b981]">
+                      {currentCountry.packages?.bus ? formatPrice(currentCountry.packages.bus.priceUSD) : formatPrice(190)}
+                    </div>
+                  </div>
 
-                  <button
+                  {/* Option 2: PLANE */}
+                  <div
                     onClick={() => onChangeTransportMode && onChangeTransportMode('plane')}
-                    className={`py-2 px-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`p-3 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
                       transportMode === 'plane'
-                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'border-[#10b981] bg-[#ecfdf5] shadow-xs ring-2 ring-[#10b981]/20 scale-[1.01]'
+                        : 'border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300'
                     }`}
                   >
-                    <Plane className="w-3.5 h-3.5 text-emerald-600 transform -rotate-45" />
-                    <span className="truncate">{lang === 'ru' ? 'Авиаперелет' : lang === 'en' ? 'Direct Flight' : 'Samolyot Reysi'}</span>
-                  </button>
+                    <div className="flex items-center justify-between gap-1.5">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold ${transportMode === 'plane' ? 'bg-[#10b981] text-white' : 'bg-slate-200 text-slate-700'}`}>
+                          <Plane className="w-4 h-4 transform -rotate-45" />
+                        </div>
+                        <span className="font-extrabold text-xs text-slate-900">
+                          {lang === 'ru' ? 'Авиаперелет' : lang === 'en' ? 'Direct Flight' : 'Samolyot Reysi'}
+                        </span>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${transportMode === 'plane' ? 'border-[#10b981] bg-[#10b981]' : 'border-slate-300'}`}>
+                        {transportMode === 'plane' && <div className="w-1.5 h-1.5 rounded-full bg-white"></div>}
+                      </div>
+                    </div>
+                    <div className="mt-2 text-[11px] font-black text-[#10b981]">
+                      {currentCountry.packages?.plane ? formatPrice(currentCountry.packages.plane.priceUSD) : formatPrice(260)}
+                    </div>
+                  </div>
+
                 </div>
               </div>
 

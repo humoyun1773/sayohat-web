@@ -5,7 +5,6 @@ import {
   Users, MapPin, Sparkles, Check
 } from 'lucide-react';
 import { COUNTRIES, EXCHANGE_RATE } from '../../data/travelData';
-
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 export default function BookingModal({ 
@@ -61,8 +60,14 @@ export default function BookingModal({
   const currentCountry = COUNTRIES.find(c => c.id === selectedRegionId) || COUNTRIES[0];
   const countryName = lang === 'ru' ? (currentCountry.nameRu || currentCountry.name) : lang === 'en' ? (currentCountry.nameEn || currentCountry.name) : currentCountry.name;
 
-  const currentPkg = currentCountry.packages ? currentCountry.packages[modalTransport] : null;
-  const currentPrice = currentPkg ? currentPkg.priceUSD : (currentCountry.basePriceUSD || 190);
+  const busPkg = currentCountry.packages ? currentCountry.packages.bus : null;
+  const planePkg = currentCountry.packages ? currentCountry.packages.plane : null;
+
+  const busPrice = busPkg ? busPkg.priceUSD : (currentCountry.basePriceUSD || 190);
+  const planePrice = planePkg ? planePkg.priceUSD : (busPrice + 70);
+
+  const currentPkg = modalTransport === 'plane' ? planePkg : busPkg;
+  const currentPrice = modalTransport === 'plane' ? planePrice : busPrice;
   const totalPriceUSD = currentPrice * passengers;
 
   const durationText = currentPkg 
@@ -254,44 +259,84 @@ export default function BookingModal({
 
             </div>
           ) : (
-            /* Complete Booking Form with Interactive Transport & Region Selection Inside Modal */
+            /* Complete Booking Form with Interactive Transport Cards & Region Selection Inside Modal */
             <form onSubmit={handleConfirmBooking} className="space-y-4">
               
-              {/* 1. SELECT TRANSPORT INSIDE MODAL (BUS vs PLANE) */}
-              <div className="space-y-1.5">
+              {/* 1. SUPER VISUAL 2-CARD TRANSPORT SELECTOR */}
+              <div className="space-y-2">
                 <label className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center justify-between">
-                  <span>1. Transport Turini Tanlang:</span>
+                  <span>1. Qaysi Transportda Borasiz? (O'zingiz Tanlang):</span>
                   <span className="text-[11px] text-[#10b981] font-bold">
-                    {modalTransport === 'plane' ? '✈️ Samolyot Parvozi' : '🚌 Qulay Avtobus / Gazel'}
+                    {modalTransport === 'plane' ? '✈️ Samolyot Tanlandi' : '🚌 Avtobus Tanlandi'}
                   </span>
                 </label>
                 
-                <div className="grid grid-cols-2 gap-2 p-1.5 bg-slate-100 rounded-2xl border border-slate-200 shadow-inner">
-                  <button
-                    type="button"
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  
+                  {/* Option 1: BUS */}
+                  <div
                     onClick={() => setModalTransport('bus')}
-                    className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    className={`p-3.5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
                       modalTransport === 'bus'
-                        ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
-                        : 'text-slate-700 hover:text-slate-900 hover:bg-white/60'
+                        ? 'border-[#10b981] bg-[#ecfdf5] shadow-md ring-4 ring-[#10b981]/20 scale-[1.01]'
+                        : 'border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300'
                     }`}
                   >
-                    <Bus className="w-4 h-4" />
-                    <span>🚌 Avtobus / Gazel</span>
-                  </button>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold shrink-0 ${modalTransport === 'bus' ? 'bg-[#10b981] text-white shadow-xs' : 'bg-slate-200 text-slate-700'}`}>
+                          <Bus className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <div className="font-black text-sm text-slate-900">Qulay Avtobus / Gazel</div>
+                          <div className="text-[11px] text-slate-600 font-medium">
+                            {busPkg ? (lang === 'ru' ? busPkg.durationRu : lang === 'en' ? busPkg.durationEn : busPkg.durationUz) : 'Komfort avtotur'}
+                          </div>
+                        </div>
+                      </div>
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${modalTransport === 'bus' ? 'border-[#10b981] bg-[#10b981]' : 'border-slate-300'}`}>
+                        {modalTransport === 'bus' && <div className="w-2 h-2 rounded-full bg-white"></div>}
+                      </div>
+                    </div>
+                    
+                    <div className="mt-3 pt-2.5 border-t border-slate-200/80 flex items-baseline justify-between">
+                      <span className="text-[10px] text-slate-500 font-bold uppercase">1 kishi narxi:</span>
+                      <span className="text-sm font-black text-[#10b981]">{formatPrice(busPrice)}</span>
+                    </div>
+                  </div>
 
-                  <button
-                    type="button"
+                  {/* Option 2: PLANE */}
+                  <div
                     onClick={() => setModalTransport('plane')}
-                    className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    className={`p-3.5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
                       modalTransport === 'plane'
-                        ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
-                        : 'text-slate-700 hover:text-slate-900 hover:bg-white/60'
+                        ? 'border-[#10b981] bg-[#ecfdf5] shadow-md ring-4 ring-[#10b981]/20 scale-[1.01]'
+                        : 'border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300'
                     }`}
                   >
-                    <Plane className="w-4 h-4 transform -rotate-45" />
-                    <span>✈️ Samolyot Reysi</span>
-                  </button>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold shrink-0 ${modalTransport === 'plane' ? 'bg-[#10b981] text-white shadow-xs' : 'bg-slate-200 text-slate-700'}`}>
+                          <Plane className="w-5 h-5 transform -rotate-45" />
+                        </div>
+                        <div>
+                          <div className="font-black text-sm text-slate-900">Samolyot Parvozi</div>
+                          <div className="text-[11px] text-slate-600 font-medium">
+                            {planePkg ? (lang === 'ru' ? planePkg.durationRu : lang === 'en' ? planePkg.durationEn : planePkg.durationUz) : 'Tezkor parvoz'}
+                          </div>
+                        </div>
+                      </div>
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${modalTransport === 'plane' ? 'border-[#10b981] bg-[#10b981]' : 'border-slate-300'}`}>
+                        {modalTransport === 'plane' && <div className="w-2 h-2 rounded-full bg-white"></div>}
+                      </div>
+                    </div>
+                    
+                    <div className="mt-3 pt-2.5 border-t border-slate-200/80 flex items-baseline justify-between">
+                      <span className="text-[10px] text-slate-500 font-bold uppercase">1 kishi narxi:</span>
+                      <span className="text-sm font-black text-[#10b981]">{formatPrice(planePrice)}</span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
