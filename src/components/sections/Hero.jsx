@@ -165,8 +165,8 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
             </div>
 
           </div>
-        </div>
-
+        {/* 4 Grand Trust Pillars */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
             <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.destCount}</div>
             <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.destLabel}</div>
@@ -190,7 +190,6 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
             <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.supportLabel}</div>
             <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.supportDesc}</p>
           </div>
-
         </div>
 
       </div>
