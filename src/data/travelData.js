@@ -607,87 +607,87 @@ export const COUNTRIES = [
     ]
   },
   {
-    id: 'tashkent-zomin',
-    name: 'Toshkent & Zomin Tog\'lari',
-    nameRu: 'Ташкент и горы Заамина',
-    nameEn: 'Tashkent & Zaamin Mountains',
+    id: 'zomin',
+    name: 'Zomin Tog\'lari (Jizzax Viloyati)',
+    nameRu: 'Горы Заамина (Джизакская область)',
+    nameEn: 'Zaamin Mountains (Jizzakh Region)',
     flag: '🌲',
-    capital: 'Toshkent shahri / Jizzax',
+    capital: 'Zomin tumani / Jizzax',
     category: 'nature',
-    taglineUz: 'O\'zbekiston Shveytsariyasi — Zomin Qarag\'ayzori va Zamonaviy Poytaxt',
-    taglineRu: 'Швейцария Узбекистана — Сосновые леса Заамина и Столица',
-    taglineEn: 'Switzerland of Uzbekistan — Zaamin Pine Forests & Capital',
-    coverImage: '/images/landmarks/tashkent-tv-tower.png',
+    taglineUz: 'O\'zbekiston Shveytsariyasi — Zomin Qarag\'ayzori va Osma Shisha Ko\'prik',
+    taglineRu: 'Швейцария Узбекистана — Хвойные леса Заамина и Стеклянный Мост',
+    taglineEn: 'Switzerland of Uzbekistan — Zaamin Pine Forests & Glass Bridge',
+    coverImage: '/images/landmarks/uzbekistan-mountains.png',
     flightDurationUz: 'Komfort Mikroavtobus / Gazel: 2.5-3 soat (~70,000 - 110,000 so\'m)',
     flightDurationRu: 'Микроавтобус / Газель: 2.5-3 часа (~70,000 - 110,000 сум)',
     flightDurationEn: 'Minibus / Gazel: 2.5-3 hours (~$6 - $9)',
     visaUz: '5 kun / 4 kecha to\'liq VIP sayohat',
     visaRu: '5 дней / 4 ночи полный VIP тур',
     visaEn: '5 Days / 4 Nights Full VIP Tour',
-    bestTimeUz: 'Yil bo\'yi (Qishda chang\'i, yozda salqin)',
+    bestTimeUz: 'Yil bo\'yi (Qishda chang\'i, yozda salqin archazor)',
     bestTimeRu: 'Круглый год (Лыжи зимой, прохлада летом)',
     bestTimeEn: 'Year-round (Skiing in winter, alpine breeze in summer)',
-    temp: '+24°C',
+    temp: '+22°C',
     rating: 4.99,
     basePriceUSD: 75,
-    descriptionUz: 'Toshkent va Zomin – zamonaviy megapolis qulayliklari hamda toza tog\' archazorlarining ajoyib uyg\'unligi. Shisha ko\'priklar, tog\' kottejlari va poytaxt obidalari bilan 5 kunlik avtotur.',
-    descriptionRu: 'Ташкент и Заамин — сочетание комфорта современного мегаполиса и чистого хвойного горного воздуха. Стеклянные подвесные мосты, курорты и парки. 5 дней отдыха на автобусе.',
-    descriptionEn: 'Tashkent and Zaamin offer a seamless blend of modern metropolitan luxury and crystal-pure alpine pine forests, featuring glass suspension bridges and mountain chalets. 5 Days / 4 Nights road trip.',
+    descriptionUz: 'Zomin – O\'zbekistonning eng toza va go\'zal baland tog\' maskani. Shifobaxsh qarag\'ayzorlar, ulkan osma shisha ko\'prik, dor yo\'li (kanat) va tog\' shinam kottejlari bilan 5 kunlik unutilmas ekotur.',
+    descriptionRu: 'Заамин — самый экологически чистый высокогорный курорт Узбекистана. Целебные хвойные леса, подвесной стеклянный мост, канатная дорога и уютные альпийские шале. 5 дней отдыха на автобусе.',
+    descriptionEn: 'Zaamin is Uzbekistan\'s pristine alpine paradise, renowned for therapeutic pine forests, high-altitude glass suspension bridge, cable cars, and alpine chalets. 5 Days / 4 Nights tour.',
     highlightsUz: [
-      '5 kun / 4 kecha Zomin tog\' shinam kottejlarida va poytaxt mehmonxonasida tunash',
+      '5 kun / 4 kecha Zomin tog\' shinam kottejlari va eko-mehmonxonada tunash',
       'Qulay Gazel / Mikroavtobus transferi va Zomin milliy bog\'i bo\'ylab sayohat',
       'Zomin Milliy Bog\'idagi ulkan Osma Shisha Ko\'prik (Glass Bridge) sayri',
       '2000 metr balandlikdagi dor yo\'li (kanat) va toza archazor tog\' havosi',
-      'Amirsoy tog\' kurorti, Chorsu bozori va Toshkent Teleminorasi'
+      'Suffa platosi radioastronomiya rasadxonasi va Sherbuloq shifobaxsh suvi'
     ],
     highlightsRu: [
-      '5 дней / 4 ночи в коттеджах Заамина и столичном отеле 4★',
+      '5 дней / 4 ночи в уютных альпийских коттеджах и эко-отелях Заамина',
       'Комфортабельный микроавтобус / Газель с кондиционером',
       'Подвесной стеклянный мост (Glass Bridge) в Зааминском национальном парке',
       'Канатная дорога на высоте 2000 метров и чистейший сосновый воздух',
-      'Курорт Амирсой, базар Чорсу и Ташкентская телебашня'
+      'Плато Суффа, радиоастрономическая обсерватория и целебный источник Шербулок'
     ],
     highlightsEn: [
-      '5 Days / 4 Nights in cozy Zaamin alpine chalets and capital hotels',
+      '5 Days / 4 Nights in cozy Zaamin alpine chalets and mountain eco-lodges',
       'Air-conditioned minibus transit and scenic Zaamin National Park tours',
       'Thrilling suspension Glass Bridge walk in Zaamin National Park',
       'Panoramic cable car ride at 2,000m altitude through pristine pine forests',
-      'Amirsoy mountain resort, historic Chorsu bazaar & Tashkent TV Tower'
+      'Suffa Plateau radio astronomy observatory & healing Sherbuloq spring'
     ],
     images: [
-      '/images/landmarks/tashkent-tv-tower.png',
       '/images/landmarks/uzbekistan-mountains.png',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
-        nameUz: 'Zomin Tog\'lari & Osma Ko\'prik', nameRu: 'Горы Заамина и Мост', nameEn: 'Zaamin Mountains & Bridge',
-        descUz: 'Yashil archazor vodiylar va toza tog\' havosi',
-        descRu: 'Изумрудные сосновые долины и чистый горный воздух',
-        descEn: 'Lush alpine valleys, crystal rivers, and refreshing mountain air',
+        nameUz: 'Zomin Osma Shisha Ko\'prik', nameRu: 'Стеклянный Мост Заамина', nameEn: 'Zaamin Suspension Glass Bridge',
+        descUz: 'Baland kanyon ustidagi hayajonli osma shisha ko\'prik',
+        descRu: 'Захватывающий стеклянный подвесной мост над каньоном',
+        descEn: 'Thrilling glass suspension bridge spanning high above the mountain canyon',
         img: '/images/landmarks/uzbekistan-mountains.png'
       },
       { 
-        nameUz: 'Hazrati Imom (Hastimom)', nameRu: 'Комплекс Хазрати Имам', nameEn: 'Hazrati Imam Complex',
-        descUz: 'Poytaxtning bosh islomiy obidasi va nodir qo\'lyozmalar',
-        descRu: 'Главная исламская святыня столицы с древнейшими рукописями',
-        descEn: 'Historic Islamic intellectual center housing ancient holy manuscripts',
-        img: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80'
+        nameUz: 'Suffa Platosi Rasadxonasi', nameRu: 'Плато Суффа и Обсерватория', nameEn: 'Suffa Plateau Observatory',
+        descUz: 'Dengiz sathidan 2500m balandlikdagi koinot rasadxonasi',
+        descRu: 'Высокогорное плато на высоте 2500м с чистейшим обзором космоса',
+        descEn: 'High-altitude 2,500m plateau with premier radio astronomy facilities',
+        img: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80'
       },
       { 
-        nameUz: 'Amirsoy Mountain Resort', nameRu: 'Курорт Амирсой', nameEn: 'Amirsoy Mountain Resort',
-        descUz: 'Xalqaro toifadagi qishki va yozgi tog\' kurorti',
-        descRu: 'Всесезонный горный курорт международного уровня',
-        descEn: 'World-class all-season mountain wellness & ski resort',
-        img: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80'
+        nameUz: 'Zomin Milliy Bog\'i & Archazorlar', nameRu: 'Национальный Парк Заамин', nameEn: 'Zaamin National Pine Park',
+        descUz: 'Yashil archazor vodiylar va toza shifobaxsh tog\' havosi',
+        descRu: 'Изумрудные сосновые долины и чистый горный воздух',
+        descEn: 'Lush alpine pine valleys, crystal rivers, and refreshing mountain air',
+        img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
       },
       { 
-        nameUz: 'Teleminora & Shahidlar Xotirasi', nameRu: 'Телебашня и Мемориальный Парк', nameEn: 'Tashkent TV Tower & Memorial Park',
-        descUz: '375 metrli teleminora va go\'zal gumbazli xiyobon',
-        descRu: '375-метровая телебашня и живописный парковый ансамбль',
-        descEn: '375m iconic TV tower and ornate turquoise memorial rotunda',
-        img: '/images/landmarks/tashkent-tv-tower.png'
+        nameUz: 'Sherbuloq & Sharshara', nameRu: 'Источник Шербулок и Водопад', nameEn: 'Sherbuloq Spring & Waterfall',
+        descUz: 'Muzdek ma\'danli tog\' bulog\'i va manzarali sharshara',
+        descRu: 'Целебный горный родник и живописный водопад',
+        descEn: 'Pristine mountain mineral spring and cascading waterfall',
+        img: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80'
       }
     ]
   }
