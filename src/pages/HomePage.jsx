@@ -6,7 +6,6 @@ import Footer from '../components/layout/Footer';
 
 // Section Components
 import Hero from '../components/sections/Hero';
-import AirplaneFleet from '../components/sections/AirplaneFleet';
 import CountryExplorer from '../components/sections/CountryExplorer';
 import HotDeals from '../components/sections/HotDeals';
 import WhyUs from '../components/sections/WhyUs';
@@ -82,13 +81,7 @@ export default function HomePage() {
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* 3. Modern Airplane Fleet & Live Board */}
-      <AirplaneFleet
-        onOpenBooking={handleOpenBooking}
-        onOpenImageLightbox={(img) => setLightboxImage(img)}
-      />
-
-      {/* 4. Country Explorer & HD Photo Gallery */}
+      {/* 3. Country Explorer & HD Photo Gallery */}
       <CountryExplorer
         selectedCountryId={selectedCountryId}
         onSelectCountry={handleCountryChange}
@@ -97,19 +90,19 @@ export default function HomePage() {
         onOpenImageLightbox={(img) => setLightboxImage(img)}
       />
 
-      {/* 5. Hot Deals & Flash Sale Countdown */}
+      {/* 4. Hot Deals & Flash Sale Countdown */}
       <HotDeals
         currency={currency}
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* 6. Why Choose Us */}
+      {/* 5. Why Choose Us */}
       <WhyUs />
 
-      {/* 7. Verified Traveler Reviews */}
+      {/* 6. Verified Traveler Reviews */}
       <Reviews />
 
-      {/* 8. Clean Luxury Footer */}
+      {/* 7. Clean Luxury Footer */}
       <Footer
         onSelectCountry={handleCountryChange}
         onOpenContact={() => setIsContactOpen(true)}

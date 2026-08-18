@@ -15,7 +15,6 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Bosh sahifa', href: '#hero' },
-    { name: 'Transport & Qatnovlar', href: '#fleet' },
     { name: 'Viloyatlar & Shaharlar', href: '#countries' },
     { name: 'Qaynoq Turlar', href: '#deals' },
     { name: 'Afzalliklar', href: '#why-us' },
