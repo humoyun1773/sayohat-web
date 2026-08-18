@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Bus, Star, Sun, Shield, 
+  Bus, Plane, Star, Sun, Shield, 
   Maximize2, Check, Sparkles
 } from 'lucide-react';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
@@ -279,10 +279,15 @@ export default function CountryExplorer({
 
               <div className="pt-2">
                 <button
-                  onClick={() => onOpenBooking({ country: countryName, flightClass: 'Qulay Avtobus / Gazel', hotelStar: '4★ Mehmonxona', priceUSD: currentPrice })}
+                  onClick={() => onOpenBooking({ 
+                    country: countryName, 
+                    flightClass: currentCountry.transportType === 'plane' ? 'To\'g\'ridan-to\'g\'ri Samolyot Reysi' : 'Qulay Sayyohlik Avtobusi', 
+                    hotelStar: '4★ Mehmonxona (4 kecha) + 3 mahal ovqat', 
+                    priceUSD: currentPrice 
+                  })}
                   className="w-full py-3.5 px-6 rounded-2xl bg-[#10b981] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:bg-[#059669] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Bus className="w-4 h-4" />
+                  {currentCountry.transportType === 'plane' ? <Plane className="w-4 h-4 transform -rotate-45" /> : <Bus className="w-4 h-4" />}
                   <span>{t.regions.bookBtn}</span>
                 </button>
               </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Flame, ArrowRight, Bus
+  Flame, ArrowRight, Bus, Plane
 } from 'lucide-react';
 import { HOT_DEALS, EXCHANGE_RATE } from '../../data/travelData';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
@@ -85,8 +85,12 @@ export default function HotDeals({ onOpenBooking, currency = 'USD', t, lang = 'u
                   {/* Header */}
                   <CardHeader className="p-5 pb-3 space-y-1.5">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                      <Bus className="w-3.5 h-3.5 text-[#10b981]" />
-                      <span>{t.deals.charterTag}</span>
+                      {deal.transportType === 'plane' ? (
+                        <Plane className="w-3.5 h-3.5 text-[#10b981] transform -rotate-45" />
+                      ) : (
+                        <Bus className="w-3.5 h-3.5 text-[#10b981]" />
+                      )}
+                      <span>{deal.transportType === 'plane' ? 'To\'g\'ridan-to\'g\'ri Samolyot Reysi' : 'Qulay Sayyohlik Avtobusi'}</span>
                     </div>
 
                     <CardTitle className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-2">
@@ -123,8 +127,8 @@ export default function HotDeals({ onOpenBooking, currency = 'USD', t, lang = 'u
                   <button
                     onClick={() => onOpenBooking({
                       country: dealTitle,
-                      flightClass: 'Sayyohlik Avtobusi / Gazel',
-                      hotelStar: '4★ Mehmonxona',
+                      flightClass: deal.transportType === 'plane' ? 'To\'g\'ridan-to\'g\'ri Samolyot' : 'Qulay Sayyohlik Avtobusi',
+                      hotelStar: '4★ Mehmonxona (4 kecha) + 3 mahal ovqat',
                       priceUSD: newPrice
                     })}
                     className="py-2.5 px-3.5 rounded-xl btn-primary-emerald font-bold text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all shrink-0 cursor-pointer"
