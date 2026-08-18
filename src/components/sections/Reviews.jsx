@@ -40,39 +40,10 @@ export default function Reviews({ t, lang = 'uz' }) {
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {REVIEWS.map((r) => {
-            let reviewText = r.text || r.comment;
-            let roleText = r.role || r.city;
-            let countryText = r.country;
-
-            if (lang === 'ru') {
-              if (r.id === 1) {
-                reviewText = 'Мы поехали семьей на скоростном поезде Афросиаб в Самарканд и Бухару на 4 дня. Организация LOTOS FIELD на высшем уровне – отели чистые, гиды невероятно образованные!';
-                roleText = 'Предприниматель, Ташкент';
-                countryText = 'Тур по Самарканду и Бухаре';
-              } else if (r.id === 2) {
-                reviewText = 'Ночные огни Ичан-Калы и древние виды Аяз-калы в Элликкале запомнятся на всю жизнь. Мы еще раз убедились, насколько прекрасна и богата история нашей страны.';
-                roleText = 'Врач, Фергана';
-                countryText = 'Экспедиция Хива & Элликкала';
-              } else if (r.id === 3) {
-                reviewText = 'Водопад Сангардак и чистейший горный воздух Байсуна, целебный источник Омонхона — настоящее чудо природы! Все организовано точно в срок и по высшему разряду.';
-                roleText = 'Архитектор, Наманган';
-                countryText = 'Сурхандарья Сангардак & Байсун';
-              }
-            } else if (lang === 'en') {
-              if (r.id === 1) {
-                reviewText = 'Our family took the high-speed Afrosiyob train for a 4-day journey to Samarkand and Bukhara. LOTOS FIELD organized everything flawlessly — immaculate hotels and brilliant guides!';
-                roleText = 'Entrepreneur, Tashkent';
-                countryText = 'Samarkand & Bukhara Tour';
-              } else if (r.id === 2) {
-                reviewText = 'The night lights of Ichan Kala and the ancient fortresses of Ayaz Kala in Ellikqala were breathtaking. Truly an unforgettable immersion into Uzbekistan\'s timeless heritage.';
-                roleText = 'Physician, Fergana';
-                countryText = 'Khiva & Ellikqala Expedition';
-              } else if (r.id === 3) {
-                reviewText = 'Sangardak waterfall, the fresh mountain breeze of Boysun, and the healing springs of Omonkhona are real wonders of nature! Transit, hotel, and meals were 100% on point.';
-                roleText = 'Architect, Namangan';
-                countryText = 'Surkhandarya Sangardak & Boysun';
-              }
-            }
+            const reviewText = lang === 'ru' ? r.textRu : lang === 'en' ? r.textEn : r.textUz;
+            const roleText = lang === 'ru' ? r.roleRu : lang === 'en' ? r.roleEn : r.roleUz;
+            const countryText = lang === 'ru' ? r.countryRu : lang === 'en' ? r.countryEn : r.countryUz;
+            const dateText = lang === 'ru' ? r.dateRu : lang === 'en' ? r.dateEn : r.dateUz;
 
             return (
               <div
@@ -114,7 +85,7 @@ export default function Reviews({ t, lang = 'uz' }) {
                     <span className="text-[10px] font-bold text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-2.5 py-1 rounded-full block">
                       {countryText}
                     </span>
-                    <span className="text-[10px] text-slate-400 mt-1 block font-medium">{r.date}</span>
+                    <span className="text-[10px] text-slate-400 mt-1 block font-medium">{dateText}</span>
                   </div>
                 </div>
               </div>

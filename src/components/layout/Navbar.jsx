@@ -55,7 +55,7 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
                 <span className="text-2xl sm:text-3xl font-black text-[#10b981] drop-shadow-sm">FIELD</span>
               </div>
               <p className="text-[10px] sm:text-[11px] tracking-widest uppercase font-bold text-slate-700 mt-0.5">
-                Luxury Travel & Tourism
+                {t.nav.tagline || 'Luxury Travel & Tourism'}
               </p>
             </div>
           </a>

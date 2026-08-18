@@ -24,7 +24,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
 
   const destinationOptions = COUNTRIES.map((c) => ({
     value: c.id,
-    label: lang === 'en' ? c.nameEn : c.name,
+    label: lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name,
     flag: c.flag
   }));
 
@@ -165,7 +165,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
                   className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-[#ecfdf5] hover:text-[#065f46] border border-slate-200 text-slate-700 font-bold transition-all flex items-center gap-1.5 shadow-2xs hover:scale-105"
                 >
                   <span>{c.flag}</span>
-                  <span>{lang === 'en' ? c.nameEn : c.name}</span>
+                  <span>{lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name}</span>
                 </button>
               ))}
             </div>

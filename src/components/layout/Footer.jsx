@@ -97,7 +97,7 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
                     className="hover:text-[#10b981] transition-colors flex items-center gap-1.5 text-left"
                   >
                     <span>{c.flag}</span>
-                    <span>{lang === 'en' ? c.nameEn : c.name}</span>
+                    <span>{lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name}</span>
                   </button>
                 </li>
               ))}
@@ -136,7 +136,7 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#10b981] shrink-0 mt-0.5" />
-                <span className="text-slate-300">{CONTACT_INFO.address}</span>
+                <span className="text-slate-300">{lang === 'ru' ? CONTACT_INFO.addressRu : lang === 'en' ? CONTACT_INFO.addressEn : CONTACT_INFO.addressUz}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#10b981] shrink-0" />

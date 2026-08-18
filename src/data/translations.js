@@ -17,6 +17,7 @@ export const translations = {
       deals: 'Qaynoq Turlar',
       whyUs: 'Afzalliklar',
       reviews: 'Fikrlar',
+      tagline: 'Lyuks Sayohat & Ichki Turizm',
     },
     hero: {
       badge: "O'zbekiston Bo'ylab Ichki Turizm & VIP Sayohatlar",
@@ -174,6 +175,7 @@ export const translations = {
       deals: 'Горящие Туры',
       whyUs: 'Преимущества',
       reviews: 'Отзывы',
+      tagline: 'Люкс Путешествия и Туризм',
     },
     hero: {
       badge: 'Внутренний Туризм и VIP Путешествия по Узбекистану',
@@ -331,6 +333,7 @@ export const translations = {
       deals: 'Hot Deals',
       whyUs: 'Why Us',
       reviews: 'Reviews',
+      tagline: 'Luxury Travel & Tourism',
     },
     hero: {
       badge: 'Domestic Tourism & VIP Travel Across Uzbekistan',
