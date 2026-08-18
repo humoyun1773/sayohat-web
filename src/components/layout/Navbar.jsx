@@ -18,7 +18,6 @@ export default function Navbar() {
     { name: 'Laynerlar', href: '#fleet' },
     { name: 'Davlatlar', href: '#countries' },
     { name: 'Qaynoq Turlar', href: '#deals' },
-    { name: 'Kalkulyator', href: '#calculator' },
     { name: 'Afzalliklar', href: '#why-us' },
     { name: 'Fikrlar', href: '#reviews' },
   ];
