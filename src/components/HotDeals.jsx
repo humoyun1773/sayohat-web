@@ -35,14 +35,14 @@ export default function HotDeals({ currency, onOpenBooking }) {
   return (
     <section id="deals" className="py-24 relative overflow-hidden bg-slate-50 border-y border-slate-200">
       
-      {/* Sunset Airplane Flight Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-25">
+      {/* 100% Crystal Clear Sunset Airplane Flight Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=2400&q=85"
+          src="https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=2600&q=100"
           alt="Sunset Airplane Flight"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/70 to-slate-50/90"></div>
+        <div className="absolute inset-0 bg-slate-50/75"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">

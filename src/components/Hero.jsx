@@ -38,16 +38,16 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
   return (
     <section id="hero" className="relative min-h-[92vh] pt-36 pb-20 flex items-center justify-center overflow-hidden bg-white">
       
-      {/* Ultra-HD Crystal Clear Airport Terminal Interior Background */}
+      {/* 100% Crystal Clear Full HD Airport Terminal Interior Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=2600&q=95"
+          src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=2600&q=100"
           alt="Modern Luxury Airport Terminal Interior"
-          className="w-full h-full object-cover object-center scale-100 filter brightness-105"
+          className="w-full h-full object-cover object-center scale-100"
         />
-        {/* Soft, crisp white lighting gradient that enhances the airport view while ensuring high text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-white/35"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent"></div>
+        {/* Subtle base gradient so text and card remain readable without washing out the photo */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-white/40"></div>
+        <div className="absolute inset-0 bg-white/20"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
