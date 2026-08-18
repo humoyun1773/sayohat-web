@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Quote, CheckCircle2, MapPin } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 import { REVIEWS } from '../../data/travelData';
 
 export default function Reviews() {
@@ -48,7 +48,7 @@ export default function Reviews() {
                 {/* Rating & Quote Icon */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-1 text-amber-400">
-                    {[...Array(r.rating)].map((_, i) => (
+                    {[...Array(r.rating || 5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
@@ -57,7 +57,7 @@ export default function Reviews() {
 
                 {/* Review Text */}
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-6">
-                  "{r.comment}"
+                  "{r.text || r.comment}"
                 </p>
               </div>
 
@@ -71,7 +71,7 @@ export default function Reviews() {
                   />
                   <div>
                     <h4 className="text-sm font-black text-slate-900 leading-tight">{r.name}</h4>
-                    <span className="text-[11px] text-slate-400 font-medium block">{r.city}</span>
+                    <span className="text-[11px] text-slate-400 font-medium block">{r.role || r.city}</span>
                   </div>
                 </div>
 

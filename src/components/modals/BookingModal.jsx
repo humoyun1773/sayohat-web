@@ -49,10 +49,11 @@ export default function BookingModal({
   if (!isOpen || !bookingData) return null;
 
   const formatPrice = (usdAmount) => {
+    const num = Number(usdAmount) || 0;
     if (currency === 'UZS') {
-      return (usdAmount * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
+      return (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
     }
-    return '$' + usdAmount.toLocaleString('en-US');
+    return '$' + num.toLocaleString('en-US');
   };
 
   const handleConfirmBooking = (e) => {

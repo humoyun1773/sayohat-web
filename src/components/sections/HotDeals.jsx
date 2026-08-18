@@ -28,11 +28,13 @@ export default function HotDeals({ currency = 'USD', onOpenBooking }) {
     return () => clearInterval(timer);
   }, []);
 
+  // Safe price formatter with defensive number fallback
   const formatPrice = (usdAmount) => {
+    const num = Number(usdAmount) || 0;
     if (currency === 'UZS') {
-      return (usdAmount * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
+      return (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
     }
-    return '$' + usdAmount.toLocaleString('en-US');
+    return '$' + num.toLocaleString('en-US');
   };
 
   return (
@@ -84,84 +86,95 @@ export default function HotDeals({ currency = 'USD', onOpenBooking }) {
           </div>
         </div>
 
-        {/* 3 Hot Deals Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {HOT_DEALS.map((deal) => (
-            <div 
-              key={deal.id}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
-            >
-              
-              {/* Photo & Badges */}
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={deal.image}
-                  alt={deal.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+        {/* Hot Deals Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {HOT_DEALS.map((deal) => {
+            const oldPrice = deal.oldPriceUSD || deal.originalPriceUSD || 700;
+            const newPrice = deal.newPriceUSD || deal.discountedPriceUSD || 500;
+            const duration = deal.days || deal.duration || '7 kun';
+            const badgeText = deal.badge || 'QAYNOQ CHEGIRMA';
+
+            return (
+              <div 
+                key={deal.id}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5"
+              >
                 
-                <div className="absolute top-4 left-4 flex flex-col gap-1.5">
-                  <span className="px-3 py-1 rounded-full bg-[#10b981] text-white text-xs font-black shadow-md flex items-center gap-1">
-                    <Flame className="w-3.5 h-3.5" />
-                    <span>{deal.discount}</span>
-                  </span>
-                  <span className="px-3 py-0.5 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-bold">
-                    {deal.badge}
-                  </span>
-                </div>
-
-                <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 font-bold text-xs shadow-sm">
-                  {deal.duration}
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                
-                <div className="space-y-2">
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                    <Plane className="w-3.5 h-3.5 text-[#10b981]" />
-                    <span>{deal.airline} • To'g'ridan-to'g'ri reys</span>
-                  </div>
-
-                  <h3 className="text-xl font-black text-slate-900 leading-snug">
-                    {deal.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                    {deal.description}
-                  </p>
-                </div>
-
-                {/* Pricing & CTA */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-                  <div>
-                    <span className="text-[11px] text-slate-400 line-through block font-medium">
-                      {formatPrice(deal.originalPriceUSD)}
+                {/* Photo & Badges */}
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={deal.image}
+                    alt={deal.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  
+                  <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                    <span className="px-3 py-1 rounded-full bg-[#10b981] text-white text-[11px] font-black shadow-md flex items-center gap-1">
+                      <Flame className="w-3.5 h-3.5" />
+                      <span>{badgeText}</span>
                     </span>
-                    <div className="text-2xl font-black text-[#10b981]">
-                      {formatPrice(deal.discountedPriceUSD)}
-                    </div>
                   </div>
 
-                  <button
-                    onClick={() => onOpenBooking({
-                      country: deal.title,
-                      flightClass: 'Ekonom / Biznes',
-                      hotelStar: '5★ All Inclusive',
-                      priceUSD: deal.discountedPriceUSD
-                    })}
-                    className="py-3 px-5 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md flex items-center gap-2 hover:scale-105 transition-all"
-                  >
-                    <span>Band qilish</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 font-bold text-xs shadow-sm">
+                    {duration}
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                      <Plane className="w-3.5 h-3.5 text-[#10b981]" />
+                      <span>LOTOS FIELD Charter • To'g'ridan-to'g'ri</span>
+                    </div>
+
+                    <h3 className="text-base sm:text-lg font-black text-slate-900 leading-snug line-clamp-2">
+                      {deal.title}
+                    </h3>
+
+                    {deal.includes && (
+                      <div className="space-y-1 pt-1">
+                        {deal.includes.slice(0, 3).map((item, idx) => (
+                          <div key={idx} className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+                            <span className="truncate">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Pricing & CTA */}
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                    <div>
+                      <span className="text-[11px] text-slate-400 line-through block font-medium">
+                        {formatPrice(oldPrice)}
+                      </span>
+                      <div className="text-2xl font-black text-[#10b981]">
+                        {formatPrice(newPrice)}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => onOpenBooking({
+                        country: deal.title,
+                        flightClass: 'Ekonom / Biznes',
+                        hotelStar: '5★ All Inclusive',
+                        priceUSD: newPrice
+                      })}
+                      className="py-3 px-4 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all"
+                    >
+                      <span>Band qilish</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
                 </div>
 
               </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
