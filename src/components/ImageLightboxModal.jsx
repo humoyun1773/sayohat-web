@@ -8,8 +8,14 @@ export default function ImageLightboxModal({ isOpen, imageUrl, onClose }) {
     };
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen || !imageUrl) return null;

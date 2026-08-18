@@ -15,6 +15,18 @@ export default function ContactModal({ isOpen, onClose }) {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Freeze background page scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const countryOptions = [

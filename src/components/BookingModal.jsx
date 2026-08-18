@@ -21,6 +21,18 @@ export default function BookingModal({
   const [isSuccess, setIsSuccess] = useState(false);
   const [bookingRef, setBookingRef] = useState('');
 
+  // Freeze background page scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen || !bookingData) return null;
 
   const formatPrice = (usdAmount) => {
