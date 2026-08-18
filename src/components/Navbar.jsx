@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Plane, Phone, Send, MessageCircle, User, 
+  Plane, Phone, User, 
   Menu, X, Globe, Sparkles, ChevronRight, ShieldCheck 
 } from 'lucide-react';
 import { CONTACT_INFO } from '../data/travelData';
@@ -86,7 +86,7 @@ export default function Navbar({
           </nav>
 
           {/* Right Action Bar */}
-          <div className="hidden md:flex items-center gap-2.5">
+          <div className="hidden md:flex items-center gap-3">
             
             {/* Currency Switcher */}
             <button
@@ -98,39 +98,10 @@ export default function Navbar({
               <span>{currency === 'USD' ? '$ USD' : 'So\'m (UZS)'}</span>
             </button>
 
-            {/* Quick Messenger Icons */}
-            <div className="flex items-center gap-1.5 pl-1">
-              <a
-                href={CONTACT_INFO.telegram}
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-xl bg-sky-50 hover:bg-sky-500 text-sky-600 hover:text-white border border-sky-200 flex items-center justify-center transition-all shadow-sm"
-                title="Telegram"
-              >
-                <Send className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href={CONTACT_INFO.whatsapp}
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-xl bg-emerald-50 hover:bg-emerald-500 text-emerald-600 hover:text-white border border-emerald-200 flex items-center justify-center transition-all shadow-sm"
-                title="WhatsApp"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href={`tel:${CONTACT_INFO.phoneClean}`}
-                className="w-8 h-8 rounded-xl bg-amber-50 hover:bg-amber-500 text-amber-700 hover:text-white border border-amber-200 flex items-center justify-center transition-all shadow-sm"
-                title="Qo'ng'iroq"
-              >
-                <Phone className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
             {/* Operator Contact Trigger */}
             <button
               onClick={onOpenContact}
-              className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-all"
+              className="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-all"
             >
               Aloqa
             </button>
@@ -139,7 +110,7 @@ export default function Navbar({
             {currentUser ? (
               <button
                 onClick={onOpenAuth}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold hover:bg-sky-100 transition-all shadow-sm"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold hover:bg-sky-100 transition-all shadow-sm"
               >
                 <div className="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-[10px] font-black">
                   {currentUser.name.charAt(0)}
@@ -194,39 +165,8 @@ export default function Navbar({
             ))}
           </div>
 
-          {/* Contact Fast Row in Mobile */}
-          <div className="pt-2 border-t border-slate-100">
-            <div className="grid grid-cols-3 gap-2">
-              <a
-                href={CONTACT_INFO.telegram}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-sky-50 text-sky-600 text-xs font-bold border border-sky-100"
-              >
-                <Send className="w-3.5 h-3.5" />
-                Telegram
-              </a>
-              <a
-                href={CONTACT_INFO.whatsapp}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-emerald-50 text-emerald-600 text-xs font-bold border border-emerald-100"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-                WhatsApp
-              </a>
-              <a
-                href={`tel:${CONTACT_INFO.phoneClean}`}
-                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-amber-50 text-amber-700 text-xs font-bold border border-amber-100"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                Qo'ng'iroq
-              </a>
-            </div>
-          </div>
-
           {/* Auth & Operator Triggers */}
-          <div className="pt-1 flex gap-2">
+          <div className="pt-2 border-t border-slate-100 flex gap-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
