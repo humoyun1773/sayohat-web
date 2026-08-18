@@ -45,7 +45,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
         <img
           src="/images/landmarks/samarkand-registan.png"
           alt="Samarkand Registan Square Historical Architecture"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center scale-105"
         />
       </div>
 
