@@ -8,6 +8,7 @@ import Footer from '../components/layout/Footer';
 import Hero from '../components/sections/Hero';
 import CountryExplorer from '../components/sections/CountryExplorer';
 import HotDeals from '../components/sections/HotDeals';
+import LiveTravelsMedia from '../components/sections/LiveTravelsMedia';
 import WhyUs from '../components/sections/WhyUs';
 import Reviews from '../components/sections/Reviews';
 import LocationMap from '../components/sections/LocationMap';
@@ -126,7 +127,13 @@ export default function HomePage() {
         lang={lang}
       />
 
-      {/* 5. Why Choose Us */}
+      {/* 5. Live Travels, Photo & Video Journal */}
+      <LiveTravelsMedia
+        onOpenImageLightbox={(img) => setLightboxImage(img)}
+        lang={lang}
+      />
+
+      {/* 6. Why Choose Us */}
       <WhyUs
         t={t}
         lang={lang}
