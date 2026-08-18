@@ -1205,10 +1205,17 @@ export const CONTACT_INFO = {
   whatsapp: 'https://wa.me/998901234567',
   instagram: 'https://instagram.com/lotos.field',
   email: 'info@lotosfield.uz',
-  addressUz: 'Toshkent shahri, Amir Temur shoh ko\'chasi, 107-B bino',
-  addressRu: 'г. Ташкент, проспект Амира Тимура, здание 107-Б',
-  addressEn: 'Tashkent city, Amir Timur avenue, Building 107-B',
-  workHoursUz: 'Har kuni 08:00 dan 22:00 gacha (24/7 ichki turizm markazi)',
-  workHoursRu: 'Ежедневно с 08:00 до 22:00 (24/7 центр туризма)',
-  workHoursEn: 'Daily 08:00 to 22:00 (24/7 support)'
+  addressUz: 'Toshkent shahri, Yunusobod tumani, Amir Temur shoh ko\'chasi, 107-B bino',
+  addressRu: 'г. Ташкент, Юнусабадский район, проспект Амира Темура, здание 107-Б',
+  addressEn: 'Tashkent city, Yunusabad district, Amir Timur Avenue, 107-B Building',
+  metroUz: 'Bodomzor & Minor metro bekatlari (3 daqiqalik piyoda yo\'l)',
+  metroRu: 'Станции метро Бадамзар & Минор (3 минуты пешком)',
+  metroEn: 'Bodomzor & Minor Metro Stations (3 min walk)',
+  googleMapsUrl: 'https://maps.google.com/?q=Amir+Temur+Avenue+Tashkent',
+  yandexMapsUrl: 'https://yandex.uz/maps/?text=Toshkent+Amir+Temur+shoh+kochasi+107B',
+  embedMapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.845892558832!2d69.281816!3d41.333857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b534175ed33%3A0x6b4998782a20a45b!2zQW1pciBUZW11ciBTcXVhcmUsIFRhc2hrZW50!5e0!3m2!1sen!2suz!4v1700000000000!5m2!1sen!2suz',
+  workHoursUz: 'Dushanba — Yakshanba: 08:00 dan 22:00 gacha (24/7 telefon orqali qo\'llab-quvvatlash)',
+  workHoursRu: 'Понедельник — Воскресенье: с 08:00 до 22:00 (24/7 поддержка по телефону)',
+  workHoursEn: 'Monday — Sunday: 08:00 to 22:00 (24/7 Phone Support)'
 };
+

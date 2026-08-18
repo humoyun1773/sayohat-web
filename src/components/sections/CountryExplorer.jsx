@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Bus, Plane, Star, Sun, Shield, 
-  Maximize2, Check, Sparkles
+  Maximize2, Check, Sparkles, MapPin, ExternalLink
 } from 'lucide-react';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
 import { Card, CardContent } from '../ui/card';
@@ -383,7 +383,7 @@ export default function CountryExplorer({
                 <Badge variant="secondary" className="font-bold text-slate-600 shrink-0">{t.regions.includedNote}</Badge>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
                 <button
                   onClick={() => onOpenBooking({ 
                     country: countryName, 
@@ -391,11 +391,23 @@ export default function CountryExplorer({
                     hotelStar: '4★ Mehmonxona (4 kecha) + 3 mahal ovqat', 
                     priceUSD: currentPrice 
                   })}
-                  className="w-full py-3.5 px-6 rounded-2xl bg-[#10b981] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:bg-[#059669] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="flex-1 py-3.5 px-6 rounded-2xl bg-[#10b981] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:bg-[#059669] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {transportMode === 'plane' ? <Plane className="w-4 h-4 transform -rotate-45" /> : <Bus className="w-4 h-4" />}
                   <span>{t.regions.bookBtn}</span>
                 </button>
+
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(countryName + ' Uzbekistan')}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="py-3.5 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
+                  title="Google Maps'da joylashuvni ko'rish"
+                >
+                  <MapPin className="w-4 h-4 text-[#10b981]" />
+                  <span>Xarita</span>
+                  <ExternalLink className="w-3 h-3 text-slate-400" />
+                </a>
               </div>
             </div>
 

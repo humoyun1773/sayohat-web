@@ -29,6 +29,7 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
     { name: t.nav.regions, href: '#destinations', icon: MapPin, badge: '8 ta Shahar' },
     { name: t.nav.deals, href: '#deals', icon: Flame, badge: '-30% Avtotur' },
     { name: t.nav.whyUs, href: '#why-us', icon: ShieldCheck, badge: 'Kafolat' },
+    { name: t.nav.location, href: '#location', icon: MapPin, badge: 'Ofis' },
     { name: t.nav.reviews, href: '#reviews', icon: Star, badge: '5.0 Reyting' },
   ];
 

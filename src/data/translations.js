@@ -17,6 +17,7 @@ export const translations = {
       deals: 'Qaynoq Turlar',
       whyUs: 'Afzalliklar',
       reviews: 'Fikrlar',
+      location: 'Joylashuv & Xarita',
       tagline: 'Avtobus & Samolyot Turlari',
     },
     hero: {
@@ -165,6 +166,19 @@ export const translations = {
       messageLabel: "Savolingiz yoki Qo'shimcha Istaklar (Ixtiyoriy):",
       messagePlaceholder: "Masalan: 4 kishilik oilaviy tur, avtobus yoki samolyot, mehmonxona...",
       submitBtn: "ARIZANI YUBORISH (BEPUL KONSULTATSIYA)"
+    },
+    location: {
+      badge: "Ofisimiz & Xaritalar",
+      title1: "Bizning Bosh Ofisimiz va",
+      title2: "Xaritadagi Aniq Joylashuv",
+      desc: "Toshkent shahridagi bosh ofisimizga tashrif buyurib, bepul maslahat oling yoki xarita orqali O'zbekistonning barcha 8 ta viloyatidagi qadimiy maskanlarning joylashuvini ko'ring.",
+      openGoogle: "Google Maps'da ochish",
+      openYandex: "Yandex Xaritada ochish",
+      addressTitle: "Bosh Ofis Manzili:",
+      hoursTitle: "Ish Vaqti:",
+      metroTitle: "Eng Yaqin Metro:",
+      phoneTitle: "Tezkor Aloqa & Maslahat:",
+      routeBtn: "Marshrut Chizish"
     }
   },
 
@@ -175,6 +189,7 @@ export const translations = {
       deals: 'Горящие Туры',
       whyUs: 'Преимущества',
       reviews: 'Отзывы',
+      location: 'Локация & Карты',
       tagline: 'Автобусные и Авиатуры',
     },
     hero: {
@@ -323,6 +338,19 @@ export const translations = {
       messageLabel: 'Ваш Вопрос или Дополнительные Пожелания (Необязательно):',
       messagePlaceholder: 'Например: Семейный тур на 4 человека, автобус или самолет...',
       submitBtn: 'ОТПРАВИТЬ ЗАЯВКУ (БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ)'
+    },
+    location: {
+      badge: "Офис и Карты",
+      title1: "Наш Главный Офис и",
+      title2: "Точное Расположение на Карте",
+      desc: "Посетите наш центральный офис в Ташкенте для бесплатной консультации или посмотрите локации всех 8 регионов Узбекистана на карте.",
+      openGoogle: "Открыть в Google Maps",
+      openYandex: "Открыть в Яндекс Картах",
+      addressTitle: "Адрес Главного Офиса:",
+      hoursTitle: "График Работы:",
+      metroTitle: "Ближайшее Метро:",
+      phoneTitle: "Быстрая Связь и Консультация:",
+      routeBtn: "Построить Маршрут"
     }
   },
 
@@ -333,6 +361,7 @@ export const translations = {
       deals: 'Hot Deals',
       whyUs: 'Why Us',
       reviews: 'Reviews',
+      location: 'Location & Maps',
       tagline: 'Bus & Flight Tours',
     },
     hero: {
@@ -481,6 +510,19 @@ export const translations = {
       messageLabel: 'Your Question or Custom Wishes (Optional):',
       messagePlaceholder: 'e.g. Family tour for 4 people by bus or flight with hotel and meals...',
       submitBtn: 'SEND INQUIRY (FREE CONSULTATION)'
+    },
+    location: {
+      badge: "Office & Maps",
+      title1: "Our Head Office &",
+      title2: "Exact Location on Map",
+      desc: "Visit our central headquarters in Tashkent for in-person consultation or explore the locations of all 8 historical destinations across Uzbekistan on the map.",
+      openGoogle: "Open in Google Maps",
+      openYandex: "Open in Yandex Maps",
+      addressTitle: "Head Office Address:",
+      hoursTitle: "Working Hours:",
+      metroTitle: "Nearest Metro:",
+      phoneTitle: "Direct Contact & Support:",
+      routeBtn: "Get Directions"
     }
   }
 };

@@ -10,6 +10,7 @@ import CountryExplorer from '../components/sections/CountryExplorer';
 import HotDeals from '../components/sections/HotDeals';
 import WhyUs from '../components/sections/WhyUs';
 import Reviews from '../components/sections/Reviews';
+import LocationMap from '../components/sections/LocationMap';
 
 // Modal Components
 import ContactModal from '../components/modals/ContactModal';
@@ -142,7 +143,14 @@ export default function HomePage() {
         lang={lang}
       />
 
-      {/* 7. Clean Luxury Footer */}
+      {/* 7. Interactive Location & Maps Section */}
+      <LocationMap
+        onSelectCountry={handleCountryChange}
+        t={t}
+        lang={lang}
+      />
+
+      {/* 8. Clean Luxury Footer */}
       <Footer
         onSelectCountry={handleCountryChange}
         onOpenContact={() => setIsContactOpen(true)}
