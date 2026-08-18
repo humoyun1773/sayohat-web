@@ -80,9 +80,7 @@ export default function App() {
     <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased">
       
       {/* 1. Top Navbar */}
-      <Navbar
-        onOpenContact={() => setIsContactOpen(true)}
-      />
+      <Navbar />
 
       {/* 2. Main Hero Section */}
       <Hero

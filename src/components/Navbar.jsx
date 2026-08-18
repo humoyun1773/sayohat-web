@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Plane, Phone, 
-  Menu, X, Sparkles 
-} from 'lucide-react';
+import { Plane, Menu, X } from 'lucide-react';
 
-export default function Navbar({ onOpenContact }) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -65,39 +62,20 @@ export default function Navbar({ onOpenContact }) {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1.5 bg-white/40 backdrop-blur-md px-4 py-1.5 rounded-2xl border border-white/50">
+          <nav className="hidden md:flex items-center gap-2 bg-white/40 backdrop-blur-md px-5 py-2 rounded-2xl border border-white/50">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="px-4 py-2 text-sm font-bold text-slate-800 hover:text-[#10b981] hover:bg-white/60 rounded-xl transition-all"
+                className="px-3.5 py-1.5 text-sm font-bold text-slate-800 hover:text-[#10b981] hover:bg-white/60 rounded-xl transition-all"
               >
                 {link.name}
               </button>
             ))}
           </nav>
 
-          {/* Right Action Button (Direct VIP Contact) */}
-          <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={onOpenContact}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl btn-primary-emerald text-white text-sm font-bold tracking-wide shadow-md hover:scale-105 transition-transform"
-            >
-              <Phone className="w-4 h-4" />
-              <span>BOG'LANISH</span>
-            </button>
-          </div>
-
-          {/* Mobile Right Controls */}
-          <div className="flex items-center gap-2 md:hidden">
-            <button
-              onClick={onOpenContact}
-              className="p-2.5 rounded-xl btn-primary-emerald text-white shadow-xs"
-              title="Bog'lanish"
-            >
-              <Phone className="w-4 h-4" />
-            </button>
-            
+          {/* Mobile Menu Button */}
+          <div className="flex items-center md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-xl bg-white/80 backdrop-blur-md text-slate-900 border border-white/60 hover:bg-white shadow-xs transition-all active:scale-95"
@@ -126,20 +104,6 @@ export default function Navbar({ onOpenContact }) {
                 <span className="text-[#10b981] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
               </button>
             ))}
-          </div>
-
-          {/* Direct Mobile Contact CTA */}
-          <div className="pt-3 border-t border-slate-200">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenContact();
-              }}
-              className="w-full py-3.5 rounded-2xl btn-primary-emerald text-xs font-black text-white uppercase tracking-wider shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"
-            >
-              <Phone className="w-4 h-4" />
-              <span>OPERATORGA YOZISH / BOG'LANISH</span>
-            </button>
           </div>
 
         </div>
