@@ -38,19 +38,19 @@ export default function AuthPage({
     // Max 9 digits (e.g. 901234567)
     digits = digits.slice(0, 9);
 
-    // Format strictly as +998 (XX) XXX-XX-XX
+    // Format cleanly without parentheses: +998 90 123 45 67
     let formatted = '+998';
     if (digits.length > 0) {
-      formatted += ' (' + digits.slice(0, 2);
+      formatted += ' ' + digits.slice(0, 2);
     }
     if (digits.length >= 2) {
-      formatted += ') ' + digits.slice(2, 5);
+      formatted += ' ' + digits.slice(2, 5);
     }
     if (digits.length >= 5) {
-      formatted += '-' + digits.slice(5, 7);
+      formatted += ' ' + digits.slice(5, 7);
     }
     if (digits.length >= 7) {
-      formatted += '-' + digits.slice(7, 9);
+      formatted += ' ' + digits.slice(7, 9);
     }
 
     setPhone(formatted);
@@ -62,7 +62,7 @@ export default function AuthPage({
     // Validate that 9 full local digits were entered
     const digitsOnly = phone.replace(/\D/g, '');
     if (digitsOnly.length < 12) { // 998 + 9 digits = 12 total digits
-      setError('Iltimos, telefon raqamingizni to\'liq kiriting (masalan: +998 (90) 123-45-67)');
+      setError('Iltimos, telefon raqamingizni to\'liq kiriting (masalan: +998 90 123 45 67)');
       return;
     }
 
@@ -382,7 +382,7 @@ export default function AuthPage({
                       inputMode="numeric"
                       value={phone}
                       onChange={handlePhoneChange}
-                      placeholder="+998 (90) 123-45-67"
+                      placeholder="+998 90 123 45 67"
                       className="w-full bg-slate-50 hover:bg-white border border-slate-200 focus:border-[#10b981] rounded-2xl pl-11 pr-4 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none font-mono font-bold transition-all"
                     />
                   </div>
