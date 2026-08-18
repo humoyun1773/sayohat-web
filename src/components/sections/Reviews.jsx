@@ -6,11 +6,11 @@ export default function Reviews({ t, lang = 'uz' }) {
   return (
     <section id="reviews" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
       
-      {/* 100% Pure, Razor-Sharp VIP Aircraft Cabin Background */}
+      {/* 100% Pure, Razor-Sharp Samarkand Shah-i Zinda Mosaic Landmark Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=2600&q=100"
-          alt="VIP First Class Cabin"
+          src="https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=2600&q=100"
+          alt="Samarkand Shah-i Zinda Historical Ensemble"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
         <div className="absolute inset-0 bg-slate-950/40"></div>

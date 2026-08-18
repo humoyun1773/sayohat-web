@@ -70,11 +70,11 @@ export default function CountryExplorer({
   return (
     <section id="countries" className="py-24 relative overflow-hidden bg-white">
       
-      {/* 100% Pure, Razor-Sharp Aerial Landscape Background */}
+      {/* 100% Pure, Razor-Sharp Bukhara Poi Kalyan Historic Landmark Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=2600&q=100"
-          alt="Uzbekistan Historic Landmarks"
+          src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=2600&q=100"
+          alt="Bukhara Poi Kalyan Historical Architecture"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
         <div className="absolute inset-0 bg-slate-900/40"></div>

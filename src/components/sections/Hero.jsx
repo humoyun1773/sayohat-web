@@ -40,14 +40,14 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
   return (
     <section id="hero" className="relative min-h-[88vh] pt-28 sm:pt-36 pb-16 sm:pb-20 flex items-center justify-center overflow-hidden bg-white">
       
-      {/* 100% Pure, Razor-Sharp Uzbekistan Silk Road Background */}
+      {/* 100% Pure, Razor-Sharp Uzbekistan Samarkand Registan Historical Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=2600&q=100"
-          alt="Uzbekistan Silk Road Ancient Architecture"
+          src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=2600&q=100"
+          alt="Samarkand Registan Square Historical Architecture"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-white/45 backdrop-blur-[2px]"></div>
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </div>
 

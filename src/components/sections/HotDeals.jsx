@@ -17,11 +17,11 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
   return (
     <section id="deals" className="py-24 relative overflow-hidden bg-slate-900 border-y border-slate-200">
       
-      {/* 100% Pure, Razor-Sharp Sunset Airplane Flight Background */}
+      {/* 100% Pure, Razor-Sharp Khiva Ichan Kala Ancient City Sunset Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=2600&q=100"
-          alt="Sunset Airplane Flight"
+          src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=2600&q=100"
+          alt="Khiva Ichan Kala Historical City"
           className="w-full h-full object-cover object-center filter brightness-110 contrast-105"
         />
         <div className="absolute inset-0 bg-slate-950/40"></div>

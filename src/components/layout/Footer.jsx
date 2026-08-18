@@ -9,11 +9,11 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
   return (
     <footer className="relative bg-slate-950 text-white pt-16 pb-12 overflow-hidden border-t border-slate-800">
       
-      {/* 100% Verified Pure Razor-Sharp Twilight Travel Background */}
+      {/* 100% Verified Pure Razor-Sharp Ellikqala Ayaz Kala Ancient Citadel Twilight Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=2600&q=100"
-          alt="Historic Landmarks in Twilight"
+          src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=2600&q=100"
+          alt="Ellikqala Ayaz Kala Ancient Desert Citadel"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
         <div className="absolute inset-0 bg-slate-950/85"></div>
