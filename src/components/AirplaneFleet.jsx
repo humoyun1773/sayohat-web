@@ -11,7 +11,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
 
   return (
     <section id="fleet" className="py-20 relative bg-slate-50 border-y border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">

@@ -50,7 +50,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
         
         {/* Main Title & Hero Banner */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">
@@ -68,7 +68,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         </div>
 
         {/* Grand, Spacious Search & Booking Panel (Katta Div) */}
-        <div className="w-full max-w-7xl mx-auto mb-14">
+        <div className="w-full max-w-[1536px] mx-auto mb-14">
           <div className="bg-white/98 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 rounded-3xl border-2 border-slate-200/90 shadow-2xl shadow-slate-300/60">
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 border-b border-slate-100 pb-5 gap-3">

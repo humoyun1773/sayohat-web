@@ -39,11 +39,11 @@ export default function Navbar({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 pt-4 transition-all duration-300">
-      <div className={`max-w-7xl mx-auto rounded-2xl sm:rounded-3xl transition-all duration-300 ${
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-4 transition-all duration-300">
+      <div className={`max-w-[1536px] mx-auto rounded-2xl sm:rounded-3xl transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/40 backdrop-blur-xl shadow-lg py-2.5 px-4 sm:px-6 border border-white/50' 
-          : 'bg-white/20 backdrop-blur-md py-3 px-4 sm:px-6 border border-white/40 shadow-sm'
+          ? 'bg-white/40 backdrop-blur-xl shadow-lg py-2.5 px-6 sm:px-8 border border-white/50' 
+          : 'bg-white/20 backdrop-blur-md py-3.5 px-6 sm:px-8 border border-white/40 shadow-sm'
       }`}>
         <div className="flex items-center justify-between">
           
@@ -51,30 +51,30 @@ export default function Navbar({
           <a 
             href="#hero" 
             onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
-            className="flex items-center gap-3 group shrink-0"
+            className="flex items-center gap-3.5 group shrink-0"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-sky-500 to-blue-700 flex items-center justify-center shadow-md text-white group-hover:scale-105 transition-transform">
-              <Plane className="w-5 h-5 sm:w-6 sm:h-6 transform -rotate-45" />
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-sky-500 to-blue-700 flex items-center justify-center shadow-md text-white group-hover:scale-105 transition-transform">
+              <Plane className="w-6 h-6 transform -rotate-45" />
             </div>
 
             <div>
-              <div className="flex items-center gap-1 leading-none">
-                <span className="text-xl sm:text-2xl font-extrabold tracking-wider text-slate-900 drop-shadow-sm">LOTOS</span>
-                <span className="text-xl sm:text-2xl font-extrabold text-sky-600 drop-shadow-sm">FIELD</span>
+              <div className="flex items-center gap-1.5 leading-none">
+                <span className="text-2xl sm:text-3xl font-extrabold tracking-wider text-slate-900 drop-shadow-sm">LOTOS</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-sky-600 drop-shadow-sm">FIELD</span>
               </div>
-              <p className="text-[9px] sm:text-[10px] tracking-widest uppercase font-bold text-slate-700 mt-0.5">
+              <p className="text-[10px] sm:text-[11px] tracking-widest uppercase font-bold text-slate-700 mt-0.5">
                 Luxury Travel & Airlines
               </p>
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1 bg-white/30 backdrop-blur-md px-3 py-1 rounded-2xl border border-white/40">
+          <nav className="hidden xl:flex items-center gap-1.5 bg-white/30 backdrop-blur-md px-4 py-1.5 rounded-2xl border border-white/40">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="px-3.5 py-1.5 text-xs sm:text-sm font-bold text-slate-800 hover:text-sky-700 hover:bg-white/50 rounded-xl transition-all"
+                className="px-4 py-2 text-sm font-bold text-slate-800 hover:text-sky-700 hover:bg-white/50 rounded-xl transition-all"
               >
                 {link.name}
               </button>
@@ -87,19 +87,19 @@ export default function Navbar({
             {currentUser ? (
               <button
                 onClick={onOpenAuth}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/70 backdrop-blur-md border border-white/60 text-sky-800 text-xs font-bold hover:bg-white transition-all shadow-sm"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/70 backdrop-blur-md border border-white/60 text-sky-800 text-sm font-bold hover:bg-white transition-all shadow-sm"
               >
-                <div className="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-[10px] font-black">
+                <div className="w-6 h-6 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs font-black">
                   {currentUser.name.charAt(0)}
                 </div>
-                <span className="max-w-[90px] truncate">{currentUser.name}</span>
+                <span className="max-w-[110px] truncate">{currentUser.name}</span>
               </button>
             ) : (
               <button
                 onClick={onOpenAuth}
-                className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl btn-primary-blue text-white text-xs font-bold tracking-wide shadow-md"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-xl btn-primary-blue text-white text-sm font-bold tracking-wide shadow-md hover:scale-105 transition-transform"
               >
-                <User className="w-3.5 h-3.5" />
+                <User className="w-4 h-4" />
                 <span>KIRISH</span>
               </button>
             )}
@@ -109,9 +109,9 @@ export default function Navbar({
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/40 backdrop-blur-md text-slate-900 border border-white/50 hover:bg-white/60 transition-all"
+              className="p-2.5 rounded-xl bg-white/40 backdrop-blur-md text-slate-900 border border-white/50 hover:bg-white/60 transition-all"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
@@ -120,14 +120,14 @@ export default function Navbar({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-2 max-w-7xl mx-auto rounded-3xl bg-white/85 backdrop-blur-xl border border-white/60 p-5 space-y-4 shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden mt-2 max-w-[1536px] mx-auto rounded-3xl bg-white/85 backdrop-blur-xl border border-white/60 p-6 space-y-4 shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
           
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2.5">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="text-left px-3.5 py-2.5 rounded-xl bg-white/60 hover:bg-sky-50 text-xs font-bold text-slate-800 hover:text-sky-600 border border-white/50 transition-all"
+                className="text-left px-4 py-3 rounded-xl bg-white/60 hover:bg-sky-50 text-xs font-bold text-slate-800 hover:text-sky-600 border border-white/50 transition-all"
               >
                 {link.name}
               </button>
@@ -141,7 +141,7 @@ export default function Navbar({
                 setMobileMenuOpen(false);
                 onOpenAuth();
               }}
-              className="w-full py-3 rounded-2xl btn-primary-blue text-xs font-bold text-white shadow-md"
+              className="w-full py-3.5 rounded-2xl btn-primary-blue text-xs font-bold text-white shadow-md"
             >
               {currentUser ? 'Mening Profilim' : 'KIRISH / REGISTRATSIYA'}
             </button>

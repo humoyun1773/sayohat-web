@@ -5,7 +5,7 @@ import { REVIEWS } from '../data/travelData';
 export default function Reviews() {
   return (
     <section id="reviews" className="py-20 relative bg-white border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
