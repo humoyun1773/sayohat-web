@@ -47,20 +47,18 @@ export default function CountryExplorer({
   const countryFlight = lang === 'ru' ? (currentCountry.flightDurationRu || currentCountry.flightDurationUz) : lang === 'en' ? (currentCountry.flightDurationEn || currentCountry.flightDurationUz) : currentCountry.flightDurationUz;
   const countryBestTime = lang === 'ru' ? (currentCountry.bestTimeRu || currentCountry.bestTimeUz) : lang === 'en' ? (currentCountry.bestTimeEn || currentCountry.bestTimeUz) : currentCountry.bestTimeUz;
 
-  // Safe gallery images & localized spot names
-  const galleryPhotos = currentCountry.images?.map((url, i) => {
-    const spot = currentCountry.spots?.[i];
-    let spotTitle = countryName;
-    if (spot) {
-      spotTitle = lang === 'ru' ? (spot.nameRu || spot.nameUz) : lang === 'en' ? (spot.nameEn || spot.nameUz) : spot.nameUz;
-    }
-    return {
-      url,
-      title: spotTitle
-    };
-  }) || [
-    { url: currentCountry.coverImage, title: countryName }
-  ];
+  // Safe gallery images & localized spot names directly from spots
+  const galleryPhotos = currentCountry.spots && currentCountry.spots.length > 0
+    ? currentCountry.spots.map((spot) => ({
+        url: spot.img || currentCountry.coverImage,
+        title: lang === 'ru' ? (spot.nameRu || spot.nameUz) : lang === 'en' ? (spot.nameEn || spot.nameUz) : spot.nameUz
+      }))
+    : currentCountry.images && currentCountry.images.length > 0
+    ? currentCountry.images.map((url, i) => ({
+        url,
+        title: `${countryName} ${i + 1}`
+      }))
+    : [{ url: currentCountry.coverImage, title: countryName }];
 
   const activePhotoUrl = galleryPhotos[activePhotoIdx]?.url || currentCountry.coverImage;
   const activePhotoTitle = galleryPhotos[activePhotoIdx]?.title || countryName;
@@ -117,8 +115,8 @@ export default function CountryExplorer({
           })}
         </div>
 
-        {/* Horizontal Regions Selector Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-10">
+        {/* Horizontal Regions Selector Bar with REAL Landmark Photos */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
           {filteredCountries.map((c) => {
             const isSelected = c.id === currentCountry.id;
             const price = c.basePriceUSD || c.priceUSD || 80;
@@ -127,15 +125,23 @@ export default function CountryExplorer({
               <button
                 key={c.id}
                 onClick={() => handleCountryClick(c.id)}
-                className={`p-3 rounded-2xl text-center transition-all duration-200 border flex flex-col items-center gap-1.5 group ${
+                className={`p-2 rounded-2xl text-center transition-all duration-300 border flex flex-col items-center group cursor-pointer ${
                   isSelected
-                    ? 'bg-white border-2 border-[#10b981] shadow-lg scale-105 ring-4 ring-[#10b981]/15'
-                    : 'bg-white/90 hover:bg-white border-slate-200 shadow-xs hover:border-slate-300'
+                    ? 'bg-white border-2 border-[#10b981] shadow-xl scale-105 ring-4 ring-[#10b981]/20'
+                    : 'bg-white/95 hover:bg-white border-slate-200 shadow-xs hover:border-slate-300 hover:-translate-y-1'
                 }`}
               >
-                <div className="text-2xl leading-none">{c.flag}</div>
-                <div className="font-bold text-xs text-slate-900 truncate w-full">{displayName}</div>
-                <div className="text-[11px] font-black text-[#10b981]">{formatPrice(price)} {t.regions.fromPrice}</div>
+                <div className="relative w-full h-16 sm:h-20 rounded-xl overflow-hidden mb-2 shadow-2xs">
+                  <img 
+                    src={c.coverImage} 
+                    alt={displayName} 
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <span className="absolute bottom-1 right-1.5 text-xs drop-shadow">{c.flag}</span>
+                </div>
+                <div className="font-black text-xs text-slate-900 truncate w-full px-1">{displayName}</div>
+                <div className="text-[11px] font-black text-[#10b981] mt-0.5">{formatPrice(price)} {t.regions.fromPrice}</div>
               </button>
             );
           })}
