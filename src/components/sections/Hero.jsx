@@ -165,6 +165,8 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
             </div>
 
           </div>
+        </div>
+
         {/* 4 Grand Trust Pillars */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
