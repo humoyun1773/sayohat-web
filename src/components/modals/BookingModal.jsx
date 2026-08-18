@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  X, CheckCircle2, Bus, 
+  X, CheckCircle2, Bus, Plane,
   ShieldCheck, Printer, Phone
 } from 'lucide-react';
-import { EXCHANGE_RATE } from '../../data/travelData';
+import { COUNTRIES, EXCHANGE_RATE } from '../../data/travelData';
 
 export default function BookingModal({ 
   isOpen, 
@@ -18,6 +18,18 @@ export default function BookingModal({
   const [travelDate, setTravelDate] = useState('');
   const [passengers, setPassengers] = useState(2);
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [modalTransport, setModalTransport] = useState('bus');
+
+  // Sync initial transport type from bookingData
+  useEffect(() => {
+    if (bookingData && bookingData.flightClass) {
+      if (bookingData.flightClass.toLowerCase().includes('samolyot') || bookingData.flightClass.toLowerCase().includes('авиа') || bookingData.flightClass.toLowerCase().includes('flight')) {
+        setModalTransport('plane');
+      } else {
+        setModalTransport('bus');
+      }
+    }
+  }, [bookingData]);
 
   // Format 9 digits nicely for display: e.g. 90 123 45 67
   const formatDisplayDigits = (val) => {
@@ -84,6 +96,18 @@ export default function BookingModal({
 
   if (!isOpen || !bookingData) return null;
 
+  // Find country if available to get exact package price
+  const matchedCountry = COUNTRIES.find(c => 
+    c.name.toLowerCase() === (bookingData.country || '').toLowerCase() ||
+    (c.nameRu && c.nameRu.toLowerCase() === (bookingData.country || '').toLowerCase()) ||
+    (c.nameEn && c.nameEn.toLowerCase() === (bookingData.country || '').toLowerCase())
+  );
+
+  let calculatedPriceUSD = bookingData.priceUSD || 190;
+  if (matchedCountry && matchedCountry.packages && matchedCountry.packages[modalTransport]) {
+    calculatedPriceUSD = matchedCountry.packages[modalTransport].priceUSD;
+  }
+
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;
     const som = (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
@@ -104,8 +128,6 @@ export default function BookingModal({
     window.print();
   };
 
-  const currentPrice = bookingData.priceUSD || 80;
-
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md modal-backdrop-animate overscroll-contain"
@@ -120,7 +142,7 @@ export default function BookingModal({
         <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-[#10b981] text-white flex items-center justify-center font-bold shadow-md">
-              <Bus className="w-5 h-5" />
+              {modalTransport === 'plane' ? <Plane className="w-5 h-5 transform -rotate-45" /> : <Bus className="w-5 h-5" />}
             </div>
             <div>
               <div className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase">{t.bookingModal.airlineTag}</div>
@@ -147,16 +169,18 @@ export default function BookingModal({
               
               <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden border border-slate-700">
                 
-                {/* Bus Watermark */}
+                {/* Watermark */}
                 <div className="absolute right-[-20px] bottom-[-20px] text-white/5 pointer-events-none">
-                  <Bus className="w-48 h-48" />
+                  {modalTransport === 'plane' ? <Plane className="w-48 h-48" /> : <Bus className="w-48 h-48" />}
                 </div>
 
                 <div className="flex justify-between items-start border-b border-slate-700 pb-4 mb-4">
                   <div>
                     <span className="text-[11px] uppercase tracking-widest text-[#a7f3d0] font-bold block">{t.bookingModal.passTitle}</span>
                     <h4 className="text-xl font-black text-white">{bookingData.country}</h4>
-                    <p className="text-xs text-slate-300">{t.bookingModal.passSub}</p>
+                    <p className="text-xs text-slate-300">
+                      {modalTransport === 'plane' ? '✈️ Samolyot Parvozi' : '🚌 Qulay Sayyohlik Avtobusi'} • {t.bookingModal.passSub}
+                    </p>
                   </div>
                   <div className="text-right">
                     <span className="text-[10px] uppercase text-slate-400 block font-mono">Status</span>
@@ -182,7 +206,7 @@ export default function BookingModal({
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.totalPrice}</span>
-                    <span className="font-bold text-[#a7f3d0] text-sm">{formatPrice(currentPrice)}</span>
+                    <span className="font-bold text-[#a7f3d0] text-sm">{formatPrice(calculatedPriceUSD)}</span>
                   </div>
                 </div>
 
@@ -229,7 +253,7 @@ export default function BookingModal({
 
             </div>
           ) : (
-            /* Clean Booking Form (Without Passport Input) */
+            /* Clean Booking Form */
             <form onSubmit={handleConfirmBooking} className="space-y-4">
               
               {/* Tour Summary Banner */}
@@ -237,14 +261,43 @@ export default function BookingModal({
                 <div>
                   <div className="text-[11px] text-slate-500 font-semibold">{t.bookingModal.destLabel}</div>
                   <div className="text-base font-bold text-slate-900">{bookingData.country}</div>
-                  {bookingData.flightClass && (
-                    <div className="text-[11px] text-[#10b981] font-medium">{bookingData.flightClass} • {bookingData.hotelStar}</div>
-                  )}
+                  <div className="text-[11px] text-[#10b981] font-semibold">
+                    {modalTransport === 'plane' ? '✈️ Samolyot Parvozi' : '🚌 Qulay Avtobus / Gazel'} • 4★ Mehmonxona + 3 mahal ovqat
+                  </div>
                 </div>
                 <div className="text-right">
                   <div className="text-[11px] text-slate-500 font-semibold">{t.bookingModal.priceLabel}</div>
-                  <div className="text-lg font-black text-[#10b981]">{formatPrice(currentPrice)}</div>
+                  <div className="text-lg font-black text-[#10b981]">{formatPrice(calculatedPriceUSD)}</div>
                 </div>
+              </div>
+
+              {/* Transport Switcher Inside Modal */}
+              <div className="p-1.5 bg-slate-100 rounded-2xl border border-slate-200 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setModalTransport('bus')}
+                  className={`py-2 px-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    modalTransport === 'bus'
+                      ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Bus className="w-4 h-4 text-[#10b981]" />
+                  <span>{lang === 'ru' ? '🚌 Автобус' : lang === 'en' ? '🚌 Coach' : '🚌 Qulay Avtobus'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setModalTransport('plane')}
+                  className={`py-2 px-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    modalTransport === 'plane'
+                      ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Plane className="w-4 h-4 text-emerald-600 transform -rotate-45" />
+                  <span>{lang === 'ru' ? '✈️ Самолет' : lang === 'en' ? '✈️ Flight' : '✈️ Samolyot'}</span>
+                </button>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -258,7 +311,7 @@ export default function BookingModal({
                     placeholder={t.bookingModal.namePlaceholder}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all placeholder:text-slate-400"
                   />
                 </div>
 
@@ -266,19 +319,18 @@ export default function BookingModal({
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     {t.bookingModal.phoneLabel}
                   </label>
-                  <div className="flex items-center bg-slate-50 border border-slate-300 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden">
-                    <div className="flex items-center gap-1.5 pl-3 pr-2 py-3 text-slate-800 font-mono font-bold text-xs select-none border-r border-slate-200 shrink-0">
-                      <Phone className="w-3.5 h-3.5 text-[#10b981]" />
-                      <span>+998</span>
-                    </div>
+                  <div className="flex rounded-2xl border border-slate-200 bg-white overflow-hidden focus-within:border-[#10b981] focus-within:ring-3 focus-within:ring-[#10b981]/15 transition-all">
+                    <span className="px-3.5 py-3 bg-slate-50 text-slate-600 font-bold text-sm border-r border-slate-200 flex items-center shrink-0">
+                      +998
+                    </span>
                     <input
                       type="tel"
                       required
-                      inputMode="numeric"
                       placeholder="90 123 45 67"
                       value={formatDisplayDigits(phoneDigits)}
                       onChange={handlePhoneInput}
-                      className="w-full bg-transparent px-3 py-3 text-xs text-slate-900 placeholder-slate-400 outline-none font-mono font-bold"
+                      className="w-full px-3.5 py-3 text-sm font-bold focus:outline-none bg-white text-slate-900 tracking-wide placeholder:text-slate-400 placeholder:tracking-normal"
+                      maxLength={12}
                     />
                   </div>
                 </div>
@@ -294,7 +346,7 @@ export default function BookingModal({
                     required
                     value={travelDate}
                     onChange={(e) => setTravelDate(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none cursor-pointer"
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all"
                   />
                 </div>
 
@@ -302,34 +354,38 @@ export default function BookingModal({
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     {t.bookingModal.passengersLabel}
                   </label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="20"
+                  <select
                     value={passengers}
                     onChange={(e) => setPassengers(Number(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
-                  />
+                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all"
+                  >
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => (
+                      <option key={n} value={n}>
+                        {n} {lang === 'ru' ? 'чел.' : lang === 'en' ? 'guests' : 'kishi'}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] text-xs text-[#065f46] flex items-center gap-2.5">
-                <ShieldCheck className="w-4 h-4 text-[#10b981] shrink-0" />
-                <span>{t.bookingModal.freeBookingNote}</span>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-98 transition-all"
+                >
+                  <ShieldCheck className="w-5 h-5" />
+                  <span>{t.bookingModal.confirmBtn}</span>
+                </button>
+
+                <p className="text-[11px] text-center text-slate-400 mt-2 font-medium">
+                  {t.bookingModal.freeBookingNote}
+                </p>
               </div>
 
-              <button
-                type="submit"
-                className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
-              >
-                <Bus className="w-4 h-4" />
-                <span>{t.bookingModal.confirmBtn}</span>
-              </button>
             </form>
           )}
 
         </div>
-
       </div>
     </div>
   );

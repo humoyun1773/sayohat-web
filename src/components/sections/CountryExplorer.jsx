@@ -7,18 +7,60 @@ import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 
-export default function CountryExplorer({ 
-  onOpenBooking, 
-  onOpenImageLightbox,
-  currency = 'USD',
-  t,
-  lang = 'uz'
-}) {
+export default function CountryExplorer({ onOpenBooking, onOpenImageLightbox, t, lang = 'uz' }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedCountryId, setSelectedCountryId] = useState('samarkand');
+  const [activeCountryId, setActiveCountryId] = useState('samarkand');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [transportMode, setTransportMode] = useState('bus'); // 'bus' | 'plane'
 
-  // Defensive safe price formatter
+  const filteredCountries = selectedCategory === 'all'
+    ? COUNTRIES
+    : COUNTRIES.filter(c => c.category === selectedCategory);
+
+  const currentCountry = COUNTRIES.find(c => c.id === activeCountryId) || COUNTRIES[0];
+
+  const currentPkg = currentCountry.packages ? currentCountry.packages[transportMode] : null;
+  const currentPrice = currentPkg ? currentPkg.priceUSD : (currentCountry.basePriceUSD || 190);
+  const countryFlight = currentPkg 
+    ? (lang === 'ru' ? currentPkg.durationRu : lang === 'en' ? currentPkg.durationEn : currentPkg.durationUz) 
+    : currentCountry.flightDurationUz;
+  const countryHighlights = currentPkg 
+    ? (lang === 'ru' ? currentPkg.highlightsRu : lang === 'en' ? currentPkg.highlightsEn : currentPkg.highlightsUz) 
+    : (lang === 'ru' ? currentCountry.highlightsRu : lang === 'en' ? currentCountry.highlightsEn : currentCountry.highlightsUz);
+  const transportLabel = currentPkg 
+    ? (lang === 'ru' ? currentPkg.transportLabelRu : lang === 'en' ? currentPkg.transportLabelEn : currentPkg.transportLabelUz) 
+    : (transportMode === 'plane' ? "Samolyot" : "Avtobus");
+
+  const countryName = lang === 'ru' ? (currentCountry.nameRu || currentCountry.name) : lang === 'en' ? (currentCountry.nameEn || currentCountry.name) : currentCountry.name;
+  const countryTagline = lang === 'ru' ? currentCountry.taglineRu : lang === 'en' ? currentCountry.taglineEn : currentCountry.taglineUz;
+  const countryDescription = lang === 'ru' ? currentCountry.descriptionRu : lang === 'en' ? currentCountry.descriptionEn : currentCountry.descriptionUz;
+  const countryVisa = lang === 'ru' ? currentCountry.visaRu : lang === 'en' ? currentCountry.visaEn : currentCountry.visaUz;
+  const countryBestTime = lang === 'ru' ? currentCountry.bestTimeRu : lang === 'en' ? currentCountry.bestTimeEn : currentCountry.bestTimeUz;
+
+  // Build dynamic gallery photos
+  const galleryPhotos = [];
+  if (currentCountry.spots && currentCountry.spots.length > 0) {
+    currentCountry.spots.forEach(spot => {
+      const title = lang === 'ru' ? (spot.nameRu || spot.nameUz) : lang === 'en' ? (spot.nameEn || spot.nameUz) : spot.nameUz;
+      galleryPhotos.push({ url: spot.img, title: title });
+    });
+  } else if (currentCountry.images && currentCountry.images.length > 0) {
+    currentCountry.images.forEach((imgUrl, i) => {
+      galleryPhotos.push({ url: imgUrl, title: `${countryName} Photo ${i + 1}` });
+    });
+  } else {
+    galleryPhotos.push({ url: currentCountry.coverImage, title: countryName });
+  }
+
+  const activePhoto = galleryPhotos[activePhotoIdx] || galleryPhotos[0] || { url: currentCountry.coverImage, title: countryName };
+  const activePhotoUrl = activePhoto.url;
+  const activePhotoTitle = activePhoto.title;
+
+  const handleCountryClick = (id) => {
+    setActiveCountryId(id);
+    setActivePhotoIdx(0);
+  };
+
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;
     const som = (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
@@ -26,47 +68,8 @@ export default function CountryExplorer({
     return `${som} (${usd})`;
   };
 
-  const handleCountryClick = (cId) => {
-    setSelectedCountryId(cId);
-    setActivePhotoIdx(0);
-  };
-
-  const filteredCountries = selectedCategory === 'all'
-    ? COUNTRIES
-    : COUNTRIES.filter(c => c.category === selectedCategory);
-
-  const currentCountry = COUNTRIES.find(c => c.id === selectedCountryId) || COUNTRIES[0];
-
-  // Dynamic localized fields
-  const countryName = lang === 'ru' ? (currentCountry.nameRu || currentCountry.name) : lang === 'en' ? (currentCountry.nameEn || currentCountry.name) : currentCountry.name;
-  const countryTagline = lang === 'ru' ? (currentCountry.taglineRu || currentCountry.taglineUz) : lang === 'en' ? (currentCountry.taglineEn || currentCountry.taglineUz) : currentCountry.taglineUz;
-  const countryDescription = lang === 'ru' ? (currentCountry.descriptionRu || currentCountry.descriptionUz) : lang === 'en' ? (currentCountry.descriptionEn || currentCountry.descriptionUz) : currentCountry.descriptionUz;
-  const countryVisa = lang === 'ru' ? (currentCountry.visaRu || currentCountry.visaUz) : lang === 'en' ? (currentCountry.visaEn || currentCountry.visaUz) : currentCountry.visaUz;
-  const countryFlight = lang === 'ru' ? (currentCountry.flightDurationRu || currentCountry.flightDurationUz) : lang === 'en' ? (currentCountry.flightDurationEn || currentCountry.flightDurationUz) : currentCountry.flightDurationUz;
-  const countryBestTime = lang === 'ru' ? (currentCountry.bestTimeRu || currentCountry.bestTimeUz) : lang === 'en' ? (currentCountry.bestTimeEn || currentCountry.bestTimeUz) : currentCountry.bestTimeUz;
-  const countryHighlights = lang === 'ru' ? (currentCountry.highlightsRu || currentCountry.highlightsUz) : lang === 'en' ? (currentCountry.highlightsEn || currentCountry.highlightsUz) : currentCountry.highlightsUz;
-  const currentPrice = currentCountry.basePriceUSD || currentCountry.priceUSD || 80;
-
-  // Build unified dynamic photos list
-  const spotsPhotos = currentCountry.spots?.map(s => ({
-    url: s.img,
-    title: lang === 'ru' ? (s.nameRu || s.nameUz) : lang === 'en' ? (s.nameEn || s.nameUz) : s.nameUz,
-    desc: lang === 'ru' ? (s.descRu || s.descUz) : lang === 'en' ? (s.descEn || s.descUz) : s.descUz
-  })) || [];
-
-  const rawImages = currentCountry.images?.map((url, i) => ({
-    url,
-    title: `${countryName} ${i + 1}`,
-    desc: countryTagline
-  })) || [];
-
-  const galleryPhotos = spotsPhotos.length > 0 ? spotsPhotos : rawImages;
-  const activePhoto = galleryPhotos[activePhotoIdx] || { url: currentCountry.coverImage, title: countryName };
-  const activePhotoUrl = activePhoto?.url || currentCountry.coverImage;
-  const activePhotoTitle = activePhoto?.title || countryName;
-
   return (
-    <section id="destinations" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
+    <section id="regions" className="py-24 relative overflow-hidden bg-white border-b border-slate-200">
       
       {/* 100% Pure, Crystal-Clear Bukhara Ark Background - ZERO OPACITY & NO BLACK BORDERS */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -80,7 +83,7 @@ export default function CountryExplorer({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Section Header in High Contrast Glass Card */}
-        <div className="text-center max-w-4xl mx-auto mb-12 space-y-3">
+        <div className="text-center max-w-4xl mx-auto mb-10 space-y-3">
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
               {t.regions.title1} <br />
@@ -94,17 +97,46 @@ export default function CountryExplorer({
           </div>
         </div>
 
+        {/* Global Transport Switcher Bar: [🚌 Avtobus / Gazel] vs [✈️ Samolyot Parvozi] */}
+        <div className="max-w-md mx-auto mb-8">
+          <div className="p-1.5 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-md grid grid-cols-2 gap-2">
+            <button
+              onClick={() => setTransportMode('bus')}
+              className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                transportMode === 'bus'
+                  ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Bus className="w-4 h-4" />
+              <span>{lang === 'ru' ? '🚌 Автобус / Газель' : lang === 'en' ? '🚌 Coach / Van' : '🚌 Qulay Avtobus / Gazel'}</span>
+            </button>
+
+            <button
+              onClick={() => setTransportMode('plane')}
+              className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                transportMode === 'plane'
+                  ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Plane className="w-4 h-4 transform -rotate-45" />
+              <span>{lang === 'ru' ? '✈️ Авиаперелет' : lang === 'en' ? '✈️ Direct Flight' : '✈️ Samolyot Parvozi'}</span>
+            </button>
+          </div>
+        </div>
+
         {/* Category Filter Pills */}
-        <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+        <div className="flex items-center justify-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
           {CATEGORIES.map((cat) => {
             const catName = lang === 'ru' ? cat.nameRu : lang === 'en' ? cat.nameEn : cat.nameUz;
             return (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all shadow-xs cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all shadow-xs cursor-pointer ${
                   selectedCategory === cat.id
-                    ? 'bg-[#10b981] text-white scale-105 shadow-md'
+                    ? 'bg-slate-900 text-white scale-105 shadow-md'
                     : 'bg-white/90 hover:bg-white text-slate-700 border border-slate-200'
                 }`}
               >
@@ -118,7 +150,7 @@ export default function CountryExplorer({
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
           {filteredCountries.map((c) => {
             const isSelected = c.id === currentCountry.id;
-            const price = c.basePriceUSD || c.priceUSD || 80;
+            const pkgPrice = c.packages && c.packages[transportMode] ? c.packages[transportMode].priceUSD : (c.basePriceUSD || 190);
             const displayName = lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name;
             return (
               <button
@@ -136,7 +168,7 @@ export default function CountryExplorer({
                   <span className="absolute bottom-1 right-1.5 text-xs drop-shadow">{c.flag}</span>
                 </div>
                 <div className="font-bold text-xs text-slate-900 truncate w-full px-1">{displayName}</div>
-                <div className="text-[10px] font-black text-[#10b981] mt-0.5 truncate w-full px-1">{formatPrice(price)}</div>
+                <div className="text-[10px] font-black text-[#10b981] mt-0.5 truncate w-full px-1">{formatPrice(pkgPrice)}</div>
               </button>
             );
           })}
@@ -204,7 +236,7 @@ export default function CountryExplorer({
 
           {/* Right: Comprehensive Info, Transport, Weather & Booking (5 cols) */}
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
-            <div className="space-y-6">
+            <div className="space-y-5">
               
               <div>
                 <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#10b981] mb-1">
@@ -213,6 +245,35 @@ export default function CountryExplorer({
                 </div>
                 <h4 className="text-2xl font-black text-slate-900">{countryName} {t.regions.tourSuffix}</h4>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">{countryDescription}</p>
+              </div>
+
+              {/* Inside Card Transport Selector Switch */}
+              <div className="p-2 bg-slate-100 rounded-2xl border border-slate-200/80">
+                <div className="grid grid-cols-2 gap-1.5">
+                  <button
+                    onClick={() => setTransportMode('bus')}
+                    className={`py-2 px-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      transportMode === 'bus'
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <Bus className="w-3.5 h-3.5 text-[#10b981]" />
+                    <span className="truncate">{lang === 'ru' ? 'Автобус / Газель' : lang === 'en' ? 'Coach / Van' : 'Avtobus / Gazel'}</span>
+                  </button>
+
+                  <button
+                    onClick={() => setTransportMode('plane')}
+                    className={`py-2 px-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                      transportMode === 'plane'
+                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <Plane className="w-3.5 h-3.5 text-emerald-600 transform -rotate-45" />
+                    <span className="truncate">{lang === 'ru' ? 'Авиаперелет' : lang === 'en' ? 'Direct Flight' : 'Samolyot Reysi'}</span>
+                  </button>
+                </div>
               </div>
 
               {/* 4 Fast Facts Badges in shadcn Card style */}
@@ -235,7 +296,7 @@ export default function CountryExplorer({
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
-                    <Bus className="w-4 h-4 text-[#10b981]" />
+                    {transportMode === 'plane' ? <Plane className="w-4 h-4 text-emerald-600 transform -rotate-45" /> : <Bus className="w-4 h-4 text-[#10b981]" />}
                     <span>{t.regions.facts.duration}</span>
                   </div>
                   <div className="text-xs font-extrabold text-slate-900 leading-snug">{countryFlight}</div>
@@ -281,13 +342,13 @@ export default function CountryExplorer({
                 <button
                   onClick={() => onOpenBooking({ 
                     country: countryName, 
-                    flightClass: currentCountry.transportType === 'plane' ? 'To\'g\'ridan-to\'g\'ri Samolyot Reysi' : 'Qulay Sayyohlik Avtobusi', 
+                    flightClass: transportLabel, 
                     hotelStar: '4★ Mehmonxona (4 kecha) + 3 mahal ovqat', 
                     priceUSD: currentPrice 
                   })}
                   className="w-full py-3.5 px-6 rounded-2xl bg-[#10b981] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:bg-[#059669] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  {currentCountry.transportType === 'plane' ? <Plane className="w-4 h-4 transform -rotate-45" /> : <Bus className="w-4 h-4" />}
+                  {transportMode === 'plane' ? <Plane className="w-4 h-4 transform -rotate-45" /> : <Bus className="w-4 h-4" />}
                   <span>{t.regions.bookBtn}</span>
                 </button>
               </div>
@@ -300,9 +361,12 @@ export default function CountryExplorer({
         {currentCountry.spots && currentCountry.spots.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                {countryName} — {t.regions.spotsTitle || 'Asosiy Diqqatga Sazovor Joylar'}
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                {countryName}ning Mashhur Tarixiy & Ekoturizm Maskanlari
               </h3>
+              <Badge variant="secondary" className="font-bold text-slate-600">
+                4 ta Asosiy Maskanga Chiptalar Kiritilgan
+              </Badge>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -311,35 +375,41 @@ export default function CountryExplorer({
                 const spotDesc = lang === 'ru' ? (spot.descRu || spot.descUz) : lang === 'en' ? (spot.descEn || spot.descUz) : spot.descUz;
 
                 return (
-                  <Card
+                  <Card 
                     key={idx}
+                    className="overflow-hidden border border-slate-200/90 hover:border-[#10b981]/50 hover:shadow-lg transition-all duration-300 group cursor-pointer"
                     onClick={() => {
                       setActivePhotoIdx(idx);
-                      if (spot.img) onOpenImageLightbox(spot.img);
+                      onOpenImageLightbox(spot.img);
                     }}
-                    className="overflow-hidden group cursor-pointer hover:shadow-xl hover:border-[#10b981]/50 transition-all duration-300 hover:-translate-y-1 p-0"
                   >
                     <div className="relative h-44 overflow-hidden">
-                      <img
-                        src={spot.img}
-                        alt={spotName}
+                      <img 
+                        src={spot.img} 
+                        alt={spotName} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                      
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
                       <div className="absolute top-2 right-2">
-                        <span className="p-1.5 rounded-full bg-black/50 text-white hover:bg-white hover:text-black transition-colors backdrop-blur-md inline-flex">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onOpenImageLightbox(spot.img);
+                          }}
+                          className="p-1.5 rounded-full bg-black/60 text-white hover:bg-[#10b981] transition-colors"
+                        >
                           <Maximize2 className="w-3.5 h-3.5" />
-                        </span>
-                      </div>
-
-                      <div className="absolute bottom-2 left-3 right-3">
-                        <h4 className="font-bold text-sm text-white drop-shadow-sm leading-tight">{spotName}</h4>
+                        </button>
                       </div>
                     </div>
 
-                    <CardContent className="p-3.5">
-                      <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">{spotDesc}</p>
+                    <CardContent className="p-4 space-y-1">
+                      <h4 className="font-bold text-sm text-slate-900 group-hover:text-[#10b981] transition-colors line-clamp-1">
+                        {spotName}
+                      </h4>
+                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                        {spotDesc}
+                      </p>
                     </CardContent>
                   </Card>
                 );

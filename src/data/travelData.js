@@ -1,7 +1,9 @@
 // ==========================================
 // LOTOS FIELD - MULTILINGUAL TRAVEL DATA
-// REAL CALCULATED MARKET PRICES:
-// TRANSPORT (BUS/PLANE) + HOTEL (4 NIGHTS) + 3 MEALS/DAY (5 DAYS) + GUIDES & TICKETS
+// REAL CALCULATED MARKET PRICES FOR BOTH:
+// 1. [BUS] Sayyohlik Avtobusi / Gazel / Sprinter
+// 2. [PLANE] To'g'ridan-to'g'ri Samolyot Parvozi
+// (Includes: Round-trip Transport + 4 Nights Hotel + 3 Meals/Day for 5 Days + Museum Passes & Private Guides)
 // ==========================================
 
 export const EXCHANGE_RATE = 12850; // 1 USD = 12,850 UZS
@@ -26,10 +28,6 @@ export const COUNTRIES = [
     taglineRu: 'Лик Земли — Площадь Регистан, Гур-Эмир и Вечный Город',
     taglineEn: 'Pearl of the Silk Road — Registan Square, Gur-e-Amir & Eternal City',
     coverImage: '/images/landmarks/samarkand-registan.png',
-    transportType: 'bus',
-    flightDurationUz: '🚌 Qulay Sayyohlik Avtobusi: 4-4.5 soat (Borish-kelish chiptasi kiritilgan)',
-    flightDurationRu: '🚌 Комфортабельный автобус: 4-4.5 часа (Билеты включены)',
-    flightDurationEn: '🚌 Tourist Coach / Van: 4-4.5 hours (Round-trip included)',
     visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
     visaRu: '5 дней / 4 ночи «Все включено»',
     visaEn: '5 Days / 4 Nights All-Inclusive',
@@ -38,31 +36,73 @@ export const COUNTRIES = [
     bestTimeEn: 'March - June, Sept - Nov',
     temp: '+26°C',
     rating: 4.99,
-    basePriceUSD: 190, // ~2,441,500 so'm
-    descriptionUz: 'Samarqand – 2750 yillik Sharq gavhari. 5 kun va 4 kechalik to\'liq paket: qulay sayyohlik avtobusi, 4★ mehmonxona, 5 kun 3 mahal to\'y oshi va milliy taomlar, Registon, Go\'ri Amir, Shohi Zinda biletlari va shaxsiy gid.',
-    descriptionRu: 'Самарканд — жемчужина Востока. Полный тур на 5 дней / 4 ночи: комфортный туристический автобус, 4★ отель, 3-разовое питание с самаркандским пловом, билеты на все памятники и персональный гид.',
-    descriptionEn: 'Samarkand 5 Days / 4 Nights all-inclusive: comfortable coach transit, 4★ hotel, 3 gourmet meals daily with traditional pilaf, all museum tickets & private guide.',
-    highlightsUz: [
-      '🚌 Toshkentdan qulay konditsionerli sayyohlik avtobusi (borish-kelish)',
-      '🏨 4 kecha Registon yonidagi 4★ tarixiy mehmonxonada tunash',
-      '🍲 5 kun davomida 3 mahal to\'liq ovqatlanish (mashhur to\'y oshi, shashliklar)',
-      '🏛️ Registon, Go\'ri Amir, Shohi Zinda, Boqiy Shahar kirish biletlari',
-      '👨‍💼 5 kun davomida siz bilan birga bo\'luvchi professional litsenziyali gid'
-    ],
-    highlightsRu: [
-      '🚌 Комфортабельный туристический автобус с кондиционером (туда и обратно)',
-      '🏨 4 ночи в 4★ историческом отеле рядом с Регистаном',
-      '🍲 3-разовое питание на 5 дней (знаменитый самаркандский плов, шашлыки)',
-      '🏛️ Входные билеты в Регистан, Гур-Эмир, Шахи-Зинда и Вечный Город',
-      '👨‍💼 Профессиональный сертифицированный гид на все дни тура'
-    ],
-    highlightsEn: [
-      '🚌 Round-trip air-conditioned tourist coach transportation',
-      '🏨 4 Nights accommodation in 4★ hotel near Registan Square',
-      '🍲 Full board: 3 gourmet meals daily across 5 days (Samarkand pilaf, kebabs)',
-      '🏛️ All entrance tickets to Registan, Gur-e-Amir, Shah-i Zinda & Eternal City',
-      '👨‍💼 Dedicated licensed professional tour guide throughout the trip'
-    ],
+    descriptionUz: 'Samarqand – 2750 yillik Sharq gavhari. 5 kun va 4 kechalik to\'liq paket: tanlangan transport (avtobus yoki samolyot), 4★ mehmonxona, 5 kun 3 mahal to\'y oshi va milliy taomlar, Registon, Go\'ri Amir, Shohi Zinda biletlari va shaxsiy gid.',
+    descriptionRu: 'Самарканд — жемчужина Востока. Полный тур на 5 дней / 4 ночи: выбранный транспорт (автобус или самолет), 4★ отель, 3-разовое питание с самаркандским пловом, билеты на все памятники и персональный гид.',
+    descriptionEn: 'Samarkand 5 Days / 4 Nights all-inclusive: chosen transport (coach or flight), 4★ hotel, 3 gourmet meals daily with traditional pilaf, all museum tickets & private guide.',
+    
+    // Dual Transport Packages
+    packages: {
+      bus: {
+        priceUSD: 190, // 2,441,500 so'm
+        durationUz: '🚌 Qulay Sayyohlik Avtobusi: 4-4.5 soat (Borish-kelish chiptasi kiritilgan)',
+        durationRu: '🚌 Комфортабельный автобус: 4-4.5 часа (Билеты включены)',
+        durationEn: '🚌 Tourist Coach: 4-4.5 hours (Round-trip tickets included)',
+        transportLabelUz: 'Qulay Sayyohlik Avtobusi',
+        transportLabelRu: 'Комфортабельный автобус',
+        transportLabelEn: 'Comfortable Tourist Coach',
+        highlightsUz: [
+          '🚌 Toshkentdan qulay konditsionerli sayyohlik avtobusi (borish-kelish)',
+          '🏨 4 kecha Registon yonidagi 4★ tarixiy mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal to\'liq ovqatlanish (mashhur to\'y oshi, shashliklar)',
+          '🏛️ Registon, Go\'ri Amir, Shohi Zinda, Boqiy Shahar kirish biletlari',
+          '👨‍💼 5 kun davomida siz bilan birga bo\'luvchi professional litsenziyali gid'
+        ],
+        highlightsRu: [
+          '🚌 Комфортабельный туристический автобус с кондиционером (туда и обратно)',
+          '🏨 4 ночи в 4★ историческом отеле рядом с Регистаном',
+          '🍲 3-разовое питание на 5 дней (знаменитый самаркандский плов, шашлыки)',
+          '🏛️ Входные билеты в Регистан, Гур-Эмир, Шахи-Зинда и Вечный Город',
+          '👨‍💼 Профессиональный сертифицированный гид на все дни тура'
+        ],
+        highlightsEn: [
+          '🚌 Round-trip air-conditioned tourist coach transportation',
+          '🏨 4 Nights accommodation in 4★ hotel near Registan Square',
+          '🍲 Full board: 3 gourmet meals daily across 5 days (Samarkand pilaf, kebabs)',
+          '🏛️ All entrance tickets to Registan, Gur-e-Amir, Shah-i Zinda & Eternal City',
+          '👨‍💼 Dedicated licensed professional tour guide throughout the trip'
+        ]
+      },
+      plane: {
+        priceUSD: 250, // 3,212,500 so'm
+        durationUz: '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 50 daqiqa (2 tomonlama parvoz kiritilgan)',
+        durationRu: '✈️ Прямой авиаперелет: 50 минут (Авиабилеты в обе стороны включены)',
+        durationEn: '✈️ Direct Flight: 50 min (Round-trip flights included)',
+        transportLabelUz: 'To\'g\'ridan-to\'g\'ri Samolyot Reysi',
+        transportLabelRu: 'Прямой авиаперелет',
+        transportLabelEn: 'Direct Domestic Flight',
+        highlightsUz: [
+          '✈️ Toshkent - Samarqand - Toshkent 2 tomonlama samolyot parvozi va VIP transfer',
+          '🏨 4 kecha Registon yonidagi 4-5★ hashamatli mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal to\'liq to\'y oshi va restoran menyulari',
+          '🏛️ Barcha tarixiy obidalar va Boqiy Shaharga VIP kirish chiptalari',
+          '👨‍💼 Shaxsiy gid va shaxsiy avtomobil transferi'
+        ],
+        highlightsRu: [
+          '✈️ Прямой авиаперелет Ташкент - Самарканд - Ташкент и VIP-трансфер',
+          '🏨 4 ночи в роскошном 4-5★ отеле рядом с Регистаном',
+          '🍲 3-разовое ресторанное питание с дегустацией самаркандских блюд',
+          '🏛️ VIP-билеты во все памятники и исторический комплекс Вечный Город',
+          '👨‍💼 Персональный гид и индивидуальный автомобиль на весь период'
+        ],
+        highlightsEn: [
+          '✈️ Round-trip flights Tashkent - Samarkand - Tashkent with VIP airport transfer',
+          '🏨 4 Nights in luxury 4-5★ boutique hotel next to Registan',
+          '🍲 Full board 3 meals daily with premier dining & banquet events',
+          '🏛️ VIP all-inclusive passes to all monuments and Eternal City',
+          '👨‍💼 Dedicated private guide with chauffeured executive vehicle'
+        ]
+      }
+    },
     images: [
       '/images/landmarks/samarkand-registan.png',
       'https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=1200&q=80',
@@ -112,10 +152,6 @@ export const COUNTRIES = [
     taglineRu: 'Священная Бухара — Минарет Калян, Цитадель Арк и Ляби-Хауз',
     taglineEn: 'Noble Bukhara — Kalyan Minaret, Ark Citadel & Lyabi-Hauz',
     coverImage: '/images/landmarks/bukhara-ark.png',
-    transportType: 'bus',
-    flightDurationUz: '🚌 Sayyohlik Avtobusi / Sprinter: 6.5-7 soat (Borish-kelish chiptasi kiritilgan)',
-    flightDurationRu: '🚌 Комфортный автобус / Спринтер: 6.5-7 часов (Билеты включены)',
-    flightDurationEn: '🚌 Tourist Coach / Sprinter: 6.5-7 hours (Round-trip included)',
     visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
     visaRu: '5 дней / 4 ночи «Все включено»',
     visaEn: '5 Days / 4 Nights All-Inclusive',
@@ -124,31 +160,71 @@ export const COUNTRIES = [
     bestTimeEn: 'Spring & Autumn',
     temp: '+27°C',
     rating: 4.98,
-    basePriceUSD: 209, // ~2,685,650 so'm
-    descriptionUz: 'Buxoroyi Sharif – 2500 yillik islom madaniyati markazi. 5 kunlik to\'liq tur: qulay avtobus, Labi Hovuz yonidagi sharqona mehmonxona, 3 mahal Buxoro taomlari, Ark, Minorai Kalon, Sitorai Mohi Xosa muzeylari va shaxsiy gid.',
-    descriptionRu: 'Священная Бухара. Полный тур на 5 дней: комфортабельный автобус, отель у Ляби-Хауз, 3-разовое бухарское питание, входные билеты в Арк, Калян, дворец эмира и персональный гид.',
-    descriptionEn: 'Sacred Bukhara 5-day tour: luxury coach transit, boutique hotel by Lyabi-Hauz, 3 meals daily of regional cuisine, all monument tickets and private guide.',
-    highlightsUz: [
-      '🚌 Toshkentdan konditsionerli qulay sayyohlik avtobusi (borish-kelish)',
-      '🏨 4 kecha Labi Hovuz bo\'yidagi 4★ milliy sharqona mehmonxonada tunash',
-      '🍲 5 kun davomida 3 mahal Buxoro tansiq taomlari (G\'ijduvon shashlik, osh, somsa)',
-      '🕌 Minorai Kalon, Ark qal\'asi, Sitorai Mohi Xosa saroyi kirish chiptalari',
-      '👨‍💼 Tarixchi professional shaxsiy gid xizmati'
-    ],
-    highlightsRu: [
-      '🚌 Комфортабельный автобус с кондиционером (туда и обратно)',
-      '🏨 4 ночи в 4★ аутентичном отеле прямо у Ляби-Хауз',
-      '🍲 3-разовое питание (гиждуванский шашлык, бухарский плов, тандыр-самса)',
-      '🕌 Входные билеты в Минарет Калян, Цитадель Арк, Дворец Ситораи Мохи-Хоса',
-      '👨‍💼 Персональный профессиональный гид-историк'
-    ],
-    highlightsEn: [
-      '🚌 Round-trip air-conditioned tourist coach transportation',
-      '🏨 4 Nights in authentic 4★ boutique hotel next to Lyabi-Hauz',
-      '🍲 3 meals daily featuring Gijduvan kebabs, Bukharian pilaf & pastries',
-      '🕌 Full museum passes: Kalyan Minaret, Ark Citadel, Summer Palace of Emir',
-      '👨‍💼 Dedicated professional historic guide'
-    ],
+    descriptionUz: 'Buxoroyi Sharif – 2500 yillik islom madaniyati markazi. 5 kunlik to\'liq tur: qulay avtobus yoki samolyot, Labi Hovuz yonidagi sharqona mehmonxona, 3 mahal Buxoro taomlari, Ark, Minorai Kalon, Sitorai Mohi Xosa muzeylari va shaxsiy gid.',
+    descriptionRu: 'Священная Бухара. Полный тур на 5 дней: комфортабельный автобус или самолет, отель у Ляби-Хауз, 3-разовое бухарское питание, входные билеты в Арк, Калян, дворец эмира и персональный гид.',
+    descriptionEn: 'Sacred Bukhara 5-day tour: luxury coach or direct flight, boutique hotel by Lyabi-Hauz, 3 meals daily of regional cuisine, all monument tickets and private guide.',
+    packages: {
+      bus: {
+        priceUSD: 209, // 2,685,650 so'm
+        durationUz: '🚌 Sayyohlik Avtobusi / Sprinter: 6.5-7 soat (Borish-kelish chiptasi kiritilgan)',
+        durationRu: '🚌 Комфортный автобус / Спринтер: 6.5-7 часов (Билеты включены)',
+        durationEn: '🚌 Tourist Coach / Sprinter: 6.5-7 hours (Round-trip included)',
+        transportLabelUz: 'Sayyohlik Avtobusi / Sprinter',
+        transportLabelRu: 'Комфортабельный автобус',
+        transportLabelEn: 'Tourist Coach / Sprinter',
+        highlightsUz: [
+          '🚌 Toshkentdan konditsionerli qulay sayyohlik avtobusi (borish-kelish)',
+          '🏨 4 kecha Labi Hovuz bo\'yidagi 4★ milliy sharqona mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal Buxoro tansiq taomlari (G\'ijduvon shashlik, osh, somsa)',
+          '🕌 Minorai Kalon, Ark qal\'asi, Sitorai Mohi Xosa saroyi kirish chiptalari',
+          '👨‍💼 Tarixchi professional shaxsiy gid xizmati'
+        ],
+        highlightsRu: [
+          '🚌 Комфортабельный автобус с кондиционером (туда и обратно)',
+          '🏨 4 ночи в 4★ аутентичном отеле прямо у Ляби-Хауз',
+          '🍲 3-разовое питание (гиждуванский шашлык, бухарский плов, тандыр-самса)',
+          '🕌 Входные билеты в Минарет Калян, Цитадель Арк, Дворец Ситораи Мохи-Хоса',
+          '👨‍💼 Персональный профессиональный гид-историк'
+        ],
+        highlightsEn: [
+          '🚌 Round-trip air-conditioned tourist coach transportation',
+          '🏨 4 Nights in authentic 4★ boutique hotel next to Lyabi-Hauz',
+          '🍲 3 meals daily featuring Gijduvan kebabs, Bukharian pilaf & pastries',
+          '🕌 Full museum passes: Kalyan Minaret, Ark Citadel, Summer Palace of Emir',
+          '👨‍💼 Dedicated professional historic guide'
+        ]
+      },
+      plane: {
+        priceUSD: 280, // 3,598,000 so'm
+        durationUz: '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 1 soat (2 tomonlama parvoz kiritilgan)',
+        durationRu: '✈️ Прямой авиаперелет: 1 час (Авиабилеты в обе стороны включены)',
+        durationEn: '✈️ Direct Flight: 1 hour (Round-trip flights included)',
+        transportLabelUz: 'To\'g\'ridan-to\'g\'ri Samolyot Reysi',
+        transportLabelRu: 'Прямой авиаперелет',
+        transportLabelEn: 'Direct Domestic Flight',
+        highlightsUz: [
+          '✈️ Toshkent - Buxoro - Toshkent 2 tomonlama samolyot parvozi va VIP transfer',
+          '🏨 4 kecha Labi Hovuz yonidagi 4-5★ lyuks sharqona mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal Buxoro tansiq taomlari va maxsus ziyofatlar',
+          '🕌 Barcha tarixiy obidalar va Sitorai Mohi Xosa saroyiga VIP kirish biletlari',
+          '👨‍💼 Shaxsiy tarixchi gid va shaxsiy avtomobil transferi'
+        ],
+        highlightsRu: [
+          '✈️ Прямой авиаперелет Ташкент - Бухара - Ташкент и VIP-трансфер',
+          '🏨 4 ночи в роскошном 4-5★ отеле у Ляби-Хауз',
+          '🍲 3-разовое ресторанное питание с блюдами бухарской кухни',
+          '🕌 Полный VIP-доступ ко всем памятникам Бухары и летнему дворцу эмира',
+          '👨‍💼 Персональный гид и автомобиль с водителем на весь период'
+        ],
+        highlightsEn: [
+          '✈️ Round-trip flights Tashkent - Bukhara - Tashkent with private VIP transfer',
+          '🏨 4 Nights in luxury 4-5★ heritage hotel by Lyabi-Hauz',
+          '🍲 3 gourmet meals daily featuring traditional Bukharian cuisine',
+          '🕌 VIP passes to all landmarks including Ark Citadel & Emir’s Summer Palace',
+          '👨‍💼 Dedicated private guide with executive car service'
+        ]
+      }
+    },
     images: [
       '/images/landmarks/bukhara-ark.png',
       'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
@@ -198,43 +274,79 @@ export const COUNTRIES = [
     taglineRu: 'Живой Музей Под Открытым Небом — Ичан-Кала и Кальта-Минор',
     taglineEn: 'Living Open-Air Museum — Ichan Kala & Kalta Minor',
     coverImage: '/images/landmarks/khiva-ichan-kala.png',
-    transportType: 'plane',
-    flightDurationUz: '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 1 soat 20 daqiqa (Ikki tomonlama parvoz kiritilgan)',
-    flightDurationRu: '✈️ Прямой авиаперелет: 1 час 20 минут (Авиабилеты в обе стороны включены)',
-    flightDurationEn: '✈️ Direct Flight: 1 hour 20 min (Round-trip flight included)',
-    visaUz: '5 kun / 4 kecha to\'liq VIP sayohat (Samolyotda)',
-    visaRu: '5 дней / 4 ночи полный VIP тур (Авиаперелет)',
-    visaEn: '5 Days / 4 Nights Full VIP Tour (Flights Included)',
+    visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
+    visaRu: '5 дней / 4 ночи «Все включено»',
+    visaEn: '5 Days / 4 Nights All-Inclusive',
     bestTimeUz: 'Aprel - Iyun, Sentyabr - Oktyabr',
     bestTimeRu: 'Апрель - Июнь, Сентябрь - Октябрь',
     bestTimeEn: 'April - June, Sept - Oct',
     temp: '+25°C',
     rating: 4.99,
-    basePriceUSD: 328, // ~4,214,800 so'm
-    descriptionUz: 'Xiva – Sharq ertaklaridagi kabi saqlanib qolgan yagona qadimiy shahar-qal\'a. 5 kunlik VIP parvoz turi: Toshkent-Urganch samolyot chiptasi, Ichan Qal\'a ichidagi hashamatli mehmonxona, 3 mahal xorazmcha tansiq taomlar, 50 ta obidaga chiptalar va shaxsiy gid.',
-    descriptionRu: 'Хива — сказочный город-крепость. Полный VIP тур: прямые авиабилеты Ташкент-Ургенч в обе стороны, колоритный отель внутри крепости Ичан-Кала, 3-разовое питание (Тухум-барак, Шивит-оши), VIP-билеты во все музеи и персональный гид.',
-    descriptionEn: 'Khiva 5-Day VIP Flight Expedition: round-trip flights Tashkent-Urgench, luxury boutique hotel inside Ichan Kala citadel, 3 gourmet meals daily, full museum VIP passes and private guide.',
-    highlightsUz: [
-      '✈️ Toshkent - Urganch - Toshkent to\'g\'ridan-to\'g\'ri 2 tomonlama samolyot parvozi',
-      '🏨 4 kecha Ichan Qal\'aning ichidagi sharqona hashamatli mehmonxonada tunash',
-      '🍲 5 kun davomida 3 mahal Xorazm tansiq taomlari (Tuxumbarak, Shivit oshi, Xon baliq)',
-      '🏰 Ichan Qal\'aning barcha 50 ta obidasi, Nurullaboy saroyi va Kalta Minor biletlari',
-      '👨‍💼 Shaxsiy professional gid va aeroport VIP transferlari'
-    ],
-    highlightsRu: [
-      '✈️ Прямой авиаперелет Ташкент - Ургенч - Ташкент (билеты в обе стороны)',
-      '🏨 4 ночи в колоритном бутик-отеле прямо внутри стен Ичан-Калы',
-      '🍲 3-разовое питание (знаменитый Тухум-барак, Шивит-оши, рыба по-хорезмски)',
-      '🏰 VIP-билеты во все 50 памятников Ичан-Калы, Дворец Нуруллабая и Кальта-Минор',
-      '👨‍💼 Персональный гид и VIP-трансферы из аэропорта'
-    ],
-    highlightsEn: [
-      '✈️ Direct round-trip flights Tashkent - Urgench - Tashkent with airport transfers',
-      '🏨 4 Nights accommodation inside the historic mud-brick walls of Ichan Kala',
-      '🍲 3 gourmet meals daily: handmade Tukhumbarak, dill noodles (Shivit Oshi) & fish',
-      '🏰 Full VIP pass to all 50 monuments inside Ichan Kala and Nurullabay Palace',
-      '👨‍💼 Dedicated personal guide and chauffeured airport transfers'
-    ],
+    descriptionUz: 'Xiva – Sharq ertaklaridagi kabi saqlanib qolgan yagona qadimiy shahar-qal\'a. 5 kunlik tur: samolyot yoki avtobus, Ichan Qal\'a ichidagi hashamatli mehmonxona, 3 mahal xorazmcha tansiq taomlar, 50 ta obidaga chiptalar va shaxsiy gid.',
+    descriptionRu: 'Хива — сказочный город-крепость. Полный тур на 5 дней: самолет или автобус, колоритный отель внутри крепости Ичан-Кала, 3-разовое питание (Тухум-барак, Шивит-оши), VIP-билеты во все музеи и персональный гид.',
+    descriptionEn: 'Khiva 5-Day Expedition: flight or coach transit, luxury boutique hotel inside Ichan Kala citadel, 3 gourmet meals daily, full museum VIP passes and private guide.',
+    packages: {
+      bus: {
+        priceUSD: 220, // 2,827,000 so'm
+        durationUz: '🚌 Komfort Sayyohlik Avtobusi: 12-14 soat (Borish-kelish kiritilgan)',
+        durationRu: '🚌 Комфортабельный автобус: 12-14 часов (Билеты включены)',
+        durationEn: '🚌 Tourist Coach: 12-14 hours (Round-trip included)',
+        transportLabelUz: 'Komfort Sayyohlik Avtobusi',
+        transportLabelRu: 'Комфортабельный автобус',
+        transportLabelEn: 'Long-distance Coach',
+        highlightsUz: [
+          '🚌 Toshkentdan konditsionerli qulay sayyohlik avtobusi va yo\'l to\'xtashlari',
+          '🏨 4 kecha Ichan Qal\'aning ichidagi sharqona mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal Xorazm tansiq taomlari (Tuxumbarak, Shivit oshi)',
+          '🏰 Ichan Qal\'aning barcha 50 ta obidasi, Nurullaboy saroyi va Kalta Minor biletlari',
+          '👨‍💼 Professional shaxsiy gid xizmati'
+        ],
+        highlightsRu: [
+          '🚌 Комфортабельный автобус с кондиционером и остановками для отдыха',
+          '🏨 4 ночи в колоритном отеле прямо внутри стен Ичан-Калы',
+          '🍲 3-разовое питание (знаменитый Тухум-барак, Шивит-оши, рыба)',
+          '🏰 Входные билеты во все 50 памятников Ичан-Калы и Дворец Нуруллабая',
+          '👨‍💼 Профессиональный персональный гид'
+        ],
+        highlightsEn: [
+          '🚌 Round-trip long-distance coach with scenic oasis stops',
+          '🏨 4 Nights inside the fairy-tale walled city of Ichan Kala',
+          '🍲 3 meals daily: handmade Tukhumbarak, dill noodles (Shivit Oshi) & fish',
+          '🏰 Access to all 50 monuments inside Ichan Kala & Nurullabay Palace',
+          '👨‍💼 Dedicated professional historic guide'
+        ]
+      },
+      plane: {
+        priceUSD: 328, // 4,214,800 so'm
+        durationUz: '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 1 soat 20 daqiqa (2 tomonlama parvoz kiritilgan)',
+        durationRu: '✈️ Прямой авиаперелет: 1 час 20 минут (Авиабилеты в обе стороны включены)',
+        durationEn: '✈️ Direct Flight: 1 hour 20 min (Round-trip flights included)',
+        transportLabelUz: 'To\'g\'ridan-to\'g\'ri Samolyot Reysi',
+        transportLabelRu: 'Прямой авиаперелет',
+        transportLabelEn: 'Direct Domestic Flight',
+        highlightsUz: [
+          '✈️ Toshkent - Urganch - Toshkent 2 tomonlama samolyot parvozi va VIP transfer',
+          '🏨 4 kecha Ichan Qal\'aning ichidagi sharqona hashamatli mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal Xorazm tansiq taomlari (Tuxumbarak, Shivit oshi, Xon baliq)',
+          '🏰 Ichan Qal\'aning barcha 50 ta obidasi, Nurullaboy saroyi va Kalta Minor biletlari',
+          '👨‍💼 Shaxsiy professional gid va aeroport VIP transferlari'
+        ],
+        highlightsRu: [
+          '✈️ Прямой авиаперелет Ташкент - Ургенч - Ташкент (билеты в обе стороны)',
+          '🏨 4 ночи в колоритном бутик-отеле прямо внутри стен Ичан-Калы',
+          '🍲 3-разовое питание (знаменитый Тухум-барак, Шивит-оши, рыба по-хорезмски)',
+          '🏰 VIP-билеты во все 50 памятников Ичан-Калы, Дворец Нуруллабая и Кальта-Минор',
+          '👨‍💼 Персональный гид и VIP-трансферы из аэропорта'
+        ],
+        highlightsEn: [
+          '✈️ Direct round-trip flights Tashkent - Urgench - Tashkent with airport transfers',
+          '🏨 4 Nights accommodation inside the historic mud-brick walls of Ichan Kala',
+          '🍲 3 gourmet meals daily: handmade Tukhumbarak, dill noodles (Shivit Oshi) & fish',
+          '🏰 Full VIP pass to all 50 monuments inside Ichan Kala and Nurullabay Palace',
+          '👨‍💼 Dedicated personal guide and chauffeured airport transfers'
+        ]
+      }
+    },
     images: [
       '/images/landmarks/khiva-ichan-kala.png',
       'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80',
@@ -284,43 +396,79 @@ export const COUNTRIES = [
     taglineRu: 'Царство 50 Крепостей — Аяз-Кала, Топрак-Кала и Тайны Кызылкумов',
     taglineEn: 'Realm of 50 Fortresses — Ayaz Kala, Toprak Kala & Kyzylkum Wonders',
     coverImage: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
-    transportType: 'plane',
-    flightDurationUz: '✈️ Samolyot + 4x4 Safari: 1 soat 30 daqiqa (Ikki tomonlama parvoz kiritilgan)',
-    flightDurationRu: '✈️ Авиаперелет + Джип-сафари: 1 час 30 минут (Авиабилеты включены)',
-    flightDurationEn: '✈️ Direct Flight + 4x4 Safari: 1 hour 30 min (Round-trip flights included)',
-    visaUz: '5 kun / 4 kecha to\'liq VIP sayohat (Samolyotda)',
-    visaRu: '5 дней / 4 ночи полный VIP тур (Авиаперелет)',
-    visaEn: '5 Days / 4 Nights Full VIP Tour (Flights Included)',
+    visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
+    visaRu: '5 дней / 4 ночи «Все включено»',
+    visaEn: '5 Days / 4 Nights All-Inclusive',
     bestTimeUz: 'Aprel - Iyun, Sentyabr - Oktyabr',
     bestTimeRu: 'Апрель - Июнь, Сентябрь - Октябрь',
     bestTimeEn: 'April - June, Sept - Oct',
     temp: '+28°C',
     rating: 4.98,
-    basePriceUSD: 338, // ~4,343,300 so'm
-    descriptionUz: 'Ellikqal\'a – 50 ta qadimiy qal\'alar saltanati. 5 kunlik to\'liq VIP samolyot ekspeditsiyasi: Toshkent-Nukus/Urganch samolyot reysi, 4x4 cho\'l safari jipi, Ayozko\'l o\'tovlar lagerida tunash, Savitskiy san\'at muzeyi, 3 mahal to\'liq ovqatlanish va professional gid.',
-    descriptionRu: 'Элликкала — царство 50 древних крепостей. 5-дневный авиатур: авиабилеты в обе стороны, джип-сафари 4х4, ночевки в аутентичных юртах у озера Аязколь, всемирный музей Савицкого и 3-разовое питание.',
-    descriptionEn: 'Ellikqala 5-Day VIP Flight & 4x4 Desert Expedition: round-trip flights, 4x4 desert safari, nomadic yurt camping under stars by Ayazkul, Savitsky Art Museum & full board gourmet meals.',
-    highlightsUz: [
-      '✈️ Toshkent - Nukus / Urganch - Toshkent 2 tomonlama samolyot parvozi',
-      '🚙 Ayozqal\'a va Toproqqal\'a bo\'ylab 4x4 jip safari transporti',
-      '🏕️ 4 kecha Ayozko\'l bo\'yidagi milliy o\'tovlar lageri va shahar mehmonxonasi',
-      '🍲 5 kun davomida 3 mahal to\'liq ovqatlanish va ochiq havoda cho\'l barbekyusi',
-      '🎨 Nukus shahridagi dunyoga mashhur Savitskiy san\'at muzeyiga kirish va gid'
-    ],
-    highlightsRu: [
-      '✈️ Прямой авиаперелет Ташкент - Нукус / Ургенч в обе стороны',
-      '🚙 Джип-сафари 4х4 по древним крепостям Аяз-кала и Топрак-кала',
-      '🏕️ 4 ночи в аутентичном юртовом лагере у озера Аязколь и отеле Нукуса',
-      '🍲 3-разовое питание с барбекю у костра под звездным небом',
-      '🎨 Билеты в знаменитый музей искусств им. Савицкого и услуги гида'
-    ],
-    highlightsEn: [
-      '✈️ Direct round-trip flights Tashkent - Nukus / Urgench',
-      '🚙 4x4 off-road Jeep desert safari across Ayaz Kala & Toprak Kala',
-      '🏕️ 4 Nights nomadic yurt camping by Ayazkul lake and Nukus hotel',
-      '🍲 3 meals daily with open-air campfire barbecues under dark skies',
-      '🎨 VIP access to the world-famous Savitsky Avant-Garde Art Museum'
-    ],
+    descriptionUz: 'Ellikqal\'a – 50 ta qadimiy qal\'alar saltanati. 5 kunlik to\'liq ekspeditsiya: samolyot yoki avtobus, 4x4 cho\'l safari jipi, Ayozko\'l o\'tovlar lagerida tunash, Savitskiy san\'at muzeyi, 3 mahal to\'liq ovqatlanish va professional gid.',
+    descriptionRu: 'Элликкала — царство 50 древних крепостей. 5-дневный тур: самолет или автобус, джип-сафари 4х4, ночевки в аутентичных юртах у озера Аязколь, всемирный музей Савицкого и 3-разовое питание.',
+    descriptionEn: 'Ellikqala 5-Day Desert Expedition: flight or coach transit, 4x4 desert safari, nomadic yurt camping under stars by Ayazkul, Savitsky Art Museum & full board gourmet meals.',
+    packages: {
+      bus: {
+        priceUSD: 230, // 2,955,500 so'm
+        durationUz: '🚌 Avtobus + 4x4 Cho\'l Safari: 14-15 soat (Borish-kelish kiritilgan)',
+        durationRu: '🚌 Автобус + Джип-сафари: 14-15 часов (Билеты включены)',
+        durationEn: '🚌 Coach + 4x4 Safari: 14-15 hours (Round-trip included)',
+        transportLabelUz: 'Sayyohlik Avtobusi + 4x4',
+        transportLabelRu: 'Туристический автобус + 4х4',
+        transportLabelEn: 'Coach + 4x4 Safari',
+        highlightsUz: [
+          '🚌 Qulay sayyohlik avtobusi va Ayozqal\'a bo\'ylab 4x4 jip safari',
+          '🏕️ 4 kecha Ayozko\'l bo\'yidagi milliy o\'tovlar lageri va mehmonxona',
+          '🍲 5 kun davomida 3 mahal to\'liq ovqatlanish va ochiq havoda cho\'l barbekyusi',
+          '🎨 Nukus shahridagi dunyoga mashhur Savitskiy san\'at muzeyi biletlari',
+          '👨‍💼 Professional ekspeditsiya gidi xizmati'
+        ],
+        highlightsRu: [
+          '🚌 Комфортный автобус и джип-сафари 4х4 по крепостям Аяз-кала и Топрак-кала',
+          '🏕️ 4 ночи в юртовом лагере у озера Аязколь и отеле',
+          '🍲 3-разовое питание с барбекю у костра под звездным небом',
+          '🎨 Входные билеты в знаменитый музей искусств им. Савицкого',
+          '👨‍💼 Профессиональный гид экспедиции'
+        ],
+        highlightsEn: [
+          '🚌 Coach transportation and 4x4 off-road Jeep desert safari',
+          '🏕️ 4 Nights nomadic yurt camping by Ayazkul lake & hotel',
+          '🍲 3 meals daily with open-air campfire barbecues under dark skies',
+          '🎨 Tickets to the world-famous Savitsky Avant-Garde Art Museum',
+          '👨‍💼 Certified expedition guide'
+        ]
+      },
+      plane: {
+        priceUSD: 338, // 4,343,300 so'm
+        durationUz: '✈️ Samolyot + 4x4 Safari: 1 soat 30 daqiqa (Ikki tomonlama parvoz kiritilgan)',
+        durationRu: '✈️ Авиаперелет + Джип-сафари: 1 час 30 минут (Авиабилеты включены)',
+        durationEn: '✈️ Direct Flight + 4x4 Safari: 1 hour 30 min (Round-trip flights included)',
+        transportLabelUz: 'To\'g\'ridan-to\'g\'ri Samolyot + 4x4 Safari',
+        transportLabelRu: 'Прямой авиаперелет + Джип-сафари',
+        transportLabelEn: 'Direct Flight + 4x4 Safari',
+        highlightsUz: [
+          '✈️ Toshkent - Nukus / Urganch - Toshkent 2 tomonlama samolyot parvozi',
+          '🚙 Ayozqal\'a va Toproqqal\'a bo\'ylab 4x4 jip safari transporti',
+          '🏕️ 4 kecha Ayozko\'l bo\'yidagi milliy o\'tovlar lageri va shahar mehmonxonasi',
+          '🍲 5 kun davomida 3 mahal to\'liq ovqatlanish va ochiq havoda cho\'l barbekyusi',
+          '🎨 Nukus shahridagi dunyoga mashhur Savitskiy san\'at muzeyiga kirish va gid'
+        ],
+        highlightsRu: [
+          '✈️ Прямой авиаперелет Ташкент - Нукус / Ургенч в обе стороны',
+          '🚙 Джип-сафари 4х4 по древним крепостям Аяз-кала и Топрак-кала',
+          '🏕️ 4 ночи в аутентичном юртовом лагере у озера Аязколь и отеле Нукуса',
+          '🍲 3-разовое питание с барбекю у костра под звездным небом',
+          '🎨 Билеты в знаменитый музей искусств им. Савицкого и услуги гида'
+        ],
+        highlightsEn: [
+          '✈️ Direct round-trip flights Tashkent - Nukus / Urgench',
+          '🚙 4x4 off-road Jeep desert safari across Ayaz Kala & Toprak Kala',
+          '🏕️ 4 Nights nomadic yurt camping by Ayazkul lake and Nukus hotel',
+          '🍲 3 meals daily with open-air campfire barbecues under dark skies',
+          '🎨 VIP access to the world-famous Savitsky Avant-Garde Art Museum'
+        ]
+      }
+    },
     images: [
       'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
@@ -370,10 +518,6 @@ export const COUNTRIES = [
     taglineRu: 'Родина Амира Тимура — Аксарай, Дорус-Саодат и Тахтакарача',
     taglineEn: 'Birthplace of Amir Timur — Ak-Saray, Dorus-Saodat & Mountain Pass',
     coverImage: '/images/landmarks/oqsaroy-shahrisabz.png',
-    transportType: 'bus',
-    flightDurationUz: '🚌 Sayyohlik Avtobusi: 5-5.5 soat (Taxtaqoracha dovoni orqali)',
-    flightDurationRu: '🚌 Туристический автобус: 5-5.5 часов (Через перевал Тахтакарача)',
-    flightDurationEn: '🚌 Tourist Coach: 5-5.5 hours (Via Takhtakaracha pass)',
     visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
     visaRu: '5 дней / 4 ночи «Все включено»',
     visaEn: '5 Days / 4 Nights All-Inclusive',
@@ -382,31 +526,71 @@ export const COUNTRIES = [
     bestTimeEn: 'April - November',
     temp: '+27°C',
     rating: 4.98,
-    basePriceUSD: 174, // ~2,235,900 so'm
-    descriptionUz: 'Shahrisabz – Sohibqiron Amir Temurning kindik qoni to\'kilgan tabarruk maskani. 5 kunlik to\'liq sayohat: qulay avtobus, 4★ mehmonxona, 3 mahal milliy ovqatlanish (mashhur tog\' tandir go\'shti), Oqsaroy, Dorus-Saodat va shaxsiy gid.',
-    descriptionRu: 'Шахрисабз — родина Амира Тимура. Полный тур на 5 дней: комфортабельный автобус, 4★ отель, 3-разовое питание (знаменитый горный тандыр-гушт), входные билеты во дворец Аксарай и персональный гид.',
-    descriptionEn: 'Shahrisabz 5-day tour: comfortable coach transit, 4★ hotel, 3 meals daily including traditional mountain tandir lamb, full museum passes and private guide.',
-    highlightsUz: [
-      '🚌 Qulay konditsionerli sayyohlik avtobusi (Toshkentdan borish-kelish)',
-      '🏨 4 kecha Shahrisabz tog\' etaklaridagi shinam 4★ mehmonxonada tunash',
-      '🍲 5 kun davomida 3 mahal ovqatlanish (mashhur Taxtaqoracha tandir go\'shti)',
-      '👑 Amir Temurning ulkan Oqsaroy peshtoqi, Dorus-Saodat va Ko\'k Gumbaz biletlari',
-      '👨‍💼 Professional shaxsiy tarixchi gid xizmati'
-    ],
-    highlightsRu: [
-      '🚌 Комфортабельный автобус с кондиционером (туда и обратно)',
-      '🏨 4 ночи в 4★ отеле у подножия гор Шахрисабза',
-      '🍲 3-разовое питание с дегустацией тандыр-гушта на перевале',
-      '👑 Входные билеты во Дворец Аксарай, Дорус-Саодат и мечеть Кок-Гумбаз',
-      '👨‍💼 Услуги сертифицированного гида-историка'
-    ],
-    highlightsEn: [
-      '🚌 Round-trip air-conditioned coach transportation from Tashkent',
-      '🏨 4 Nights in comfortable 4★ mountain-view hotel in Shahrisabz',
-      '🍲 Full board meals: 3 times daily featuring cedar-smoked mountain tandir',
-      '👑 Full entrance passes to Ak-Saray Palace, Dorus-Saodat & Kok-Gumbaz',
-      '👨‍💼 Certified professional private tour guide'
-    ],
+    descriptionUz: 'Shahrisabz – Sohibqiron Amir Temurning kindik qoni to\'kilgan tabarruk maskani. 5 kunlik to\'liq sayohat: qulay avtobus yoki samolyot, 4★ mehmonxona, 3 mahal milliy ovqatlanish (mashhur tog\' tandir go\'shti), Oqsaroy, Dorus-Saodat va shaxsiy gid.',
+    descriptionRu: 'Шахрисабз — родина Амира Тимура. Полный тур на 5 дней: комфортабельный автобус или самолет, 4★ отель, 3-разовое питание (знаменитый горный тандыр-гушт), входные билеты во дворец Аксарай и персональный гид.',
+    descriptionEn: 'Shahrisabz 5-day tour: comfortable coach or flight transit, 4★ hotel, 3 meals daily including traditional mountain tandir lamb, full museum passes and private guide.',
+    packages: {
+      bus: {
+        priceUSD: 174, // 2,235,900 so'm
+        durationUz: '🚌 Sayyohlik Avtobusi: 5-5.5 soat (Taxtaqoracha dovoni orqali)',
+        durationRu: '🚌 Туристический автобус: 5-5.5 часов (Через перевал Тахтакарача)',
+        durationEn: '🚌 Tourist Coach: 5-5.5 hours (Via Takhtakaracha pass)',
+        transportLabelUz: 'Qulay Sayyohlik Avtobusi',
+        transportLabelRu: 'Туристический автобус',
+        transportLabelEn: 'Comfortable Tourist Coach',
+        highlightsUz: [
+          '🚌 Qulay konditsionerli sayyohlik avtobusi (Toshkentdan borish-kelish)',
+          '🏨 4 kecha Shahrisabz tog\' etaklaridagi shinam 4★ mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal ovqatlanish (mashhur Taxtaqoracha tandir go\'shti)',
+          '👑 Amir Temurning ulkan Oqsaroy peshtoqi, Dorus-Saodat va Ko\'k Gumbaz biletlari',
+          '👨‍💼 Professional shaxsiy tarixchi gid xizmati'
+        ],
+        highlightsRu: [
+          '🚌 Комфортабельный автобус с кондиционером (туда и обратно)',
+          '🏨 4 ночи в 4★ отеле у подножия гор Шахрисабза',
+          '🍲 3-разовое питание с дегустацией тандыр-гушта на перевале',
+          '👑 Входные билеты во Дворец Аксарай, Дорус-Саодат и мечеть Кок-Гумбаз',
+          '👨‍💼 Услуги сертифицированного гида-историка'
+        ],
+        highlightsEn: [
+          '🚌 Round-trip air-conditioned coach transportation from Tashkent',
+          '🏨 4 Nights in comfortable 4★ mountain-view hotel in Shahrisabz',
+          '🍲 Full board meals: 3 times daily featuring cedar-smoked mountain tandir',
+          '👑 Full entrance passes to Ak-Saray Palace, Dorus-Saodat & Kok-Gumbaz',
+          '👨‍💼 Certified professional private tour guide'
+        ]
+      },
+      plane: {
+        priceUSD: 240, // 3,084,000 so'm
+        durationUz: '✈️ Samolyot + Shaxsiy Transfer: 1 soat (Samarqand/Qarshi reysi orqali)',
+        durationRu: '✈️ Авиаперелет + Трансфер: 1 час (Через рейс в Самарканд/Карши)',
+        durationEn: '✈️ Flight + Private Transit: 1 hour (Via Samarkand/Karshi flight)',
+        transportLabelUz: 'Samolyot + VIP Transfer',
+        transportLabelRu: 'Авиаперелет + VIP-трансфер',
+        transportLabelEn: 'Flight + VIP Transfer',
+        highlightsUz: [
+          '✈️ Toshkent - Samarqand/Qarshi 2 tomonlama samolyot parvozi va VIP avtomobil transferi',
+          '🏨 4 kecha Shahrisabz 4★ mehmonxonasida tunash',
+          '🍲 5 kun davomida 3 mahal to\'liq tog\' tandir tansiq taomlari',
+          '👑 Oqsaroy, Dorus-Saodat va Ko\'k Gumbaz majmualariga VIP kirish biletlari',
+          '👨‍💼 Shaxsiy tarixchi gid va shaxsiy avtomobil'
+        ],
+        highlightsRu: [
+          '✈️ Авиаперелет в обе стороны и персональный VIP-трансфер',
+          '🏨 4 ночи в 4★ отеле Шахрисабза',
+          '🍲 3-разовое питание с ресторанным обслуживанием и тандыр-кабобом',
+          '👑 Полный VIP-доступ ко всем памятникам эпохи Тимуридов',
+          '👨‍💼 Персональный гид-историк и автомобиль на весь тур'
+        ],
+        highlightsEn: [
+          '✈️ Round-trip flights with private executive vehicle transfer',
+          '🏨 4 Nights in 4★ hotel in Shahrisabz',
+          '🍲 3 gourmet meals daily featuring traditional roasted meats',
+          '👑 Full VIP access passes to Ak-Saray & Dorus-Saodat',
+          '👨‍💼 Dedicated personal guide and private chauffeur'
+        ]
+      }
+    },
     images: [
       '/images/landmarks/oqsaroy-shahrisabz.png',
       'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80',
@@ -456,10 +640,6 @@ export const COUNTRIES = [
     taglineRu: 'Астрономическая Обсерватория, Пещера Тимура и горы Гиссара',
     taglineEn: 'Astronomy Observatory, Timur\'s Cave & Hissar Mountains',
     coverImage: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80',
-    transportType: 'bus',
-    flightDurationUz: '🚌 Qulay Avtobus / Sprinter: 6-6.5 soat (Borish-kelish chiptasi kiritilgan)',
-    flightDurationRu: '🚌 Комфортный автобус: 6-6.5 часов (Билеты включены)',
-    flightDurationEn: '🚌 Tourist Coach / Van: 6-6.5 hours (Round-trip included)',
     visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
     visaRu: '5 дней / 4 ночи «Все включено»',
     visaEn: '5 Days / 4 Nights All-Inclusive',
@@ -468,31 +648,71 @@ export const COUNTRIES = [
     bestTimeEn: 'May - October',
     temp: '+25°C',
     rating: 4.97,
-    basePriceUSD: 190, // ~2,441,500 so'm
-    descriptionUz: 'Qashqadaryo – koinot sirlarini ochuvchi Maydanak rasadxonasi va Hisor tog\'lari. 5 kunlik to\'liq paket: qulay avtobus, tog\' oromgohi, 3 mahal tandir taomlari, Maydanak tungi teleskopi, Amir Temur g\'ori va shaxsiy gid.',
-    descriptionRu: 'Кашкадарья — высокогорная обсерватория Майданак и горы Гиссара. Полный тур на 5 дней: автобус, горный отель, 3-разовое питание с тандыр-кабобом, ночной обзор галактик в телескопы и персональный гид.',
-    descriptionEn: 'Kashkadarya 5-day tour: comfortable coach transit, alpine resort, 3 meals daily, night-sky telescope observations at Maydanak Observatory, Cave of Amir Timur & guide.',
-    highlightsUz: [
-      '🚌 Qulay konditsionerli sayyohlik avtobusi va tog\' transferlari',
-      '🏨 4 kecha Kitob baland tog\' oromgohida va mehmonxonada tunash',
-      '🍲 5 kun davomida 3 mahal tog\' tansiq taomlari (Qashqadaryo tandir kabobi)',
-      '🔭 Maydanak baland tog\' rasadxonasida tungi yulduzlar va koinotni kuzatish',
-      '🏔️ Amir Temur g\'ori, Hisor qo\'riqxonasi va professional tog\' gidi'
-    ],
-    highlightsRu: [
-      '🚌 Комфортабельный автобус и высокогорные трансферы',
-      '🏨 4 ночи в высокогорном курортном комплексе Китаба',
-      '🍲 3-разовое питание с кашкадарьинским тандыр-кабобом',
-      '🔭 Наблюдение за галактиками в телескопы обсерватории Майданак (2750м)',
-      '🏔️ Пещера Амира Тимура, Гиссарский заповедник и услуги горного гида'
-    ],
-    highlightsEn: [
-      '🚌 Round-trip coach transit and high-altitude mountain transport',
-      '🏨 4 Nights accommodation in Kitob alpine resort and hotel',
-      '🍲 3 meals daily featuring cedar-smoked tandir meats & fresh mountain produce',
-      '🔭 Night galaxy stargazing sessions at Mount Maydanak Observatory (2,750m)',
-      '🏔️ Cave of Amir Timur, Hissar Nature Reserve pass & certified guide'
-    ],
+    descriptionUz: 'Qashqadaryo – koinot sirlarini ochuvchi Maydanak rasadxonasi va Hisor tog\'lari. 5 kunlik to\'liq paket: qulay avtobus yoki samolyot, tog\' oromgohi, 3 mahal tandir taomlari, Maydanak tungi teleskopi, Amir Temur g\'ori va shaxsiy gid.',
+    descriptionRu: 'Кашкадарья — высокогорная обсерватория Майданак и горы Гиссара. Полный тур на 5 дней: автобус или самолет, горный отель, 3-разовое питание с тандыр-кабобом, ночной обзор галактик в телескопы и персональный гид.',
+    descriptionEn: 'Kashkadarya 5-day tour: coach or flight transit, alpine resort, 3 meals daily, night-sky telescope observations at Maydanak Observatory, Cave of Amir Timur & guide.',
+    packages: {
+      bus: {
+        priceUSD: 190, // 2,441,500 so'm
+        durationUz: '🚌 Qulay Avtobus / Sprinter: 6-6.5 soat (Borish-kelish chiptasi kiritilgan)',
+        durationRu: '🚌 Комфортный автобус: 6-6.5 часов (Билеты включены)',
+        durationEn: '🚌 Tourist Coach / Van: 6-6.5 hours (Round-trip included)',
+        transportLabelUz: 'Qulay Sayyohlik Avtobusi',
+        transportLabelRu: 'Комфортабельный автобус',
+        transportLabelEn: 'Comfortable Coach',
+        highlightsUz: [
+          '🚌 Qulay konditsionerli sayyohlik avtobusi va tog\' transferlari',
+          '🏨 4 kecha Kitob baland tog\' oromgohida va mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal tog\' tansiq taomlari (Qashqadaryo tandir kabobi)',
+          '🔭 Maydanak baland tog\' rasadxonasida tungi yulduzlar va koinotni kuzatish',
+          '🏔️ Amir Temur g\'ori, Hisor qo\'riqxonasi va professional tog\' gidi'
+        ],
+        highlightsRu: [
+          '🚌 Комфортабельный автобус и высокогорные трансферы',
+          '🏨 4 ночи в высокогорном курортном комплексе Китаба',
+          '🍲 3-разовое питание с кашкадарьинским тандыр-кабобом',
+          '🔭 Наблюдение за галактиками в телескопы обсерватории Майданак (2750м)',
+          '🏔️ Пещера Амира Тимура, Гиссарский заповедник и услуги горного гида'
+        ],
+        highlightsEn: [
+          '🚌 Round-trip coach transit and high-altitude mountain transport',
+          '🏨 4 Nights accommodation in Kitob alpine resort and hotel',
+          '🍲 3 meals daily featuring cedar-smoked tandir meats & fresh mountain produce',
+          '🔭 Night galaxy stargazing sessions at Mount Maydanak Observatory (2,750m)',
+          '🏔️ Cave of Amir Timur, Hissar Nature Reserve pass & certified guide'
+        ]
+      },
+      plane: {
+        priceUSD: 260, // 3,341,000 so'm
+        durationUz: '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 1 soat (Toshkent-Qarshi reysi orqali)',
+        durationRu: '✈️ Прямой авиаперелет: 1 час (Рейс Ташкент-Карши)',
+        durationEn: '✈️ Direct Flight: 1 hour (Tashkent-Karshi flight)',
+        transportLabelUz: 'To\'g\'ridan-to\'g\'ri Samolyot Reysi',
+        transportLabelRu: 'Прямой авиаперелет',
+        transportLabelEn: 'Direct Domestic Flight',
+        highlightsUz: [
+          '✈️ Toshkent - Qarshi - Toshkent 2 tomonlama samolyot parvozi va tog\' transferi',
+          '🏨 4 kecha Kitob tog\' VIP kottejlari va Qarshi mehmonxonasida tunash',
+          '🍲 5 kun davomida 3 mahal maxsus tandir va tog\' tansiq taomlari',
+          '🔭 Maydanak observatoriyasida koinot va sayyoralarni kuzatish',
+          '👨‍💼 Shaxsiy tog\' gidi va yo\'ltanlamas avtomobil'
+        ],
+        highlightsRu: [
+          '✈️ Авиаперелет Ташкент - Карши - Ташкент и трансфер в горы',
+          '🏨 4 ночи в VIP-коттеджах Китаба и премиум-отеле Карши',
+          '🍲 3-разовое питание с национальными деликатесами',
+          '🔭 Эксклюзивное ночное наблюдение планет в обсерватории Майданак',
+          '👨‍💼 Горный гид и внедорожник на весь период тура'
+        ],
+        highlightsEn: [
+          '✈️ Round-trip flights Tashkent - Karshi - Tashkent with mountain transit',
+          '🏨 4 Nights in luxury Kitob mountain chalets & hotel',
+          '🍲 3 gourmet meals daily featuring traditional delicacies',
+          '🔭 Deep space planetary observations at Maydanak Observatory',
+          '👨‍💼 Dedicated mountain guide with 4x4 vehicle'
+        ]
+      }
+    },
     images: [
       'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
@@ -542,43 +762,79 @@ export const COUNTRIES = [
     taglineRu: 'Культура Байсуна (ЮНЕСКО), Водопад Сангардак и Термез',
     taglineEn: 'UNESCO Boysun Culture, Sangardak Waterfall & Termez Heritage',
     coverImage: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
-    transportType: 'plane',
-    flightDurationUz: '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 1 soat 15 daqiqa (Ikki tomonlama parvoz kiritilgan)',
-    flightDurationRu: '✈️ Прямой авиаперелет: 1 час 15 минут (Авиабилеты в обе стороны включены)',
-    flightDurationEn: '✈️ Direct Flight: 1 hour 15 min (Round-trip flights included)',
-    visaUz: '5 kun / 4 kecha to\'liq VIP sayohat (Samolyotda)',
-    visaRu: '5 дней / 4 ночи полный VIP тур (Авиаперелет)',
-    visaEn: '5 Days / 4 Nights Full VIP Tour (Flights Included)',
+    visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
+    visaRu: '5 дней / 4 ночи «Все включено»',
+    visaEn: '5 Days / 4 Nights All-Inclusive',
     bestTimeUz: 'Aprel - Iyun, Sentyabr - Noyabr',
     bestTimeRu: 'Апрель - Июнь, Сентябрь - Ноябрь',
     bestTimeEn: 'April - June, Sept - Nov',
     temp: '+29°C',
     rating: 4.98,
-    basePriceUSD: 300, // ~3,855,000 so'm
-    descriptionUz: 'Surxondaryo – qadimiy sivilizatsiya va Boysun tog\'lari. 5 kunlik VIP parvoz turi: Toshkent-Termiz samolyot chiptasi, 4★ mehmonxona va tog\' kottejlari, 3 mahal janubiy taomlar, Sangardak sharsharasi, Omonxona bulog\'i, Fayoztepa va shaxsiy gid.',
-    descriptionRu: 'Сурхандарья — оазис древней культуры и горы Байсуна. Полный VIP авиатур: авиабилеты Ташкент-Термез, 4★ отели и коттеджи, 3-разовое питание, водопад Сангардак, источник Омонхона, буддийские святыни и персональный гид.',
-    descriptionEn: 'Surkhandarya 5-Day VIP Flight Expedition: round-trip flights Tashkent-Termez, 4★ boutique hotels & alpine chalets, 3 meals daily, Sangardak waterfall, Omonkhona healing spring & guide.',
-    highlightsUz: [
-      '✈️ Toshkent - Termiz - Toshkent to\'g\'ridan-to\'g\'ri 2 tomonlama samolyot parvozi',
-      '🏨 4 kecha Termiz 4★ mehmonxonasi va Boysun tog\' eko-kottejlarida tunash',
-      '🍲 5 kun davomida 3 mahal janubiy tansiq taomlar va Omonxona tog\' nonushtasi',
-      '💧 Qoyalardan otilib chiquvchi mashhur moviy Sangardak sharsharasi transferi',
-      '🏛️ Fayoztepa Budda ibodatxonasi, Hakim at-Termiziy ziyoratgohi va shaxsiy gid'
-    ],
-    highlightsRu: [
-      '✈️ Прямой авиаперелет Ташкент - Термез - Ташкент (билеты в обе стороны)',
-      '🏨 4 ночи в 4★ отеле Термеза и эко-коттеджах в горах Байсуна',
-      '🍲 3-разовое питание с южными национальными блюдами',
-      '💧 Трансфер к уникальному водопаду Сангардак и источнику Омонхона',
-      '🏛️ Буддийский монастырь Фаязтепа, комплекс Аль-Хаким ат-Термези и гид'
-    ],
-    highlightsEn: [
-      '✈️ Direct round-trip flights Tashkent - Termez - Tashkent with private transit',
-      '🏨 4 Nights accommodation in 4★ Termez hotel & Boysun alpine chalets',
-      '🍲 3 meals daily featuring southern Uzbek gastronomic specialties',
-      '💧 Private excursion to Sangardak Waterfall & Omonkhona mineral springs',
-      '🏛️ Fayaztepa Buddhist monastery, holy Al-Hakim at-Termizi complex & guide'
-    ],
+    descriptionUz: 'Surxondaryo – qadimiy sivilizatsiya va Boysun tog\'lari. 5 kunlik tur: samolyot yoki avtobus, 4★ mehmonxona va tog\' kottejlari, 3 mahal janubiy taomlar, Sangardak sharsharasi, Omonxona bulog\'i, Fayoztepa va shaxsiy gid.',
+    descriptionRu: 'Сурхандарья — оазис древней культуры и горы Байсуна. Полный тур на 5 дней: прямой авиаперелет или автобус, 4★ отели и коттеджи, 3-разовое питание, водопад Сангардак, источник Омонхона и персональный гид.',
+    descriptionEn: 'Surkhandarya 5-Day Expedition: direct flight or coach transit, 4★ boutique hotels & alpine chalets, 3 meals daily, Sangardak waterfall, Omonkhona healing spring & guide.',
+    packages: {
+      bus: {
+        priceUSD: 210, // 2,698,500 so'm
+        durationUz: '🚌 Sayyohlik Avtobusi / Sprinter: 9-10 soat (Borish-kelish kiritilgan)',
+        durationRu: '🚌 Комфортабельный автобус: 9-10 часов (Билеты включены)',
+        durationEn: '🚌 Tourist Coach / Sprinter: 9-10 hours (Round-trip included)',
+        transportLabelUz: 'Komfort Avtobus / Sprinter',
+        transportLabelRu: 'Комфортный автобус / Спринтер',
+        transportLabelEn: 'Tourist Coach / Sprinter',
+        highlightsUz: [
+          '🚌 Toshkentdan qulay konditsionerli Sprinter / sayyohlik avtobusi',
+          '🏨 4 kecha Termiz mehmonxonasi va Boysun tog\' kottejlarida tunash',
+          '🍲 5 kun davomida 3 mahal janubiy tansiq taomlar va Omonxona tog\' nonushtasi',
+          '💧 Sangardak sharsharasi va Fayoztepa Budda ibodatxonasi biletlari',
+          '👨‍💼 Professional shaxsiy gid xizmati'
+        ],
+        highlightsRu: [
+          '🚌 Комфортный автобус / Sprinter с кондиционером (туда и обратно)',
+          '🏨 4 ночи в отелях Термеза и коттеджах в горах Байсуна',
+          '🍲 3-разовое питание с южными национальными блюдами',
+          '💧 Экскурсия к водопаду Сангардак и древнему монастырю Фаязтепа',
+          '👨‍💼 Профессиональный гид на все дни тура'
+        ],
+        highlightsEn: [
+          '🚌 Round-trip air-conditioned Sprinter / tourist coach transportation',
+          '🏨 4 Nights accommodation in Termez hotel & Boysun mountain lodges',
+          '🍲 3 meals daily featuring southern authentic specialties',
+          '💧 Excursions to Sangardak Waterfall & Fayaztepa Buddhist site',
+          '👨‍💼 Professional licensed tour guide'
+        ]
+      },
+      plane: {
+        priceUSD: 300, // 3,855,000 so'm
+        durationUz: '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 1 soat 15 daqiqa (2 tomonlama parvoz kiritilgan)',
+        durationRu: '✈️ Прямой авиаперелет: 1 час 15 минут (Авиабилеты в обе стороны включены)',
+        durationEn: '✈️ Direct Flight: 1 hour 15 min (Round-trip flights included)',
+        transportLabelUz: 'To\'g\'ridan-to\'g\'ri Samolyot Reysi',
+        transportLabelRu: 'Прямой авиаперелет',
+        transportLabelEn: 'Direct Domestic Flight',
+        highlightsUz: [
+          '✈️ Toshkent - Termiz - Toshkent to\'g\'ridan-to\'g\'ri 2 tomonlama samolyot parvozi',
+          '🏨 4 kecha Termiz 4★ mehmonxonasi va Boysun tog\' eko-kottejlarida tunash',
+          '🍲 5 kun davomida 3 mahal janubiy tansiq taomlar va Omonxona tog\' nonushtasi',
+          '💧 Qoyalardan otilib chiquvchi mashhur moviy Sangardak sharsharasi transferi',
+          '🏛️ Fayoztepa Budda ibodatxonasi, Hakim at-Termiziy ziyoratgohi va shaxsiy gid'
+        ],
+        highlightsRu: [
+          '✈️ Прямой авиаперелет Ташкент - Термез - Ташкент (билеты в обе стороны)',
+          '🏨 4 ночи в 4★ отеле Термеза и эко-коттеджах в горах Байсуна',
+          '🍲 3-разовое питание с южными национальными блюдами',
+          '💧 Трансфер к уникальному водопаду Сангардак и источнику Омонхона',
+          '🏛️ Буддийский монастырь Фаязтепа, комплекс Аль-Хаким ат-Термези и гид'
+        ],
+        highlightsEn: [
+          '✈️ Direct round-trip flights Tashkent - Termez - Tashkent with private transit',
+          '🏨 4 Nights accommodation in 4★ Termez hotel & Boysun alpine chalets',
+          '🍲 3 meals daily featuring southern Uzbek gastronomic specialties',
+          '💧 Private excursion to Sangardak Waterfall & Omonkhona mineral springs',
+          '🏛️ Fayaztepa Buddhist monastery, holy Al-Hakim at-Termizi complex & guide'
+        ]
+      }
+    },
     images: [
       'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=80',
@@ -628,10 +884,6 @@ export const COUNTRIES = [
     taglineRu: 'Швейцария Узбекистана — Хвойные леса Заамина и Стеклянный Мост',
     taglineEn: 'Switzerland of Uzbekistan — Zaamin Pine Forests & Glass Bridge',
     coverImage: '/images/landmarks/uzbekistan-mountains.png',
-    transportType: 'bus',
-    flightDurationUz: '🚌 Qulay Mikroavtobus / Gazel: 2.5-3 soat (Borish-kelish kiritilgan)',
-    flightDurationRu: '🚌 Микроавтобус / Газель: 2.5-3 часа (Трансфер включен)',
-    flightDurationEn: '🚌 Comfortable Minibus / Gazel: 2.5-3 hours (Transit included)',
     visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
     visaRu: '5 дней / 4 ночи «Все включено»',
     visaEn: '5 Days / 4 Nights All-Inclusive',
@@ -640,31 +892,71 @@ export const COUNTRIES = [
     bestTimeEn: 'Year-round (Skiing in winter, alpine breeze in summer)',
     temp: '+22°C',
     rating: 4.99,
-    basePriceUSD: 158, // ~2,030,300 so'm
-    descriptionUz: 'Zomin – O\'zbekistonning Shveytsariyasi. 5 kunlik to\'liq tog\' safari: qulay mikroavtobus, shinam tog\' kotteji, 3 mahal toza tog\' taomlari, osma shisha ko\'prik, dor yo\'li (kanat), Suffa platosi va professional gid.',
-    descriptionRu: 'Заамин — Швейцария Узбекистана. Полный горный тур на 5 дней: микроавтобус, альпийский коттедж, 3-разовое питание, стеклянный мост, канатная дорога, плато Суффа и персональный гид.',
-    descriptionEn: 'Zaamin 5-day alpine road tour: comfortable minibus transit, mountain chalets, 3 meals daily, glass suspension bridge, cable car passes & professional mountain guide.',
-    highlightsUz: [
-      '🚌 Qulay Gazel / Mikroavtobus transferi (Toshkentdan borish-kelish)',
-      '🏨 4 kecha Zomin tog\' shinam kottejlari va eko-mehmonxonada tunash',
-      '🍲 5 kun davomida 3 mahal to\'liq toza tog\' ovqatlanishi (qaymoq, tandir kabob)',
-      '🌉 Zomin Milliy Bog\'idagi ulkan Osma Shisha Ko\'prik (Glass Bridge) va kanat biletlari',
-      '🌲 Suffa platosi, Sherbuloq shifobaxsh suvi va professional gid'
-    ],
-    highlightsRu: [
-      '🚌 Комфортабельный микроавтобус / Газель (туда и обратно)',
-      '🏨 4 ночи в уютных альпийских коттеджах и эко-отелях Заамина',
-      '🍲 3-разовое питание с экологически чистыми горными продуктами',
-      '🌉 Билеты на Подвесной стеклянный мост (Glass Bridge) и канатную дорогу',
-      '🌲 Плато Суффа, целебный источник Шербулок и услуги гида'
-    ],
-    highlightsEn: [
-      '🚌 Round-trip air-conditioned minibus transit from Tashkent',
-      '🏨 4 Nights accommodation in cozy Zaamin alpine chalets and lodges',
-      '🍲 3 fresh organic mountain meals daily across 5 days',
-      '🌉 Full tickets to Suspension Glass Bridge and panoramic cable car',
-      '🌲 Guided excursions to Suffa Plateau & healing Sherbuloq springs'
-    ],
+    descriptionUz: 'Zomin – O\'zbekistonning Shveytsariyasi. 5 kunlik to\'liq tog\' safari: qulay mikroavtobus yoki VIP transfer, shinam tog\' kotteji, 3 mahal toza tog\' taomlari, osma shisha ko\'prik, dor yo\'li (kanat), Suffa platosi va professional gid.',
+    descriptionRu: 'Заамин — Швейцария Узбекистана. Полный горный тур на 5 дней: микроавтобус или VIP-трансфер, альпийский коттедж, 3-разовое питание, стеклянный мост, канатная дорога, плато Суффа и персональный гид.',
+    descriptionEn: 'Zaamin 5-day alpine road tour: comfortable minibus or VIP transit, mountain chalets, 3 meals daily, glass suspension bridge, cable car passes & professional mountain guide.',
+    packages: {
+      bus: {
+        priceUSD: 158, // 2,030,300 so'm
+        durationUz: '🚌 Qulay Mikroavtobus / Gazel: 2.5-3 soat (Borish-kelish kiritilgan)',
+        durationRu: '🚌 Микроавтобус / Газель: 2.5-3 часа (Трансфер включен)',
+        durationEn: '🚌 Comfortable Minibus / Gazel: 2.5-3 hours (Transit included)',
+        transportLabelUz: 'Qulay Mikroavtobus / Gazel',
+        transportLabelRu: 'Микроавтобус / Газель',
+        transportLabelEn: 'Comfortable Minibus / Gazel',
+        highlightsUz: [
+          '🚌 Qulay Gazel / Mikroavtobus transferi (Toshkentdan borish-kelish)',
+          '🏨 4 kecha Zomin tog\' shinam kottejlari va eko-mehmonxonada tunash',
+          '🍲 5 kun davomida 3 mahal to\'liq toza tog\' ovqatlanishi (qaymoq, tandir kabob)',
+          '🌉 Zomin Milliy Bog\'idagi ulkan Osma Shisha Ko\'prik (Glass Bridge) va kanat biletlari',
+          '🌲 Suffa platosi, Sherbuloq shifobaxsh suvi va professional gid'
+        ],
+        highlightsRu: [
+          '🚌 Комфортабельный микроавтобус / Газель (туда и обратно)',
+          '🏨 4 ночи в уютных альпийских коттеджах и эко-отелях Заамина',
+          '🍲 3-разовое питание с экологически чистыми горными продуктами',
+          '🌉 Билеты на Подвесной стеклянный мост (Glass Bridge) и канатную дорогу',
+          '🌲 Плато Суффа, целебный источник Шербулок и услуги гида'
+        ],
+        highlightsEn: [
+          '🚌 Round-trip air-conditioned minibus transit from Tashkent',
+          '🏨 4 Nights accommodation in cozy Zaamin alpine chalets and lodges',
+          '🍲 3 fresh organic mountain meals daily across 5 days',
+          '🌉 Full tickets to Suspension Glass Bridge and panoramic cable car',
+          '🌲 Guided excursions to Suffa Plateau & healing Sherbuloq springs'
+        ]
+      },
+      plane: {
+        priceUSD: 200, // 2,570,000 so'm
+        durationUz: '🚗 VIP Komfort Shaxsiy Transfer: 2 soat (Toshkentdan to\'g\'ridan-to\'g\'ri kottejgacha)',
+        durationRu: '🚗 VIP Индивидуальный трансфер: 2 часа (От дома прямо в коттедж)',
+        durationEn: '🚗 VIP Private Express Transit: 2 hours (Door-to-door luxury transfer)',
+        transportLabelUz: 'VIP Shaxsiy Komfort Transfer',
+        transportLabelRu: 'VIP Индивидуальный трансфер',
+        transportLabelEn: 'VIP Private Luxury Transit',
+        highlightsUz: [
+          '🚗 Toshkentdan shaxsiy lyuks avtomobil transferi (to\'g\'ridan-to\'g\'ri kottejgacha)',
+          '🏨 4 kecha Zomin tog\' Premium VIP kottejlarida tunash',
+          '🍲 5 kun davomida 3 mahal restoran darajasidagi tog\' taomlari',
+          '🌉 Osma Shisha Ko\'prik, dor yo\'li (kanat) va barcha bog\' chiptalari',
+          '🌲 Shaxsiy shofyor va shaxsiy tog\' gid xizmati'
+        ],
+        highlightsRu: [
+          '🚗 Индивидуальный комфортабельный трансфер прямо до коттеджа',
+          '🏨 4 ночи в премиум VIP-коттеджах Заамина с видом на горы',
+          '🍲 3-разовое питание ресторанного уровня с экологическими продуктами',
+          '🌉 Билеты на Стеклянный мост, канатную дорогу и в Национальный парк',
+          '🌲 Личный водитель и персональный горный гид'
+        ],
+        highlightsEn: [
+          '🚗 Private luxury chauffeured vehicle direct to mountain chalet',
+          '🏨 4 Nights in premium VIP alpine chalets with panoramic views',
+          '🍲 3 gourmet mountain meals daily featuring organic cuisine',
+          '🌉 VIP passes to Suspension Glass Bridge & scenic cable cars',
+          '🌲 Dedicated personal chauffeur & private mountain guide'
+        ]
+      }
+    },
     images: [
       '/images/landmarks/uzbekistan-mountains.png',
       'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
