@@ -35,35 +35,49 @@ export default function BookingModal({
     setPhoneDigits(raw.slice(0, 9));
   };
 
-  // 100% Iron-Clad Scroll Freeze (Prevents 100% background movement on mousewheel & touch)
+  // 100% Guaranteed Freeze of background page scroll and wheel events
   useEffect(() => {
-    if (isOpen) {
-      const scrollY = window.scrollY || window.pageYOffset || 0;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    if (!isOpen) return;
+
+    const handleWindowWheel = (e) => {
+      const isInsideScrollable = e.target && e.target.closest && e.target.closest('.modal-scrollable');
+      if (!isInsideScrollable) {
+        e.preventDefault();
       }
-    }
+    };
+
+    const handleTouchMove = (e) => {
+      const isInsideScrollable = e.target && e.target.closest && e.target.closest('.modal-scrollable');
+      if (!isInsideScrollable) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('wheel', handleWindowWheel, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
     return () => {
-      const scrollY = document.body.style.top;
+      window.removeEventListener('wheel', handleWindowWheel);
+      window.removeEventListener('touchmove', handleTouchMove);
+      const top = document.body.style.top;
       document.body.style.position = '';
       document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
       document.body.style.width = '';
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      if (top) {
+        window.scrollTo(0, parseInt(top || '0', 10) * -1);
       }
     };
   }, [isOpen]);
@@ -126,7 +140,7 @@ export default function BookingModal({
         </div>
 
         {/* Scrollable Content Body */}
-        <div className="p-6 overflow-y-auto space-y-5">
+        <div className="p-6 overflow-y-auto space-y-5 modal-scrollable">
           
           {isConfirmed ? (
             /* Digital Boarding Pass Ticket */
