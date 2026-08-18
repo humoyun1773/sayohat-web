@@ -71,13 +71,14 @@ export default function CountryExplorer({
     <section id="countries" className="py-24 relative overflow-hidden bg-white">
       
       {/* 100% Pure, Razor-Sharp Bukhara Ark Historical Landmark Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <img
           src="/images/landmarks/bukhara-ark.png"
           alt="Bukhara Ark Historical Architecture"
-          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+          className="w-full h-full object-cover object-center filter brightness-100 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-900/40"></div>
+        <div className="absolute inset-0 bg-white/20"></div>
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">

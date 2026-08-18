@@ -45,10 +45,9 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
         <img
           src="/images/landmarks/samarkand-registan.png"
           alt="Samarkand Registan Square Historical Architecture"
-          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+          className="w-full h-full object-cover object-center filter brightness-100 contrast-105 scale-100"
         />
-        <div className="absolute inset-0 bg-white/45 backdrop-blur-[2px]"></div>
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
