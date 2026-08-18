@@ -35,15 +35,18 @@ export default function BookingModal({
     setPhoneDigits(raw.slice(0, 9));
   };
 
-  // Freeze background page scroll when modal is open
+  // 100% Solid Freeze background page scroll when modal is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
+      document.documentElement.classList.add('modal-open');
     } else {
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
     };
   }, [isOpen]);
 
