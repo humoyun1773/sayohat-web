@@ -1,0 +1,6 @@
+# LOTOS FIELD - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://lotosfield.uz/sitemap.xml
