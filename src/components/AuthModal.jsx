@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  X, User, Phone, Lock, Sparkles, CheckCircle2, 
+  X, User, Phone, Lock, CheckCircle2, 
   LogOut, Shield, Heart, Ticket, ArrowRight 
 } from 'lucide-react';
 

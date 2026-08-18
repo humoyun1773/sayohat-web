@@ -180,7 +180,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
               })}
               className="w-full lg:w-auto py-3.5 px-7 rounded-2xl btn-gold font-bold text-xs sm:text-sm tracking-wide flex items-center justify-center gap-2 shadow-md hover:scale-105 active:scale-95 transition-all"
             >
-              <Sparkles className="w-4 h-4" />
+              <Plane className="w-4 h-4" />
               <span>USHBU SAMOLYOTGA CHIPTA OLISH</span>
             </button>
           </div>

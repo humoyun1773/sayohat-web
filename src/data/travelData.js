@@ -52,11 +52,11 @@ export const LIVE_FLIGHTS = [
 ];
 
 export const CATEGORIES = [
-  { id: 'all', name: 'Barcha Davlatlar', icon: 'Globe' },
-  { id: 'beach', name: '🏖️ Sohil & Maldiv/Bali', icon: 'Palmtree' },
-  { id: 'historical', name: '🕌 Ziyorat & Tarix', icon: 'Landmark' },
-  { id: 'nature', name: '🏔️ Shveytsariya & Tog\'lar', icon: 'Mountain' },
-  { id: 'luxury', name: '✨ Dubay & AQSH & Lyuks', icon: 'Sparkles' },
+  { id: 'all', name: 'Barcha Yo\'nalishlar' },
+  { id: 'beach', name: '🏖️ Dengiz & Plyaj' },
+  { id: 'culture', name: '🕌 Ziyorat & Tarix' },
+  { id: 'mountain', name: '🏔️ Tog\' & Tabiat' },
+  { id: 'luxury', name: '🏙️ Megapolis & Lyuks' },
 ];
 
 export const COUNTRIES = [

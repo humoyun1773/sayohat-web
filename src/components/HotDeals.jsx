@@ -139,7 +139,7 @@ export default function HotDeals({ currency, onOpenBooking }) {
                   })}
                   className="w-full py-3 px-4 rounded-2xl btn-gold font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
                 >
-                  <Sparkles className="w-4 h-4" />
+                  <Plane className="w-4 h-4" />
                   <span>Chegirmada Band Qilish</span>
                 </button>
               </div>

@@ -273,7 +273,7 @@ export default function BookingModal({
                 type="submit"
                 className="w-full py-4 rounded-2xl btn-gold text-white text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
               >
-                <Sparkles className="w-4 h-4" />
+                <Plane className="w-4 h-4" />
                 <span>BUYURTMANI TASDIQLASH VA VAUCHER OLISH</span>
               </button>
             </form>

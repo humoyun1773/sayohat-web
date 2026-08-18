@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Plane, ShieldCheck, HeartHandshake, Headphones, 
-  CreditCard, Award, Sparkles, CheckCircle2 
+  CreditCard, Award, CheckCircle2 
 } from 'lucide-react';
 
 export default function WhyUs() {

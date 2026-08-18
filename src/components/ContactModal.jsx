@@ -108,7 +108,7 @@ export default function ContactModal({ isOpen, onClose }) {
             
             <div className="flex items-center justify-between">
               <h4 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-sky-600" />
+                <Phone className="w-4 h-4 text-sky-600" />
                 Operatorga qayta qo'ng'iroq buyurtma qilish
               </h4>
               <span className="text-[10px] text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full font-bold">

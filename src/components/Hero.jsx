@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Plane, MapPin, Calendar, Users, Search, 
-  Sparkles, ShieldCheck, Award, Headphones, Compass 
+  ShieldCheck, Award, Headphones, Compass 
 } from 'lucide-react';
 import { COUNTRIES } from '../data/travelData';
 
@@ -39,11 +39,6 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         {/* Main Title & Hero Banner */}
         <div className="text-center max-w-4xl mx-auto mb-10 space-y-4">
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-sky-200 text-sky-800 text-xs sm:text-sm font-bold shadow-sm backdrop-blur-md">
-            <Sparkles className="w-4 h-4 text-amber-500" />
-            <span>2026-Yilning Eng Sara Xalqaro Aviaturlari & Qaynoq Chegirmalar</span>
-          </div>
-
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-tight drop-shadow-sm">
             Orzuingizdagi Sayohat — <br />
             <span className="text-sky-600">
@@ -175,7 +170,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
           </div>
         </div>
 
-        {/* Feature Highlights on White Theme */}
+        {/* Feature Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           
           <div className="bg-white/90 backdrop-blur-md p-5 rounded-3xl border border-slate-200/80 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">

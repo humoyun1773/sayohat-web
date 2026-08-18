@@ -411,7 +411,7 @@ export default function CountryExplorer({
                 })}
                 className="py-3.5 px-6 rounded-2xl btn-gold font-bold text-xs sm:text-sm tracking-wide flex items-center gap-2 shadow-sm hover:scale-105 active:scale-95 transition-all"
               >
-                <Sparkles className="w-4 h-4" />
+                <Plane className="w-4 h-4" />
                 <span>USHBU TURNI BRON QILISH</span>
               </button>
 

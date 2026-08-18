@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calculator, Plane, Hotel, Users, Calendar, 
-  Sparkles, CheckCircle2, ShieldCheck, DollarSign, ArrowRight 
+  CheckCircle2, ShieldCheck, DollarSign, ArrowRight 
 } from 'lucide-react';
 import { COUNTRIES, EXCHANGE_RATE } from '../data/travelData';
 
@@ -85,7 +85,7 @@ export default function PriceCalculator({
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-800 text-xs font-bold uppercase tracking-wider shadow-sm">
             <Calculator className="w-3.5 h-3.5 text-sky-600" />
-            <span>Aqlli Narx Hisoblagich & Live Narxlar</span>
+            <span>Tur Narxini Hisoblash & To'g'ridan-to'g'ri Narxlar</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Sayohat Narxini <br />
@@ -351,7 +351,7 @@ export default function PriceCalculator({
               onClick={handleBookCalculatedTour}
               className="w-full py-4 px-6 rounded-2xl btn-gold font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
             >
-              <Sparkles className="w-4 h-4" />
+              <Plane className="w-4 h-4" />
               <span>USHBU BUYURTMANI BRON QILISH</span>
             </button>
 
