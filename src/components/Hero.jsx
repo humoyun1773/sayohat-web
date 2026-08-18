@@ -36,7 +36,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
   };
 
   return (
-    <section id="hero" className="relative min-h-[92vh] pt-36 pb-20 flex items-center justify-center overflow-hidden bg-white">
+    <section id="hero" className="relative min-h-[88vh] pt-28 sm:pt-36 pb-16 sm:pb-20 flex items-center justify-center overflow-hidden bg-white">
       
       {/* 100% Pure, Razor-Sharp, Crystal-Clear Airport Terminal Interior Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

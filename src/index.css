@@ -116,3 +116,18 @@
 .lightbox-animate {
   animation: lightboxZoom 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+@keyframes mobileDrawerOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.mobile-drawer-animate {
+  animation: mobileDrawerOpen 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

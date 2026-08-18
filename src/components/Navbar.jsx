@@ -109,44 +109,82 @@ export default function Navbar({
 
           {/* Mobile Right Controls */}
           <div className="flex items-center gap-2 md:hidden">
+            {currentUser && (
+              <button
+                onClick={onOpenLogoutModal}
+                className="w-9 h-9 rounded-xl bg-[#10b981] text-white flex items-center justify-center text-xs font-black shadow-sm"
+                title="Profil"
+              >
+                {currentUser.name?.charAt(0) || 'U'}
+              </button>
+            )}
+            
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-white/40 backdrop-blur-md text-slate-900 border border-white/50 hover:bg-white/60 transition-all"
+              className="p-2.5 rounded-xl bg-white/80 backdrop-blur-md text-slate-900 border border-white/60 hover:bg-white shadow-xs transition-all active:scale-95"
+              aria-label="Menyu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-red-600" /> : <Menu className="w-5 h-5 text-slate-900" />}
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Animated Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-2 max-w-[1536px] mx-auto rounded-3xl bg-white/85 backdrop-blur-xl border border-white/60 p-6 space-y-4 shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden mt-2 max-w-[1536px] mx-auto rounded-3xl bg-white/95 backdrop-blur-2xl border border-white/80 p-5 space-y-4 shadow-2xl mobile-drawer-animate">
           
-          <div className="grid grid-cols-2 gap-2.5">
+          {/* Navigation Links Grid */}
+          <div className="grid grid-cols-2 gap-2">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="text-left px-4 py-3 rounded-xl bg-white/60 hover:bg-[#ecfdf5] text-xs font-bold text-slate-800 hover:text-[#10b981] border border-white/50 transition-all"
+                className="text-left px-3.5 py-3 rounded-2xl bg-slate-50 hover:bg-[#ecfdf5] text-xs font-bold text-slate-800 hover:text-[#10b981] border border-slate-200/80 transition-all flex items-center justify-between group"
               >
-                {link.name}
+                <span>{link.name}</span>
+                <span className="text-[#10b981] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
               </button>
             ))}
           </div>
 
-          {/* Auth Trigger */}
-          <div className="pt-2 border-t border-slate-200/60">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAuth();
-              }}
-              className="w-full py-3.5 rounded-2xl btn-primary-emerald text-xs font-bold text-white shadow-md"
-            >
-              {currentUser ? 'Mening Profilim' : 'KIRISH / REGISTRATSIYA'}
-            </button>
+          {/* User Profile / Auth Section in Mobile */}
+          <div className="pt-3 border-t border-slate-200 space-y-2.5">
+            {currentUser ? (
+              <div className="p-3.5 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-[#10b981] text-white flex items-center justify-center text-xs font-black shadow-xs">
+                    {currentUser.name?.charAt(0) || 'U'}
+                  </div>
+                  <div>
+                    <span className="text-xs font-black text-slate-900 block leading-tight">{currentUser.name}</span>
+                    <span className="text-[10px] text-[#065f46] font-bold">{currentUser.tier || 'VIP A\'zo'}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenLogoutModal();
+                  }}
+                  className="px-3 py-1.5 rounded-xl bg-white hover:bg-red-50 text-red-600 border border-red-200 text-[11px] font-bold shadow-xs transition-colors flex items-center gap-1"
+                >
+                  <LogOut className="w-3 h-3" />
+                  <span>Chiqish</span>
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenAuth();
+                }}
+                className="w-full py-3.5 rounded-2xl btn-primary-emerald text-xs font-black text-white uppercase tracking-wider shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"
+              >
+                <User className="w-4 h-4" />
+                <span>KIRISH / REGISTRATSIYA</span>
+              </button>
+            )}
           </div>
 
         </div>
