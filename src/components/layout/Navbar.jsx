@@ -7,9 +7,14 @@ import {
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { CONTACT_INFO } from '../../data/travelData';
 
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+
 export default function Navbar({ lang = 'uz', onChangeLang, t }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // 100% Solid Background Scroll Freeze when Mobile Modal Menu is open
+  useBodyScrollLock(mobileMenuOpen);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,36 +23,6 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Bulletproof body freeze when Mobile Modal Menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      document.body.classList.add('modal-open');
-      document.documentElement.classList.add('modal-open');
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-      }
-    }
-
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
-    };
-  }, [mobileMenuOpen]);
 
   const navLinks = [
     { name: t.nav.home, href: '#hero', icon: Compass, badge: 'Asosiy' },

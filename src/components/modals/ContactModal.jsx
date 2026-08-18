@@ -6,12 +6,23 @@ import {
 import { COUNTRIES } from '../../data/travelData';
 import CustomSelect from '../ui/CustomSelect';
 
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+
 export default function ContactModal({ isOpen, onClose, t, lang = 'uz' }) {
   const [fullName, setFullName] = useState('');
   const [phoneDigits, setPhoneDigits] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('samarkand');
   const [message, setMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // 100% Solid Background Scroll Freeze
+  useBodyScrollLock(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsSubmitted(false);
+    }
+  }, [isOpen]);
 
   // Format 9 digits nicely for display: e.g. 90 123 45 67
   const formatDisplayDigits = (val) => {
@@ -28,54 +39,6 @@ export default function ContactModal({ isOpen, onClose, t, lang = 'uz' }) {
     const raw = e.target.value.replace(/\D/g, '');
     setPhoneDigits(raw.slice(0, 9));
   };
-
-  // 100% Guaranteed Freeze of background page scroll and wheel events
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleWindowWheel = (e) => {
-      const isInsideScrollable = e.target && e.target.closest && e.target.closest('.modal-scrollable');
-      if (!isInsideScrollable) {
-        e.preventDefault();
-      }
-    };
-
-    const handleTouchMove = (e) => {
-      const isInsideScrollable = e.target && e.target.closest && e.target.closest('.modal-scrollable');
-      if (!isInsideScrollable) {
-        e.preventDefault();
-      }
-    };
-
-    window.addEventListener('wheel', handleWindowWheel, { passive: false });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-    const scrollY = window.scrollY || window.pageYOffset || 0;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    setIsSubmitted(false);
-
-    return () => {
-      window.removeEventListener('wheel', handleWindowWheel);
-      window.removeEventListener('touchmove', handleTouchMove);
-      const top = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      if (top) {
-        window.scrollTo(0, parseInt(top || '0', 10) * -1);
-      }
-    };
-  }, [isOpen]);
 
   if (!isOpen) return null;
 

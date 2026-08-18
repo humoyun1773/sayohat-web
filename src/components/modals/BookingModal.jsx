@@ -6,6 +6,8 @@ import {
 } from 'lucide-react';
 import { COUNTRIES, EXCHANGE_RATE } from '../../data/travelData';
 
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+
 export default function BookingModal({ 
   isOpen, 
   onClose, 
@@ -21,6 +23,9 @@ export default function BookingModal({
   const [travelDate, setTravelDate] = useState('2026-09-15');
   const [passengers, setPassengers] = useState(2);
   const [isConfirmed, setIsConfirmed] = useState(false);
+
+  // 100% Solid Background Scroll Freeze
+  useBodyScrollLock(isOpen);
 
   // Sync initial country and transport type from bookingData
   useEffect(() => {
@@ -50,34 +55,6 @@ export default function BookingModal({
     }
     setIsConfirmed(false);
   }, [bookingData, isOpen]);
-
-  // 100% Solid Background Scroll Freeze
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const scrollY = window.scrollY || window.pageYOffset || 0;
-    
-    document.documentElement.classList.add('modal-open');
-    document.body.classList.add('modal-open');
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.documentElement.classList.remove('modal-open');
-      document.body.classList.remove('modal-open');
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      document.body.style.overflow = '';
-      window.scrollTo(0, scrollY);
-    };
-  }, [isOpen]);
 
   if (!isOpen) return null;
 
