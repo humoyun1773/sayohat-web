@@ -9,14 +9,15 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
   return (
     <footer className="relative bg-slate-50 text-slate-700 pt-16 pb-12 overflow-hidden border-t border-slate-200">
       
-      {/* High-res Airplane Silhouette & Cloud Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+      {/* 100% Crystal Clear Airplane Silhouette & Cloud Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=85"
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2600&q=100"
           alt="Airliner in Sky"
           className="w-full h-full object-cover object-bottom"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-50/80 to-slate-50"></div>
+        <div className="absolute inset-0 bg-slate-50/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">

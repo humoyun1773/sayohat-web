@@ -33,7 +33,19 @@ export default function CountryExplorer({
   };
 
   return (
-    <section id="countries" className="py-20 relative bg-white">
+    <section id="countries" className="py-24 relative overflow-hidden bg-white">
+      
+      {/* 100% Crystal Clear Aerial Travel & Airplane Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2600&q=100"
+          alt="Travel Worldwide"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-white/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+      </div>
+
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}

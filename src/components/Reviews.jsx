@@ -4,7 +4,19 @@ import { REVIEWS } from '../data/travelData';
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="py-20 relative bg-white border-t border-slate-200">
+    <section id="reviews" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
+      
+      {/* 100% Crystal Clear Luxury Flight Lounge & Passengers Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=2600&q=100"
+          alt="Happy Travelers in Sky"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-white/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+      </div>
+
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Header */}
