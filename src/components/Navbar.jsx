@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Plane, Phone, User, 
-  Menu, X, Globe, Sparkles, ChevronRight, ShieldCheck 
+  Plane, User, 
+  Menu, X, Globe, Sparkles 
 } from 'lucide-react';
-import { CONTACT_INFO } from '../data/travelData';
 
 export default function Navbar({ 
   currency, 
   setCurrency, 
   onOpenAuth, 
-  onOpenContact, 
   currentUser, 
   onLogout 
 }) {
@@ -98,14 +96,6 @@ export default function Navbar({
               <span>{currency === 'USD' ? '$ USD' : 'So\'m (UZS)'}</span>
             </button>
 
-            {/* Operator Contact Trigger */}
-            <button
-              onClick={onOpenContact}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-all"
-            >
-              Aloqa
-            </button>
-
             {/* User Profile / Login Button */}
             {currentUser ? (
               <button
@@ -165,24 +155,14 @@ export default function Navbar({
             ))}
           </div>
 
-          {/* Auth & Operator Triggers */}
-          <div className="pt-2 border-t border-slate-100 flex gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenContact();
-              }}
-              className="flex-1 py-3 rounded-2xl bg-slate-100 text-xs font-bold text-slate-800 hover:bg-slate-200 transition-all"
-            >
-              Operatorga Yozish
-            </button>
-
+          {/* Auth Trigger */}
+          <div className="pt-2 border-t border-slate-100">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenAuth();
               }}
-              className="flex-1 py-3 rounded-2xl btn-primary-blue text-xs font-bold text-white shadow-md"
+              className="w-full py-3 rounded-2xl btn-primary-blue text-xs font-bold text-white shadow-md"
             >
               {currentUser ? 'Mening Profilim' : 'KIRISH / REGISTRATSIYA'}
             </button>
