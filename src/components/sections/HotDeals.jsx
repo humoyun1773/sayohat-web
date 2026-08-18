@@ -8,10 +8,9 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
   // Safe price formatter with defensive number fallback
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;
-    if (currency === 'UZS') {
-      return (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
-    }
-    return '$' + num.toLocaleString('en-US');
+    const som = (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
+    const usd = '$' + num.toLocaleString('en-US');
+    return `${som} (${usd})`;
   };
 
   return (

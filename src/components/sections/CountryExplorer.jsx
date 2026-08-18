@@ -27,10 +27,9 @@ export default function CountryExplorer({
   // Defensive safe price formatter
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;
-    if (currency === 'UZS') {
-      return (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
-    }
-    return '$' + num.toLocaleString('en-US');
+    const som = (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
+    const usd = '$' + num.toLocaleString('en-US');
+    return `${som} (${usd})`;
   };
 
   const handleCountryClick = (cId) => {
