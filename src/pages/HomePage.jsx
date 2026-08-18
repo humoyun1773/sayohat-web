@@ -103,9 +103,6 @@ export default function HomePage() {
       {/* 2. Main Hero Section */}
       <Hero
         onSelectCountry={handleCountryChange}
-        transportMode={transportMode}
-        onChangeTransportMode={setTransportMode}
-        onOpenBooking={handleOpenBooking}
         t={t}
         lang={lang}
       />
@@ -114,8 +111,6 @@ export default function HomePage() {
       <CountryExplorer
         selectedCountryId={selectedCountryId}
         onSelectCountry={handleCountryChange}
-        transportMode={transportMode}
-        onChangeTransportMode={setTransportMode}
         currency={currency}
         onOpenBooking={handleOpenBooking}
         onOpenImageLightbox={(img) => setLightboxImage(img)}

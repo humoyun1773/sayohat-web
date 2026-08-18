@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Bus, Plane, Star, Sun, Shield, 
+  Star, Sun, Shield, Compass,
   Maximize2, Check, Sparkles, MapPin, ExternalLink
 } from 'lucide-react';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
@@ -10,8 +10,6 @@ import { Badge } from '../ui/badge';
 export default function CountryExplorer({ 
   selectedCountryId = 'samarkand',
   onSelectCountry,
-  transportMode = 'bus',
-  onChangeTransportMode,
   onOpenBooking, 
   onOpenImageLightbox, 
   t, 
@@ -26,17 +24,9 @@ export default function CountryExplorer({
 
   const currentCountry = COUNTRIES.find(c => c.id === selectedCountryId) || COUNTRIES[0];
 
-  const currentPkg = currentCountry.packages ? currentCountry.packages[transportMode] : null;
-  const currentPrice = currentPkg ? currentPkg.priceUSD : (currentCountry.basePriceUSD || 190);
-  const countryFlight = currentPkg 
-    ? (lang === 'ru' ? currentPkg.durationRu : lang === 'en' ? currentPkg.durationEn : currentPkg.durationUz) 
-    : currentCountry.flightDurationUz;
-  const countryHighlights = currentPkg 
-    ? (lang === 'ru' ? currentPkg.highlightsRu : lang === 'en' ? currentPkg.highlightsEn : currentPkg.highlightsUz) 
-    : (lang === 'ru' ? currentCountry.highlightsRu : lang === 'en' ? currentCountry.highlightsEn : currentCountry.highlightsUz);
-  const transportLabel = currentPkg 
-    ? (lang === 'ru' ? currentPkg.transportLabelRu : lang === 'en' ? currentPkg.transportLabelEn : currentPkg.transportLabelUz) 
-    : (transportMode === 'plane' ? "Samolyot" : "Avtobus");
+  const currentPrice = currentCountry.basePriceUSD || 190;
+  const countryFlight = currentCountry.flightDurationUz;
+  const countryHighlights = lang === 'ru' ? currentCountry.highlightsRu : lang === 'en' ? currentCountry.highlightsEn : currentCountry.highlightsUz;
 
   const countryName = lang === 'ru' ? (currentCountry.nameRu || currentCountry.name) : lang === 'en' ? (currentCountry.nameEn || currentCountry.name) : currentCountry.name;
   const countryTagline = lang === 'ru' ? currentCountry.taglineRu : lang === 'en' ? currentCountry.taglineEn : currentCountry.taglineUz;
@@ -106,35 +96,6 @@ export default function CountryExplorer({
           </div>
         </div>
 
-        {/* Global Transport Switcher Bar: [🚌 Avtobus / Gazel] vs [✈️ Samolyot Parvozi] */}
-        <div className="max-w-md mx-auto mb-8">
-          <div className="p-1.5 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-md grid grid-cols-2 gap-2">
-            <button
-              onClick={() => onChangeTransportMode && onChangeTransportMode('bus')}
-              className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
-                transportMode === 'bus'
-                  ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
-              }`}
-            >
-              <Bus className="w-4 h-4" />
-              <span>{lang === 'ru' ? '🚌 Автобус / Газель' : lang === 'en' ? '🚌 Coach / Van' : '🚌 Qulay Avtobus / Gazel'}</span>
-            </button>
-
-            <button
-              onClick={() => onChangeTransportMode && onChangeTransportMode('plane')}
-              className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
-                transportMode === 'plane'
-                  ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
-              }`}
-            >
-              <Plane className="w-4 h-4 transform -rotate-45" />
-              <span>{lang === 'ru' ? '✈️ Авиаперелет' : lang === 'en' ? '✈️ Direct Flight' : '✈️ Samolyot Parvozi'}</span>
-            </button>
-          </div>
-        </div>
-
         {/* Category Filter Pills */}
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
           {CATEGORIES.map((cat) => {
@@ -159,7 +120,7 @@ export default function CountryExplorer({
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
           {filteredCountries.map((c) => {
             const isSelected = c.id === currentCountry.id;
-            const pkgPrice = c.packages && c.packages[transportMode] ? c.packages[transportMode].priceUSD : (c.basePriceUSD || 190);
+            const pkgPrice = c.basePriceUSD || 190;
             const displayName = lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name;
             return (
               <button
@@ -177,7 +138,7 @@ export default function CountryExplorer({
                   <span className="absolute bottom-1 right-1.5 text-xs drop-shadow">{c.flag}</span>
                 </div>
                 <div className="font-bold text-xs text-slate-900 truncate w-full px-1">{displayName}</div>
-                <div className="text-[10px] font-black text-[#10b981] mt-0.5 truncate w-full px-1">{formatPrice(pkgPrice)}</div>
+                <div className="text-[10px] font-black text-[#10b981] mt-0.5 truncate w-full px-1">{formatPrice(pkgPrice)} dan</div>
               </button>
             );
           })}
@@ -243,7 +204,7 @@ export default function CountryExplorer({
             </div>
           </div>
 
-          {/* Right: Comprehensive Info, Transport, Weather & Booking (5 cols) */}
+          {/* Right: Comprehensive Info, Weather & Booking (5 cols) */}
           <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
             <div className="space-y-5">
               
@@ -254,71 +215,6 @@ export default function CountryExplorer({
                 </div>
                 <h4 className="text-2xl font-black text-slate-900">{countryName} {t.regions.tourSuffix}</h4>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">{countryDescription}</p>
-              </div>
-
-              {/* Inside Card Transport Selector (2 Large Visual Option Cards) */}
-              <div className="space-y-2">
-                <label className="text-xs font-black text-slate-900 uppercase tracking-wider block">
-                  Transport Turini Tanlang:
-                </label>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  
-                  {/* Option 1: BUS */}
-                  <div
-                    onClick={() => onChangeTransportMode && onChangeTransportMode('bus')}
-                    className={`p-3 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
-                      transportMode === 'bus'
-                        ? 'border-[#10b981] bg-[#ecfdf5] shadow-xs ring-2 ring-[#10b981]/20 scale-[1.01]'
-                        : 'border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-1.5">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold ${transportMode === 'bus' ? 'bg-[#10b981] text-white' : 'bg-slate-200 text-slate-700'}`}>
-                          <Bus className="w-4 h-4" />
-                        </div>
-                        <span className="font-extrabold text-xs text-slate-900">
-                          {lang === 'ru' ? 'Автобус / Газель' : lang === 'en' ? 'Coach / Van' : 'Avtobus / Gazel'}
-                        </span>
-                      </div>
-                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${transportMode === 'bus' ? 'border-[#10b981] bg-[#10b981]' : 'border-slate-300'}`}>
-                        {transportMode === 'bus' && <div className="w-1.5 h-1.5 rounded-full bg-white"></div>}
-                      </div>
-                    </div>
-                    <div className="mt-2 text-[11px] font-black text-[#10b981]">
-                      {currentCountry.packages?.bus ? formatPrice(currentCountry.packages.bus.priceUSD) : formatPrice(190)}
-                    </div>
-                  </div>
-
-                  {/* Option 2: PLANE */}
-                  <div
-                    onClick={() => onChangeTransportMode && onChangeTransportMode('plane')}
-                    className={`p-3 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
-                      transportMode === 'plane'
-                        ? 'border-[#10b981] bg-[#ecfdf5] shadow-xs ring-2 ring-[#10b981]/20 scale-[1.01]'
-                        : 'border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-1.5">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-7 h-7 rounded-xl flex items-center justify-center font-bold ${transportMode === 'plane' ? 'bg-[#10b981] text-white' : 'bg-slate-200 text-slate-700'}`}>
-                          <Plane className="w-4 h-4 transform -rotate-45" />
-                        </div>
-                        <span className="font-extrabold text-xs text-slate-900">
-                          {lang === 'ru' ? 'Авиаперелет' : lang === 'en' ? 'Direct Flight' : 'Samolyot Reysi'}
-                        </span>
-                      </div>
-                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${transportMode === 'plane' ? 'border-[#10b981] bg-[#10b981]' : 'border-slate-300'}`}>
-                        {transportMode === 'plane' && <div className="w-1.5 h-1.5 rounded-full bg-white"></div>}
-                      </div>
-                    </div>
-                    <div className="mt-2 text-[11px] font-black text-[#10b981]">
-                      {currentCountry.packages?.plane ? formatPrice(currentCountry.packages.plane.priceUSD) : formatPrice(260)}
-                    </div>
-                  </div>
-
-                </div>
               </div>
 
               {/* 4 Fast Facts Badges in shadcn Card style */}
@@ -341,7 +237,7 @@ export default function CountryExplorer({
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
-                    {transportMode === 'plane' ? <Plane className="w-4 h-4 text-emerald-600 transform -rotate-45" /> : <Bus className="w-4 h-4 text-[#10b981]" />}
+                    <Compass className="w-4 h-4 text-[#10b981]" />
                     <span>{t.regions.facts.duration}</span>
                   </div>
                   <div className="text-xs font-extrabold text-slate-900 leading-snug">{countryFlight}</div>
@@ -378,7 +274,7 @@ export default function CountryExplorer({
               <div className="flex items-baseline justify-between gap-2">
                 <div>
                   <span className="text-xs text-slate-400 font-bold block">{t.regions.priceLabel}</span>
-                  <div className="text-xl sm:text-2xl font-black text-[#10b981]">{formatPrice(currentPrice)}</div>
+                  <div className="text-xl sm:text-2xl font-black text-[#10b981]">{formatPrice(currentPrice)} dan</div>
                 </div>
                 <Badge variant="secondary" className="font-bold text-slate-600 shrink-0">{t.regions.includedNote}</Badge>
               </div>
@@ -387,13 +283,13 @@ export default function CountryExplorer({
                 <button
                   onClick={() => onOpenBooking({ 
                     country: countryName, 
-                    flightClass: transportLabel, 
+                    flightClass: 'Avtobus yoki Samolyot', 
                     hotelStar: '4★ Mehmonxona (4 kecha) + 3 mahal ovqat', 
                     priceUSD: currentPrice 
                   })}
-                  className="flex-1 py-3.5 px-6 rounded-2xl bg-[#10b981] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:bg-[#059669] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="flex-1 py-3.5 px-6 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-md active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  {transportMode === 'plane' ? <Plane className="w-4 h-4 transform -rotate-45" /> : <Bus className="w-4 h-4" />}
+                  <Sparkles className="w-4 h-4" />
                   <span>{t.regions.bookBtn}</span>
                 </button>
 

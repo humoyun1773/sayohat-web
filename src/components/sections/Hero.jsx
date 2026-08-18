@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Search, Bus, Plane, MapPin, Calendar, 
+  Search, MapPin, Calendar, 
   ShieldCheck, Compass, Sparkles 
 } from 'lucide-react';
 import { COUNTRIES } from '../../data/travelData';
@@ -8,8 +8,6 @@ import CustomSelect from '../ui/CustomSelect';
 
 export default function Hero({ 
   onSelectCountry, 
-  transportMode = 'bus', 
-  onChangeTransportMode,
   t, 
   lang = 'uz' 
 }) {
@@ -18,14 +16,14 @@ export default function Hero({
   const [date, setDate] = useState('2026-09-15');
 
   const originOptions = [
-    { value: 'TAS', label: lang === 'ru' ? 'Ташкент (Автовокзал / Аэропорт)' : lang === 'en' ? 'Tashkent (Bus Station / Airport)' : 'Toshkent (Avtovokzal / Aeroport)', icon: transportMode === 'plane' ? Plane : Bus },
-    { value: 'SKD', label: lang === 'ru' ? 'Самарканд' : lang === 'en' ? 'Samarkand' : 'Samarqand shahri', icon: transportMode === 'plane' ? Plane : Bus },
-    { value: 'BHK', label: lang === 'ru' ? 'Бухара' : lang === 'en' ? 'Bukhara' : 'Buxoro shahri', icon: transportMode === 'plane' ? Plane : Bus },
-    { value: 'UGC', label: lang === 'ru' ? 'Ургенч / Хива' : lang === 'en' ? 'Urgench / Khiva' : 'Urganch / Xiva', icon: transportMode === 'plane' ? Plane : Bus },
-    { value: 'KSQ', label: lang === 'ru' ? 'Карши' : lang === 'en' ? 'Karshi' : 'Qarshi shahri', icon: transportMode === 'plane' ? Plane : Bus },
-    { value: 'TMJ', label: lang === 'ru' ? 'Термез' : lang === 'en' ? 'Termez' : 'Termiz shahri', icon: transportMode === 'plane' ? Plane : Bus },
-    { value: 'FEG', label: lang === 'ru' ? 'Фергана' : lang === 'en' ? 'Fergana' : 'Farg\'ona vodiysi', icon: transportMode === 'plane' ? Plane : Bus },
-    { value: 'NCU', label: lang === 'ru' ? 'Нукус' : lang === 'en' ? 'Nukus' : 'Nukus shahri', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'TAS', label: lang === 'ru' ? 'Ташкент (Центр / Вокзал)' : lang === 'en' ? 'Tashkent (City Center)' : 'Toshkent shahri (Markaz)', icon: MapPin },
+    { value: 'SKD', label: lang === 'ru' ? 'Самарканд' : lang === 'en' ? 'Samarkand' : 'Samarqand shahri', icon: MapPin },
+    { value: 'BHK', label: lang === 'ru' ? 'Бухара' : lang === 'en' ? 'Bukhara' : 'Buxoro shahri', icon: MapPin },
+    { value: 'UGC', label: lang === 'ru' ? 'Ургенч / Хива' : lang === 'en' ? 'Urgench / Khiva' : 'Urganch / Xiva', icon: MapPin },
+    { value: 'KSQ', label: lang === 'ru' ? 'Карши' : lang === 'en' ? 'Karshi' : 'Qarshi shahri', icon: MapPin },
+    { value: 'TMJ', label: lang === 'ru' ? 'Термез' : lang === 'en' ? 'Termez' : 'Termiz shahri', icon: MapPin },
+    { value: 'FEG', label: lang === 'ru' ? 'Фергана' : lang === 'en' ? 'Fergana' : 'Farg\'ona vodiysi', icon: MapPin },
+    { value: 'NCU', label: lang === 'ru' ? 'Нукус' : lang === 'en' ? 'Nukus' : 'Nukus shahri', icon: MapPin },
   ];
 
   const destinationOptions = COUNTRIES.map((c) => ({
@@ -37,7 +35,7 @@ export default function Hero({
   const handleSearch = (e) => {
     e.preventDefault();
     if (onSelectCountry) {
-      onSelectCountry(selectedDest, transportMode);
+      onSelectCountry(selectedDest);
     }
     const element = document.querySelector('#regions');
     if (element) {
@@ -79,9 +77,8 @@ export default function Hero({
         <div className="w-full max-w-[1536px] mx-auto mb-14">
           <div className="bg-white/98 backdrop-blur-2xl p-5 sm:p-10 lg:p-12 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
             
-            {/* Top Bar with Big Interactive Transport Selector Switch */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 border-b border-slate-100 pb-6 gap-4">
-              
+            {/* Top Bar with Clean Header and Guarantee Badge */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 border-b border-slate-100 pb-5 gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-[#ecfdf5] flex items-center justify-center text-[#10b981] border border-[#a7f3d0] shadow-sm shrink-0">
                   <Compass className="w-5 h-5" />
@@ -94,35 +91,10 @@ export default function Hero({
                 </div>
               </div>
 
-              {/* PRIMARY PROMINENT TRANSPORT SWITCHER TABS */}
-              <div className="p-1 bg-slate-100/90 rounded-2xl border border-slate-200/90 flex items-center gap-1.5 self-start md:self-auto shadow-inner">
-                <button
-                  type="button"
-                  onClick={() => onChangeTransportMode && onChangeTransportMode('bus')}
-                  className={`py-2.5 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-2 cursor-pointer ${
-                    transportMode === 'bus'
-                      ? 'bg-[#10b981] text-white shadow-md scale-105'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  <Bus className="w-4 h-4" />
-                  <span>{lang === 'ru' ? '🚌 Автобус / Газель' : lang === 'en' ? '🚌 Coach / Van' : '🚌 Qulay Avtobus / Gazel'}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => onChangeTransportMode && onChangeTransportMode('plane')}
-                  className={`py-2.5 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-2 cursor-pointer ${
-                    transportMode === 'plane'
-                      ? 'bg-[#10b981] text-white shadow-md scale-105'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  <Plane className="w-4 h-4 transform -rotate-45" />
-                  <span>{lang === 'ru' ? '✈️ Авиаперелет' : lang === 'en' ? '✈️ Direct Flight' : '✈️ Samolyot Parvozi'}</span>
-                </button>
-              </div>
-
+              <span className="text-xs sm:text-sm text-[#065f46] font-bold bg-[#ecfdf5] px-4 py-1.5 rounded-full border border-[#a7f3d0] flex items-center gap-2 self-start sm:self-auto shadow-sm">
+                <ShieldCheck className="w-4 h-4 text-[#10b981]" />
+                <span>{t.hero.guarantee}</span>
+              </span>
             </div>
 
             <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-end">
@@ -130,7 +102,7 @@ export default function Hero({
               {/* Custom Origin Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  {transportMode === 'plane' ? <Plane className="w-4 h-4 text-emerald-600 transform -rotate-45" /> : <Bus className="w-4 h-4 text-[#10b981]" />}
+                  <MapPin className="w-4 h-4 text-[#10b981]" />
                   {t.hero.originLabel}
                 </label>
                 <CustomSelect
@@ -143,7 +115,7 @@ export default function Hero({
               {/* Custom Destination Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#10b981]" />
+                  <Compass className="w-4 h-4 text-[#10b981]" />
                   {t.hero.destLabel}
                 </label>
                 <CustomSelect
@@ -171,7 +143,7 @@ export default function Hero({
               <div className="space-y-2 text-left flex flex-col justify-end">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
+                  className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:scale-[1.01] active:scale-95 transition-all cursor-pointer"
                 >
                   <Search className="w-5 h-5" />
                   <span>{t.hero.searchBtn}</span>
@@ -189,7 +161,7 @@ export default function Hero({
                   type="button"
                   onClick={() => {
                     if (onSelectCountry) {
-                      onSelectCountry(c.id, transportMode);
+                      onSelectCountry(c.id);
                     }
                     document.querySelector('#regions')?.scrollIntoView({ behavior: 'smooth' });
                   }}
