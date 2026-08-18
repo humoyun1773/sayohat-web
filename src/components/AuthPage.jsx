@@ -54,7 +54,7 @@ export default function AuthPage({
 
     setError('');
     
-    // Successful login or registration
+    // Successful login or registration -> Auto navigate back to home page
     const formattedFullPhone = '+998 ' + formatDisplayDigits(phoneDigits);
     const userData = {
       phone: formattedFullPhone,
@@ -66,6 +66,7 @@ export default function AuthPage({
     };
 
     onLogin(userData);
+    onBackToHome();
   };
 
   return (
@@ -117,132 +118,59 @@ export default function AuthPage({
         </div>
       </header>
 
-      {/* Center Auth Card (Compact & Perfectly Sized) */}
+      {/* Center Auth Card */}
       <main className="max-w-[1536px] mx-auto px-4 sm:px-6 py-6 sm:py-10 w-full flex-1 flex items-center justify-center relative z-10">
         
         {currentUser ? (
-          /* Profile Dashboard View */
-          <div className="w-full max-w-3xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-300">
+          /* Clean, Minimalist VIP Profile Card */
+          <div className="w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-300">
             
             {/* Header Banner */}
-            <div className="bg-slate-900 p-6 sm:p-8 text-white relative overflow-hidden">
-              <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-                
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] text-white flex items-center justify-center font-black text-2xl shadow-lg border border-white/20">
-                    {currentUser.name.charAt(0)}
-                  </div>
-                  <div className="space-y-0.5">
-                    <div className="flex items-center gap-2">
-                      <h2 className="text-xl sm:text-2xl font-extrabold">{currentUser.name}</h2>
-                      <span className="text-[10px] font-bold text-[#a7f3d0] bg-white/10 px-2.5 py-0.5 rounded-full border border-white/20">
-                        {currentUser.tier}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-300 font-mono">{currentUser.phone}</p>
-                    <p className="text-[10px] text-slate-400">LOTOS FIELD a'zosi: {currentUser.memberSince}-yildan buyon</p>
-                  </div>
+            <div className="bg-slate-900 p-6 text-white relative overflow-hidden flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] text-white flex items-center justify-center font-black text-2xl shadow-lg border border-white/20">
+                  {currentUser.name.charAt(0)}
                 </div>
-
-                <button
-                  type="button"
-                  onClick={onLogout}
-                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 flex items-center gap-2 self-start sm:self-center transition-all shadow-sm"
-                >
-                  <LogOut className="w-3.5 h-3.5" />
-                  <span>Profildan Chiqish</span>
-                </button>
-
+                <div className="space-y-0.5">
+                  <h2 className="text-lg font-extrabold">{currentUser.name}</h2>
+                  <p className="text-xs text-slate-300 font-mono">{currentUser.phone}</p>
+                  <span className="inline-block text-[10px] font-bold text-[#a7f3d0] bg-white/10 px-2 py-0.5 rounded-full border border-white/20">
+                    ★ {currentUser.tier}
+                  </span>
+                </div>
               </div>
+
+              <button
+                type="button"
+                onClick={onLogout}
+                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 flex items-center gap-1.5 transition-all shadow-sm"
+                title="Profildan chiqish"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">Chiqish</span>
+              </button>
             </div>
 
-            {/* Body */}
-            <div className="p-6 sm:p-8 space-y-6 bg-white">
-              
-              {/* Stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                  <div className="flex items-center gap-2 text-slate-500 text-xs font-bold mb-1">
-                    <CreditCard className="w-3.5 h-3.5 text-[#10b981]" />
-                    <span>To'plangan Keshbek</span>
-                  </div>
-                  <div className="text-xl font-black text-[#10b981]">{currentUser.bonuses.toLocaleString()} so'm</div>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Chegirma sifatida ishlatishingiz mumkin</p>
+            {/* Quick Balance & Return */}
+            <div className="p-6 space-y-4 bg-white">
+              <div className="p-4 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-between">
+                <div>
+                  <span className="text-xs text-[#065f46] font-bold block">To'plangan Keshbek Bonusingiz:</span>
+                  <span className="text-xl font-black text-[#10b981]">{currentUser.bonuses.toLocaleString()} so'm</span>
                 </div>
-
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                  <div className="flex items-center gap-2 text-slate-500 text-xs font-bold mb-1">
-                    <Ticket className="w-3.5 h-3.5 text-sky-600" />
-                    <span>Aktiv Chiptalar</span>
-                  </div>
-                  <div className="text-xl font-black text-slate-900">{currentUser.bookingsCount} ta buyurtma</div>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Parvozlar tasdiqlangan</p>
-                </div>
-
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                  <div className="flex items-center gap-2 text-slate-500 text-xs font-bold mb-1">
-                    <Award className="w-3.5 h-3.5 text-amber-500" />
-                    <span>Mijoz Darajasi</span>
-                  </div>
-                  <div className="text-lg font-black text-slate-900">VIP Premium</div>
-                  <p className="text-[10px] text-slate-400 mt-0.5">5% doimiy chegirma</p>
-                </div>
-
+                <span className="text-xs font-bold text-[#065f46] bg-white px-3 py-1 rounded-xl shadow-xs border border-[#a7f3d0]">
+                  5% VIP Chegirma Aktiv
+                </span>
               </div>
 
-              {/* Bookings List */}
-              <div className="space-y-2.5">
-                <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                  <Ticket className="w-4 h-4 text-[#10b981]" />
-                  Mening Sayohat Buyurtmalarim & Chiptalar
-                </h3>
-
-                <div className="space-y-2">
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-[#10b981] transition-all">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-slate-900 text-xs sm:text-sm">Dubay Luxury Ta'tili (5★ Atlantis Hotel)</span>
-                        <span className="text-[9px] font-bold text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-2 py-0.5 rounded-full">
-                          Tasdiqlangan
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">Sana: 15-sentabr, 2026 • 2 kishi • Boeing 787</p>
-                    </div>
-                    <div className="text-xs sm:text-sm font-black text-[#10b981]">
-                      $1,440 USD
-                    </div>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:border-[#10b981] transition-all">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-slate-900 text-xs sm:text-sm">Istanbul Tarixiy Sayohati & Bosphorus Kruiz</span>
-                        <span className="text-[9px] font-bold text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] px-2 py-0.5 rounded-full">
-                          Tasdiqlangan
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">Sana: 04-oktabr, 2026 • 2 kishi • Airbus A321</p>
-                    </div>
-                    <div className="text-xs sm:text-sm font-black text-[#10b981]">
-                      $890 USD
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Back to catalog CTA */}
-              <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <p className="text-xs text-slate-500">Yangi davlatlarni tanlash uchun bosh sahifaga o'ting.</p>
-                <button
-                  type="button"
-                  onClick={onBackToHome}
-                  className="w-full sm:w-auto py-2.5 px-6 rounded-xl btn-primary-emerald font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 transition-all"
-                >
-                  Sayohatlarni ko'rish
-                </button>
-              </div>
-
+              <button
+                type="button"
+                onClick={onBackToHome}
+                className="w-full py-3.5 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-2"
+              >
+                <Plane className="w-4 h-4" />
+                <span>BOSH SAHIFAGA O'TISH & SAYOHAT TANLASH</span>
+              </button>
             </div>
 
           </div>
