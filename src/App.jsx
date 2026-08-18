@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AirplaneFleet from './components/AirplaneFleet';
@@ -9,30 +9,56 @@ import WhyUs from './components/WhyUs';
 import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 
+// Standalone Pages
+import AuthPage from './components/AuthPage';
+
 // Modals
 import ContactModal from './components/ContactModal';
-import AuthModal from './components/AuthModal';
 import BookingModal from './components/BookingModal';
 import ImageLightboxModal from './components/ImageLightboxModal';
 
 // Floating Messengers Widget Icons
-import { Send, MessageCircle, Phone, Headphones } from 'lucide-react';
+import { Send, MessageCircle, Phone } from 'lucide-react';
 import { CONTACT_INFO } from './data/travelData';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'auth'
   const [currency, setCurrency] = useState('USD'); // 'USD' or 'UZS'
   const [selectedCountryId, setSelectedCountryId] = useState('turkey');
   const [calculatorPreselect, setCalculatorPreselect] = useState('turkey');
   
   // Modals state
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
 
   // User state
   const [currentUser, setCurrentUser] = useState(null);
+
+  // Handle browser back button or hash navigation if needed
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#/auth' || window.location.hash === '#auth') {
+        setCurrentPage('auth');
+      } else {
+        setCurrentPage('home');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleNavigateToAuth = () => {
+    setCurrentPage('auth');
+    window.location.hash = '#/auth';
+  };
+
+  const handleNavigateToHome = () => {
+    setCurrentPage('home');
+    window.location.hash = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleOpenBooking = (tourDetails) => {
     setBookingDetails(tourDetails);
@@ -45,31 +71,48 @@ export default function App() {
     document.querySelector('#calculator')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // If user is on Standalone Auth Page
+  if (currentPage === 'auth') {
+    return (
+      <AuthPage
+        currentUser={currentUser}
+        onLogin={(userData) => {
+          setCurrentUser(userData);
+        }}
+        onLogout={() => {
+          setCurrentUser(null);
+        }}
+        onBackToHome={handleNavigateToHome}
+      />
+    );
+  }
+
+  // Home Page
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-sky-500 selection:text-white font-sans antialiased">
+    <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased">
       
       {/* 1. Top Navbar */}
       <Navbar
         currency={currency}
         setCurrency={setCurrency}
-        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenAuth={handleNavigateToAuth}
         onOpenContact={() => setIsContactOpen(true)}
         currentUser={currentUser}
         onLogout={() => setCurrentUser(null)}
       />
 
-      {/* 2. Hero Section with Real Plane Background */}
+      {/* 2. Main Hero Section */}
       <Hero
         onSelectCountry={(cId) => setSelectedCountryId(cId)}
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* 3. Real Fleet & Airplanes Section */}
+      {/* 3. Modern Airplane Fleet & Live Board */}
       <AirplaneFleet
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* 4. Deep Country Explorer with Media Gallery */}
+      {/* 4. Country Explorer & HD Photo Gallery */}
       <CountryExplorer
         selectedCountryId={selectedCountryId}
         onSelectCountry={(cId) => setSelectedCountryId(cId)}
@@ -79,23 +122,23 @@ export default function App() {
         onOpenCalculatorWithCountry={handleOpenCalculatorWithCountry}
       />
 
-      {/* 5. Hot Deals & Flash Sales */}
+      {/* 5. Hot Deals & Flash Sale Countdown */}
       <HotDeals
         currency={currency}
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* 6. Dynamic Price & Flight Calculator */}
+      {/* 6. Live Price Calculator */}
       <PriceCalculator
         preSelectedCountryId={calculatorPreselect}
         currency={currency}
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* 7. Why Us & Trust Guarantees */}
+      {/* 7. Why Choose Us */}
       <WhyUs />
 
-      {/* 8. Traveler Reviews */}
+      {/* 8. Verified Traveler Reviews */}
       <Reviews />
 
       {/* 9. Clean Luxury Footer */}
@@ -144,14 +187,6 @@ export default function App() {
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
-      />
-
-      <AuthModal
-        isOpen={isAuthOpen}
-        onClose={() => setIsAuthOpen(false)}
-        currentUser={currentUser}
-        onLogin={(user) => setCurrentUser(user)}
-        onLogout={() => setCurrentUser(null)}
       />
 
       <BookingModal
