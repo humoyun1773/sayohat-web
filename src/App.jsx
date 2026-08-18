@@ -24,8 +24,25 @@ import { CONTACT_INFO } from './data/travelData';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'auth'
-  const [currency, setCurrency] = useState('USD'); // 'USD' or 'UZS'
-  const [selectedCountryId, setSelectedCountryId] = useState('turkey');
+  
+  // Persisted Currency ('USD' or 'UZS')
+  const [currency, setCurrency] = useState(() => {
+    try {
+      return localStorage.getItem('lotos_field_currency') || 'USD';
+    } catch {
+      return 'USD';
+    }
+  });
+
+  // Persisted Selected Country
+  const [selectedCountryId, setSelectedCountryId] = useState(() => {
+    try {
+      return localStorage.getItem('lotos_field_country') || 'turkey';
+    } catch {
+      return 'turkey';
+    }
+  });
+
   const [calculatorPreselect, setCalculatorPreselect] = useState('turkey');
   
   // Modals state
@@ -35,8 +52,53 @@ export default function App() {
   const [bookingDetails, setBookingDetails] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
 
-  // User state
-  const [currentUser, setCurrentUser] = useState(null);
+  // Persisted User state across page reloads
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('lotos_field_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      console.error('Failed to load user from localStorage:', e);
+      return null;
+    }
+  });
+
+  // Save user changes to localStorage
+  const handleUserLogin = (userData) => {
+    try {
+      localStorage.setItem('lotos_field_user', JSON.stringify(userData));
+    } catch (e) {
+      console.error(e);
+    }
+    setCurrentUser(userData);
+  };
+
+  const handleUserLogout = () => {
+    try {
+      localStorage.removeItem('lotos_field_user');
+    } catch (e) {
+      console.error(e);
+    }
+    setCurrentUser(null);
+  };
+
+  const handleCurrencyChange = (curr) => {
+    try {
+      localStorage.setItem('lotos_field_currency', curr);
+    } catch (e) {
+      console.error(e);
+    }
+    setCurrency(curr);
+  };
+
+  const handleCountryChange = (cId) => {
+    try {
+      localStorage.setItem('lotos_field_country', cId);
+    } catch (e) {
+      console.error(e);
+    }
+    setSelectedCountryId(cId);
+  };
 
   // Handle browser back button or hash navigation if needed
   useEffect(() => {
@@ -68,7 +130,7 @@ export default function App() {
   };
 
   const handleOpenCalculatorWithCountry = (cId) => {
-    setSelectedCountryId(cId);
+    handleCountryChange(cId);
     setCalculatorPreselect(cId);
     document.querySelector('#calculator')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -78,12 +140,8 @@ export default function App() {
     return (
       <AuthPage
         currentUser={currentUser}
-        onLogin={(userData) => {
-          setCurrentUser(userData);
-        }}
-        onLogout={() => {
-          setCurrentUser(null);
-        }}
+        onLogin={handleUserLogin}
+        onLogout={handleUserLogout}
         onBackToHome={handleNavigateToHome}
       />
     );
@@ -96,7 +154,7 @@ export default function App() {
       {/* 1. Top Navbar */}
       <Navbar
         currency={currency}
-        setCurrency={setCurrency}
+        setCurrency={handleCurrencyChange}
         onOpenAuth={handleNavigateToAuth}
         onOpenContact={() => setIsContactOpen(true)}
         currentUser={currentUser}
@@ -105,7 +163,7 @@ export default function App() {
 
       {/* 2. Main Hero Section */}
       <Hero
-        onSelectCountry={(cId) => setSelectedCountryId(cId)}
+        onSelectCountry={handleCountryChange}
         onOpenBooking={handleOpenBooking}
       />
 
@@ -118,7 +176,7 @@ export default function App() {
       {/* 4. Country Explorer & HD Photo Gallery */}
       <CountryExplorer
         selectedCountryId={selectedCountryId}
-        onSelectCountry={(cId) => setSelectedCountryId(cId)}
+        onSelectCountry={handleCountryChange}
         currency={currency}
         onOpenBooking={handleOpenBooking}
         onOpenImageLightbox={(img) => setLightboxImage(img)}
@@ -146,7 +204,7 @@ export default function App() {
 
       {/* 9. Clean Luxury Footer */}
       <Footer
-        onSelectCountry={(cId) => setSelectedCountryId(cId)}
+        onSelectCountry={handleCountryChange}
         onOpenContact={() => setIsContactOpen(true)}
       />
 
@@ -210,7 +268,7 @@ export default function App() {
         isOpen={isLogoutOpen}
         onClose={() => setIsLogoutOpen(false)}
         currentUser={currentUser}
-        onConfirmLogout={() => setCurrentUser(null)}
+        onConfirmLogout={handleUserLogout}
       />
 
     </div>
