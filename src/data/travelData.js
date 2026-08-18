@@ -62,7 +62,7 @@ export const AIRPLANES_FLEET = [
   {
     id: 'boeing-777',
     name: 'Boeing 777-300ER Triple Seven',
-    type: 'Quvvatli qit'alararo yo\'lovchi layneri',
+    type: "Quvvatli qit'alararo yo'lovchi layneri",
     airline: 'Emirates & Turkish Airlines',
     speed: '905 km/soat',
     range: '13,650 km',
