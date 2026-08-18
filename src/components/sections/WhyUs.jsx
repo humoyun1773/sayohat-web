@@ -10,11 +10,11 @@ export default function WhyUs({ t }) {
   return (
     <section id="why-us" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
       
-      {/* 100% Verified Pure Razor-Sharp Shahrisabz Ak-Saray Palace Historical Background */}
+      {/* 100% Verified Pure Razor-Sharp Bukhara Ark Historical Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=2600&q=100"
-          alt="Shahrisabz Ak-Saray Palace Historic Monument"
+          src="/images/landmarks/bukhara-ark.png"
+          alt="Bukhara Ark Historic Monument"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
         <div className="absolute inset-0 bg-slate-950/40"></div>

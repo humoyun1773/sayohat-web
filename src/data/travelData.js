@@ -24,7 +24,7 @@ export const COUNTRIES = [
     taglineUz: 'Sayqali Ro\'yi Zamin — Registon maydoni, Go\'ri Amir va Boqiy Shahar',
     taglineRu: 'Лик Земли — Площадь Регистан, Гур-Эмир и Вечный Город',
     taglineEn: 'Pearl of the Silk Road — Registan Square, Gur-e-Amir & Eternal City',
-    coverImage: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1600&q=80',
+    coverImage: '/images/landmarks/samarkand-registan.png',
     flightDurationUz: '50 daqiqa (Samolyot) / 2 soat (Afrosiyob)',
     flightDurationRu: '50 минут (Самолет) / 2 часа (Афросиаб)',
     flightDurationEn: '50 min (Flight) / 2 hours (Afrosiyob train)',
@@ -62,7 +62,7 @@ export const COUNTRIES = [
       'Authentic Samarkand bread and traditional festive pilaf tasting'
     ],
     images: [
-      'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80',
+      '/images/landmarks/samarkand-registan.png',
       'https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80'
@@ -73,7 +73,7 @@ export const COUNTRIES = [
         descUz: 'Tillakori, Ulug\'bek va Sherdor madrasalarining tillarang jilosi',
         descRu: 'Золотое сияние медресе Тилля-Кари, Улугбека и Шердор',
         descEn: 'Golden splendor of Tillya-Kori, Ulugh Beg and Sher-Dor madrasahs',
-        img: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80'
+        img: '/images/landmarks/samarkand-registan.png'
       },
       { 
         nameUz: 'Go\'ri Amir Maqbarasi', nameRu: 'Мавзолей Гур-Эмир', nameEn: 'Gur-e-Amir Mausoleum',
@@ -109,7 +109,7 @@ export const COUNTRIES = [
     taglineUz: 'Buxoroyi Sharif — Minorai Kalon, Ark Qal\'asi va Labi Hovuz',
     taglineRu: 'Священная Бухара — Минарет Калян, Цитадель Арк и Ляби-Хауз',
     taglineEn: 'Noble Bukhara — Kalyan Minaret, Ark Citadel & Lyabi-Hauz',
-    coverImage: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1600&q=80',
+    coverImage: '/images/landmarks/bukhara-ark.png',
     flightDurationUz: '1 soat (Samolyot) / 3.5 soat (Afrosiyob)',
     flightDurationRu: '1 час (Самолет) / 3.5 часа (Афросиаб)',
     flightDurationEn: '1 hour (Flight) / 3.5 hours (Afrosiyob)',
@@ -147,8 +147,8 @@ export const COUNTRIES = [
       'Bukhara masterclasses in gold embroidery and hand-crafted blades'
     ],
     images: [
+      '/images/landmarks/bukhara-ark.png',
       'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80'
     ],
@@ -165,7 +165,7 @@ export const COUNTRIES = [
         descUz: 'Buxoro hukmdorlarining ulkan g\'ishtin qal\'asi',
         descRu: 'Грандиозная крепость правителей Бухары',
         descEn: 'Massive fortress residence of the historic Bukhara emirs',
-        img: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80'
+        img: '/images/landmarks/bukhara-ark.png'
       },
       { 
         nameUz: 'Labi Hovuz Ansambli', nameRu: 'Ансамбль Ляби-Хауз', nameEn: 'Lyabi-Hauz Ensemble',
@@ -194,7 +194,7 @@ export const COUNTRIES = [
     taglineUz: 'Ochiq Osmon Ostidagi Tirik Muzey — Ichan Qal\'a va Kalta Minor',
     taglineRu: 'Живой Музей Под Открытым Небом — Ичан-Кала и Кальта-Минар',
     taglineEn: 'Living Open-Air Museum — Ichan Kala & Kalta Minor',
-    coverImage: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=1600&q=80',
+    coverImage: '/images/landmarks/khiva-ichan-kala.png',
     flightDurationUz: '1.5 soat (Toshkent ➔ Urganch reysi)',
     flightDurationRu: '1.5 часа (Рейс Ташкент ➔ Ургенч)',
     flightDurationEn: '1.5 hours (Tashkent ➔ Urgench flight)',
@@ -232,7 +232,7 @@ export const COUNTRIES = [
       'Authentic Khorezm culinary specialties: tukhum-barak & shivit oshi'
     ],
     images: [
-      'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=1200&q=80',
+      '/images/landmarks/khiva-ichan-kala.png',
       'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80'
@@ -243,7 +243,7 @@ export const COUNTRIES = [
         descUz: 'To\'liq saqlangan afsonaviy o\'rta asrlar qal\'asi',
         descRu: 'Полностью сохраненная средневековая цитадель',
         descEn: 'Fully intact fortified medieval inner town',
-        img: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=800&q=80'
+        img: '/images/landmarks/khiva-ichan-kala.png'
       },
       { 
         nameUz: 'Kalta Minor & Islomxo\'ja', nameRu: 'Кальта-Минар и Ислам-Ходжа', nameEn: 'Kalta Minor & Islam Khodja',
@@ -710,7 +710,7 @@ export const HOT_DEALS = [
     badgeEn: 'MOST POPULAR -25%',
     oldPriceUSD: 240,
     newPriceUSD: 180,
-    image: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=800&q=80',
+    image: '/images/landmarks/samarkand-registan.png',
     includesUz: ['Afrosiyob VIP poyezd chiptalari', '4-5★ Tarixiy Mehmonxonalar', 'Shaxsiy gid & barcha muzey chiptalari', 'Milliy to\'y oshi va kechki dasturlar'],
     includesRu: ['VIP-билеты на скоростной поезд Афросиаб', '4-5★ Исторические отели', 'Персональный гид и билеты во все музеи', 'Национальный праздничный плов и ужины'],
     includesEn: ['VIP tickets for Afrosiyob high-speed train', '4-5★ Historic boutique hotels', 'Private tour guide & museum access', 'Festive traditional dinners included']
@@ -729,7 +729,7 @@ export const HOT_DEALS = [
     badgeEn: 'EXCLUSIVE -30%',
     oldPriceUSD: 290,
     newPriceUSD: 210,
-    image: 'https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=800&q=80',
+    image: '/images/landmarks/khiva-ichan-kala.png',
     includesUz: ['Toshkent-Urganch to\'g\'ridan-to\'g\'ri aviaparvoz', 'Ichan Qal\'a ichidagi sharqona mehmonxona', 'Ayozqal\'a & Toproqqal\'a jip safari', 'Xorazm milliy tansiq taomlari'],
     includesRu: ['Прямой авиаперелет Ташкент-Ургенч', 'Восточный отель внутри Ичан-Калы', 'Джип-сафари в Аяз-кала и Топрак-кала', 'Хорезмские национальные блюда'],
     includesEn: ['Direct round-trip flights Tashkent-Urgench', 'Boutique hotel inside Ichan Kala', '4x4 Jeep safari to Ayaz Kala & Toprak Kala', 'Gourmet regional culinary banquets']
@@ -748,7 +748,7 @@ export const HOT_DEALS = [
     badgeEn: 'NATURE & HEALTH -20%',
     oldPriceUSD: 220,
     newPriceUSD: 160,
-    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+    image: '/images/landmarks/termiz-historic.png',
     includesUz: ['Toshkent-Termiz aviaparvozi', 'Boysun tog\' eko-kottejlari', 'Sangardak sharsharasiga VIP transfer', 'Omonxona shifobaxsh suvi va tog\' nonushtasi'],
     includesRu: ['Авиаперелет Ташкент-Термез', 'Эко-коттеджи в горах Байсуна', 'VIP-трансфер к водопаду Сангардак', 'Целебная вода Омонхоны и горные завтраки'],
     includesEn: ['Direct round-trip flights Tashkent-Termez', 'Alpine eco-cottages in Boysun mountains', 'VIP transit to Sangardak Waterfall', 'Omonkhona healing waters & breakfasts']

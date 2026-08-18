@@ -20,7 +20,7 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
       {/* 100% Pure, Razor-Sharp Khiva Ichan Kala Ancient City Sunset Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=2600&q=100"
+          src="/images/landmarks/khiva-ichan-kala.png"
           alt="Khiva Ichan Kala Historical City"
           className="w-full h-full object-cover object-center filter brightness-110 contrast-105"
         />

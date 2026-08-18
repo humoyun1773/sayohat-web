@@ -43,7 +43,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
       {/* 100% Pure, Razor-Sharp Uzbekistan Samarkand Registan Historical Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=2600&q=100"
+          src="/images/landmarks/samarkand-registan.png"
           alt="Samarkand Registan Square Historical Architecture"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
