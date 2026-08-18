@@ -17,16 +17,16 @@ export default function LogoutModal({ isOpen, onClose, onConfirmLogout, currentU
   if (!isOpen || !currentUser) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overscroll-contain">
       
       {/* Dark Blur Backdrop */}
       <div 
         onClick={onClose}
-        className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm cursor-pointer"
+        className="absolute inset-0 bg-slate-950/75 backdrop-blur-md cursor-pointer modal-backdrop-animate"
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-md bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden z-10 animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-md bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden z-10 modal-card-animate">
         
         {/* Top Header with Close Button */}
         <div className="bg-slate-900 p-6 text-white relative">

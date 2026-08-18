@@ -22,11 +22,11 @@ export default function ImageLightboxModal({ isOpen, imageUrl, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200 overscroll-contain"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md modal-backdrop-animate overscroll-contain"
       onClick={onClose}
     >
       <div 
-        className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center"
+        className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center lightbox-animate"
         onClick={(e) => e.stopPropagation()}
       >
         <button
