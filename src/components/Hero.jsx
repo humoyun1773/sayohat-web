@@ -4,11 +4,27 @@ import {
   ShieldCheck, Award, Headphones, Compass 
 } from 'lucide-react';
 import { COUNTRIES } from '../data/travelData';
+import CustomSelect from './CustomSelect';
 
 export default function Hero({ onSelectCountry, onOpenBooking }) {
   const [selectedDest, setSelectedDest] = useState('turkey');
-  const [origin, setOrigin] = useState('Toshkent (TAS)');
+  const [origin, setOrigin] = useState('TAS');
   const [date, setDate] = useState('2026-09-15');
+
+  const originOptions = [
+    { value: 'TAS', label: 'Toshkent Xalqaro (TAS)', icon: Plane },
+    { value: 'SKD', label: 'Samarqand (SKD)', icon: Plane },
+    { value: 'BHK', label: 'Buxoro (BHK)', icon: Plane },
+    { value: 'NMA', label: 'Namangan (NMA)', icon: Plane },
+    { value: 'FEG', label: 'Farg\'ona (FEG)', icon: Plane },
+    { value: 'UGC', label: 'Urganch (UGC)', icon: Plane },
+  ];
+
+  const destinationOptions = COUNTRIES.map((c) => ({
+    value: c.id,
+    label: c.name,
+    flag: c.flag
+  }));
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -72,43 +88,30 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
 
             <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               
-              {/* Origin */}
+              {/* Custom Origin Select */}
               <div className="space-y-1.5 text-left">
                 <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                   <Plane className="w-3.5 h-3.5 text-sky-600 transform -rotate-45" />
                   Qayerdan uchiladi?
                 </label>
-                <select
+                <CustomSelect
                   value={origin}
-                  onChange={(e) => setOrigin(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none cursor-pointer transition-all"
-                >
-                  <option value="Toshkent (TAS)">🛫 Toshkent Xalqaro (TAS)</option>
-                  <option value="Samarqand (SKD)">🛫 Samarqand (SKD)</option>
-                  <option value="Buxoro (BHK)">🛫 Buxoro (BHK)</option>
-                  <option value="Namangan (NMA)">🛫 Namangan (NMA)</option>
-                  <option value="Farg'ona (FEG)">🛫 Farg'ona (FEG)</option>
-                  <option value="Urganch (UGC)">🛫 Urganch (UGC)</option>
-                </select>
+                  onChange={setOrigin}
+                  options={originOptions}
+                />
               </div>
 
-              {/* Destination */}
+              {/* Custom Destination Select */}
               <div className="space-y-1.5 text-left">
                 <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-amber-600" />
                   Qaysi davlatga borasiz?
                 </label>
-                <select
+                <CustomSelect
                   value={selectedDest}
-                  onChange={(e) => setSelectedDest(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none cursor-pointer transition-all"
-                >
-                  {COUNTRIES.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.flag} {c.name}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setSelectedDest}
+                  options={destinationOptions}
+                />
               </div>
 
               {/* Date */}
@@ -121,7 +124,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none cursor-pointer transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none cursor-pointer transition-all shadow-sm"
                 />
               </div>
 

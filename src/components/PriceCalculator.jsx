@@ -4,6 +4,7 @@ import {
   CheckCircle2, ShieldCheck, DollarSign, ArrowRight 
 } from 'lucide-react';
 import { COUNTRIES, EXCHANGE_RATE } from '../data/travelData';
+import CustomSelect from './CustomSelect';
 
 export default function PriceCalculator({ 
   preSelectedCountryId, 
@@ -25,6 +26,12 @@ export default function PriceCalculator({
       setCountryId(preSelectedCountryId);
     }
   }, [preSelectedCountryId]);
+
+  const countryOptions = COUNTRIES.map((c) => ({
+    value: c.id,
+    label: `${c.name} — Boshlang'ich narx: $${c.basePriceUSD}`,
+    flag: c.flag
+  }));
 
   const selectedCountry = COUNTRIES.find((c) => c.id === countryId) || COUNTRIES[0];
 
@@ -104,22 +111,16 @@ export default function PriceCalculator({
           {/* Controls Box */}
           <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-6">
             
-            {/* 1. Country Selection */}
+            {/* 1. Country Selection with CustomSelect */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                 1. Yo'nalish va Davlatni tanlang
               </label>
-              <select
+              <CustomSelect
                 value={countryId}
-                onChange={(e) => setCountryId(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 hover:border-sky-400 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-bold focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none cursor-pointer transition-all"
-              >
-                {COUNTRIES.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.flag} {c.name} — Boshlang'ich narx: ${c.basePriceUSD}
-                  </option>
-                ))}
-              </select>
+                onChange={setCountryId}
+                options={countryOptions}
+              />
             </div>
 
             {/* 2. Flight Class */}

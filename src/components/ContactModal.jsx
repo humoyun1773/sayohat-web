@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
 import { 
   X, Phone, Send, MessageCircle, Clock, 
-  MapPin, CheckCircle2, User, Sparkles, Mail, ShieldCheck 
+  MapPin, CheckCircle2, User, Mail, ShieldCheck, Globe 
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../data/travelData';
+import CustomSelect from './CustomSelect';
 
 export default function ContactModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '+998 ',
-    country: 'BAA (Dubay & Abu-Dabi)',
+    country: 'uae',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   if (!isOpen) return null;
+
+  const countryOptions = [
+    ...COUNTRIES.map((c) => ({
+      value: c.id,
+      label: c.name,
+      flag: c.flag
+    })),
+    { value: 'umrah', label: 'Saudiya Arabistoni (Umra ziyorati)', flag: '🇸🇦' },
+    { value: 'other', label: 'Boshqa xalqaro yo\'nalish', flag: '🌍' }
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -167,19 +178,11 @@ export default function ContactModal({ isOpen, onClose }) {
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     Qaysi davlat yoki tur qiziqtirmoqda?
                   </label>
-                  <select
+                  <CustomSelect
                     value={formData.country}
-                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-sky-500 outline-none cursor-pointer"
-                  >
-                    {COUNTRIES.map((c) => (
-                      <option key={c.id} value={c.name}>
-                        {c.flag} {c.name}
-                      </option>
-                    ))}
-                    <option value="Umra ziyorati">🇸🇦 Saudiya Arabistoni (Umra ziyorati)</option>
-                    <option value="Boshqa yo'nalish">🌍 Boshqa xalqaro yo'nalish</option>
-                  </select>
+                    onChange={(val) => setFormData({ ...formData, country: val })}
+                    options={countryOptions}
+                  />
                 </div>
 
                 <div>
