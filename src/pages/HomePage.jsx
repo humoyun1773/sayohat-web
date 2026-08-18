@@ -17,6 +17,7 @@ import LocationMap from '../components/sections/LocationMap';
 import ContactModal from '../components/modals/ContactModal';
 import BookingModal from '../components/modals/BookingModal';
 import ImageLightboxModal from '../components/modals/ImageLightboxModal';
+import AddMediaModal from '../components/modals/AddMediaModal';
 
 // Translations
 import { translations } from '../data/translations';
@@ -60,6 +61,7 @@ export default function HomePage() {
   // Modals state
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isAddMediaOpen, setIsAddMediaOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
 
@@ -89,15 +91,32 @@ export default function HomePage() {
     setIsBookingOpen(true);
   };
 
+  const handleAddNewTrip = (newTrip) => {
+    try {
+      const saved = localStorage.getItem('lotos_live_trips');
+      let parsed = [];
+      if (saved) {
+        parsed = JSON.parse(saved);
+      }
+      const updated = [newTrip, ...parsed];
+      localStorage.setItem('lotos_live_trips', JSON.stringify(updated));
+      window.dispatchEvent(new Event('storage'));
+    } catch (e) {
+      console.error(e);
+    }
+    document.querySelector('#travel-media')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const t = translations[lang] || translations.uz;
 
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased">
       
-      {/* 1. Top Navbar */}
+      {/* 1. Top Navbar with Direct Add Media Button */}
       <Navbar
         lang={lang}
         onChangeLang={handleLangChange}
+        onOpenAddMedia={() => setIsAddMediaOpen(true)}
         t={t}
       />
 
@@ -217,6 +236,13 @@ export default function HomePage() {
         isOpen={!!lightboxImage}
         imageUrl={lightboxImage}
         onClose={() => setLightboxImage(null)}
+      />
+
+      <AddMediaModal
+        isOpen={isAddMediaOpen}
+        onClose={() => setIsAddMediaOpen(false)}
+        onAddMedia={handleAddNewTrip}
+        lang={lang}
       />
 
     </div>
