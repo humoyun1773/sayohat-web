@@ -619,7 +619,7 @@ export const COUNTRIES = [
     taglineUz: 'O\'zbekiston Shveytsariyasi — Zomin Qarag\'ayzori va Zamonaviy Poytaxt',
     taglineRu: 'Швейцария Узбекистана — Сосновые леса Заамина и Столица',
     taglineEn: 'Switzerland of Uzbekistan — Zaamin Pine Forests & Capital',
-    coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80',
+    coverImage: '/images/landmarks/tashkent-tv-tower.png',
     flightDurationUz: 'Poytaxt markazi / Mashinada 2.5 soat (Zomin)',
     flightDurationRu: 'Центр столицы / 2.5 часа на авто (Заамин)',
     flightDurationEn: 'Capital hub / 2.5 hours drive to Zaamin',
@@ -657,18 +657,18 @@ export const COUNTRIES = [
       'Iconic Chorsu dome bazaar and artistic Tashkent metro stations'
     ],
     images: [
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80',
+      '/images/landmarks/tashkent-tv-tower.png',
+      '/images/landmarks/uzbekistan-mountains.png',
       'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80'
     ],
     spots: [
       { 
-        nameUz: 'Zomin Osma Shisha Ko\'prigi', nameRu: 'Стеклянный мост в Заамине', nameEn: 'Zaamin Glass Suspension Bridge',
-        descUz: 'Tog\' darasi uzra qurilgan hayajonli panoramali shisha ko\'prik',
-        descRu: 'Панорамный стеклянный мост над живописным ущельем',
-        descEn: 'Thrilling glass-bottom suspension bridge over mountain gorge',
-        img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80'
+        nameUz: 'Zomin Tog\'lari & Osma Ko\'prik', nameRu: 'Горы Заамина и Мост', nameEn: 'Zaamin Mountains & Bridge',
+        descUz: 'Yashil archazor vodiylar va toza tog\' havosi',
+        descRu: 'Изумрудные сосновые долины и чистый горный воздух',
+        descEn: 'Lush alpine valleys, crystal rivers, and refreshing mountain air',
+        img: '/images/landmarks/uzbekistan-mountains.png'
       },
       { 
         nameUz: 'Hazrati Imom (Hastimom)', nameRu: 'Комплекс Хазрати Имам', nameEn: 'Hazrati Imam Complex',
@@ -685,11 +685,11 @@ export const COUNTRIES = [
         img: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80'
       },
       { 
-        nameUz: 'Chorsu Bozor & Teleminora', nameRu: 'Базар Чорсу и Телебашня', nameEn: 'Chorsu Bazaar & TV Tower',
-        descUz: 'Sharqona bozor muhiti va 375 metrli teleminora',
-        descRu: 'Колорит восточного базара и 375-метровая телебашня',
-        descEn: 'Vibrant dome bazaar spice market and 375m iconic tower',
-        img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80'
+        nameUz: 'Teleminora & Shahidlar Xotirasi', nameRu: 'Телебашня и Мемориальный Парк', nameEn: 'Tashkent TV Tower & Memorial Park',
+        descUz: '375 metrli teleminora va go\'zal gumbazli xiyobon',
+        descRu: '375-метровая телебашня и живописный парковый ансамбль',
+        descEn: '375m iconic TV tower and ornate turquoise memorial rotunda',
+        img: '/images/landmarks/tashkent-tv-tower.png'
       }
     ]
   }
