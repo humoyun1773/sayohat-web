@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+// Core Sections
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AirplaneFleet from './components/AirplaneFleet';
@@ -9,22 +11,16 @@ import WhyUs from './components/WhyUs';
 import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 
-// Standalone Pages
-import AuthPage from './components/AuthPage';
-
 // Modals
 import ContactModal from './components/ContactModal';
 import BookingModal from './components/BookingModal';
 import ImageLightboxModal from './components/ImageLightboxModal';
-import LogoutModal from './components/LogoutModal';
 
 // Floating Messengers Widget Icons
 import { Send, MessageCircle, Phone } from 'lucide-react';
 import { CONTACT_INFO } from './data/travelData';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'auth'
-  
   // Persisted Currency ('USD' or 'UZS')
   const [currency, setCurrency] = useState(() => {
     try {
@@ -48,39 +44,8 @@ export default function App() {
   // Modals state
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
-
-  // Persisted User state across page reloads
-  const [currentUser, setCurrentUser] = useState(() => {
-    try {
-      const saved = localStorage.getItem('lotos_field_user');
-      return saved ? JSON.parse(saved) : null;
-    } catch (e) {
-      console.error('Failed to load user from localStorage:', e);
-      return null;
-    }
-  });
-
-  // Save user changes to localStorage
-  const handleUserLogin = (userData) => {
-    try {
-      localStorage.setItem('lotos_field_user', JSON.stringify(userData));
-    } catch (e) {
-      console.error(e);
-    }
-    setCurrentUser(userData);
-  };
-
-  const handleUserLogout = () => {
-    try {
-      localStorage.removeItem('lotos_field_user');
-    } catch (e) {
-      console.error(e);
-    }
-    setCurrentUser(null);
-  };
 
   const handleCurrencyChange = (curr) => {
     try {
@@ -100,30 +65,6 @@ export default function App() {
     setSelectedCountryId(cId);
   };
 
-  // Handle browser back button or hash navigation if needed
-  useEffect(() => {
-    const handleHashChange = () => {
-      if (window.location.hash === '#/auth' || window.location.hash === '#auth') {
-        setCurrentPage('auth');
-      } else {
-        setCurrentPage('home');
-      }
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const handleNavigateToAuth = () => {
-    setCurrentPage('auth');
-    window.location.hash = '#/auth';
-  };
-
-  const handleNavigateToHome = () => {
-    setCurrentPage('home');
-    window.location.hash = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const handleOpenBooking = (tourDetails) => {
     setBookingDetails(tourDetails);
     setIsBookingOpen(true);
@@ -135,30 +76,12 @@ export default function App() {
     document.querySelector('#calculator')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // If user is on Standalone Auth Page
-  if (currentPage === 'auth') {
-    return (
-      <AuthPage
-        currentUser={currentUser}
-        onLogin={handleUserLogin}
-        onLogout={handleUserLogout}
-        onBackToHome={handleNavigateToHome}
-      />
-    );
-  }
-
-  // Home Page
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased">
       
       {/* 1. Top Navbar */}
       <Navbar
-        currency={currency}
-        setCurrency={handleCurrencyChange}
-        onOpenAuth={handleNavigateToAuth}
         onOpenContact={() => setIsContactOpen(true)}
-        currentUser={currentUser}
-        onOpenLogoutModal={() => setIsLogoutOpen(true)}
       />
 
       {/* 2. Main Hero Section */}
@@ -255,20 +178,12 @@ export default function App() {
         onClose={() => setIsBookingOpen(false)}
         bookingData={bookingDetails}
         currency={currency}
-        currentUser={currentUser}
       />
 
       <ImageLightboxModal
         isOpen={!!lightboxImage}
         imageUrl={lightboxImage}
         onClose={() => setLightboxImage(null)}
-      />
-
-      <LogoutModal
-        isOpen={isLogoutOpen}
-        onClose={() => setIsLogoutOpen(false)}
-        currentUser={currentUser}
-        onConfirmLogout={handleUserLogout}
       />
 
     </div>

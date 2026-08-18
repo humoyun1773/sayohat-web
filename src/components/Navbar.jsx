@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Plane, User, 
-  Menu, X, LogOut 
+  Plane, Phone, 
+  Menu, X, Sparkles 
 } from 'lucide-react';
 
-export default function Navbar({ 
-  onOpenAuth, 
-  currentUser, 
-  onOpenLogoutModal 
-}) {
+export default function Navbar({ onOpenContact }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -42,8 +38,8 @@ export default function Navbar({
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-4 transition-all duration-300">
       <div className={`max-w-[1536px] mx-auto rounded-2xl sm:rounded-3xl transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/40 backdrop-blur-xl shadow-lg py-2.5 px-6 sm:px-8 border border-white/50' 
-          : 'bg-white/20 backdrop-blur-md py-3.5 px-6 sm:px-8 border border-white/40 shadow-sm'
+          ? 'bg-white/90 backdrop-blur-xl shadow-lg py-2.5 px-6 sm:px-8 border border-white/60' 
+          : 'bg-white/40 backdrop-blur-md py-3.5 px-6 sm:px-8 border border-white/50 shadow-sm'
       }`}>
         <div className="flex items-center justify-between">
           
@@ -59,8 +55,8 @@ export default function Navbar({
 
             <div>
               <div className="flex items-center gap-1.5 leading-none">
-                <span className="text-2xl sm:text-3xl font-extrabold tracking-wider text-slate-900 drop-shadow-sm">LOTOS</span>
-                <span className="text-2xl sm:text-3xl font-extrabold text-[#10b981] drop-shadow-sm">FIELD</span>
+                <span className="text-2xl sm:text-3xl font-black tracking-wider text-slate-900 drop-shadow-sm">LOTOS</span>
+                <span className="text-2xl sm:text-3xl font-black text-[#10b981] drop-shadow-sm">FIELD</span>
               </div>
               <p className="text-[10px] sm:text-[11px] tracking-widest uppercase font-bold text-slate-700 mt-0.5">
                 Luxury Travel & Airlines
@@ -69,55 +65,38 @@ export default function Navbar({
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1.5 bg-white/30 backdrop-blur-md px-4 py-1.5 rounded-2xl border border-white/40">
+          <nav className="hidden xl:flex items-center gap-1.5 bg-white/40 backdrop-blur-md px-4 py-1.5 rounded-2xl border border-white/50">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="px-4 py-2 text-sm font-bold text-slate-800 hover:text-[#10b981] hover:bg-white/50 rounded-xl transition-all"
+                className="px-4 py-2 text-sm font-bold text-slate-800 hover:text-[#10b981] hover:bg-white/60 rounded-xl transition-all"
               >
                 {link.name}
               </button>
             ))}
           </nav>
 
-          {/* Right Action Bar */}
+          {/* Right Action Button (Direct VIP Contact) */}
           <div className="hidden md:flex items-center gap-3">
-            {currentUser ? (
-              <button
-                onClick={onOpenLogoutModal}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 hover:border-[#10b981] hover:bg-white shadow-md hover:scale-105 transition-all text-left group"
-                title="Profilingizdan chiqish uchun bosing"
-              >
-                <div className="w-7 h-7 rounded-full bg-[#10b981] text-white flex items-center justify-center text-xs font-black shadow-xs group-hover:scale-105 transition-transform">
-                  {currentUser.name?.charAt(0) || 'U'}
-                </div>
-                <span className="text-xs sm:text-sm font-bold text-[#065f46] group-hover:text-[#047857] max-w-[120px] truncate">
-                  {currentUser.name}
-                </span>
-              </button>
-            ) : (
-              <button
-                onClick={onOpenAuth}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl btn-primary-emerald text-white text-sm font-bold tracking-wide shadow-md hover:scale-105 transition-transform"
-              >
-                <User className="w-4 h-4" />
-                <span>KIRISH</span>
-              </button>
-            )}
+            <button
+              onClick={onOpenContact}
+              className="flex items-center gap-2 px-6 py-2.5 rounded-xl btn-primary-emerald text-white text-sm font-bold tracking-wide shadow-md hover:scale-105 transition-transform"
+            >
+              <Phone className="w-4 h-4" />
+              <span>BOG'LANISH</span>
+            </button>
           </div>
 
           {/* Mobile Right Controls */}
           <div className="flex items-center gap-2 md:hidden">
-            {currentUser && (
-              <button
-                onClick={onOpenLogoutModal}
-                className="w-9 h-9 rounded-xl bg-[#10b981] text-white flex items-center justify-center text-xs font-black shadow-sm"
-                title="Profil"
-              >
-                {currentUser.name?.charAt(0) || 'U'}
-              </button>
-            )}
+            <button
+              onClick={onOpenContact}
+              className="p-2.5 rounded-xl btn-primary-emerald text-white shadow-xs"
+              title="Bog'lanish"
+            >
+              <Phone className="w-4 h-4" />
+            </button>
             
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -149,42 +128,18 @@ export default function Navbar({
             ))}
           </div>
 
-          {/* User Profile / Auth Section in Mobile */}
-          <div className="pt-3 border-t border-slate-200 space-y-2.5">
-            {currentUser ? (
-              <div className="p-3.5 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-[#10b981] text-white flex items-center justify-center text-xs font-black shadow-xs">
-                    {currentUser.name?.charAt(0) || 'U'}
-                  </div>
-                  <div>
-                    <span className="text-xs font-black text-slate-900 block leading-tight">{currentUser.name}</span>
-                    <span className="text-[10px] text-[#065f46] font-bold">{currentUser.tier || 'VIP A\'zo'}</span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenLogoutModal();
-                  }}
-                  className="px-3 py-1.5 rounded-xl bg-white hover:bg-red-50 text-red-600 border border-red-200 text-[11px] font-bold shadow-xs transition-colors flex items-center gap-1"
-                >
-                  <LogOut className="w-3 h-3" />
-                  <span>Chiqish</span>
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenAuth();
-                }}
-                className="w-full py-3.5 rounded-2xl btn-primary-emerald text-xs font-black text-white uppercase tracking-wider shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"
-              >
-                <User className="w-4 h-4" />
-                <span>KIRISH / REGISTRATSIYA</span>
-              </button>
-            )}
+          {/* Direct Mobile Contact CTA */}
+          <div className="pt-3 border-t border-slate-200">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenContact();
+              }}
+              className="w-full py-3.5 rounded-2xl btn-primary-emerald text-xs font-black text-white uppercase tracking-wider shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"
+            >
+              <Phone className="w-4 h-4" />
+              <span>OPERATORGA YOZISH / BOG'LANISH</span>
+            </button>
           </div>
 
         </div>
