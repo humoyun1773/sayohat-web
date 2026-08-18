@@ -16,7 +16,7 @@ import BookingModal from './components/BookingModal';
 import ImageLightboxModal from './components/ImageLightboxModal';
 
 // Floating Messengers Widget Icons
-import { Send, MessageCircle, Phone } from 'lucide-react';
+import { Send, MessageCircle, Phone, Headphones } from 'lucide-react';
 import { CONTACT_INFO } from './data/travelData';
 
 export default function App() {
