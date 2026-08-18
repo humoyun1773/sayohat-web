@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   X, CheckCircle2, Bus, Plane,
   ShieldCheck, Printer, Phone, Calendar,
-  Users, MapPin, Sparkles, Check
+  Users, MapPin, Sparkles, Check, Plus, Minus
 } from 'lucide-react';
 import { COUNTRIES, EXCHANGE_RATE } from '../../data/travelData';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
@@ -448,7 +448,8 @@ export default function BookingModal({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {/* 4. DATE AND CUSTOM LUXURY PASSENGERS STEPPER */}
+              <div className="space-y-3 pt-1">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
                     {t.bookingModal.dateLabel}
@@ -458,25 +459,69 @@ export default function BookingModal({
                     required
                     value={travelDate}
                     onChange={(e) => setTravelDate(e.target.value)}
-                    className="w-full px-3.5 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all cursor-pointer"
+                    className="w-full px-3.5 py-3 rounded-2xl border border-slate-200 text-sm font-bold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all cursor-pointer shadow-2xs"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    {t.bookingModal.passengersLabel} ({passengers} kishi uchun jami: {formatPrice(totalPriceUSD)})
-                  </label>
-                  <select
-                    value={passengers}
-                    onChange={(e) => setPassengers(Number(e.target.value))}
-                    className="w-full px-3.5 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all cursor-pointer"
-                  >
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => (
-                      <option key={n} value={n}>
-                        {n} {lang === 'ru' ? 'человек' : lang === 'en' ? 'guests' : 'kishi'} — {formatPrice(currentPrice * n)}
-                      </option>
+                {/* Custom Luxury Passengers Counter & Presets */}
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-xs font-black text-slate-900 uppercase tracking-wider">
+                      <Users className="w-4 h-4 text-[#10b981]" />
+                      <span>{lang === 'ru' ? 'Количество Путешественников:' : lang === 'en' ? 'Number of Travelers:' : 'Sayohatchilar Soni:'}</span>
+                    </div>
+                    <div className="text-xs font-black text-[#10b981]">
+                      Jami: {formatPrice(totalPriceUSD)}
+                    </div>
+                  </div>
+
+                  {/* Counter Stepper with - and + */}
+                  <div className="flex items-center justify-between gap-3 bg-white p-2.5 rounded-xl border border-slate-200 shadow-2xs">
+                    <button
+                      type="button"
+                      disabled={passengers <= 1}
+                      onClick={() => setPassengers(Math.max(1, passengers - 1))}
+                      className="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-30 text-slate-800 flex items-center justify-center font-bold transition-all active:scale-95 cursor-pointer disabled:cursor-not-allowed"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+
+                    <div className="text-center">
+                      <span className="text-base font-black text-slate-900">
+                        {passengers} {lang === 'ru' ? 'человек' : lang === 'en' ? 'guests' : 'nafar sayohatchi'}
+                      </span>
+                      <span className="text-[11px] text-slate-400 block font-medium">
+                        ({passengers} × {formatPrice(currentPrice)})
+                      </span>
+                    </div>
+
+                    <button
+                      type="button"
+                      disabled={passengers >= 15}
+                      onClick={() => setPassengers(Math.min(15, passengers + 1))}
+                      className="w-10 h-10 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white flex items-center justify-center font-bold transition-all active:scale-95 cursor-pointer shadow-xs"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Quick Presets Pills */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-0.5">
+                    {[1, 2, 3, 4, 5, 6, 8, 10].map((num) => (
+                      <button
+                        key={num}
+                        type="button"
+                        onClick={() => setPassengers(num)}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer shrink-0 ${
+                          passengers === num
+                            ? 'bg-[#10b981] text-white shadow-xs scale-105'
+                            : 'bg-white hover:bg-slate-200 text-slate-700 border border-slate-200'
+                        }`}
+                      >
+                        {num} {lang === 'ru' ? 'чел.' : lang === 'en' ? 'pax' : 'kishi'}
+                      </button>
                     ))}
-                  </select>
+                  </div>
                 </div>
               </div>
 
