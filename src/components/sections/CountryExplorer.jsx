@@ -19,10 +19,10 @@ export default function CountryExplorer({
 
   const categories = [
     { id: 'all', label: 'Barcha Davlatlar' },
-    { id: 'asia', label: 'Sharq & Osiyo' },
-    { id: 'middle_east', label: 'Yaqin Sharq & Arab' },
-    { id: 'europe', label: "Yevropa & O'rtayer" },
-    { id: 'islands', label: 'Ekzotik Orollar' },
+    { id: 'beach', label: '🏖️ Dengiz & Plyaj' },
+    { id: 'culture', label: '🕌 Ziyorat & Tarix' },
+    { id: 'mountain', label: '🏔️ Tog\' & Tabiat' },
+    { id: 'luxury', label: '🏙️ Megapolis & Lyuks' },
   ];
 
   const filteredCountries = selectedCategory === 'all'
@@ -31,11 +31,13 @@ export default function CountryExplorer({
 
   const currentCountry = COUNTRIES.find(c => c.id === selectedCountryId) || COUNTRIES[0];
 
+  // Defensive safe price formatter
   const formatPrice = (usdAmount) => {
+    const num = Number(usdAmount) || 0;
     if (currency === 'UZS') {
-      return (usdAmount * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
+      return (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
     }
-    return '$' + usdAmount.toLocaleString('en-US');
+    return '$' + num.toLocaleString('en-US');
   };
 
   const handleCountryClick = (cId) => {
@@ -43,8 +45,18 @@ export default function CountryExplorer({
     setActivePhotoIdx(0);
   };
 
-  const activePhotoUrl = currentCountry.gallery?.[activePhotoIdx]?.url || currentCountry.image;
-  const activePhotoTitle = currentCountry.gallery?.[activePhotoIdx]?.title || currentCountry.name;
+  // Safe gallery images fallback
+  const galleryPhotos = currentCountry.images?.map((url, i) => ({
+    url,
+    title: currentCountry.spots?.[i]?.name || `${currentCountry.name} Manzarasi ${i + 1}`
+  })) || [
+    { url: currentCountry.coverImage, title: currentCountry.name }
+  ];
+
+  const activePhotoUrl = galleryPhotos[activePhotoIdx]?.url || currentCountry.coverImage;
+  const activePhotoTitle = galleryPhotos[activePhotoIdx]?.title || currentCountry.name;
+
+  const currentPrice = currentCountry.basePriceUSD || currentCountry.priceUSD || 500;
 
   return (
     <section id="countries" className="py-24 relative overflow-hidden bg-white">
@@ -101,6 +113,7 @@ export default function CountryExplorer({
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
           {filteredCountries.map((c) => {
             const isSelected = c.id === currentCountry.id;
+            const price = c.basePriceUSD || c.priceUSD || 500;
             return (
               <button
                 key={c.id}
@@ -113,7 +126,7 @@ export default function CountryExplorer({
               >
                 <div className="text-2xl leading-none">{c.flag}</div>
                 <div className="font-bold text-xs text-slate-900 truncate w-full">{c.name}</div>
-                <div className="text-[11px] font-black text-[#10b981]">{formatPrice(c.priceUSD)}</div>
+                <div className="text-[11px] font-black text-[#10b981]">{formatPrice(price)}</div>
               </button>
             );
           })}
@@ -143,7 +156,7 @@ export default function CountryExplorer({
                 </span>
                 <span className="px-3 py-1 rounded-full bg-[#10b981] text-white text-xs font-black shadow-md flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 fill-white" />
-                  <span>{currentCountry.rating}</span>
+                  <span>{currentCountry.rating || '4.95'}</span>
                 </span>
               </div>
 
@@ -157,9 +170,9 @@ export default function CountryExplorer({
             </div>
 
             {/* Photo Gallery Switcher Strip */}
-            {currentCountry.gallery && (
+            {galleryPhotos.length > 1 && (
               <div className="relative z-10 my-4 flex flex-wrap gap-2">
-                {currentCountry.gallery.map((photo, idx) => (
+                {galleryPhotos.map((photo, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActivePhotoIdx(idx)}
@@ -170,7 +183,7 @@ export default function CountryExplorer({
                     }`}
                   >
                     <span className="w-2 h-2 rounded-full bg-white/80"></span>
-                    <span>{photo.title}</span>
+                    <span className="truncate max-w-[140px]">{photo.title}</span>
                   </button>
                 ))}
               </div>
@@ -182,7 +195,7 @@ export default function CountryExplorer({
                 {activePhotoTitle}
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-white drop-shadow-md">
-                {currentCountry.name} — {currentCountry.title}
+                {currentCountry.name} — {currentCountry.tagline || currentCountry.title}
               </h3>
             </div>
 
@@ -214,7 +227,7 @@ export default function CountryExplorer({
                     <Sun className="w-4 h-4 text-amber-500" />
                     <span>Hozirgi Harorat</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.weather}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.temp || '+28°C'}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
@@ -222,7 +235,7 @@ export default function CountryExplorer({
                     <Shield className="w-4 h-4 text-[#10b981]" />
                     <span>Viza Rejimi</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.visa}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.visa || 'Vizasiz'}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
@@ -230,7 +243,7 @@ export default function CountryExplorer({
                     <Plane className="w-4 h-4 text-sky-600" />
                     <span>Parvoz Davomiyligi</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.flightHours}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.flightDuration || '4 soat'}</div>
                 </div>
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
@@ -238,7 +251,7 @@ export default function CountryExplorer({
                     <Star className="w-4 h-4 text-amber-500" />
                     <span>Eng Yaxshi Fasl</span>
                   </div>
-                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.bestSeason}</div>
+                  <div className="text-sm font-extrabold text-slate-900">{currentCountry.bestTime || 'Yil bo\'yi'}</div>
                 </div>
               </div>
 
@@ -268,7 +281,7 @@ export default function CountryExplorer({
                 <div>
                   <span className="text-xs text-slate-400 font-bold block">Boshlang'ich Narx (1 kishi):</span>
                   <div className="text-3xl font-black text-[#10b981]">
-                    {formatPrice(currentCountry.priceUSD)}
+                    {formatPrice(currentPrice)}
                   </div>
                 </div>
                 <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
@@ -279,10 +292,10 @@ export default function CountryExplorer({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
                 <button
                   onClick={() => onOpenBooking({
-                    country: `${currentCountry.name} (${currentCountry.title})`,
+                    country: `${currentCountry.name}`,
                     flightClass: 'Ekonom / Biznes',
                     hotelStar: '5★ Luxury Resort',
-                    priceUSD: currentCountry.priceUSD
+                    priceUSD: currentPrice
                   })}
                   className="py-3.5 px-4 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2"
                 >

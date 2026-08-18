@@ -31,13 +31,13 @@ export default function PriceCalculator({
 
   const countryOptions = COUNTRIES.map((c) => ({
     value: c.id,
-    label: `${c.name} (${c.title})`,
+    label: `${c.name}`,
     flag: c.flag
   }));
 
   // Dynamic Price Engine
   const calculateTotal = () => {
-    let base = country.priceUSD;
+    let base = country.basePriceUSD || country.priceUSD || 500;
 
     // Flight class multiplier
     if (flightClass === 'business') {
@@ -66,10 +66,11 @@ export default function PriceCalculator({
   const totalUSD = calculateTotal();
 
   const formatPrice = (usdAmount) => {
+    const num = Number(usdAmount) || 0;
     if (currency === 'UZS') {
-      return (usdAmount * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
+      return (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
     }
-    return '$' + usdAmount.toLocaleString('en-US');
+    return '$' + num.toLocaleString('en-US');
   };
 
   return (
