@@ -9,14 +9,14 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
   return (
     <footer className="relative bg-slate-50 text-slate-700 pt-16 pb-12 overflow-hidden border-t border-slate-200">
       
-      {/* 100% Crystal Clear Airplane Silhouette & Cloud Background */}
+      {/* 100% Unique: Night Runway Lights & Executive Jet Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2600&q=100"
-          alt="Airliner in Sky"
+          src="https://images.unsplash.com/photo-1519074069444-1ba4ea16e91f?auto=format&fit=crop&w=2600&q=100"
+          alt="Night Airport Runway Lights"
           className="w-full h-full object-cover object-bottom"
         />
-        <div className="absolute inset-0 bg-slate-50/70"></div>
+        <div className="absolute inset-0 bg-slate-50/75"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50"></div>
       </div>
 

@@ -87,14 +87,14 @@ export default function PriceCalculator({
   return (
     <section id="calculator" className="py-24 relative overflow-hidden bg-white">
       
-      {/* 100% Crystal Clear High-altitude Airliner Flight Background */}
+      {/* 100% Unique: Crystal Clear Alps Mountains & Sky from Airplane Window */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2600&q=100"
-          alt="Airliner Soaring High"
+          src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=2600&q=100"
+          alt="Alps Mountain Peaks from Sky"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-white/75"></div>
+        <div className="absolute inset-0 bg-white/70"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">

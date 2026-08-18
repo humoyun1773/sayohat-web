@@ -6,14 +6,14 @@ export default function Reviews() {
   return (
     <section id="reviews" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* 100% Crystal Clear Luxury Flight Lounge & Passengers Background */}
+      {/* 100% Unique: Ultra-Luxury VIP First Class Aircraft Cabin Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=2600&q=100"
-          alt="Happy Travelers in Sky"
+          src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=2600&q=100"
+          alt="VIP First Class Cabin"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-white/50"></div>
+        <div className="absolute inset-0 bg-white/60"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
       </div>
 

@@ -35,11 +35,11 @@ export default function CountryExplorer({
   return (
     <section id="countries" className="py-24 relative overflow-hidden bg-white">
       
-      {/* 100% Crystal Clear Aerial Travel & Airplane Background */}
+      {/* 100% Unique: Crystal Clear Aerial Tropical Islands & Ocean from Plane Window */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2600&q=100"
-          alt="Travel Worldwide"
+          src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2600&q=100"
+          alt="Tropical Paradise from Sky"
           className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-white/40"></div>
