@@ -50,7 +50,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="max-w-7xl xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Main Title & Hero Banner */}
         <div className="text-center max-w-4xl mx-auto mb-10 space-y-4">
@@ -68,8 +68,8 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         </div>
 
         {/* Clean White Search & Booking Panel */}
-        <div className="max-w-5xl mx-auto mb-12">
-          <div className="bg-white/95 backdrop-blur-xl p-5 sm:p-7 lg:p-8 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
+        <div className="max-w-6xl mx-auto mb-12">
+          <div className="bg-white/95 backdrop-blur-xl p-5 sm:p-8 lg:p-10 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
             
             <div className="flex items-center justify-between mb-5 border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2.5">
@@ -174,7 +174,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         </div>
 
         {/* Feature Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           
           <div className="bg-white/90 backdrop-blur-md p-5 rounded-3xl border border-slate-200/80 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
             <div className="w-14 h-14 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm">
