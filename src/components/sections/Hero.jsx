@@ -47,10 +47,10 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
           alt="Samarkand Registan Square Historical Architecture"
           className="w-full h-full object-cover object-center filter brightness-100 contrast-105 scale-100"
         />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/30 to-white"></div>
       </div>
 
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Main Title & Hero Banner */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">

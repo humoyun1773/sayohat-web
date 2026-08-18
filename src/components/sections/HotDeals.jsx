@@ -22,12 +22,12 @@ export default function HotDeals({ currency = 'USD', onOpenBooking, t, lang = 'u
         <img
           src="/images/landmarks/khiva-ichan-kala.png"
           alt="Khiva Ichan Kala Historical City"
-          className="w-full h-full object-cover object-center filter brightness-105 contrast-110"
+          className="w-full h-full object-cover object-center filter brightness-95 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-950/20"></div>
+        <div className="absolute inset-0 bg-slate-950/75"></div>
       </div>
 
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Header in High Contrast Glass Card */}
         <div className="text-center max-w-4xl mx-auto mb-14 space-y-3">

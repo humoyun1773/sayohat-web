@@ -68,20 +68,19 @@ export default function CountryExplorer({
   const currentPrice = currentCountry.basePriceUSD || currentCountry.priceUSD || 80;
 
   return (
-    <section id="countries" className="py-24 relative overflow-hidden bg-white">
+    <section id="countries" className="py-20 sm:py-24 relative overflow-hidden bg-slate-50 border-y border-slate-200">
       
-      {/* 100% Pure, Razor-Sharp Bukhara Ark Historical Landmark Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      {/* Subtle Luxury Ambient Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-10">
         <img
           src="/images/landmarks/bukhara-ark.png"
           alt="Bukhara Ark Historical Architecture"
-          className="w-full h-full object-cover object-center filter brightness-100 contrast-105"
+          className="w-full h-full object-cover object-center filter blur-xs"
         />
-        <div className="absolute inset-0 bg-white/20"></div>
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute inset-0 bg-slate-100/60"></div>
       </div>
 
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Section Header in Glass Card */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-3">

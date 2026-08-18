@@ -11,12 +11,12 @@ export default function Reviews({ t, lang = 'uz' }) {
         <img
           src="/images/landmarks/samarkand-registan.png"
           alt="Samarkand Registan Historical Ensemble"
-          className="w-full h-full object-cover object-center filter brightness-105 contrast-110"
+          className="w-full h-full object-cover object-center filter brightness-95 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-950/25"></div>
+        <div className="absolute inset-0 bg-slate-950/75"></div>
       </div>
 
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Header in Glass Card */}
         <div className="text-center max-w-4xl mx-auto mb-16 space-y-3">
