@@ -11,8 +11,7 @@ export default function CountryExplorer({
   onSelectCountry, 
   currency = 'USD', 
   onOpenBooking, 
-  onOpenImageLightbox,
-  onOpenCalculatorWithCountry
+  onOpenImageLightbox
 }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
@@ -289,7 +288,7 @@ export default function CountryExplorer({
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+              <div className="pt-2">
                 <button
                   onClick={() => onOpenBooking({
                     country: `${currentCountry.name}`,
@@ -297,18 +296,10 @@ export default function CountryExplorer({
                     hotelStar: '5★ Luxury Resort',
                     priceUSD: currentPrice
                   })}
-                  className="py-3.5 px-4 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-2"
                 >
                   <Plane className="w-4 h-4" />
-                  <span>Hoziroq Bron Qilish</span>
-                </button>
-
-                <button
-                  onClick={() => onOpenCalculatorWithCountry(currentCountry.id)}
-                  className="py-3.5 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs uppercase tracking-wider border border-slate-200 transition-all flex items-center justify-center gap-2"
-                >
-                  <span>Kalkulyatorda Hisoblash</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Ushbu Davlatga Turni Hoziroq Bron Qilish</span>
                 </button>
               </div>
 

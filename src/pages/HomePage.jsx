@@ -9,7 +9,6 @@ import Hero from '../components/sections/Hero';
 import AirplaneFleet from '../components/sections/AirplaneFleet';
 import CountryExplorer from '../components/sections/CountryExplorer';
 import HotDeals from '../components/sections/HotDeals';
-import PriceCalculator from '../components/sections/PriceCalculator';
 import WhyUs from '../components/sections/WhyUs';
 import Reviews from '../components/sections/Reviews';
 
@@ -41,8 +40,6 @@ export default function HomePage() {
     }
   });
 
-  const [calculatorPreselect, setCalculatorPreselect] = useState('turkey');
-  
   // Modals state
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -72,12 +69,6 @@ export default function HomePage() {
     setIsBookingOpen(true);
   };
 
-  const handleOpenCalculatorWithCountry = (cId) => {
-    handleCountryChange(cId);
-    setCalculatorPreselect(cId);
-    document.querySelector('#calculator')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased">
       
@@ -103,7 +94,6 @@ export default function HomePage() {
         currency={currency}
         onOpenBooking={handleOpenBooking}
         onOpenImageLightbox={(img) => setLightboxImage(img)}
-        onOpenCalculatorWithCountry={handleOpenCalculatorWithCountry}
       />
 
       {/* 5. Hot Deals & Flash Sale Countdown */}
@@ -112,20 +102,13 @@ export default function HomePage() {
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* 6. Live Price Calculator */}
-      <PriceCalculator
-        preSelectedCountryId={calculatorPreselect}
-        currency={currency}
-        onOpenBooking={handleOpenBooking}
-      />
-
-      {/* 7. Why Choose Us */}
+      {/* 6. Why Choose Us */}
       <WhyUs />
 
-      {/* 8. Verified Traveler Reviews */}
+      {/* 7. Verified Traveler Reviews */}
       <Reviews />
 
-      {/* 9. Clean Luxury Footer */}
+      {/* 8. Clean Luxury Footer */}
       <Footer
         onSelectCountry={handleCountryChange}
         onOpenContact={() => setIsContactOpen(true)}
