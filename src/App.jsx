@@ -16,6 +16,7 @@ import AuthPage from './components/AuthPage';
 import ContactModal from './components/ContactModal';
 import BookingModal from './components/BookingModal';
 import ImageLightboxModal from './components/ImageLightboxModal';
+import LogoutModal from './components/LogoutModal';
 
 // Floating Messengers Widget Icons
 import { Send, MessageCircle, Phone } from 'lucide-react';
@@ -30,6 +31,7 @@ export default function App() {
   // Modals state
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
   const [lightboxImage, setLightboxImage] = useState(null);
 
@@ -98,7 +100,7 @@ export default function App() {
         onOpenAuth={handleNavigateToAuth}
         onOpenContact={() => setIsContactOpen(true)}
         currentUser={currentUser}
-        onLogout={() => setCurrentUser(null)}
+        onOpenLogoutModal={() => setIsLogoutOpen(true)}
       />
 
       {/* 2. Main Hero Section */}
@@ -202,6 +204,13 @@ export default function App() {
         isOpen={!!lightboxImage}
         imageUrl={lightboxImage}
         onClose={() => setLightboxImage(null)}
+      />
+
+      <LogoutModal
+        isOpen={isLogoutOpen}
+        onClose={() => setIsLogoutOpen(false)}
+        currentUser={currentUser}
+        onConfirmLogout={() => setCurrentUser(null)}
       />
 
     </div>

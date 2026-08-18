@@ -7,7 +7,7 @@ import {
 export default function Navbar({ 
   onOpenAuth, 
   currentUser, 
-  onLogout 
+  onOpenLogoutModal 
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -84,22 +84,18 @@ export default function Navbar({
           {/* Right Action Bar */}
           <div className="hidden md:flex items-center gap-3">
             {currentUser ? (
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/90 backdrop-blur-md border border-[#a7f3d0] shadow-sm">
-                <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-[#10b981] to-[#047857] text-white flex items-center justify-center text-xs font-black shadow-xs">
-                  {currentUser.name.charAt(0)}
+              <button
+                onClick={onOpenLogoutModal}
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 hover:border-[#10b981] hover:bg-white shadow-md hover:scale-105 transition-all text-left group"
+                title="Profilingizdan chiqish uchun bosing"
+              >
+                <div className="w-7 h-7 rounded-full bg-[#10b981] text-white flex items-center justify-center text-xs font-black shadow-xs group-hover:scale-105 transition-transform">
+                  {currentUser.name?.charAt(0) || 'U'}
                 </div>
-                <div className="flex flex-col text-left">
-                  <span className="text-xs font-black text-slate-900 leading-tight max-w-[110px] truncate">{currentUser.name}</span>
-                  <span className="text-[10px] font-bold text-[#10b981] leading-none">VIP A'zo</span>
-                </div>
-                <button
-                  onClick={onLogout}
-                  className="ml-1 p-1.5 rounded-lg bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors"
-                  title="Tizimdan chiqish"
-                >
-                  <LogOut className="w-3.5 h-3.5" />
-                </button>
-              </div>
+                <span className="text-xs sm:text-sm font-bold text-[#065f46] group-hover:text-[#047857] max-w-[120px] truncate">
+                  {currentUser.name}
+                </span>
+              </button>
             ) : (
               <button
                 onClick={onOpenAuth}
