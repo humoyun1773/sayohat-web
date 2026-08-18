@@ -170,3 +170,19 @@ input:disabled {
 .lightbox-animate {
   animation: lightboxZoom 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Mobile Touch & Scroll Helpers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 640px) {
+  input, select, textarea, button {
+    font-size: 14px !important;
+  }
+}
+

@@ -146,8 +146,8 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
             </form>
 
             {/* Quick Region Direct Buttons */}
-            <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2.5 text-xs sm:text-sm">
-              <span className="text-slate-600 font-bold mr-1">{t.hero.popular}</span>
+            <div className="mt-8 pt-6 border-t border-slate-100 flex flex-wrap sm:flex-nowrap sm:overflow-x-auto no-scrollbar items-center gap-2 text-xs sm:text-sm">
+              <span className="text-slate-600 font-bold mr-1 shrink-0">{t.hero.popular}</span>
               {COUNTRIES.map((c) => (
                 <button
                   key={c.id}
@@ -156,7 +156,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
                     onSelectCountry(c.id);
                     document.querySelector('#countries')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-[#ecfdf5] hover:text-[#065f46] border border-slate-200 text-slate-700 font-bold transition-all flex items-center gap-1.5 shadow-2xs hover:scale-105"
+                  className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-[#ecfdf5] hover:text-[#065f46] border border-slate-200 text-slate-700 font-bold transition-all flex items-center gap-1.5 shadow-2xs hover:scale-105 shrink-0 cursor-pointer text-xs"
                 >
                   <span>{c.flag}</span>
                   <span>{lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name}</span>
@@ -167,31 +167,28 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
           </div>
         </div>
 
-        {/* 4 Grand Trust Pillars */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          
-          <div className="card-light p-6 rounded-3xl text-left bg-white">
-            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.destCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900">{t.hero.metrics.destLabel}</div>
-            <p className="text-xs text-slate-500 mt-1">{t.hero.metrics.destDesc}</p>
+          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
+            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.destCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.destLabel}</div>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.destDesc}</p>
           </div>
 
-          <div className="card-light p-6 rounded-3xl text-left bg-white">
-            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.guaranteeCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900">{t.hero.metrics.guaranteeLabel}</div>
-            <p className="text-xs text-slate-500 mt-1">{t.hero.metrics.guaranteeDesc}</p>
+          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
+            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.guaranteeCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.guaranteeLabel}</div>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.guaranteeDesc}</p>
           </div>
 
-          <div className="card-light p-6 rounded-3xl text-left bg-white">
-            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.ratingCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900">{t.hero.metrics.ratingLabel}</div>
-            <p className="text-xs text-slate-500 mt-1">{t.hero.metrics.ratingDesc}</p>
+          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
+            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.charterCount || t.hero.metrics.ratingCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.charterLabel || t.hero.metrics.ratingLabel}</div>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.charterDesc || t.hero.metrics.ratingDesc}</p>
           </div>
 
-          <div className="card-light p-6 rounded-3xl text-left bg-white">
-            <div className="text-2xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.supportCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900">{t.hero.metrics.supportLabel}</div>
-            <p className="text-xs text-slate-500 mt-1">{t.hero.metrics.supportDesc}</p>
+          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
+            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.supportCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.supportLabel}</div>
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.supportDesc}</p>
           </div>
 
         </div>
