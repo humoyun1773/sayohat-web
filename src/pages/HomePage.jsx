@@ -52,6 +52,9 @@ export default function HomePage() {
     }
   });
 
+  // Transport Mode State ('bus' | 'plane')
+  const [transportMode, setTransportMode] = useState('bus');
+
   // Modals state
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -67,13 +70,16 @@ export default function HomePage() {
     setLang(newLang);
   };
 
-  const handleCountryChange = (cId) => {
+  const handleCountryChange = (cId, mode) => {
     try {
       localStorage.setItem('lotos_field_country', cId);
     } catch (e) {
       console.error(e);
     }
     setSelectedCountryId(cId);
+    if (mode) {
+      setTransportMode(mode);
+    }
   };
 
   const handleOpenBooking = (tourDetails) => {
@@ -96,6 +102,8 @@ export default function HomePage() {
       {/* 2. Main Hero Section */}
       <Hero
         onSelectCountry={handleCountryChange}
+        transportMode={transportMode}
+        onChangeTransportMode={setTransportMode}
         onOpenBooking={handleOpenBooking}
         t={t}
         lang={lang}
@@ -105,6 +113,8 @@ export default function HomePage() {
       <CountryExplorer
         selectedCountryId={selectedCountryId}
         onSelectCountry={handleCountryChange}
+        transportMode={transportMode}
+        onChangeTransportMode={setTransportMode}
         currency={currency}
         onOpenBooking={handleOpenBooking}
         onOpenImageLightbox={(img) => setLightboxImage(img)}

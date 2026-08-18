@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { 
-  Search, Bus, MapPin, Calendar, 
+  Search, Bus, Plane, MapPin, Calendar, 
   ShieldCheck, Compass, Sparkles 
 } from 'lucide-react';
 import { COUNTRIES } from '../../data/travelData';
 import CustomSelect from '../ui/CustomSelect';
 
-export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
+export default function Hero({ 
+  onSelectCountry, 
+  transportMode = 'bus', 
+  onChangeTransportMode,
+  t, 
+  lang = 'uz' 
+}) {
   const [origin, setOrigin] = useState('TAS');
   const [selectedDest, setSelectedDest] = useState('samarkand');
   const [date, setDate] = useState('2026-09-15');
 
   const originOptions = [
-    { value: 'TAS', label: lang === 'ru' ? 'Ташкент (Автовокзал / Центр)' : lang === 'en' ? 'Tashkent (Bus Terminal / Center)' : 'Toshkent (Avtovokzal / Markaz)', icon: Bus },
-    { value: 'SKD', label: lang === 'ru' ? 'Самарканд' : lang === 'en' ? 'Samarkand' : 'Samarqand shahri', icon: Bus },
-    { value: 'BHK', label: lang === 'ru' ? 'Бухара' : lang === 'en' ? 'Bukhara' : 'Buxoro shahri', icon: Bus },
-    { value: 'UGC', label: lang === 'ru' ? 'Ургенч / Хива' : lang === 'en' ? 'Urgench / Khiva' : 'Urganch / Xiva', icon: Bus },
-    { value: 'KSQ', label: lang === 'ru' ? 'Карши' : lang === 'en' ? 'Karshi' : 'Qarshi shahri', icon: Bus },
-    { value: 'TMJ', label: lang === 'ru' ? 'Термез' : lang === 'en' ? 'Termez' : 'Termiz shahri', icon: Bus },
-    { value: 'FEG', label: lang === 'ru' ? 'Фергана' : lang === 'en' ? 'Fergana' : 'Farg\'ona vodiysi', icon: Bus },
-    { value: 'NCU', label: lang === 'ru' ? 'Нукус' : lang === 'en' ? 'Nukus' : 'Nukus shahri', icon: Bus },
+    { value: 'TAS', label: lang === 'ru' ? 'Ташкент (Автовокзал / Аэропорт)' : lang === 'en' ? 'Tashkent (Bus Station / Airport)' : 'Toshkent (Avtovokzal / Aeroport)', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'SKD', label: lang === 'ru' ? 'Самарканд' : lang === 'en' ? 'Samarkand' : 'Samarqand shahri', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'BHK', label: lang === 'ru' ? 'Бухара' : lang === 'en' ? 'Bukhara' : 'Buxoro shahri', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'UGC', label: lang === 'ru' ? 'Ургенч / Хива' : lang === 'en' ? 'Urgench / Khiva' : 'Urganch / Xiva', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'KSQ', label: lang === 'ru' ? 'Карши' : lang === 'en' ? 'Karshi' : 'Qarshi shahri', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'TMJ', label: lang === 'ru' ? 'Термез' : lang === 'en' ? 'Termez' : 'Termiz shahri', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'FEG', label: lang === 'ru' ? 'Фергана' : lang === 'en' ? 'Fergana' : 'Farg\'ona vodiysi', icon: transportMode === 'plane' ? Plane : Bus },
+    { value: 'NCU', label: lang === 'ru' ? 'Нукус' : lang === 'en' ? 'Nukus' : 'Nukus shahri', icon: transportMode === 'plane' ? Plane : Bus },
   ];
 
   const destinationOptions = COUNTRIES.map((c) => ({
@@ -30,8 +36,10 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    onSelectCountry(selectedDest);
-    const element = document.querySelector('#countries');
+    if (onSelectCountry) {
+      onSelectCountry(selectedDest, transportMode);
+    }
+    const element = document.querySelector('#regions');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -52,7 +60,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Main Title & Hero Banner */}
-        <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">
+        <div className="text-center max-w-4xl mx-auto mb-10 space-y-4">
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-lg space-y-3">
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
               {t.hero.title1} <br />
@@ -71,9 +79,11 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
         <div className="w-full max-w-[1536px] mx-auto mb-14">
           <div className="bg-white/98 backdrop-blur-2xl p-5 sm:p-10 lg:p-12 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
             
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 border-b border-slate-100 pb-5 gap-3">
+            {/* Top Bar with Big Interactive Transport Selector Switch */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 border-b border-slate-100 pb-6 gap-4">
+              
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#ecfdf5] flex items-center justify-center text-[#10b981] border border-[#a7f3d0] shadow-sm">
+                <div className="w-10 h-10 rounded-2xl bg-[#ecfdf5] flex items-center justify-center text-[#10b981] border border-[#a7f3d0] shadow-sm shrink-0">
                   <Compass className="w-5 h-5" />
                 </div>
                 <div>
@@ -84,10 +94,35 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
                 </div>
               </div>
 
-              <span className="text-xs sm:text-sm text-[#065f46] font-bold bg-[#ecfdf5] px-4 py-1.5 rounded-full border border-[#a7f3d0] flex items-center gap-2 self-start sm:self-auto shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-[#10b981]" />
-                <span>{t.hero.guarantee}</span>
-              </span>
+              {/* PRIMARY PROMINENT TRANSPORT SWITCHER TABS */}
+              <div className="p-1 bg-slate-100/90 rounded-2xl border border-slate-200/90 flex items-center gap-1.5 self-start md:self-auto shadow-inner">
+                <button
+                  type="button"
+                  onClick={() => onChangeTransportMode && onChangeTransportMode('bus')}
+                  className={`py-2.5 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-2 cursor-pointer ${
+                    transportMode === 'bus'
+                      ? 'bg-[#10b981] text-white shadow-md scale-105'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  <Bus className="w-4 h-4" />
+                  <span>{lang === 'ru' ? '🚌 Автобус / Газель' : lang === 'en' ? '🚌 Coach / Van' : '🚌 Qulay Avtobus / Gazel'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => onChangeTransportMode && onChangeTransportMode('plane')}
+                  className={`py-2.5 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center gap-2 cursor-pointer ${
+                    transportMode === 'plane'
+                      ? 'bg-[#10b981] text-white shadow-md scale-105'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  <Plane className="w-4 h-4 transform -rotate-45" />
+                  <span>{lang === 'ru' ? '✈️ Авиаперелет' : lang === 'en' ? '✈️ Direct Flight' : '✈️ Samolyot Parvozi'}</span>
+                </button>
+              </div>
+
             </div>
 
             <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-end">
@@ -95,7 +130,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
               {/* Custom Origin Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <Bus className="w-4 h-4 text-[#10b981]" />
+                  {transportMode === 'plane' ? <Plane className="w-4 h-4 text-emerald-600 transform -rotate-45" /> : <Bus className="w-4 h-4 text-[#10b981]" />}
                   {t.hero.originLabel}
                 </label>
                 <CustomSelect
@@ -153,8 +188,10 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
                   key={c.id}
                   type="button"
                   onClick={() => {
-                    onSelectCountry(c.id);
-                    document.querySelector('#countries')?.scrollIntoView({ behavior: 'smooth' });
+                    if (onSelectCountry) {
+                      onSelectCountry(c.id, transportMode);
+                    }
+                    document.querySelector('#regions')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-[#ecfdf5] hover:text-[#065f46] border border-slate-200 text-slate-700 font-bold transition-all flex items-center gap-1.5 shadow-2xs hover:scale-105 shrink-0 cursor-pointer text-xs"
                 >
@@ -168,30 +205,32 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
         </div>
 
         {/* 4 Grand Trust Pillars */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
-            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.destCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.destLabel}</div>
-            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.destDesc}</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-md text-left space-y-1 hover:-translate-y-1 transition-all">
+            <div className="text-2xl sm:text-3xl font-black text-slate-900">{t.hero.metrics.destCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-[#10b981]">{t.hero.metrics.destLabel}</div>
+            <p className="text-[11px] text-slate-600 leading-snug">{t.hero.metrics.destDesc}</p>
           </div>
 
-          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
-            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.guaranteeCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.guaranteeLabel}</div>
-            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.guaranteeDesc}</p>
+          <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-md text-left space-y-1 hover:-translate-y-1 transition-all">
+            <div className="text-2xl sm:text-3xl font-black text-slate-900">{t.hero.metrics.guaranteeCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-[#10b981]">{t.hero.metrics.guaranteeLabel}</div>
+            <p className="text-[11px] text-slate-600 leading-snug">{t.hero.metrics.guaranteeDesc}</p>
           </div>
 
-          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
-            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.charterCount || t.hero.metrics.ratingCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.charterLabel || t.hero.metrics.ratingLabel}</div>
-            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.charterDesc || t.hero.metrics.ratingDesc}</p>
+          <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-md text-left space-y-1 hover:-translate-y-1 transition-all">
+            <div className="text-2xl sm:text-3xl font-black text-slate-900">{t.hero.metrics.ratingCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-[#10b981]">{t.hero.metrics.ratingLabel}</div>
+            <p className="text-[11px] text-slate-600 leading-snug">{t.hero.metrics.ratingDesc}</p>
           </div>
 
-          <div className="card-light p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-left bg-white">
-            <div className="text-xl sm:text-3xl font-black text-[#10b981] mb-1">{t.hero.metrics.supportCount}</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">{t.hero.metrics.supportLabel}</div>
-            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-snug">{t.hero.metrics.supportDesc}</p>
+          <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/80 shadow-md text-left space-y-1 hover:-translate-y-1 transition-all">
+            <div className="text-2xl sm:text-3xl font-black text-slate-900">{t.hero.metrics.supportCount}</div>
+            <div className="text-xs sm:text-sm font-bold text-[#10b981]">{t.hero.metrics.supportLabel}</div>
+            <p className="text-[11px] text-slate-600 leading-snug">{t.hero.metrics.supportDesc}</p>
           </div>
+
         </div>
 
       </div>

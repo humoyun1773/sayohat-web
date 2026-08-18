@@ -7,17 +7,24 @@ import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 
-export default function CountryExplorer({ onOpenBooking, onOpenImageLightbox, t, lang = 'uz' }) {
+export default function CountryExplorer({ 
+  selectedCountryId = 'samarkand',
+  onSelectCountry,
+  transportMode = 'bus',
+  onChangeTransportMode,
+  onOpenBooking, 
+  onOpenImageLightbox, 
+  t, 
+  lang = 'uz' 
+}) {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [activeCountryId, setActiveCountryId] = useState('samarkand');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
-  const [transportMode, setTransportMode] = useState('bus'); // 'bus' | 'plane'
 
   const filteredCountries = selectedCategory === 'all'
     ? COUNTRIES
     : COUNTRIES.filter(c => c.category === selectedCategory);
 
-  const currentCountry = COUNTRIES.find(c => c.id === activeCountryId) || COUNTRIES[0];
+  const currentCountry = COUNTRIES.find(c => c.id === selectedCountryId) || COUNTRIES[0];
 
   const currentPkg = currentCountry.packages ? currentCountry.packages[transportMode] : null;
   const currentPrice = currentPkg ? currentPkg.priceUSD : (currentCountry.basePriceUSD || 190);
@@ -57,7 +64,9 @@ export default function CountryExplorer({ onOpenBooking, onOpenImageLightbox, t,
   const activePhotoTitle = activePhoto.title;
 
   const handleCountryClick = (id) => {
-    setActiveCountryId(id);
+    if (onSelectCountry) {
+      onSelectCountry(id);
+    }
     setActivePhotoIdx(0);
   };
 
@@ -101,7 +110,7 @@ export default function CountryExplorer({ onOpenBooking, onOpenImageLightbox, t,
         <div className="max-w-md mx-auto mb-8">
           <div className="p-1.5 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-md grid grid-cols-2 gap-2">
             <button
-              onClick={() => setTransportMode('bus')}
+              onClick={() => onChangeTransportMode && onChangeTransportMode('bus')}
               className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
                 transportMode === 'bus'
                   ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
@@ -113,7 +122,7 @@ export default function CountryExplorer({ onOpenBooking, onOpenImageLightbox, t,
             </button>
 
             <button
-              onClick={() => setTransportMode('plane')}
+              onClick={() => onChangeTransportMode && onChangeTransportMode('plane')}
               className={`py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
                 transportMode === 'plane'
                   ? 'bg-[#10b981] text-white shadow-md scale-[1.02]'
@@ -251,7 +260,7 @@ export default function CountryExplorer({ onOpenBooking, onOpenImageLightbox, t,
               <div className="p-2 bg-slate-100 rounded-2xl border border-slate-200/80">
                 <div className="grid grid-cols-2 gap-1.5">
                   <button
-                    onClick={() => setTransportMode('bus')}
+                    onClick={() => onChangeTransportMode && onChangeTransportMode('bus')}
                     className={`py-2 px-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                       transportMode === 'bus'
                         ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
@@ -263,7 +272,7 @@ export default function CountryExplorer({ onOpenBooking, onOpenImageLightbox, t,
                   </button>
 
                   <button
-                    onClick={() => setTransportMode('plane')}
+                    onClick={() => onChangeTransportMode && onChangeTransportMode('plane')}
                     className={`py-2 px-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                       transportMode === 'plane'
                         ? 'bg-white text-slate-900 shadow-sm border border-slate-200'
