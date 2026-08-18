@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Plane, Menu, X, Compass, Flame, 
-  ShieldCheck, Star, Phone, ArrowRight 
+  ShieldCheck, Star, Phone, ArrowRight,
+  Send, MessageCircle, MapPin
 } from 'lucide-react';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { CONTACT_INFO } from '../../data/travelData';
@@ -18,25 +19,57 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Bulletproof body freeze when Mobile Modal Menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.classList.add('modal-open');
+      document.documentElement.classList.add('modal-open');
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+      }
+    }
+
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
-    { name: t.nav.home, href: '#hero', icon: Compass },
-    { name: t.nav.regions, href: '#destinations', icon: Compass },
-    { name: t.nav.deals, href: '#deals', icon: Flame },
-    { name: t.nav.whyUs, href: '#why-us', icon: ShieldCheck },
-    { name: t.nav.reviews, href: '#reviews', icon: Star },
+    { name: t.nav.home, href: '#hero', icon: Compass, badge: 'Asosiy' },
+    { name: t.nav.regions, href: '#destinations', icon: MapPin, badge: '8 ta Shahar' },
+    { name: t.nav.deals, href: '#deals', icon: Flame, badge: '-30% VIP' },
+    { name: t.nav.whyUs, href: '#why-us', icon: ShieldCheck, badge: 'Kafolat' },
+    { name: t.nav.reviews, href: '#reviews', icon: Star, badge: '5.0 Reyting' },
   ];
 
   const handleNavClick = (href) => {
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
   };
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 px-2.5 sm:px-8 lg:px-12 pt-2.5 sm:pt-4 transition-all duration-300">
+      <header className="fixed top-0 left-0 right-0 z-40 px-2.5 sm:px-8 lg:px-12 pt-2.5 sm:pt-4 transition-all duration-300">
         <div className={`max-w-[1536px] mx-auto rounded-2xl sm:rounded-3xl transition-all duration-300 ${
           isScrolled 
             ? 'bg-white/95 backdrop-blur-xl shadow-lg py-2 px-3 sm:px-8 border border-white/80' 
@@ -94,64 +127,141 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
               />
               
               <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl bg-white/90 backdrop-blur-md text-slate-900 border border-slate-200 shadow-2xs hover:bg-white transition-all active:scale-95 cursor-pointer shrink-0"
-                aria-label="Menyu"
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-2 rounded-xl bg-[#10b981] text-white shadow-md hover:bg-[#059669] transition-all active:scale-95 cursor-pointer shrink-0"
+                aria-label="Menyuni ochish"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5 text-red-600" /> : <Menu className="w-5 h-5 text-slate-900" />}
+                <Menu className="w-5 h-5 text-white" />
               </button>
             </div>
 
           </div>
         </div>
+      </header>
 
-        {/* Mobile Animated Drawer Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-2 max-w-[1536px] mx-auto rounded-3xl bg-white/98 backdrop-blur-2xl border border-slate-200/90 p-4 space-y-3 shadow-2xl modal-card-animate">
+      {/* MOBILE LUXURY FULL MODAL DIALOG */}
+      {mobileMenuOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md modal-backdrop-animate overscroll-contain"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div 
+            className="relative w-full max-w-md bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col modal-card-animate"
+            onClick={(e) => e.stopPropagation()}
+          >
             
-            {/* Navigation Links Grid */}
-            <div className="grid grid-cols-1 gap-1.5">
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <button
-                    key={link.name}
-                    onClick={() => handleNavClick(link.href)}
-                    className="w-full text-left px-4 py-3 rounded-2xl bg-slate-50 hover:bg-[#ecfdf5] text-xs font-bold text-slate-800 hover:text-[#065f46] border border-slate-200/70 transition-all flex items-center justify-between group cursor-pointer active:scale-98"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-xl bg-white border border-slate-200/80 flex items-center justify-center text-[#10b981] shadow-2xs">
-                        <Icon className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="text-sm font-bold">{link.name}</span>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#10b981] transition-transform group-hover:translate-x-0.5" />
-                  </button>
-                );
-              })}
+            {/* Modal Top Header */}
+            <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-100 bg-slate-50">
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center text-white shadow-md">
+                  <Plane className="w-5 h-5 transform -rotate-45" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-1 leading-none">
+                    <span className="text-xl font-black text-slate-900">LOTOS</span>
+                    <span className="text-xl font-black text-[#10b981]">FIELD</span>
+                  </div>
+                  <span className="text-[10px] uppercase font-bold text-slate-500">Sayohat Menyu</span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2.5 rounded-full bg-slate-200/80 hover:bg-slate-300 text-slate-700 transition-colors cursor-pointer"
+                aria-label="Yopish"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Direct Mobile Contact CTA */}
-            <div className="pt-2 border-t border-slate-100 flex items-center gap-2">
-              <a
-                href={`tel:${CONTACT_INFO.phoneClean}`}
-                className="flex-1 py-3 px-4 rounded-2xl bg-[#10b981] text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md hover:bg-[#059669] transition-all"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span>{CONTACT_INFO.phone}</span>
-              </a>
+            {/* Modal Body with Navigation Links */}
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-4 modal-scrollable">
+              
+              {/* Language Selector Inside Modal */}
+              <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-700">Tilni tanlang:</span>
+                <LanguageSwitcher
+                  currentLang={lang}
+                  onChangeLang={(l) => {
+                    onChangeLang(l);
+                  }}
+                />
+              </div>
+
+              {/* Navigation Links List */}
+              <div className="space-y-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block px-1">
+                  Bo'limlar
+                </span>
+                
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <button
+                      key={link.name}
+                      onClick={() => handleNavClick(link.href)}
+                      className="w-full text-left p-3.5 rounded-2xl bg-white hover:bg-[#ecfdf5] border border-slate-200/90 shadow-2xs hover:border-[#10b981]/50 transition-all flex items-center justify-between group cursor-pointer active:scale-98"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-[#ecfdf5] text-[#10b981] border border-[#a7f3d0] flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold text-slate-900 group-hover:text-[#065f46] leading-tight">
+                            {link.name}
+                          </div>
+                          <span className="text-[10px] text-slate-400 font-medium">
+                            {link.badge}
+                          </span>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#10b981] group-hover:translate-x-1 transition-all" />
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Messengers & Fast Call */}
+              <div className="pt-2 border-t border-slate-100 space-y-2.5">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block px-1">
+                  Tezkor Bog'lanish
+                </span>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={CONTACT_INFO.telegram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-3 rounded-2xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 flex items-center justify-center gap-2 text-xs font-bold transition-all"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>Telegram</span>
+                  </a>
+
+                  <a
+                    href={CONTACT_INFO.whatsapp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-[#065f46] border border-emerald-200 flex items-center justify-center gap-2 text-xs font-bold transition-all"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
+
+                <a
+                  href={`tel:${CONTACT_INFO.phoneClean}`}
+                  className="w-full py-3.5 px-4 rounded-2xl bg-[#10b981] hover:bg-[#059669] text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all active:scale-95"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>Qo'ng'iroq: {CONTACT_INFO.phone}</span>
+                </a>
+              </div>
+
             </div>
 
           </div>
-        )}
-      </header>
-
-      {/* Backdrop overlay on mobile when menu open */}
-      {mobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-40 md:hidden"
-          onClick={() => setMobileMenuOpen(false)}
-        />
+        </div>
       )}
     </>
   );
