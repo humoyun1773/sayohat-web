@@ -110,6 +110,7 @@ export default function App() {
       {/* 3. Modern Airplane Fleet & Live Board */}
       <AirplaneFleet
         onOpenBooking={handleOpenBooking}
+        onOpenImageLightbox={(img) => setLightboxImage(img)}
       />
 
       {/* 4. Country Explorer & HD Photo Gallery */}

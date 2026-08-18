@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import { 
-  Plane, Wind, ShieldCheck, Gauge, Navigation, Users, Radio 
+  Plane, Wind, ShieldCheck, Gauge, Navigation, 
+  Users, Radio, Camera, Sparkles, CheckCircle2, ChevronRight 
 } from 'lucide-react';
 import { AIRPLANES_FLEET, LIVE_FLIGHTS } from '../data/travelData';
 
-export default function AirplaneFleet({ onOpenBooking }) {
+export default function AirplaneFleet({ onOpenBooking, onOpenImageLightbox }) {
   const [selectedPlane, setSelectedPlane] = useState(AIRPLANES_FLEET[0]);
-  const [viewMode, setViewMode] = useState('exterior'); // 'exterior' or 'cabin'
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
+
+  // When plane changes, reset photo index
+  const handleSelectPlane = (plane) => {
+    setSelectedPlane(plane);
+    setActivePhotoIndex(0);
+  };
+
+  const currentGallery = selectedPlane.gallery || [
+    { title: 'Tashqi ko\'rinish', url: selectedPlane.image },
+    { title: 'VIP Salon', url: selectedPlane.cabinImage }
+  ];
+
+  const currentPhoto = currentGallery[activePhotoIndex]?.url || selectedPlane.image;
 
   return (
     <section id="fleet" className="py-20 relative bg-slate-50 border-y border-slate-200">
@@ -16,7 +30,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
             <Plane className="w-3.5 h-3.5 transform -rotate-45 text-[#10b981]" />
-            <span>Zamonaviy Aviapark & Premium Laynerlar</span>
+            <span>Zamonaviy Aviapark & HD Samolyotlar Galereyasi</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Eng Xavfsiz va Hashamatli <br />
@@ -25,86 +39,109 @@ export default function AirplaneFleet({ onOpenBooking }) {
             </span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
-            Parvozingiz davomida yuqori tezlikdagi Wi-Fi, 4K multimedia monitorlar, shaxsiy VIP o'rindiqlar va xalqaro servis.
+            Har bir samolyot ustiga bosing — uning tashqi ko'rinishi, VIP saloni, uchuvchilar kabinasi va bulutlar ustidagi HD fotosuratlarini tomosha qiling!
           </p>
         </div>
 
-        {/* Plane Selector Tabs */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        {/* 6 Planes Selector Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mb-10">
           {AIRPLANES_FLEET.map((plane) => {
             const isSelected = plane.id === selectedPlane.id;
             return (
               <button
                 key={plane.id}
-                onClick={() => setSelectedPlane(plane)}
-                className={`p-5 rounded-3xl text-left transition-all duration-300 border flex items-center gap-4 ${
+                onClick={() => handleSelectPlane(plane)}
+                className={`p-4 sm:p-5 rounded-3xl text-left transition-all duration-300 border flex items-center gap-4 group ${
                   isSelected
-                    ? 'bg-white border-[#10b981] ring-2 ring-[#a7f3d0] shadow-md scale-[1.01]'
-                    : 'bg-white/80 border-slate-200 hover:border-slate-300 hover:bg-white'
+                    ? 'bg-white border-2 border-[#10b981] ring-4 ring-[#10b981]/15 shadow-lg scale-[1.01]'
+                    : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-xs'
                 }`}
               >
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold shrink-0 shadow-sm ${
-                  isSelected ? 'bg-[#10b981] text-white' : 'bg-slate-100 text-slate-700'
-                }`}>
-                  <Plane className="w-6 h-6 transform -rotate-45" />
+                <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm relative">
+                  <img
+                    src={plane.image}
+                    alt={plane.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  {isSelected && (
+                    <div className="absolute inset-0 bg-[#10b981]/30 flex items-center justify-center">
+                      <Plane className="w-6 h-6 text-white transform -rotate-45 drop-shadow-md" />
+                    </div>
+                  )}
                 </div>
-                <div>
-                  <h4 className="text-base font-bold text-slate-900">{plane.name}</h4>
-                  <p className="text-xs text-slate-500 truncate max-w-[200px] mt-0.5">{plane.type}</p>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <h4 className={`text-sm sm:text-base font-extrabold truncate ${isSelected ? 'text-slate-900 font-black' : 'text-slate-800'}`}>
+                      {plane.name}
+                    </h4>
+                  </div>
+                  <p className="text-xs text-[#10b981] font-bold truncate mt-0.5">{plane.airline}</p>
+                  <p className="text-[11px] text-slate-500 truncate mt-0.5">{plane.type}</p>
                 </div>
               </button>
             );
           })}
         </div>
 
-        {/* Plane Showcase Box with Real Photos */}
-        <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-lg mb-16">
+        {/* Main Giant Visual Screen with Multi-Photo Switcher */}
+        <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl mb-16">
           
-          {/* Main Visual Screen */}
-          <div className="relative min-h-[380px] sm:min-h-[460px] flex items-end p-6 sm:p-10">
+          {/* Main Visual Display */}
+          <div className="relative min-h-[420px] sm:min-h-[520px] flex items-end p-6 sm:p-10">
             
             <img
-              key={viewMode + selectedPlane.id}
-              src={viewMode === 'exterior' ? selectedPlane.image : selectedPlane.cabinImage}
+              key={selectedPlane.id + activePhotoIndex}
+              src={currentPhoto}
               alt={selectedPlane.name}
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"></div>
 
-            {/* View Switcher Controls on top right */}
-            <div className="absolute top-6 right-6 z-20 flex gap-2">
+            {/* Quick Photo Switcher Bar on Top Right */}
+            <div className="absolute top-6 right-6 z-20 flex flex-wrap justify-end gap-2.5 max-w-lg">
+              {currentGallery.map((item, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActivePhotoIndex(idx)}
+                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 transition-all shadow-xl relative group ${
+                    activePhotoIndex === idx
+                      ? 'border-[#10b981] scale-105 ring-4 ring-[#10b981]/40'
+                      : 'border-white/70 opacity-80 hover:opacity-100 hover:scale-105'
+                  }`}
+                  title={item.title}
+                >
+                  <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors"></div>
+                </button>
+              ))}
+
               <button
-                onClick={() => setViewMode('exterior')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md backdrop-blur-md ${
-                  viewMode === 'exterior'
-                    ? 'bg-[#10b981] text-white shadow-[#10b981]/30'
-                    : 'bg-white/80 text-slate-900 hover:bg-white border border-white/40'
-                }`}
+                onClick={() => onOpenImageLightbox && onOpenImageLightbox(currentPhoto)}
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/90 backdrop-blur-md border border-white/60 flex flex-col items-center justify-center text-slate-900 hover:bg-white transition-all shadow-xl"
+                title="Katta o'lchamda tomosha qilish"
               >
-                ✈️ Tashqi Ko'rinish
-              </button>
-              <button
-                onClick={() => setViewMode('cabin')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md backdrop-blur-md ${
-                  viewMode === 'cabin'
-                    ? 'bg-[#10b981] text-white shadow-[#10b981]/30'
-                    : 'bg-white/80 text-slate-900 hover:bg-white border border-white/40'
-                }`}
-              >
-                🛋️ VIP Salon & O'rindiqlar
+                <Camera className="w-5 h-5 text-[#10b981] mb-1" />
+                <span className="text-[9px] font-extrabold uppercase">Katta Rasm</span>
               </button>
             </div>
 
-            {/* Specs Overlay */}
+            {/* Specs & Info Overlay */}
             <div className="relative z-10 w-full space-y-4">
+              
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white border border-white/30 backdrop-blur-md">
-                  {selectedPlane.airline}
+                  ✈️ {selectedPlane.airline}
                 </span>
                 <span className="text-xs font-bold text-white flex items-center gap-1.5 bg-black/40 px-3 py-1 rounded-full backdrop-blur-md">
                   <ShieldCheck className="w-4 h-4 text-[#10b981]" />
                   <span>Xalqaro IATA 5★ Xavfsizlik Standarti</span>
                 </span>
+                {currentGallery[activePhotoIndex]?.title && (
+                  <span className="text-xs font-bold text-[#a7f3d0] bg-[#10b981]/40 px-3 py-1 rounded-full border border-[#10b981]/50 backdrop-blur-md">
+                    📸 {currentGallery[activePhotoIndex].title}
+                  </span>
+                )}
               </div>
 
               <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">
