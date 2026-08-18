@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Plane, User, 
-  Menu, X 
+  Menu, X, LogOut 
 } from 'lucide-react';
 
 export default function Navbar({ 
@@ -84,15 +84,22 @@ export default function Navbar({
           {/* Right Action Bar */}
           <div className="hidden md:flex items-center gap-3">
             {currentUser ? (
-              <button
-                onClick={onOpenAuth}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/70 backdrop-blur-md border border-white/60 text-[#047857] text-sm font-bold hover:bg-white transition-all shadow-sm"
-              >
-                <div className="w-6 h-6 rounded-full bg-[#10b981] text-white flex items-center justify-center text-xs font-black">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/90 backdrop-blur-md border border-[#a7f3d0] shadow-sm">
+                <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-[#10b981] to-[#047857] text-white flex items-center justify-center text-xs font-black shadow-xs">
                   {currentUser.name.charAt(0)}
                 </div>
-                <span className="max-w-[110px] truncate">{currentUser.name}</span>
-              </button>
+                <div className="flex flex-col text-left">
+                  <span className="text-xs font-black text-slate-900 leading-tight max-w-[110px] truncate">{currentUser.name}</span>
+                  <span className="text-[10px] font-bold text-[#10b981] leading-none">VIP A'zo</span>
+                </div>
+                <button
+                  onClick={onLogout}
+                  className="ml-1 p-1.5 rounded-lg bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors"
+                  title="Tizimdan chiqish"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              </div>
             ) : (
               <button
                 onClick={onOpenAuth}

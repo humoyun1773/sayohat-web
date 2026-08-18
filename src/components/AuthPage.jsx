@@ -121,62 +121,8 @@ export default function AuthPage({
       {/* Center Auth Card */}
       <main className="max-w-[1536px] mx-auto px-4 sm:px-6 py-6 sm:py-10 w-full flex-1 flex items-center justify-center relative z-10">
         
-        {currentUser ? (
-          /* Clean, Minimalist VIP Profile Card */
-          <div className="w-full max-w-lg bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-300">
-            
-            {/* Header Banner */}
-            <div className="bg-slate-900 p-6 text-white relative overflow-hidden flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] text-white flex items-center justify-center font-black text-2xl shadow-lg border border-white/20">
-                  {currentUser.name.charAt(0)}
-                </div>
-                <div className="space-y-0.5">
-                  <h2 className="text-lg font-extrabold">{currentUser.name}</h2>
-                  <p className="text-xs text-slate-300 font-mono">{currentUser.phone}</p>
-                  <span className="inline-block text-[10px] font-bold text-[#a7f3d0] bg-white/10 px-2 py-0.5 rounded-full border border-white/20">
-                    ★ {currentUser.tier}
-                  </span>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={onLogout}
-                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/20 flex items-center gap-1.5 transition-all shadow-sm"
-                title="Profildan chiqish"
-              >
-                <LogOut className="w-4 h-4" />
-                <span className="hidden sm:inline">Chiqish</span>
-              </button>
-            </div>
-
-            {/* Quick Balance & Return */}
-            <div className="p-6 space-y-4 bg-white">
-              <div className="p-4 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-between">
-                <div>
-                  <span className="text-xs text-[#065f46] font-bold block">To'plangan Keshbek Bonusingiz:</span>
-                  <span className="text-xl font-black text-[#10b981]">{currentUser.bonuses.toLocaleString()} so'm</span>
-                </div>
-                <span className="text-xs font-bold text-[#065f46] bg-white px-3 py-1 rounded-xl shadow-xs border border-[#a7f3d0]">
-                  5% VIP Chegirma Aktiv
-                </span>
-              </div>
-
-              <button
-                type="button"
-                onClick={onBackToHome}
-                className="w-full py-3.5 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider shadow-md hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-2"
-              >
-                <Plane className="w-4 h-4" />
-                <span>BOSH SAHIFAGA O'TISH & SAYOHAT TANLASH</span>
-              </button>
-            </div>
-
-          </div>
-        ) : (
-          /* Compact Luxury Split Card */
-          <div className="w-full max-w-4xl bg-white rounded-[24px] border border-slate-200 shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12 animate-in fade-in zoom-in-95 duration-300">
+        {/* Compact Luxury Split Card */}
+        <div className="w-full max-w-4xl bg-white rounded-[24px] border border-slate-200 shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12 animate-in fade-in zoom-in-95 duration-300">
             
             {/* Left Col: Dark Blue Brand Banner (5 cols) */}
             <div className="md:col-span-5 relative bg-[#0f172a] p-6 sm:p-8 text-white flex flex-col justify-between overflow-hidden min-h-[320px] md:min-h-[480px]">
@@ -353,10 +299,8 @@ export default function AuthPage({
                 <span>Barcha ma'lumotlaringiz 256-bit SSL shifrlash orqali himoyalangan.</span>
               </div>
 
-            </div>
-
           </div>
-        )}
+        </div>
 
       </main>
 
