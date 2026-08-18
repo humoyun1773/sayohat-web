@@ -12,7 +12,7 @@ export default function AuthPage({
   onBackToHome 
 }) {
   const [tab, setTab] = useState('login'); // 'login' or 'register'
-  const [phone, setPhone] = useState('+998 ');
+  const [phoneDigits, setPhoneDigits] = useState(''); // Stores only the 9 digits
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -23,46 +23,27 @@ export default function AuthPage({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Strict Phone Handler: only digits, +998 is permanent
-  const handlePhoneChange = (e) => {
-    const rawVal = e.target.value;
-    
-    // Extract only digits
-    let digits = rawVal.replace(/\D/g, '');
-    
-    // If starts with 998, strip it to get the local 9 digits
-    if (digits.startsWith('998')) {
-      digits = digits.slice(3);
-    }
-    
-    // Max 9 digits (e.g. 901234567)
-    digits = digits.slice(0, 9);
+  // Format 9 digits nicely for display: e.g. 90 123 45 67
+  const formatDisplayDigits = (val) => {
+    let digits = val.replace(/\D/g, '').slice(0, 9);
+    let res = '';
+    if (digits.length > 0) res += digits.slice(0, 2);
+    if (digits.length > 2) res += ' ' + digits.slice(2, 5);
+    if (digits.length > 5) res += ' ' + digits.slice(5, 7);
+    if (digits.length > 7) res += ' ' + digits.slice(7, 9);
+    return res;
+  };
 
-    // Format cleanly without parentheses: +998 90 123 45 67
-    let formatted = '+998';
-    if (digits.length > 0) {
-      formatted += ' ' + digits.slice(0, 2);
-    }
-    if (digits.length >= 2) {
-      formatted += ' ' + digits.slice(2, 5);
-    }
-    if (digits.length >= 5) {
-      formatted += ' ' + digits.slice(5, 7);
-    }
-    if (digits.length >= 7) {
-      formatted += ' ' + digits.slice(7, 9);
-    }
-
-    setPhone(formatted);
+  const handlePhoneInput = (e) => {
+    const raw = e.target.value.replace(/\D/g, '');
+    setPhoneDigits(raw.slice(0, 9));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validate that 9 full local digits were entered
-    const digitsOnly = phone.replace(/\D/g, '');
-    if (digitsOnly.length < 12) { // 998 + 9 digits = 12 total digits
-      setError('Iltimos, telefon raqamingizni to\'liq kiriting (masalan: +998 90 123 45 67)');
+    if (phoneDigits.length < 9) {
+      setError('Iltimos, 9 xonali telefon raqamingizni to\'liq kiriting (masalan: 90 123 45 67)');
       return;
     }
 
@@ -74,8 +55,9 @@ export default function AuthPage({
     setError('');
     
     // Successful login or registration
+    const formattedFullPhone = '+998 ' + formatDisplayDigits(phoneDigits);
     const userData = {
-      phone: phone,
+      phone: formattedFullPhone,
       name: tab === 'register' ? (fullName || 'Yangi Sayohatchi') : 'Sardor Rahimov',
       memberSince: '2026',
       bonuses: 250000,
@@ -372,18 +354,23 @@ export default function AuthPage({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Telefon Raqamingiz (Faqat raqamlar):
+                    Telefon Raqamingiz:
                   </label>
-                  <div className="relative">
-                    <Phone className="w-4 h-4 text-[#10b981] absolute left-4 top-3.5" />
+                  
+                  {/* Clean Prefix Box with Unrestricted Editable Numbers */}
+                  <div className="flex items-center bg-slate-50 hover:bg-white border border-slate-200 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden transition-all">
+                    <div className="flex items-center gap-2 pl-4 pr-3 py-3.5 text-slate-800 font-mono font-black text-xs sm:text-sm select-none border-r border-slate-200 shrink-0">
+                      <Phone className="w-4 h-4 text-[#10b981]" />
+                      <span>+998</span>
+                    </div>
                     <input
                       type="tel"
                       required
                       inputMode="numeric"
-                      value={phone}
-                      onChange={handlePhoneChange}
-                      placeholder="+998 90 123 45 67"
-                      className="w-full bg-slate-50 hover:bg-white border border-slate-200 focus:border-[#10b981] rounded-2xl pl-11 pr-4 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none font-mono font-bold transition-all"
+                      value={formatDisplayDigits(phoneDigits)}
+                      onChange={handlePhoneInput}
+                      placeholder="90 123 45 67"
+                      className="w-full bg-transparent px-4 py-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 outline-none font-mono font-black tracking-wide"
                     />
                   </div>
                 </div>

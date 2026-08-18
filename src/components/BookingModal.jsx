@@ -14,37 +14,27 @@ export default function BookingModal({
   currentUser 
 }) {
   const [fullName, setFullName] = useState(currentUser?.name || '');
-  const [phone, setPhone] = useState(currentUser?.phone || '+998 ');
+  const [phoneDigits, setPhoneDigits] = useState('');
   const [passport, setPassport] = useState('');
   const [travelDate, setTravelDate] = useState('2026-09-20');
   const [passengers, setPassengers] = useState(bookingData?.adultsCount || 2);
   const [isSuccess, setIsSuccess] = useState(false);
   const [bookingRef, setBookingRef] = useState('');
 
-  // Strict Phone Handler: only digits, +998 is permanent
-  const handlePhoneChange = (e) => {
-    const rawVal = e.target.value;
-    let digits = rawVal.replace(/\D/g, '');
-    if (digits.startsWith('998')) {
-      digits = digits.slice(3);
-    }
-    digits = digits.slice(0, 9);
+  // Format 9 digits nicely for display: e.g. 90 123 45 67
+  const formatDisplayDigits = (val) => {
+    let digits = val.replace(/\D/g, '').slice(0, 9);
+    let res = '';
+    if (digits.length > 0) res += digits.slice(0, 2);
+    if (digits.length > 2) res += ' ' + digits.slice(2, 5);
+    if (digits.length > 5) res += ' ' + digits.slice(5, 7);
+    if (digits.length > 7) res += ' ' + digits.slice(7, 9);
+    return res;
+  };
 
-    let formatted = '+998';
-    if (digits.length > 0) {
-      formatted += ' ' + digits.slice(0, 2);
-    }
-    if (digits.length >= 2) {
-      formatted += ' ' + digits.slice(2, 5);
-    }
-    if (digits.length >= 5) {
-      formatted += ' ' + digits.slice(5, 7);
-    }
-    if (digits.length >= 7) {
-      formatted += ' ' + digits.slice(7, 9);
-    }
-
-    setPhone(formatted);
+  const handlePhoneInput = (e) => {
+    const raw = e.target.value.replace(/\D/g, '');
+    setPhoneDigits(raw.slice(0, 9));
   };
 
   // Freeze background page scroll when modal is open
@@ -154,7 +144,7 @@ export default function BookingModal({
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">Telefon</span>
-                    <span className="font-mono text-[#a7f3d0] font-bold">{phone}</span>
+                    <span className="font-mono text-[#a7f3d0] font-bold">+998 {formatDisplayDigits(phoneDigits)}</span>
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">Odamlar soni</span>
@@ -248,15 +238,21 @@ export default function BookingModal({
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     Telefon raqam (Telegram / WhatsApp):
                   </label>
-                  <input
-                    type="tel"
-                    required
-                    inputMode="numeric"
-                    placeholder="+998 90 123 45 67"
-                    value={phone}
-                    onChange={handlePhoneChange}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none font-mono font-bold"
-                  />
+                  <div className="flex items-center bg-slate-50 border border-slate-300 focus-within:border-[#10b981] focus-within:ring-2 focus-within:ring-[#10b981] rounded-2xl overflow-hidden">
+                    <div className="flex items-center gap-1.5 pl-3 pr-2 py-3 text-slate-800 font-mono font-bold text-xs select-none border-r border-slate-200 shrink-0">
+                      <Phone className="w-3.5 h-3.5 text-[#10b981]" />
+                      <span>+998</span>
+                    </div>
+                    <input
+                      type="tel"
+                      required
+                      inputMode="numeric"
+                      placeholder="90 123 45 67"
+                      value={formatDisplayDigits(phoneDigits)}
+                      onChange={handlePhoneInput}
+                      className="w-full bg-transparent px-3 py-3 text-xs text-slate-900 placeholder-slate-400 outline-none font-mono font-bold"
+                    />
+                  </div>
                 </div>
               </div>
 
