@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Plane, Menu, X, Compass, Flame, 
+  Bus, Menu, X, Compass, Flame, 
   ShieldCheck, Star, Phone, ArrowRight,
   Send, MessageCircle, MapPin
 } from 'lucide-react';
@@ -52,7 +52,7 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
   const navLinks = [
     { name: t.nav.home, href: '#hero', icon: Compass, badge: 'Asosiy' },
     { name: t.nav.regions, href: '#destinations', icon: MapPin, badge: '8 ta Shahar' },
-    { name: t.nav.deals, href: '#deals', icon: Flame, badge: '-30% VIP' },
+    { name: t.nav.deals, href: '#deals', icon: Flame, badge: '-30% Avtotur' },
     { name: t.nav.whyUs, href: '#why-us', icon: ShieldCheck, badge: 'Kafolat' },
     { name: t.nav.reviews, href: '#reviews', icon: Star, badge: '5.0 Reyting' },
   ];
@@ -84,7 +84,7 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
               className="flex items-center gap-2 sm:gap-3 group shrink-0"
             >
               <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center shadow-md text-white group-hover:scale-105 transition-transform shrink-0">
-                <Plane className="w-4 h-4 sm:w-6 sm:h-6 transform -rotate-45" />
+                <Bus className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
 
               <div>
@@ -93,7 +93,7 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
                   <span className="text-lg sm:text-2xl lg:text-3xl font-black text-[#10b981]">FIELD</span>
                 </div>
                 <p className="text-[8px] sm:text-[10px] tracking-widest uppercase font-bold text-slate-500 mt-0.5 hidden xs:block">
-                  {t.nav.tagline || 'Luxury Travel'}
+                  {t.nav.tagline || 'Avtobus & Gazel Turlari'}
                 </p>
               </div>
             </a>
@@ -149,14 +149,14 @@ export default function Navbar({ lang = 'uz', onChangeLang, t }) {
             <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-100 bg-slate-50">
               <div className="flex items-center gap-2.5">
                 <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center text-white shadow-md">
-                  <Plane className="w-5 h-5 transform -rotate-45" />
+                  <Bus className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="flex items-center gap-1 leading-none">
                     <span className="text-xl font-black text-slate-900">LOTOS</span>
                     <span className="text-xl font-black text-[#10b981]">FIELD</span>
                   </div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500">Sayohat Menyu</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-500">Avtobus & Gazel Turlari</span>
                 </div>
               </div>
 

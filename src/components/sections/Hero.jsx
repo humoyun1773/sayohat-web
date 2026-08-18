@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Search, Plane, MapPin, Calendar, 
+  Search, Bus, MapPin, Calendar, 
   ShieldCheck, Compass, Sparkles 
 } from 'lucide-react';
 import { COUNTRIES } from '../../data/travelData';
@@ -12,14 +12,14 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
   const [date, setDate] = useState('2026-09-15');
 
   const originOptions = [
-    { value: 'TAS', label: lang === 'ru' ? 'Ташкент (TAS)' : lang === 'en' ? 'Tashkent (TAS)' : 'Toshkent Xalqaro (TAS)', icon: Plane },
-    { value: 'SKD', label: lang === 'ru' ? 'Самарканд (SKD)' : lang === 'en' ? 'Samarkand (SKD)' : 'Samarqand (SKD)', icon: Plane },
-    { value: 'BHK', label: lang === 'ru' ? 'Бухара (BHK)' : lang === 'en' ? 'Bukhara (BHK)' : 'Buxoro (BHK)', icon: Plane },
-    { value: 'UGC', label: lang === 'ru' ? 'Ургенч / Хива (UGC)' : lang === 'en' ? 'Urgench / Khiva (UGC)' : 'Urganch / Xiva (UGC)', icon: Plane },
-    { value: 'KSQ', label: lang === 'ru' ? 'Карши (KSQ)' : lang === 'en' ? 'Karshi (KSQ)' : 'Qarshi (KSQ)', icon: Plane },
-    { value: 'TMJ', label: lang === 'ru' ? 'Термез (TMJ)' : lang === 'en' ? 'Termez (TMJ)' : 'Termiz (TMJ)', icon: Plane },
-    { value: 'FEG', label: lang === 'ru' ? 'Фергана (FEG)' : lang === 'en' ? 'Fergana (FEG)' : 'Farg\'ona vodiysi (FEG)', icon: Plane },
-    { value: 'NCU', label: lang === 'ru' ? 'Нукус (NCU)' : lang === 'en' ? 'Nukus (NCU)' : 'Nukus (NCU)', icon: Plane },
+    { value: 'TAS', label: lang === 'ru' ? 'Ташкент (Автовокзал / Центр)' : lang === 'en' ? 'Tashkent (Bus Terminal / Center)' : 'Toshkent (Avtovokzal / Markaz)', icon: Bus },
+    { value: 'SKD', label: lang === 'ru' ? 'Самарканд' : lang === 'en' ? 'Samarkand' : 'Samarqand shahri', icon: Bus },
+    { value: 'BHK', label: lang === 'ru' ? 'Бухара' : lang === 'en' ? 'Bukhara' : 'Buxoro shahri', icon: Bus },
+    { value: 'UGC', label: lang === 'ru' ? 'Ургенч / Хива' : lang === 'en' ? 'Urgench / Khiva' : 'Urganch / Xiva', icon: Bus },
+    { value: 'KSQ', label: lang === 'ru' ? 'Карши' : lang === 'en' ? 'Karshi' : 'Qarshi shahri', icon: Bus },
+    { value: 'TMJ', label: lang === 'ru' ? 'Термез' : lang === 'en' ? 'Termez' : 'Termiz shahri', icon: Bus },
+    { value: 'FEG', label: lang === 'ru' ? 'Фергана' : lang === 'en' ? 'Fergana' : 'Farg\'ona vodiysi', icon: Bus },
+    { value: 'NCU', label: lang === 'ru' ? 'Нукус' : lang === 'en' ? 'Nukus' : 'Nukus shahri', icon: Bus },
   ];
 
   const destinationOptions = COUNTRIES.map((c) => ({
@@ -95,7 +95,7 @@ export default function Hero({ onSelectCountry, t, lang = 'uz' }) {
               {/* Custom Origin Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <Plane className="w-4 h-4 text-[#10b981] transform -rotate-45" />
+                  <Bus className="w-4 h-4 text-[#10b981]" />
                   {t.hero.originLabel}
                 </label>
                 <CustomSelect

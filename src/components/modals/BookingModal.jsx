@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  X, CheckCircle2, Plane, 
+  X, CheckCircle2, Bus, 
   ShieldCheck, Printer, Phone
 } from 'lucide-react';
 import { EXCHANGE_RATE } from '../../data/travelData';
@@ -120,7 +120,7 @@ export default function BookingModal({
         <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-[#10b981] text-white flex items-center justify-center font-bold shadow-md">
-              <Plane className="w-5 h-5 transform -rotate-45" />
+              <Bus className="w-5 h-5" />
             </div>
             <div>
               <div className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase">{t.bookingModal.airlineTag}</div>
@@ -147,9 +147,9 @@ export default function BookingModal({
               
               <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden border border-slate-700">
                 
-                {/* Airplane Watermark */}
+                {/* Bus Watermark */}
                 <div className="absolute right-[-20px] bottom-[-20px] text-white/5 pointer-events-none">
-                  <Plane className="w-48 h-48 transform -rotate-45" />
+                  <Bus className="w-48 h-48" />
                 </div>
 
                 <div className="flex justify-between items-start border-b border-slate-700 pb-4 mb-4">
@@ -322,7 +322,7 @@ export default function BookingModal({
                 type="submit"
                 className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
               >
-                <Plane className="w-4 h-4" />
+                <Bus className="w-4 h-4" />
                 <span>{t.bookingModal.confirmBtn}</span>
               </button>
             </form>

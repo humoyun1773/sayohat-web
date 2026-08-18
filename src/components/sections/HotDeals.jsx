@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Flame, ArrowRight, Plane
+  Flame, ArrowRight, Bus
 } from 'lucide-react';
 import { HOT_DEALS, EXCHANGE_RATE } from '../../data/travelData';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
@@ -85,7 +85,7 @@ export default function HotDeals({ onOpenBooking, currency = 'USD', t, lang = 'u
                   {/* Header */}
                   <CardHeader className="p-5 pb-3 space-y-1.5">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                      <Plane className="w-3.5 h-3.5 text-[#10b981]" />
+                      <Bus className="w-3.5 h-3.5 text-[#10b981]" />
                       <span>{t.deals.charterTag}</span>
                     </div>
 
@@ -123,8 +123,8 @@ export default function HotDeals({ onOpenBooking, currency = 'USD', t, lang = 'u
                   <button
                     onClick={() => onOpenBooking({
                       country: dealTitle,
-                      flightClass: 'VIP Tour',
-                      hotelStar: '4-5★ Hotel',
+                      flightClass: 'Sayyohlik Avtobusi / Gazel',
+                      hotelStar: '4★ Mehmonxona',
                       priceUSD: newPrice
                     })}
                     className="py-2.5 px-3.5 rounded-xl btn-primary-emerald font-bold text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all shrink-0 cursor-pointer"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Plane, Star, Sun, Shield, 
+  Bus, Star, Sun, Shield, 
   Maximize2, Check, Sparkles
 } from 'lucide-react';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
@@ -235,7 +235,7 @@ export default function CountryExplorer({
 
                 <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold mb-1">
-                    <Plane className="w-4 h-4 text-sky-600" />
+                    <Bus className="w-4 h-4 text-[#10b981]" />
                     <span>{t.regions.facts.duration}</span>
                   </div>
                   <div className="text-xs font-extrabold text-slate-900 leading-snug">{countryFlight}</div>
@@ -279,10 +279,10 @@ export default function CountryExplorer({
 
               <div className="pt-2">
                 <button
-                  onClick={() => onOpenBooking({ country: countryName, flightClass: 'Afrosiyob VIP / Avia', hotelStar: '4-5★ Hotel', priceUSD: currentPrice })}
+                  onClick={() => onOpenBooking({ country: countryName, flightClass: 'Qulay Avtobus / Gazel', hotelStar: '4★ Mehmonxona', priceUSD: currentPrice })}
                   className="w-full py-3.5 px-6 rounded-2xl bg-[#10b981] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-md hover:bg-[#059669] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Plane className="w-4 h-4" />
+                  <Bus className="w-4 h-4" />
                   <span>{t.regions.bookBtn}</span>
                 </button>
               </div>

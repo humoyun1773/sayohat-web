@@ -1,13 +1,13 @@
 import React from 'react';
 import { 
   ShieldCheck, 
-  Plane, Headphones, CreditCard, CheckCircle2
+  Bus, Headphones, CreditCard, CheckCircle2
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '../ui/card';
 import { Badge } from '../ui/badge';
 
 export default function WhyUs({ t }) {
-  const icons = [Plane, ShieldCheck, Headphones, CreditCard];
+  const icons = [Bus, ShieldCheck, Headphones, CreditCard];
 
   return (
     <section id="why-us" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">

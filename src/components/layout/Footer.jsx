@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Plane, Phone, Send, MessageCircle, Mail, 
+  Bus, Phone, Send, MessageCircle, Mail, 
   MapPin, Clock 
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../../data/travelData';
@@ -27,7 +27,7 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center text-white shadow-lg">
-                <Plane className="w-6 h-6 transform -rotate-45" />
+                <Bus className="w-6 h-6" />
               </div>
               <div>
                 <span className="text-2xl font-black text-white tracking-wider">LOTOS</span>{' '}
