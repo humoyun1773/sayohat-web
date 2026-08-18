@@ -8,6 +8,17 @@ import { CONTACT_INFO, COUNTRIES } from '../data/travelData';
 export default function Footer({ onSelectCountry, onOpenContact }) {
   return (
     <footer className="relative bg-slate-50 text-slate-700 pt-16 pb-12 overflow-hidden border-t border-slate-200">
+      
+      {/* High-res Airplane Silhouette & Cloud Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+        <img
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=85"
+          alt="Airliner in Sky"
+          className="w-full h-full object-cover object-bottom"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-50/80 to-slate-50"></div>
+      </div>
+
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200">

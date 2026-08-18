@@ -39,15 +39,15 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
     <section id="hero" className="relative min-h-[92vh] pt-36 pb-20 flex items-center justify-center overflow-hidden bg-white">
       
       {/* Real Giant Airplane Hero Background Photo */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2200&q=85"
+          src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2400&q=90"
           alt="Majestic Airplane Flying in Sky"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center scale-105 animate-in fade-in duration-1000"
         />
-        {/* Soft, clean, luminous white gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/45"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/60 to-transparent"></div>
+        {/* Soft, clean, luminous white gradient overlay that keeps airplane clearly visible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/30"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">

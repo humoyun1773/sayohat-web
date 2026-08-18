@@ -29,7 +29,18 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-20 relative bg-slate-50 border-t border-slate-200">
+    <section id="why-us" className="py-24 relative overflow-hidden bg-slate-50 border-t border-slate-200">
+      
+      {/* High Altitude Airplane Wing Background Photo */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <img
+          src="https://images.unsplash.com/photo-1517400508447-88cca5584458?auto=format&fit=crop&w=2400&q=85"
+          alt="Airplane Wing in Clouds"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/95 via-slate-50/70 to-slate-50/95"></div>
+      </div>
+
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Header */}

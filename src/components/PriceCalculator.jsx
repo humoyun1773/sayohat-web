@@ -85,7 +85,18 @@ export default function PriceCalculator({
   };
 
   return (
-    <section id="calculator" className="py-20 relative bg-white">
+    <section id="calculator" className="py-24 relative overflow-hidden bg-white">
+      
+      {/* High-altitude Clouds & Airplane Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
+        <img
+          src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2400&q=85"
+          alt="Airliner Soaring High"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/80 to-white/95"></div>
+      </div>
+
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Title */}
