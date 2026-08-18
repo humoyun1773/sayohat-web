@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Plane, Phone, Send, MessageCircle, Mail, 
-  MapPin, Clock, ShieldCheck, Globe 
+  MapPin, Clock 
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../data/travelData';
 
@@ -15,12 +15,12 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
           {/* Col 1 & 2: Brand Info & Bio */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-700 flex items-center justify-center text-white shadow-md">
+              <div className="w-10 h-10 rounded-2xl bg-[#10b981] flex items-center justify-center text-white shadow-md">
                 <Plane className="w-5 h-5 transform -rotate-45" />
               </div>
               <div>
                 <span className="text-xl font-extrabold text-white tracking-wider">LOTOS</span>{' '}
-                <span className="text-xl font-extrabold text-blue-400">FIELD</span>
+                <span className="text-xl font-extrabold text-[#10b981]">FIELD</span>
               </div>
             </div>
 
@@ -34,7 +34,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
                 href={CONTACT_INFO.telegram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-blue-600 text-blue-400 hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-[#10b981] text-[#a7f3d0] hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm"
                 title="Telegram"
               >
                 <Send className="w-4 h-4" />
@@ -44,7 +44,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
                 href={CONTACT_INFO.whatsapp}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-blue-600 text-blue-400 hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-[#10b981] text-[#a7f3d0] hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm"
                 title="WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -54,7 +54,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
                 href={CONTACT_INFO.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-blue-600 text-blue-400 hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm font-bold text-xs"
+                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-[#10b981] text-[#a7f3d0] hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm font-bold text-xs"
                 title="Instagram"
               >
                 IG
@@ -62,7 +62,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
 
               <a
                 href={`tel:${CONTACT_INFO.phoneClean}`}
-                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-blue-600 text-blue-400 hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-[#10b981] text-[#a7f3d0] hover:text-white border border-slate-700 flex items-center justify-center transition-all shadow-sm"
                 title="Qo'ng'iroq"
               >
                 <Phone className="w-4 h-4" />
@@ -72,7 +72,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
 
           {/* Col 3: Ommabop Davlatlar */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider text-blue-400">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider text-[#10b981]">
               Ommabop Davlatlar
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
@@ -95,7 +95,7 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
 
           {/* Col 4: Xizmatlar */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider text-blue-400">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider text-[#10b981]">
               Xizmatlarimiz
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
@@ -110,32 +110,32 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
 
           {/* Col 5: Kontakt & Manzil */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider text-blue-400">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider text-[#10b981]">
               Aloqa Markazi
             </h4>
             <div className="space-y-2.5 text-xs text-slate-400">
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-[#10b981] shrink-0" />
                 <a href={`tel:${CONTACT_INFO.phoneClean}`} className="text-slate-200 hover:text-white font-mono font-bold">
                   {CONTACT_INFO.phone}
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-[#10b981] shrink-0" />
                 <span className="text-slate-300">{CONTACT_INFO.email}</span>
               </div>
               <div className="flex items-start gap-2">
-                <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+                <MapPin className="w-3.5 h-3.5 text-[#10b981] shrink-0 mt-0.5" />
                 <span>{CONTACT_INFO.address}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <Clock className="w-3.5 h-3.5 text-[#10b981] shrink-0" />
                 <span>Har kuni 08:00 - 22:00</span>
               </div>
 
               <button
                 onClick={onOpenContact}
-                className="w-full mt-2 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-sm"
+                className="w-full mt-2 py-2.5 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white text-xs font-bold transition-all shadow-sm"
               >
                 Operatorga Yozish
               </button>

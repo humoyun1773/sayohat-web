@@ -9,13 +9,13 @@ export default function Reviews() {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Star className="w-3.5 h-3.5 fill-blue-700 text-blue-700" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+            <Star className="w-3.5 h-3.5 fill-[#10b981] text-[#10b981]" />
             <span>Haqiqiy Fikrlar & Taassurotlar</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Mijozlarimiz Biz Haqimizda <br />
-            <span className="text-blue-700">
+            <span className="text-[#10b981]">
               Nima Deyishadi?
             </span>
           </h2>
@@ -29,7 +29,7 @@ export default function Reviews() {
           {REVIEWS.map((rev) => (
             <div
               key={rev.id}
-              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 hover:border-blue-500 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
+              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 hover:border-[#10b981] flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
             >
               <div className="space-y-4">
                 
@@ -37,11 +37,11 @@ export default function Reviews() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1">
                     {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-blue-700 text-blue-700" />
+                      <Star key={i} className="w-4 h-4 fill-[#10b981] text-[#10b981]" />
                     ))}
                   </div>
-                  <span className="text-xs text-blue-900 font-bold flex items-center gap-1 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
-                    <MapPin className="w-3.5 h-3.5 text-blue-700" />
+                  <span className="text-xs text-[#065f46] font-bold flex items-center gap-1 bg-[#ecfdf5] px-2.5 py-1 rounded-full border border-[#a7f3d0]">
+                    <MapPin className="w-3.5 h-3.5 text-[#10b981]" />
                     {rev.country}
                   </span>
                 </div>
@@ -57,12 +57,12 @@ export default function Reviews() {
                 <img
                   src={rev.avatar}
                   alt={rev.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-blue-700 shadow-sm"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-[#10b981] shadow-sm"
                 />
                 <div>
                   <div className="flex items-center gap-1.5">
                     <span className="font-bold text-slate-900 text-sm">{rev.name}</span>
-                    <CheckCircle className="w-3.5 h-3.5 text-blue-700" />
+                    <CheckCircle className="w-3.5 h-3.5 text-[#10b981]" />
                   </div>
                   <span className="text-xs text-slate-500 block">{rev.role}</span>
                 </div>

@@ -12,7 +12,6 @@ export default function CustomSelect({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -34,12 +33,12 @@ export default function CustomSelect({
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full bg-slate-50 hover:bg-white border text-left rounded-2xl px-4 py-3.5 text-sm font-semibold transition-all flex items-center justify-between shadow-sm cursor-pointer ${
           isOpen 
-            ? 'border-sky-500 ring-2 ring-sky-200 bg-white' 
+            ? 'border-[#10b981] ring-2 ring-[#a7f3d0] bg-white' 
             : 'border-slate-200 hover:border-slate-300'
         }`}
       >
         <div className="flex items-center gap-2.5 truncate">
-          {Icon && <Icon className="w-4 h-4 text-sky-600 shrink-0" />}
+          {Icon && <Icon className="w-4 h-4 text-[#10b981] shrink-0" />}
           {selectedOption?.flag && <span className="text-base shrink-0">{selectedOption.flag}</span>}
           <span className="text-slate-900 font-bold truncate">
             {selectedOption ? selectedOption.label : placeholder}
@@ -48,7 +47,7 @@ export default function CustomSelect({
 
         <ChevronDown 
           className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-            isOpen ? 'rotate-180 text-sky-600' : ''
+            isOpen ? 'rotate-180 text-[#10b981]' : ''
           }`} 
         />
       </button>
@@ -68,13 +67,13 @@ export default function CustomSelect({
                 }}
                 className={`w-full px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-all flex items-center justify-between ${
                   isSelected
-                    ? 'bg-sky-600 text-white font-bold shadow-sm'
+                    ? 'bg-[#10b981] text-white font-bold shadow-sm'
                     : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
                 }`}
               >
                 <div className="flex items-center gap-2.5 truncate">
                   {opt.flag && <span className="text-base shrink-0">{opt.flag}</span>}
-                  {opt.icon && <opt.icon className={`w-4 h-4 shrink-0 ${isSelected ? 'text-white' : 'text-sky-600'}`} />}
+                  {opt.icon && <opt.icon className={`w-4 h-4 shrink-0 ${isSelected ? 'text-white' : 'text-[#10b981]'}`} />}
                   <span className="truncate">{opt.label}</span>
                 </div>
 

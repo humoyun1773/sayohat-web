@@ -14,13 +14,13 @@ export default function AirplaneFleet({ onOpenBooking }) {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Plane className="w-3.5 h-3.5 transform -rotate-45 text-blue-700" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+            <Plane className="w-3.5 h-3.5 transform -rotate-45 text-[#10b981]" />
             <span>Zamonaviy Aviapark & Premium Laynerlar</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Eng Xavfsiz va Hashamatli <br />
-            <span className="text-blue-700">
+            <span className="text-[#10b981]">
               Boeing & Airbus Laynerlari
             </span>
           </h2>
@@ -39,12 +39,12 @@ export default function AirplaneFleet({ onOpenBooking }) {
                 onClick={() => setSelectedPlane(plane)}
                 className={`p-5 rounded-3xl text-left transition-all duration-300 border flex items-center gap-4 ${
                   isSelected
-                    ? 'bg-white border-blue-600 ring-2 ring-blue-100 shadow-md scale-[1.01]'
+                    ? 'bg-white border-[#10b981] ring-2 ring-[#a7f3d0] shadow-md scale-[1.01]'
                     : 'bg-white/80 border-slate-200 hover:border-slate-300 hover:bg-white'
                 }`}
               >
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold shrink-0 shadow-sm ${
-                  isSelected ? 'bg-blue-700 text-white' : 'bg-slate-100 text-slate-700'
+                  isSelected ? 'bg-[#10b981] text-white' : 'bg-slate-100 text-slate-700'
                 }`}>
                   <Plane className="w-6 h-6 transform -rotate-45" />
                 </div>
@@ -77,7 +77,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
                 onClick={() => setViewMode('exterior')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md backdrop-blur-md ${
                   viewMode === 'exterior'
-                    ? 'bg-blue-700 text-white shadow-blue-700/30'
+                    ? 'bg-[#10b981] text-white shadow-[#10b981]/30'
                     : 'bg-white/80 text-slate-900 hover:bg-white border border-white/40'
                 }`}
               >
@@ -87,7 +87,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
                 onClick={() => setViewMode('cabin')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md backdrop-blur-md ${
                   viewMode === 'cabin'
-                    ? 'bg-blue-700 text-white shadow-blue-700/30'
+                    ? 'bg-[#10b981] text-white shadow-[#10b981]/30'
                     : 'bg-white/80 text-slate-900 hover:bg-white border border-white/40'
                 }`}
               >
@@ -102,7 +102,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
                   {selectedPlane.airline}
                 </span>
                 <span className="text-xs font-bold text-white flex items-center gap-1.5 bg-black/40 px-3 py-1 rounded-full backdrop-blur-md">
-                  <ShieldCheck className="w-4 h-4 text-blue-400" />
+                  <ShieldCheck className="w-4 h-4 text-[#10b981]" />
                   <span>Xalqaro IATA 5★ Xavfsizlik Standarti</span>
                 </span>
               </div>
@@ -115,7 +115,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/20 flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
+                  <div className="p-2 rounded-xl bg-[#10b981]/40 text-white">
                     <Gauge className="w-5 h-5" />
                   </div>
                   <div>
@@ -125,7 +125,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
                 </div>
 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/20 flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
+                  <div className="p-2 rounded-xl bg-[#10b981]/40 text-white">
                     <Navigation className="w-5 h-5" />
                   </div>
                   <div>
@@ -135,7 +135,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
                 </div>
 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/20 flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
+                  <div className="p-2 rounded-xl bg-[#10b981]/40 text-white">
                     <Wind className="w-5 h-5" />
                   </div>
                   <div>
@@ -145,7 +145,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
                 </div>
 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/20 flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
+                  <div className="p-2 rounded-xl bg-[#10b981]/40 text-white">
                     <Users className="w-5 h-5" />
                   </div>
                   <div>
@@ -165,7 +165,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full lg:w-auto flex-1">
               {selectedPlane.features.map((feat, i) => (
                 <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-slate-200 bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                  <Plane className="w-4 h-4 text-blue-400 shrink-0 transform -rotate-45" />
+                  <Plane className="w-4 h-4 text-[#10b981] shrink-0 transform -rotate-45" />
                   <span>{feat}</span>
                 </div>
               ))}
@@ -177,7 +177,7 @@ export default function AirplaneFleet({ onOpenBooking }) {
                 title: `${selectedPlane.name} parvozi`,
                 priceUSD: 450
               })}
-              className="w-full lg:w-auto py-4 px-8 rounded-2xl btn-primary-blue font-bold text-xs sm:text-sm tracking-wide flex items-center justify-center gap-2 shadow-md hover:scale-105 active:scale-95 transition-all"
+              className="w-full lg:w-auto py-4 px-8 rounded-2xl btn-primary-emerald font-bold text-xs sm:text-sm tracking-wide flex items-center justify-center gap-2 shadow-md hover:scale-105 active:scale-95 transition-all"
             >
               <Plane className="w-4 h-4" />
               <span>USHBU SAMOLYOTGA CHIPTA OLISH</span>
@@ -192,15 +192,15 @@ export default function AirplaneFleet({ onOpenBooking }) {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-6">
             <div className="flex items-center gap-3">
               <span className="flex h-3 w-3 relative">
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-600"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#10b981]"></span>
               </span>
               <div>
                 <h4 className="text-lg sm:text-xl font-bold text-slate-900">Toshkent Xalqaro Aeroporti — Jonli Parvozlar Jadvali</h4>
                 <p className="text-xs text-slate-500">Reyslar real vaqt rejimida avtomatik yangilanadi</p>
               </div>
             </div>
-            <span className="text-xs font-mono font-bold text-blue-900 bg-blue-50 px-3.5 py-1.5 rounded-xl border border-blue-200 flex items-center gap-2">
-              <Radio className="w-3.5 h-3.5 text-blue-700" />
+            <span className="text-xs font-mono font-bold text-[#065f46] bg-[#ecfdf5] px-3.5 py-1.5 rounded-xl border border-[#a7f3d0] flex items-center gap-2">
+              <Radio className="w-3.5 h-3.5 text-[#10b981]" />
               <span>TAS INTERNATIONAL AIRPORT LIVE</span>
             </span>
           </div>
@@ -221,14 +221,14 @@ export default function AirplaneFleet({ onOpenBooking }) {
               <tbody className="divide-y divide-slate-100 font-medium">
                 {LIVE_FLIGHTS.map((flight, idx) => (
                   <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                    <td className="py-3.5 px-3 font-mono font-bold text-blue-700">{flight.flightNo}</td>
+                    <td className="py-3.5 px-3 font-mono font-bold text-[#10b981]">{flight.flightNo}</td>
                     <td className="py-3.5 px-3 text-slate-700">{flight.from}</td>
                     <td className="py-3.5 px-3 font-bold text-slate-900">{flight.to}</td>
                     <td className="py-3.5 px-3 text-slate-500">{flight.plane}</td>
                     <td className="py-3.5 px-3 font-mono text-slate-900 font-bold">{flight.time}</td>
                     <td className="py-3.5 px-3 font-mono text-slate-500">{flight.gate}</td>
                     <td className="py-3.5 px-3 text-right">
-                      <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
+                      <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold bg-[#ecfdf5] text-[#065f46] border border-[#a7f3d0]">
                         {flight.status}
                       </span>
                     </td>

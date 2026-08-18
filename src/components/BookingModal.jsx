@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   X, Plane, CheckCircle2, User, 
-  Phone, Calendar, MapPin, DollarSign, Download, Printer, ShieldCheck 
+  Phone, Calendar, MapPin, Download, Printer, ShieldCheck 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { EXCHANGE_RATE } from '../data/travelData';
@@ -64,11 +64,11 @@ export default function BookingModal({
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-blue-700 text-white flex items-center justify-center font-bold shadow-md">
+            <div className="w-10 h-10 rounded-2xl bg-[#10b981] text-white flex items-center justify-center font-bold shadow-md">
               <Plane className="w-5 h-5 transform -rotate-45" />
             </div>
             <div>
-              <div className="text-[10px] font-extrabold tracking-wider text-blue-900 uppercase">LOTOS FIELD AIRLINES</div>
+              <div className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase">LOTOS FIELD AIRLINES</div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900">
                 {isSuccess ? 'Buyurtma Tasdiqlandi!' : 'Chipta & Tur Paketi Bron Qilish'}
               </h3>
@@ -93,10 +93,10 @@ export default function BookingModal({
                 
                 <div className="flex items-center justify-between border-b border-slate-700 pb-3">
                   <div className="flex items-center gap-2">
-                    <Plane className="w-6 h-6 text-blue-400" />
+                    <Plane className="w-6 h-6 text-[#10b981]" />
                     <span className="font-black text-sm tracking-wider uppercase">LOTOS FIELD OFFICIAL VAUCHER</span>
                   </div>
-                  <span className="text-xs font-mono font-bold text-white bg-blue-700/60 px-3 py-1 rounded-xl border border-blue-500/40">
+                  <span className="text-xs font-mono font-bold text-white bg-[#10b981]/60 px-3 py-1 rounded-xl border border-[#10b981]/40">
                     {bookingRef}
                   </span>
                 </div>
@@ -116,7 +116,7 @@ export default function BookingModal({
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">Telefon</span>
-                    <span className="font-mono text-blue-300 font-bold">{phone}</span>
+                    <span className="font-mono text-[#a7f3d0] font-bold">{phone}</span>
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">Odamlar soni</span>
@@ -124,7 +124,7 @@ export default function BookingModal({
                   </div>
                   <div className="bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">Jami To'lov</span>
-                    <span className="font-bold text-blue-300 text-sm">{formatPrice(bookingData.priceUSD)}</span>
+                    <span className="font-bold text-[#a7f3d0] text-sm">{formatPrice(bookingData.priceUSD)}</span>
                   </div>
                 </div>
 
@@ -145,8 +145,8 @@ export default function BookingModal({
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-blue-900 flex items-center gap-3">
-                <CheckCircle2 className="w-7 h-7 text-blue-700 shrink-0" />
+              <div className="p-4 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] text-xs text-[#065f46] flex items-center gap-3">
+                <CheckCircle2 className="w-7 h-7 text-[#10b981] shrink-0" />
                 <span>
                   Sizning buyurtmangiz tasdiqlandi. 10 daqiqa ichida LOTOS FIELD kuratoringiz qo'ng'iroq qiladi va barcha rasmiy chiptalarni Telegram orqali yuboradi!
                 </span>
@@ -165,7 +165,7 @@ export default function BookingModal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-3 rounded-2xl btn-primary-blue text-white text-xs font-bold uppercase tracking-wider shadow-md"
+                  className="flex-1 py-3 rounded-2xl btn-primary-emerald text-white text-xs font-bold uppercase tracking-wider shadow-md"
                 >
                   Yopish
                 </button>
@@ -182,12 +182,12 @@ export default function BookingModal({
                   <div className="text-[11px] text-slate-500 font-semibold">Tanlangan Yo'nalish:</div>
                   <div className="text-base font-bold text-slate-900">{bookingData.country}</div>
                   {bookingData.flightClass && (
-                    <div className="text-[11px] text-blue-700 font-medium">{bookingData.flightClass} • {bookingData.hotelStar}</div>
+                    <div className="text-[11px] text-[#10b981] font-medium">{bookingData.flightClass} • {bookingData.hotelStar}</div>
                   )}
                 </div>
                 <div className="text-right">
                   <div className="text-[11px] text-slate-500 font-semibold">Jami Narx:</div>
-                  <div className="text-lg font-black text-blue-700">{formatPrice(bookingData.priceUSD)}</div>
+                  <div className="text-lg font-black text-[#10b981]">{formatPrice(bookingData.priceUSD)}</div>
                 </div>
               </div>
 
@@ -202,7 +202,7 @@ export default function BookingModal({
                     placeholder="Masalan: Sardor Rahimov"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
                   />
                 </div>
 
@@ -216,7 +216,7 @@ export default function BookingModal({
                     placeholder="+998 90 123 45 67"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none font-mono"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none font-mono"
                   />
                 </div>
               </div>
@@ -231,7 +231,7 @@ export default function BookingModal({
                     required
                     value={travelDate}
                     onChange={(e) => setTravelDate(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none cursor-pointer"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none cursor-pointer"
                   />
                 </div>
 
@@ -245,7 +245,7 @@ export default function BookingModal({
                     max="20"
                     value={passengers}
                     onChange={(e) => setPassengers(Number(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none"
                   />
                 </div>
               </div>
@@ -259,18 +259,18 @@ export default function BookingModal({
                   placeholder="Masalan: FA 1234567"
                   value={passport}
                   onChange={(e) => setPassport(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none uppercase font-mono"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none uppercase font-mono"
                 />
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-blue-900 flex items-center gap-2.5">
-                <ShieldCheck className="w-4 h-4 text-blue-700 shrink-0" />
+              <div className="p-3.5 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] text-xs text-[#065f46] flex items-center gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-[#10b981] shrink-0" />
                 <span>Bron qilish bepul! To'lov faqat shartnoma imzolangandan so'ng amalga oshiriladi.</span>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-2xl btn-primary-blue text-white text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
+                className="w-full py-4 rounded-2xl btn-primary-emerald text-white text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
               >
                 <Plane className="w-4 h-4" />
                 <span>BUYURTMANI TASDIQLASH VA VAUCHER OLISH</span>

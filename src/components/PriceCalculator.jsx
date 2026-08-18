@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calculator, Plane, Hotel, Users, Calendar, 
-  CheckCircle2, ShieldCheck, DollarSign, ArrowRight 
+  CheckCircle2, ShieldCheck, DollarSign 
 } from 'lucide-react';
 import { COUNTRIES, EXCHANGE_RATE } from '../data/travelData';
 import CustomSelect from './CustomSelect';
@@ -90,13 +90,13 @@ export default function PriceCalculator({
         
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Calculator className="w-3.5 h-3.5 text-blue-700" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+            <Calculator className="w-3.5 h-3.5 text-[#10b981]" />
             <span>Tur Narxini Hisoblash & To'g'ridan-to'g'ri Narxlar</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Sayohat Narxini <br />
-            <span className="text-blue-700">
+            <span className="text-[#10b981]">
               Jonli Hisoblang!
             </span>
           </h2>
@@ -140,7 +140,7 @@ export default function PriceCalculator({
                     onClick={() => setFlightClass(item.id)}
                     className={`p-3.5 rounded-2xl text-left border transition-all ${
                       flightClass === item.id
-                        ? 'bg-blue-50 border-blue-700 text-blue-950 shadow-sm ring-1 ring-blue-700 font-bold'
+                        ? 'bg-[#ecfdf5] border-[#10b981] text-[#065f46] shadow-sm ring-1 ring-[#10b981] font-bold'
                         : 'bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300'
                     }`}
                   >
@@ -168,7 +168,7 @@ export default function PriceCalculator({
                     onClick={() => setHotelStar(item.stars)}
                     className={`p-3.5 rounded-2xl text-left border transition-all ${
                       hotelStar === item.stars
-                        ? 'bg-blue-50 border-blue-700 text-blue-950 shadow-sm ring-1 ring-blue-700 font-bold'
+                        ? 'bg-[#ecfdf5] border-[#10b981] text-[#065f46] shadow-sm ring-1 ring-[#10b981] font-bold'
                         : 'bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300'
                     }`}
                   >
@@ -186,7 +186,7 @@ export default function PriceCalculator({
               <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
                 <div className="flex justify-between text-xs font-bold text-slate-800">
                   <span>Kunlar davomiyligi:</span>
-                  <span className="text-blue-700 font-extrabold">{durationDays} kun / {durationDays - 1} kecha</span>
+                  <span className="text-[#10b981] font-extrabold">{durationDays} kun / {durationDays - 1} kecha</span>
                 </div>
                 <input
                   type="range"
@@ -194,7 +194,7 @@ export default function PriceCalculator({
                   max="21"
                   value={durationDays}
                   onChange={(e) => setDurationDays(Number(e.target.value))}
-                  className="w-full accent-blue-700 cursor-pointer h-2 bg-slate-200 rounded-lg"
+                  className="w-full accent-[#10b981] cursor-pointer h-2 bg-slate-200 rounded-lg"
                 />
                 <div className="flex justify-between text-[10px] text-slate-500 font-semibold">
                   <span>3 kun</span>
@@ -254,32 +254,32 @@ export default function PriceCalculator({
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
                 
-                <label className="flex items-center gap-2 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer hover:border-blue-500 transition-all">
+                <label className="flex items-center gap-2 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer hover:border-[#10b981] transition-all">
                   <input
                     type="checkbox"
                     checked={needInsurance}
                     onChange={(e) => setNeedInsurance(e.target.checked)}
-                    className="accent-blue-700 w-4 h-4 rounded"
+                    className="accent-[#10b981] w-4 h-4 rounded"
                   />
                   <span className="font-semibold text-slate-800">Tibbiy Sug'urta (+20$)</span>
                 </label>
 
-                <label className="flex items-center gap-2 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer hover:border-blue-500 transition-all">
+                <label className="flex items-center gap-2 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer hover:border-[#10b981] transition-all">
                   <input
                     type="checkbox"
                     checked={needVipTransfer}
                     onChange={(e) => setNeedVipTransfer(e.target.checked)}
-                    className="accent-blue-700 w-4 h-4 rounded"
+                    className="accent-[#10b981] w-4 h-4 rounded"
                   />
                   <span className="font-semibold text-slate-800">VIP Transfer (+80$)</span>
                 </label>
 
-                <label className="flex items-center gap-2 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer hover:border-blue-500 transition-all">
+                <label className="flex items-center gap-2 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer hover:border-[#10b981] transition-all">
                   <input
                     type="checkbox"
                     checked={needTourGuide}
                     onChange={(e) => setNeedTourGuide(e.target.checked)}
-                    className="accent-blue-700 w-4 h-4 rounded"
+                    className="accent-[#10b981] w-4 h-4 rounded"
                   />
                   <span className="font-semibold text-slate-800">O'zbek Gidi (+35$/kun)</span>
                 </label>
@@ -300,7 +300,7 @@ export default function PriceCalculator({
                   <p className="text-xs text-slate-500">{durationDays} kunlik to'liq tur paketi</p>
                 </div>
               </div>
-              <span className="text-xs font-bold text-blue-900 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+              <span className="text-xs font-bold text-[#065f46] bg-[#ecfdf5] px-3 py-1 rounded-full border border-[#a7f3d0]">
                 Chegirma bilan
               </span>
             </div>
@@ -320,7 +320,7 @@ export default function PriceCalculator({
               {(insuranceCost > 0 || transferCost > 0 || guideCost > 0) && (
                 <div className="flex justify-between text-slate-600">
                   <span>Qo'shimcha xizmatlar:</span>
-                  <span className="font-bold text-blue-700">
+                  <span className="font-bold text-[#10b981]">
                     +{formatPrice(insuranceCost + transferCost + guideCost)}
                   </span>
                 </div>
@@ -337,7 +337,7 @@ export default function PriceCalculator({
               <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                 Jami Hisoblangan Summa:
               </div>
-              <div className="text-3xl sm:text-4xl font-black text-blue-700">
+              <div className="text-3xl sm:text-4xl font-black text-[#10b981]">
                 {formatPrice(totalUSD)}
               </div>
               {currency === 'UZS' && (
@@ -350,14 +350,14 @@ export default function PriceCalculator({
             {/* Call to Action Button */}
             <button
               onClick={handleBookCalculatedTour}
-              className="w-full py-4 px-6 rounded-2xl btn-primary-blue font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01] active:scale-95 transition-all"
+              className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01] active:scale-95 transition-all"
             >
               <Plane className="w-4 h-4" />
               <span>USHBU BUYURTMANI BRON QILISH</span>
             </button>
 
             <div className="flex items-center justify-center gap-2 text-xs text-slate-500 font-medium">
-              <ShieldCheck className="w-4 h-4 text-blue-700" />
+              <ShieldCheck className="w-4 h-4 text-[#10b981]" />
               <span>Oldindan hech qanday majburiy to'lovsiz</span>
             </div>
 

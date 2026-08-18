@@ -2,8 +2,9 @@
 
 @layer base {
   :root {
-    --brand-primary: #1d4ed8;
-    --brand-dark: #0f172a;
+    --brand-primary: #10b981;
+    --brand-dark: #047857;
+    --brand-light: #ecfdf5;
   }
 
   body {
@@ -23,26 +24,26 @@
 }
 
 .card-light:hover {
-  border-color: #93c5fd;
+  border-color: #6ee7b7;
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px -4px rgba(29, 78, 216, 0.08);
+  box-shadow: 0 12px 30px -4px rgba(16, 185, 129, 0.12);
 }
 
-/* Primary Button: Prestigious Royal Blue */
-.btn-primary-blue {
-  background-color: #1d4ed8;
+/* Primary Button with #10b981 */
+.btn-primary-emerald {
+  background-color: #10b981;
   color: #ffffff;
-  box-shadow: 0 4px 14px 0 rgba(29, 78, 216, 0.25);
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
   transition: all 0.25s ease;
 }
 
-.btn-primary-blue:hover {
-  background-color: #1e40af;
-  box-shadow: 0 6px 20px 0 rgba(29, 78, 216, 0.35);
+.btn-primary-emerald:hover {
+  background-color: #059669;
+  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.45);
   transform: translateY(-1px);
 }
 
-/* Custom Scrollbar for Light Theme */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -58,5 +59,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d4ed8;
+  background: #10b981;
 }

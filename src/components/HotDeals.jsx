@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, Clock, CheckCircle2, ArrowRight, Plane } from 'lucide-react';
+import { Flame, Clock, CheckCircle2, Plane } from 'lucide-react';
 import { HOT_DEALS, EXCHANGE_RATE } from '../data/travelData';
 
 export default function HotDeals({ currency, onOpenBooking }) {
@@ -39,13 +39,13 @@ export default function HotDeals({ currency, onOpenBooking }) {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-wider shadow-sm">
-              <Flame className="w-4 h-4 text-blue-700" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
+              <Flame className="w-4 h-4 text-[#10b981]" />
               <span>Qaynoq Chegirmalar va Maxsus Takliflar</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
               Cheklangan Muddatli <br />
-              <span className="text-blue-700">
+              <span className="text-[#10b981]">
                 Super Qaynoq Turlar
               </span>
             </h2>
@@ -53,7 +53,7 @@ export default function HotDeals({ currency, onOpenBooking }) {
 
           {/* Flash Sale Countdown Timer */}
           <div className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200 flex items-center gap-3.5 shadow-sm">
-            <Clock className="w-7 h-7 text-blue-700" />
+            <Clock className="w-7 h-7 text-[#10b981]" />
             <div>
               <div className="text-[11px] text-slate-500 uppercase font-bold tracking-wider">Aksiya tugashiga qoldi:</div>
               <div className="flex items-center gap-2 text-xl sm:text-2xl font-black text-slate-900 font-mono mt-1">
@@ -61,7 +61,7 @@ export default function HotDeals({ currency, onOpenBooking }) {
                 <span>:</span>
                 <span className="bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200">{String(timeLeft.minutes).padStart(2, '0')}</span>
                 <span>:</span>
-                <span className="bg-blue-700 text-white px-2.5 py-1 rounded-xl">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                <span className="bg-[#10b981] text-white px-2.5 py-1 rounded-xl">{String(timeLeft.seconds).padStart(2, '0')}</span>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function HotDeals({ currency, onOpenBooking }) {
           {HOT_DEALS.map((deal) => (
             <div
               key={deal.id}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-blue-400 flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
+              className="bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-[#10b981] flex flex-col justify-between group transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
             >
               <div>
                 {/* Image Cover */}
@@ -86,7 +86,7 @@ export default function HotDeals({ currency, onOpenBooking }) {
                   
                   {/* Badge */}
                   <div className="absolute top-3 left-3">
-                    <span className="text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-blue-700 text-white shadow-md">
+                    <span className="text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-[#10b981] text-white shadow-md">
                       {deal.badge}
                     </span>
                   </div>
@@ -99,14 +99,14 @@ export default function HotDeals({ currency, onOpenBooking }) {
 
                 {/* Content */}
                 <div className="p-5 space-y-3">
-                  <h3 className="text-base font-bold text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
+                  <h3 className="text-base font-bold text-slate-900 leading-snug group-hover:text-[#10b981] transition-colors">
                     {deal.title}
                   </h3>
 
                   <div className="space-y-1.5 text-xs text-slate-600 pt-1">
                     {deal.includes.map((inc, i) => (
                       <div key={i} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-700 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#10b981] shrink-0" />
                         <span className="truncate">{inc}</span>
                       </div>
                     ))}
@@ -121,11 +121,11 @@ export default function HotDeals({ currency, onOpenBooking }) {
                     <span className="text-xs text-slate-400 line-through mr-2 font-mono">
                       {formatPrice(deal.oldPriceUSD)}
                     </span>
-                    <div className="text-2xl font-black text-blue-700">
+                    <div className="text-2xl font-black text-[#10b981]">
                       {formatPrice(deal.newPriceUSD)}
                     </div>
                   </div>
-                  <span className="text-[10px] font-bold text-blue-900 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200">
+                  <span className="text-[10px] font-bold text-[#065f46] bg-[#ecfdf5] px-2.5 py-1 rounded-lg border border-[#a7f3d0]">
                     Tejaldi: {formatPrice(deal.oldPriceUSD - deal.newPriceUSD)}
                   </span>
                 </div>
@@ -137,7 +137,7 @@ export default function HotDeals({ currency, onOpenBooking }) {
                     title: deal.title,
                     priceUSD: deal.newPriceUSD
                   })}
-                  className="w-full py-3 px-4 rounded-2xl btn-primary-blue font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
+                  className="w-full py-3 px-4 rounded-2xl btn-primary-emerald font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
                 >
                   <Plane className="w-4 h-4" />
                   <span>Chegirmada Band Qilish</span>

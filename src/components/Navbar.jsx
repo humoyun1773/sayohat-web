@@ -53,14 +53,14 @@ export default function Navbar({
             onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
             className="flex items-center gap-3.5 group shrink-0"
           >
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-sky-500 to-blue-700 flex items-center justify-center shadow-md text-white group-hover:scale-105 transition-transform">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center shadow-md text-white group-hover:scale-105 transition-transform">
               <Plane className="w-6 h-6 transform -rotate-45" />
             </div>
 
             <div>
               <div className="flex items-center gap-1.5 leading-none">
                 <span className="text-2xl sm:text-3xl font-extrabold tracking-wider text-slate-900 drop-shadow-sm">LOTOS</span>
-                <span className="text-2xl sm:text-3xl font-extrabold text-sky-600 drop-shadow-sm">FIELD</span>
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#10b981] drop-shadow-sm">FIELD</span>
               </div>
               <p className="text-[10px] sm:text-[11px] tracking-widest uppercase font-bold text-slate-700 mt-0.5">
                 Luxury Travel & Airlines
@@ -74,7 +74,7 @@ export default function Navbar({
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="px-4 py-2 text-sm font-bold text-slate-800 hover:text-sky-700 hover:bg-white/50 rounded-xl transition-all"
+                className="px-4 py-2 text-sm font-bold text-slate-800 hover:text-[#10b981] hover:bg-white/50 rounded-xl transition-all"
               >
                 {link.name}
               </button>
@@ -83,13 +83,12 @@ export default function Navbar({
 
           {/* Right Action Bar */}
           <div className="hidden md:flex items-center gap-3">
-            {/* User Profile / Login Button */}
             {currentUser ? (
               <button
                 onClick={onOpenAuth}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/70 backdrop-blur-md border border-white/60 text-sky-800 text-sm font-bold hover:bg-white transition-all shadow-sm"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/70 backdrop-blur-md border border-white/60 text-[#047857] text-sm font-bold hover:bg-white transition-all shadow-sm"
               >
-                <div className="w-6 h-6 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs font-black">
+                <div className="w-6 h-6 rounded-full bg-[#10b981] text-white flex items-center justify-center text-xs font-black">
                   {currentUser.name.charAt(0)}
                 </div>
                 <span className="max-w-[110px] truncate">{currentUser.name}</span>
@@ -97,7 +96,7 @@ export default function Navbar({
             ) : (
               <button
                 onClick={onOpenAuth}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl btn-primary-blue text-white text-sm font-bold tracking-wide shadow-md hover:scale-105 transition-transform"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-xl btn-primary-emerald text-white text-sm font-bold tracking-wide shadow-md hover:scale-105 transition-transform"
               >
                 <User className="w-4 h-4" />
                 <span>KIRISH</span>
@@ -127,7 +126,7 @@ export default function Navbar({
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="text-left px-4 py-3 rounded-xl bg-white/60 hover:bg-sky-50 text-xs font-bold text-slate-800 hover:text-sky-600 border border-white/50 transition-all"
+                className="text-left px-4 py-3 rounded-xl bg-white/60 hover:bg-[#ecfdf5] text-xs font-bold text-slate-800 hover:text-[#10b981] border border-white/50 transition-all"
               >
                 {link.name}
               </button>
@@ -141,7 +140,7 @@ export default function Navbar({
                 setMobileMenuOpen(false);
                 onOpenAuth();
               }}
-              className="w-full py-3.5 rounded-2xl btn-primary-blue text-xs font-bold text-white shadow-md"
+              className="w-full py-3.5 rounded-2xl btn-primary-emerald text-xs font-bold text-white shadow-md"
             >
               {currentUser ? 'Mening Profilim' : 'KIRISH / REGISTRATSIYA'}
             </button>

@@ -57,7 +57,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
           
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-tight">
             Orzuingizdagi Sayohat — <br />
-            <span className="text-blue-700">
+            <span className="text-[#10b981]">
               Dunyoning Har Qaysi Nuqtasiga!
             </span>
           </h1>
@@ -73,7 +73,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 border-b border-slate-100 pb-5 gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-700 border border-blue-100 shadow-sm">
+                <div className="w-10 h-10 rounded-2xl bg-[#ecfdf5] flex items-center justify-center text-[#10b981] border border-[#a7f3d0] shadow-sm">
                   <Compass className="w-5 h-5" />
                 </div>
                 <div>
@@ -84,8 +84,8 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
                 </div>
               </div>
 
-              <span className="text-xs sm:text-sm text-blue-900 font-bold bg-blue-50 px-4 py-1.5 rounded-full border border-blue-200 flex items-center gap-2 self-start sm:self-auto shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-blue-700" />
+              <span className="text-xs sm:text-sm text-[#065f46] font-bold bg-[#ecfdf5] px-4 py-1.5 rounded-full border border-[#a7f3d0] flex items-center gap-2 self-start sm:self-auto shadow-sm">
+                <ShieldCheck className="w-4 h-4 text-[#10b981]" />
                 <span>100% Rasmiy Kafolat & Litsenziya</span>
               </span>
             </div>
@@ -95,7 +95,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               {/* Custom Origin Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <Plane className="w-4 h-4 text-blue-700 transform -rotate-45" />
+                  <Plane className="w-4 h-4 text-[#10b981] transform -rotate-45" />
                   Qayerdan uchiladi?
                 </label>
                 <CustomSelect
@@ -108,7 +108,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               {/* Custom Destination Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-blue-700" />
+                  <MapPin className="w-4 h-4 text-[#10b981]" />
                   Qaysi davlatga borasiz?
                 </label>
                 <CustomSelect
@@ -121,14 +121,14 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               {/* Date */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-blue-700" />
+                  <Calendar className="w-4 h-4 text-[#10b981]" />
                   Sayohat sanasi
                 </label>
                 <input
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full bg-slate-50 hover:bg-white border border-slate-200 hover:border-slate-300 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none cursor-pointer transition-all shadow-sm"
+                  className="w-full bg-slate-50 hover:bg-white border border-slate-200 hover:border-slate-300 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-[#10b981] focus:bg-white outline-none cursor-pointer transition-all shadow-sm"
                 />
               </div>
 
@@ -136,7 +136,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               <div className="space-y-2 text-left flex flex-col justify-end">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-2xl btn-primary-blue font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
+                  className="w-full py-4 px-6 rounded-2xl btn-primary-emerald font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
                 >
                   <Search className="w-5 h-5" />
                   <span>QIDIRISH VA NARXLAR</span>
@@ -167,7 +167,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
                     onSelectCountry(item.id);
                     document.querySelector('#countries')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-800 hover:text-blue-700 border border-slate-200 transition-all font-bold"
+                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#ecfdf5] text-slate-800 hover:text-[#10b981] border border-slate-200 transition-all font-bold"
                 >
                   {item.label}
                 </button>
