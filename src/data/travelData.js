@@ -15,9 +15,9 @@ export const AIRPLANES_FLEET = [
     gallery: [
       { title: 'Bulutlar ustida parvoz', url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=85' },
       { title: 'VIP 180° Yotadigan Biznes Klass', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Qanot va motor manzarasi', url: 'https://images.unsplash.com/photo-1517400508447-88cca5584458?auto=format&fit=crop&w=1200&q=85' },
+      { title: 'Qanot va motor manzarasi', url: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=85' },
       { title: 'Quyosh botishidagi parvoz', url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Uchuvchilar kabinasi (Cockpit)', url: 'https://images.unsplash.com/photo-1519074069444-1ba4ea16e91f?auto=format&fit=crop&w=1200&q=85' }
+      { title: 'Uchuvchilar kabinasi (Cockpit)', url: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=85' }
     ],
     features: ['Shaxsiy 4K multimedia monitor', 'Wi-Fi internet parvoz davomida', '180° yotadigan VIP Biznes o\'rindiqlar', 'Shovqinsiz motor texnologiyasi']
   },
@@ -55,7 +55,7 @@ export const AIRPLANES_FLEET = [
       { title: 'Tog\'lar uzra sokin parvoz', url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85' },
       { title: 'LED Mood Lighting Salon', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
       { title: 'Panoramik katta oynalar', url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Qanot aerodinamikasi', url: 'https://images.unsplash.com/photo-1517400508447-88cca5584458?auto=format&fit=crop&w=1200&q=85' }
+      { title: 'Qanot aerodinamikasi', url: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=85' }
     ],
     features: ['Toza tog\' havosi filtratsiyasi HEPA', 'Panoramali quyosh nurlari nazorati', 'First Class Suite shaxsiy xonalar', 'Gurme taomlar va xushbo\'y qahva']
   },
@@ -87,10 +87,10 @@ export const AIRPLANES_FLEET = [
     capacity: '190 o\'rin',
     altitude: '11,900 metr',
     image: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1400&q=85',
-    cabinImage: 'https://images.unsplash.com/photo-1517400508447-88cca5584458?auto=format&fit=crop&w=1400&q=85',
+    cabinImage: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1400&q=85',
     gallery: [
       { title: 'A321neo osmonda', url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=85' },
-      { title: 'Qulay ergonomik charm o\'rindiqlar', url: 'https://images.unsplash.com/photo-1517400508447-88cca5584458?auto=format&fit=crop&w=1200&q=85' },
+      { title: 'Qulay ergonomik charm o\'rindiqlar', url: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1200&q=85' },
       { title: 'Zamonaviy LED yoritish', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' }
     ],
     features: ['Keng oyoq joyi (Extra Legroom)', 'USB va Type-C tezkor quvvatlash', 'O\'zbek va xalqaro issiq taomlar', 'Silliq va xavfsiz parvoz']
@@ -104,10 +104,10 @@ export const AIRPLANES_FLEET = [
     range: '13,890 km',
     capacity: '14 VIP o\'rin',
     altitude: '15,500 metr',
-    image: 'https://images.unsplash.com/photo-1519074069444-1ba4ea16e91f?auto=format&fit=crop&w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1400&q=85',
     cabinImage: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1400&q=85',
     gallery: [
-      { title: 'Shaxsiy VIP Charter samolyot', url: 'https://images.unsplash.com/photo-1519074069444-1ba4ea16e91f?auto=format&fit=crop&w=1200&q=85' },
+      { title: 'Shaxsiy VIP Charter samolyot', url: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=85' },
       { title: 'Prezident darajasidagi charm divanlar', url: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85' },
       { title: 'Oliy toifali shaxsiy oshpaz servisi', url: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=85' }
     ],

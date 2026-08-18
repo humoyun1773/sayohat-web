@@ -31,14 +31,14 @@ export default function WhyUs() {
   return (
     <section id="why-us" className="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-200">
       
-      {/* 100% Pure, Razor-Sharp High Altitude Airplane Wing Background Photo */}
+      {/* 100% Verified Pure Razor-Sharp Flight Window & Wing Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1517400508447-88cca5584458?auto=format&fit=crop&w=2600&q=100"
-          alt="Airplane Wing in Clouds"
+          src="https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=2600&q=100"
+          alt="Airplane Flight Above Clouds"
           className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-950/45"></div>
+        <div className="absolute inset-0 bg-slate-950/40"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">

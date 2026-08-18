@@ -9,14 +9,14 @@ export default function Footer({ onSelectCountry, onOpenContact }) {
   return (
     <footer className="relative bg-slate-50 text-slate-700 pt-16 pb-12 overflow-hidden border-t border-slate-200">
       
-      {/* 100% Pure, Razor-Sharp Night Runway Lights & Executive Jet Background */}
+      {/* 100% Verified Pure Razor-Sharp Twilight Airliner Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1519074069444-1ba4ea16e91f?auto=format&fit=crop&w=2600&q=100"
-          alt="Night Airport Runway Lights"
-          className="w-full h-full object-cover object-bottom filter brightness-105 contrast-105"
+          src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=2600&q=100"
+          alt="Airliner in Twilight"
+          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
         />
-        <div className="absolute inset-0 bg-slate-950/80"></div>
+        <div className="absolute inset-0 bg-slate-950/75"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
