@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { 
-  Globe, Sun, SunMedium, CloudSun, Compass, 
-  MapPin, Clock, Calendar, ShieldCheck, DollarSign, 
-  Sparkles, Camera, CheckCircle2, ArrowRight, Send, MessageCircle, Heart, Share2, Layers, Plane, Video, Image as ImageIcon
+  Globe, Sun, MapPin, Clock, Calendar, ShieldCheck, DollarSign, 
+  Camera, CheckCircle2, Send, MessageCircle, Layers, Plane, Image as ImageIcon 
 } from 'lucide-react';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE, CONTACT_INFO } from '../data/travelData';
 
@@ -39,13 +38,13 @@ export default function CountryExplorer({
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-800 text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Globe className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-wider shadow-sm">
+            <Globe className="w-3.5 h-3.5 text-blue-700" />
             <span>Butun Dunyo Davlatlari & Jonli Media Galereyasi</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Istalgan Davlatni Tanlang — <br />
-            <span className="text-sky-600">
+            <span className="text-blue-700">
               Rasmlari, Parvozlari va Narxlari
             </span>
           </h2>
@@ -62,7 +61,7 @@ export default function CountryExplorer({
               onClick={() => setActiveCategory(cat.id)}
               className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all flex items-center gap-2 border ${
                 activeCategory === cat.id
-                  ? 'bg-sky-600 text-white border-sky-600 shadow-md scale-105'
+                  ? 'bg-blue-700 text-white border-blue-700 shadow-md scale-105'
                   : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
               }`}
             >
@@ -84,20 +83,15 @@ export default function CountryExplorer({
                 }}
                 className={`p-3.5 rounded-2xl transition-all duration-300 flex flex-col items-center justify-center text-center relative overflow-hidden border group ${
                   isSelected
-                    ? 'bg-sky-50 border-2 border-sky-600 shadow-md scale-105'
+                    ? 'bg-blue-50 border-2 border-blue-700 shadow-md scale-105'
                     : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                 }`}
               >
-                {isSelected && (
-                  <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-600"></span>
-                  </span>
-                )}
                 <span className="text-3xl sm:text-4xl mb-1 filter drop-shadow-sm group-hover:scale-105 transition-transform">{c.flag}</span>
-                <span className={`text-xs font-bold truncate max-w-full ${isSelected ? 'text-sky-800 font-extrabold' : 'text-slate-800'}`}>
+                <span className={`text-xs font-bold truncate max-w-full ${isSelected ? 'text-blue-900 font-extrabold' : 'text-slate-800'}`}>
                   {c.name.split(' ')[0]}
                 </span>
-                <span className="text-[10px] text-amber-700 font-bold mt-0.5">
+                <span className="text-[11px] text-blue-700 font-extrabold mt-0.5">
                   dan {formatPrice(c.basePriceUSD)}
                 </span>
               </button>
@@ -105,7 +99,7 @@ export default function CountryExplorer({
           })}
         </div>
 
-        {/* Deep Dive Country Showcase Container on White Theme */}
+        {/* Deep Dive Country Showcase Container */}
         <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-lg">
           
           {/* Top Giant Banner with Gallery Preview */}
@@ -130,7 +124,7 @@ export default function CountryExplorer({
                   onClick={() => setActiveImageIndex(idx)}
                   className={`w-14 h-14 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 transition-all shadow-lg ${
                     activeImageIndex === idx
-                      ? 'border-sky-400 scale-105 ring-4 ring-sky-400/40'
+                      ? 'border-blue-500 scale-105 ring-4 ring-blue-400/40'
                       : 'border-white/70 opacity-85 hover:opacity-100 hover:scale-105'
                   }`}
                 >
@@ -140,10 +134,10 @@ export default function CountryExplorer({
               
               <button
                 onClick={() => onOpenImageLightbox(selectedCountry.images[activeImageIndex] || selectedCountry.coverImage)}
-                className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white/80 backdrop-blur-md border border-white/60 flex flex-col items-center justify-center text-slate-900 hover:bg-white transition-all shadow-lg"
+                className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white/85 backdrop-blur-md border border-white/60 flex flex-col items-center justify-center text-slate-900 hover:bg-white transition-all shadow-lg"
                 title="Rasmni to'liq ekranda ko'rish"
               >
-                <Camera className="w-5 h-5 mb-0.5 text-sky-600" />
+                <Camera className="w-5 h-5 mb-0.5 text-blue-700" />
                 <span className="text-[9px] font-bold uppercase">Katta Rasm</span>
               </button>
             </div>
@@ -162,7 +156,7 @@ export default function CountryExplorer({
                       Poytaxt: {selectedCountry.capital}
                     </span>
                   </div>
-                  <p className="text-base sm:text-lg text-amber-300 font-semibold italic mt-1 drop-shadow-md">
+                  <p className="text-base sm:text-lg text-slate-200 font-semibold italic mt-1 drop-shadow-md">
                     "{selectedCountry.tagline}"
                   </p>
                 </div>
@@ -172,18 +166,18 @@ export default function CountryExplorer({
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/25 flex items-center gap-3 text-white">
-                  <div className="p-2 rounded-xl bg-amber-500/30 text-amber-300">
+                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
                     <Sun className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="text-[10px] uppercase font-bold text-slate-300">Ob-Havo</div>
                     <div className="text-sm font-bold text-white">{selectedCountry.temp}</div>
-                    <div className="text-[10px] text-amber-200 truncate max-w-[120px]">{selectedCountry.weatherDesc}</div>
+                    <div className="text-[10px] text-slate-200 truncate max-w-[120px]">{selectedCountry.weatherDesc}</div>
                   </div>
                 </div>
 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/25 flex items-center gap-3 text-white">
-                  <div className="p-2 rounded-xl bg-sky-500/30 text-sky-200">
+                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
                     <Plane className="w-5 h-5 transform -rotate-45" />
                   </div>
                   <div>
@@ -193,22 +187,22 @@ export default function CountryExplorer({
                 </div>
 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/25 flex items-center gap-3 text-white">
-                  <div className="p-2 rounded-xl bg-emerald-500/30 text-emerald-200">
+                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="text-[10px] uppercase font-bold text-slate-300">Viza Tartibi</div>
-                    <div className="text-xs sm:text-sm font-bold text-emerald-200 truncate max-w-[130px]">{selectedCountry.visa}</div>
+                    <div className="text-xs sm:text-sm font-bold text-slate-200 truncate max-w-[130px]">{selectedCountry.visa}</div>
                   </div>
                 </div>
 
                 <div className="bg-white/15 backdrop-blur-md p-3.5 rounded-2xl border border-white/25 flex items-center gap-3 text-white">
-                  <div className="p-2 rounded-xl bg-purple-500/30 text-purple-200">
+                  <div className="p-2 rounded-xl bg-blue-600/40 text-white">
                     <Calendar className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="text-[10px] uppercase font-bold text-slate-300">Eng Qulay Fasl</div>
-                    <div className="text-xs sm:text-sm font-bold text-purple-200 truncate max-w-[130px]">{selectedCountry.bestTime}</div>
+                    <div className="text-xs sm:text-sm font-bold text-slate-200 truncate max-w-[130px]">{selectedCountry.bestTime}</div>
                   </div>
                 </div>
 
@@ -231,7 +225,7 @@ export default function CountryExplorer({
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all whitespace-nowrap ${
                   activeTab === tab.id
-                    ? 'bg-sky-600 text-white shadow-sm'
+                    ? 'bg-blue-700 text-white shadow-sm'
                     : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
                 }`}
               >
@@ -250,7 +244,7 @@ export default function CountryExplorer({
             <div className="p-6 sm:p-10 bg-white space-y-8">
               <div>
                 <h4 className="text-lg font-bold text-slate-900 mb-1 flex items-center gap-2">
-                  <ImageIcon className="w-5 h-5 text-sky-600" />
+                  <ImageIcon className="w-5 h-5 text-blue-700" />
                   {selectedCountry.name}ning Yuqori Sifatli HD Manzaralari
                 </h4>
                 <p className="text-xs text-slate-500">Har qanday rasm ustiga bosib uni to'liq ekranda tomosha qilishingiz mumkin</p>
@@ -261,7 +255,7 @@ export default function CountryExplorer({
                   <div
                     key={i}
                     onClick={() => onOpenImageLightbox(imgUrl)}
-                    className="relative h-56 rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-500 group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                    className="relative h-56 rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-500 group cursor-pointer shadow-sm hover:shadow-md transition-all"
                   >
                     <img
                       src={imgUrl}
@@ -286,7 +280,7 @@ export default function CountryExplorer({
             <div className="p-6 sm:p-10 bg-white space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-200">
+                  <span className="text-xs font-bold uppercase tracking-wider text-blue-900 bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
                     To'g'ridan-to'g'ri Parvozlar
                   </span>
                   <h4 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
@@ -298,15 +292,15 @@ export default function CountryExplorer({
 
                   <div className="space-y-2 text-xs sm:text-sm">
                     <div className="flex items-center gap-2 text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle2 className="w-4 h-4 text-blue-700" />
                       <span>Parvoz davomiyligi: <b>{selectedCountry.flightDuration}</b></span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle2 className="w-4 h-4 text-blue-700" />
                       <span>Viza holati: <b>{selectedCountry.visa}</b></span>
                     </div>
                     <div className="flex items-center gap-2 text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle2 className="w-4 h-4 text-blue-700" />
                       <span>Bortda bepul 23kg + 8kg qo'l yuki</span>
                     </div>
                   </div>
@@ -320,7 +314,7 @@ export default function CountryExplorer({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <div className="text-xs font-bold text-sky-300">Uzbekistan Airways & Hamkorlar</div>
+                    <div className="text-xs font-bold text-blue-300">Uzbekistan Airways & Hamkorlar</div>
                     <div className="text-sm font-black">Boeing 787 Dreamliner / Airbus A350</div>
                   </div>
                 </div>
@@ -336,7 +330,7 @@ export default function CountryExplorer({
                   <div
                     key={i}
                     onClick={() => onOpenImageLightbox(spot.img)}
-                    className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-500 group cursor-pointer transition-all shadow-sm hover:shadow-md"
+                    className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-600 group cursor-pointer transition-all shadow-sm hover:shadow-md"
                   >
                     <div className="relative h-48 overflow-hidden">
                       <img
@@ -364,7 +358,7 @@ export default function CountryExplorer({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-3">
                   <h5 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-emerald-600" />
+                    <ShieldCheck className="w-5 h-5 text-blue-700" />
                     Viza va Hujjatlar
                   </h5>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -374,7 +368,7 @@ export default function CountryExplorer({
 
                 <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-3">
                   <h5 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                    <DollarSign className="w-5 h-5 text-amber-600" />
+                    <DollarSign className="w-5 h-5 text-blue-700" />
                     Valyuta & To'lovlar
                   </h5>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -385,14 +379,14 @@ export default function CountryExplorer({
             </div>
           )}
 
-          {/* Bottom Action Footer on White Theme */}
+          {/* Bottom Action Footer */}
           <div className="p-6 sm:p-10 bg-slate-50 border-t border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-6">
             
             <div className="space-y-1 text-center lg:text-left">
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                 {selectedCountry.name} uchun to'liq tur narxi (1 kishi):
               </span>
-              <div className="text-3xl sm:text-4xl font-extrabold text-amber-600">
+              <div className="text-3xl sm:text-4xl font-extrabold text-blue-700">
                 {formatPrice(selectedCountry.basePriceUSD)}
               </div>
               {currency === 'UZS' && (
@@ -409,7 +403,7 @@ export default function CountryExplorer({
                   countryId: selectedCountry.id,
                   priceUSD: selectedCountry.basePriceUSD
                 })}
-                className="py-3.5 px-6 rounded-2xl btn-gold font-bold text-xs sm:text-sm tracking-wide flex items-center gap-2 shadow-sm hover:scale-105 active:scale-95 transition-all"
+                className="py-3.5 px-7 rounded-2xl btn-primary-blue font-bold text-xs sm:text-sm tracking-wide flex items-center gap-2 shadow-md hover:scale-105 active:scale-95 transition-all"
               >
                 <Plane className="w-4 h-4" />
                 <span>USHBU TURNI BRON QILISH</span>
@@ -419,7 +413,7 @@ export default function CountryExplorer({
                 onClick={() => onOpenCalculatorWithCountry(selectedCountry.id)}
                 className="py-3.5 px-5 rounded-2xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200 flex items-center gap-2 transition-all shadow-sm"
               >
-                <Layers className="w-4 h-4 text-sky-600" />
+                <Layers className="w-4 h-4 text-blue-700" />
                 <span>Kalkulyatorda hisoblash</span>
               </button>
 
@@ -427,9 +421,9 @@ export default function CountryExplorer({
                 href={`${CONTACT_INFO.telegram}?text=${encodeURIComponent(`Assalomu alaykum! Men ${selectedCountry.name} sayohati bo'yicha ma'lumot olmoqchiman.`)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="py-3.5 px-4 rounded-2xl bg-sky-50 hover:bg-sky-600 text-sky-700 hover:text-white border border-sky-200 text-xs font-bold flex items-center gap-2 transition-all"
+                className="py-3.5 px-4 rounded-2xl bg-white hover:bg-blue-50 text-blue-800 border border-slate-200 text-xs font-bold flex items-center gap-2 transition-all"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 text-blue-700" />
                 <span>Telegram</span>
               </a>
 
@@ -437,9 +431,9 @@ export default function CountryExplorer({
                 href={`${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(`Assalomu alaykum! Men ${selectedCountry.name} sayohati bo'yicha ma'lumot olmoqchiman.`)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="py-3.5 px-4 rounded-2xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-200 text-xs font-bold flex items-center gap-2 transition-all"
+                className="py-3.5 px-4 rounded-2xl bg-white hover:bg-blue-50 text-blue-800 border border-slate-200 text-xs font-bold flex items-center gap-2 transition-all"
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4 text-blue-700" />
                 <span>WhatsApp</span>
               </a>
 

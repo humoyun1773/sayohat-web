@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   X, Phone, Send, MessageCircle, Clock, 
-  MapPin, CheckCircle2, User, Mail, ShieldCheck, Globe 
+  MapPin, CheckCircle2, User, Mail, ShieldCheck 
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../data/travelData';
 import CustomSelect from './CustomSelect';
@@ -43,19 +43,19 @@ export default function ContactModal({ isOpen, onClose }) {
       >
         
         {/* Modal Top Banner */}
-        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 bg-slate-50/80">
+        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 bg-slate-50">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-500 to-blue-700 text-white flex items-center justify-center shadow-md">
+            <div className="w-11 h-11 rounded-2xl bg-blue-700 text-white flex items-center justify-center shadow-md">
               <Phone className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-extrabold tracking-wider text-sky-700 uppercase">LOTOS FIELD</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">
+                <span className="text-xs font-extrabold tracking-wider text-blue-900 uppercase">LOTOS FIELD</span>
+                <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 font-bold border border-blue-200">
                   24/7 Aktiv
                 </span>
               </div>
-              <h3 className="text-base sm:text-xl font-bold text-slate-900">Biz Bilan Bog'lanish & Tezkor Konsultatsiya</h3>
+              <h3 className="text-base sm:text-xl font-bold text-slate-900">Biz Bilan Bog'lanish & Konsultatsiya</h3>
             </div>
           </div>
 
@@ -77,9 +77,9 @@ export default function ContactModal({ isOpen, onClose }) {
               href={CONTACT_INFO.telegram}
               target="_blank"
               rel="noreferrer"
-              className="p-4 rounded-2xl bg-sky-50 hover:bg-sky-600 text-sky-800 hover:text-white border border-sky-200 transition-all flex flex-col items-center justify-center text-center group shadow-sm hover:shadow-md"
+              className="p-4 rounded-2xl bg-slate-50 hover:bg-blue-700 text-slate-800 hover:text-white border border-slate-200 transition-all flex flex-col items-center justify-center text-center group shadow-sm hover:shadow-md"
             >
-              <div className="w-10 h-10 rounded-xl bg-white group-hover:bg-white/20 text-sky-600 group-hover:text-white flex items-center justify-center mb-2 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-white group-hover:bg-white/20 text-blue-700 group-hover:text-white flex items-center justify-center mb-2 shadow-sm">
                 <Send className="w-5 h-5" />
               </div>
               <span className="text-xs font-bold">Telegram Kanal & Bot</span>
@@ -91,9 +91,9 @@ export default function ContactModal({ isOpen, onClose }) {
               href={CONTACT_INFO.whatsapp}
               target="_blank"
               rel="noreferrer"
-              className="p-4 rounded-2xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white border border-emerald-200 transition-all flex flex-col items-center justify-center text-center group shadow-sm hover:shadow-md"
+              className="p-4 rounded-2xl bg-slate-50 hover:bg-blue-700 text-slate-800 hover:text-white border border-slate-200 transition-all flex flex-col items-center justify-center text-center group shadow-sm hover:shadow-md"
             >
-              <div className="w-10 h-10 rounded-xl bg-white group-hover:bg-white/20 text-emerald-600 group-hover:text-white flex items-center justify-center mb-2 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-white group-hover:bg-white/20 text-blue-700 group-hover:text-white flex items-center justify-center mb-2 shadow-sm">
                 <MessageCircle className="w-5 h-5" />
               </div>
               <span className="text-xs font-bold">WhatsApp Tezkor Chat</span>
@@ -103,9 +103,9 @@ export default function ContactModal({ isOpen, onClose }) {
             {/* Phone Dial */}
             <a
               href={`tel:${CONTACT_INFO.phoneClean}`}
-              className="p-4 rounded-2xl bg-amber-50 hover:bg-amber-600 text-amber-900 hover:text-white border border-amber-200 transition-all flex flex-col items-center justify-center text-center group shadow-sm hover:shadow-md"
+              className="p-4 rounded-2xl bg-slate-50 hover:bg-blue-700 text-slate-800 hover:text-white border border-slate-200 transition-all flex flex-col items-center justify-center text-center group shadow-sm hover:shadow-md"
             >
-              <div className="w-10 h-10 rounded-xl bg-white group-hover:bg-white/20 text-amber-600 group-hover:text-white flex items-center justify-center mb-2 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-white group-hover:bg-white/20 text-blue-700 group-hover:text-white flex items-center justify-center mb-2 shadow-sm">
                 <Phone className="w-5 h-5" />
               </div>
               <span className="text-xs font-bold">To'g'ridan-to'g'ri Qo'ng'iroq</span>
@@ -119,17 +119,17 @@ export default function ContactModal({ isOpen, onClose }) {
             
             <div className="flex items-center justify-between">
               <h4 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
-                <Phone className="w-4 h-4 text-sky-600" />
+                <Phone className="w-4 h-4 text-blue-700" />
                 Operatorga qayta qo'ng'iroq buyurtma qilish
               </h4>
-              <span className="text-[10px] text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full font-bold">
+              <span className="text-[10px] text-blue-900 bg-blue-50 px-2.5 py-1 rounded-full font-bold border border-blue-200">
                 Mutlaqo Bepul
               </span>
             </div>
 
             {isSubmitted ? (
-              <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
-                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+              <div className="p-6 rounded-2xl bg-blue-50 border border-blue-200 text-center space-y-2">
+                <CheckCircle2 className="w-12 h-12 text-blue-700 mx-auto" />
                 <h5 className="text-lg font-bold text-slate-900">So'rovingiz Muvaffaqiyatli Qabul Qilindi!</h5>
                 <p className="text-xs text-slate-600">
                   LOTOS FIELD sayohat bo'yicha shaxsiy menejeri 5 daqiqa ichida siz bilan bog'lanadi.
@@ -137,7 +137,7 @@ export default function ContactModal({ isOpen, onClose }) {
                 <button
                   type="button"
                   onClick={() => setIsSubmitted(false)}
-                  className="mt-3 px-5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-all shadow-sm"
+                  className="mt-3 px-5 py-2 rounded-xl btn-primary-blue text-white text-xs font-bold shadow-sm"
                 >
                   Yangi so'rov yuborish
                 </button>
@@ -155,7 +155,7 @@ export default function ContactModal({ isOpen, onClose }) {
                       placeholder="Masalan: Sardor Rahimov"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 outline-none"
                     />
                   </div>
 
@@ -169,7 +169,7 @@ export default function ContactModal({ isOpen, onClose }) {
                       placeholder="+998 (90) 123-45-67"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 outline-none font-mono"
+                      className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 outline-none font-mono"
                     />
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default function ContactModal({ isOpen, onClose }) {
                     placeholder="Masalan: 4 kishilik oilaviy ta'til, bolalar uchun qulayliklar kerak..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 outline-none resize-none"
+                    className="w-full bg-white border border-slate-300 rounded-2xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
                   ></textarea>
                 </div>
 
@@ -213,11 +213,11 @@ export default function ContactModal({ isOpen, onClose }) {
           {/* Office Address & Workhours */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 pt-2 border-t border-slate-100">
             <div className="flex items-start gap-2.5">
-              <MapPin className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
               <span>{CONTACT_INFO.address}</span>
             </div>
             <div className="flex items-start gap-2.5">
-              <Clock className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+              <Clock className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
               <span>{CONTACT_INFO.workHours}</span>
             </div>
           </div>

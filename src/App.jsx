@@ -104,7 +104,7 @@ export default function App() {
         onOpenContact={() => setIsContactOpen(true)}
       />
 
-      {/* Floating 1-Tap Quick Action Dock (Telegram, WhatsApp, Direct Call) */}
+      {/* Floating 1-Tap Quick Action Dock */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
         
         {/* Telegram Shortcut */}
@@ -112,7 +112,7 @@ export default function App() {
           href={CONTACT_INFO.telegram}
           target="_blank"
           rel="noreferrer"
-          className="w-12 h-12 rounded-2xl bg-sky-500 hover:bg-sky-600 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative"
+          className="w-12 h-12 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative"
           title="Telegramda bog'lanish"
         >
           <Send className="w-5 h-5" />
@@ -126,7 +126,7 @@ export default function App() {
           href={CONTACT_INFO.whatsapp}
           target="_blank"
           rel="noreferrer"
-          className="w-12 h-12 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative"
+          className="w-12 h-12 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative"
           title="WhatsAppda bog'lanish"
         >
           <MessageCircle className="w-5 h-5" />
@@ -138,7 +138,7 @@ export default function App() {
         {/* Phone Call Shortcut */}
         <a
           href={`tel:${CONTACT_INFO.phoneClean}`}
-          className="w-12 h-12 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative"
+          className="w-12 h-12 rounded-2xl bg-slate-900 hover:bg-blue-700 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 group relative"
           title="To'g'ridan-to'g'ri qo'ng'iroq"
         >
           <Phone className="w-5 h-5" />

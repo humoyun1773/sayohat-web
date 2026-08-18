@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
-  Plane, MapPin, Calendar, Users, Search, 
-  ShieldCheck, Award, Headphones, Compass 
+  Plane, MapPin, Calendar, Search, 
+  ShieldCheck, Compass 
 } from 'lucide-react';
 import { COUNTRIES } from '../data/travelData';
 import CustomSelect from './CustomSelect';
@@ -46,8 +46,8 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
           className="w-full h-full object-cover object-center"
         />
         {/* Soft, clean, luminous white gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/75 to-white/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-white/45"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/60 to-transparent"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 w-full">
@@ -55,25 +55,25 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         {/* Main Title & Hero Banner */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">
           
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-tight drop-shadow-sm">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-tight">
             Orzuingizdagi Sayohat — <br />
-            <span className="text-sky-600">
+            <span className="text-blue-700">
               Dunyoning Har Qaysi Nuqtasiga!
             </span>
           </h1>
 
           <p className="text-base sm:text-lg lg:text-xl text-slate-700 max-w-3xl mx-auto font-medium leading-relaxed">
-            Zamonaviy Boeing & Airbus laynerlari, 100% rasmiy vizalar, 5 yulduzli mehmonxonalar va eng arzon to'g'ridan-to'g'ri reyslar.
+            Zamonaviy Boeing & Airbus laynerlari, 100% rasmiy vizalar, 5 yulduzli mehmonxonalar va to'g'ridan-to'g'ri reyslar.
           </p>
         </div>
 
-        {/* Grand, Spacious Search & Booking Panel (Katta Div) */}
+        {/* Grand, Spacious Search & Booking Panel */}
         <div className="w-full max-w-[1536px] mx-auto mb-14">
-          <div className="bg-white/98 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 rounded-3xl border-2 border-slate-200/90 shadow-2xl shadow-slate-300/60">
+          <div className="bg-white/98 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 border-b border-slate-100 pb-5 gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-sky-50 flex items-center justify-center text-sky-600 border border-sky-100 shadow-sm">
+                <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-700 border border-blue-100 shadow-sm">
                   <Compass className="w-5 h-5" />
                 </div>
                 <div>
@@ -84,8 +84,8 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
                 </div>
               </div>
 
-              <span className="text-xs sm:text-sm text-emerald-800 font-bold bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200 flex items-center gap-2 self-start sm:self-auto shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <span className="text-xs sm:text-sm text-blue-900 font-bold bg-blue-50 px-4 py-1.5 rounded-full border border-blue-200 flex items-center gap-2 self-start sm:self-auto shadow-sm">
+                <ShieldCheck className="w-4 h-4 text-blue-700" />
                 <span>100% Rasmiy Kafolat & Litsenziya</span>
               </span>
             </div>
@@ -95,7 +95,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               {/* Custom Origin Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <Plane className="w-4 h-4 text-sky-600 transform -rotate-45" />
+                  <Plane className="w-4 h-4 text-blue-700 transform -rotate-45" />
                   Qayerdan uchiladi?
                 </label>
                 <CustomSelect
@@ -108,7 +108,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               {/* Custom Destination Select */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-amber-600" />
+                  <MapPin className="w-4 h-4 text-blue-700" />
                   Qaysi davlatga borasiz?
                 </label>
                 <CustomSelect
@@ -121,14 +121,14 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               {/* Date */}
               <div className="space-y-2 text-left">
                 <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-blue-600" />
+                  <Calendar className="w-4 h-4 text-blue-700" />
                   Sayohat sanasi
                 </label>
                 <input
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full bg-slate-50 hover:bg-white border border-slate-200 hover:border-slate-300 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none cursor-pointer transition-all shadow-sm"
+                  className="w-full bg-slate-50 hover:bg-white border border-slate-200 hover:border-slate-300 text-slate-900 rounded-2xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none cursor-pointer transition-all shadow-sm"
                 />
               </div>
 
@@ -136,7 +136,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
               <div className="space-y-2 text-left flex flex-col justify-end">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-2xl btn-primary-blue font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
+                  className="w-full py-4 px-6 rounded-2xl btn-primary-blue font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:scale-[1.01] active:scale-95 transition-all"
                 >
                   <Search className="w-5 h-5" />
                   <span>QIDIRISH VA NARXLAR</span>
@@ -167,7 +167,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
                     onSelectCountry(item.id);
                     document.querySelector('#countries')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-sky-50 text-slate-800 hover:text-sky-700 border border-slate-200 transition-all font-bold shadow-xs hover:scale-105"
+                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-800 hover:text-blue-700 border border-slate-200 transition-all font-bold"
                 >
                   {item.label}
                 </button>
@@ -178,9 +178,9 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
         </div>
 
         {/* Feature Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1536px] mx-auto">
           
-          <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
             <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm">
               <img
                 src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=200&q=80"
@@ -194,7 +194,7 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
             </div>
           </div>
 
-          <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
             <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm">
               <img
                 src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=200&q=80"
@@ -204,11 +204,11 @@ export default function Hero({ onSelectCountry, onOpenBooking }) {
             </div>
             <div>
               <h4 className="text-base font-bold text-slate-900">5★ Ultra All-Inclusive Kurortlar</h4>
-              <p className="text-xs text-slate-500 mt-1">Xususiy villalar, dengiz bo'yi va gurme taomlar</p>
+              <p className="text-xs text-slate-500 mt-1">Xususiy villalar, dengiz bo'yi va premium xizmat</p>
             </div>
           </div>
 
-          <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group">
             <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-slate-200 shadow-sm">
               <img
                 src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=200&q=80"

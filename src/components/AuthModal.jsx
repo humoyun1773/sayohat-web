@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   X, User, Phone, Lock, CheckCircle2, 
-  LogOut, Shield, Heart, Ticket, ArrowRight 
+  LogOut, Ticket, ArrowRight 
 } from 'lucide-react';
 
 export default function AuthModal({ 
@@ -57,13 +57,13 @@ export default function AuthModal({
       >
         
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50/80">
+        <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-500 to-blue-700 text-white flex items-center justify-center shadow-md">
+            <div className="w-10 h-10 rounded-2xl bg-blue-700 text-white flex items-center justify-center shadow-md">
               <User className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-[10px] font-extrabold tracking-wider text-sky-700 uppercase">LOTOS FIELD ACCOUNT</div>
+              <div className="text-[10px] font-extrabold tracking-wider text-blue-900 uppercase">LOTOS FIELD ACCOUNT</div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900">
                 {currentUser ? 'Foydalanuvchi Profili' : (tab === 'login' ? 'Tizimga Kirish' : 'Ro\'yxatdan O\'tish')}
               </h3>
@@ -85,13 +85,13 @@ export default function AuthModal({
             /* Logged-in Profile View */
             <div className="space-y-5">
               <div className="p-5 rounded-3xl bg-slate-50 border border-slate-200 flex items-center gap-4 shadow-sm">
-                <div className="w-14 h-14 rounded-2xl bg-sky-600 text-white flex items-center justify-center font-black text-2xl shadow-sm">
+                <div className="w-14 h-14 rounded-2xl bg-blue-700 text-white flex items-center justify-center font-black text-2xl shadow-sm">
                   {currentUser.name.charAt(0)}
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 text-base">{currentUser.name}</h4>
                   <p className="text-xs text-slate-500 font-mono">{currentUser.phone}</p>
-                  <span className="inline-block mt-1 text-[10px] font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">
+                  <span className="inline-block mt-1 text-[10px] font-bold text-blue-900 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
                     ★ {currentUser.tier}
                   </span>
                 </div>
@@ -101,21 +101,21 @@ export default function AuthModal({
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
                   <div className="text-[11px] text-slate-500 font-semibold">To'plangan Keshbek:</div>
-                  <div className="text-base font-extrabold text-amber-700 mt-1">250,000 so'm</div>
+                  <div className="text-base font-extrabold text-blue-700 mt-1">250,000 so'm</div>
                 </div>
                 <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
                   <div className="text-[11px] text-slate-500 font-semibold">Aktiv Buyurtmalar:</div>
-                  <div className="text-base font-extrabold text-sky-700 mt-1">1 ta reys</div>
+                  <div className="text-base font-extrabold text-blue-700 mt-1">1 ta reys</div>
                 </div>
               </div>
 
               <div className="space-y-2 pt-2 border-t border-slate-100 text-xs">
                 <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-slate-800">
                   <span className="flex items-center gap-2 font-semibold">
-                    <Ticket className="w-4 h-4 text-sky-600" />
+                    <Ticket className="w-4 h-4 text-blue-700" />
                     Dubay VIP Sayohati
                   </span>
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">
+                  <span className="text-[10px] font-bold text-blue-900 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-full">
                     Tasdiqlangan
                   </span>
                 </div>
@@ -126,7 +126,7 @@ export default function AuthModal({
                   onLogout();
                   onClose();
                 }}
-                className="w-full py-3 rounded-2xl bg-red-50 hover:bg-red-600 text-red-700 hover:text-white border border-red-200 text-xs font-bold flex items-center justify-center gap-2 transition-all"
+                className="w-full py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-xs font-bold flex items-center justify-center gap-2 transition-all"
               >
                 <LogOut className="w-4 h-4" />
                 <span>PROFIELDAN CHIQISH</span>
@@ -142,7 +142,7 @@ export default function AuthModal({
                   type="button"
                   onClick={() => { setTab('login'); setStep('credentials'); }}
                   className={`py-2.5 rounded-xl transition-all ${
-                    tab === 'login' ? 'bg-white text-slate-900 shadow-sm font-extrabold' : 'text-slate-500 hover:text-slate-900'
+                    tab === 'login' ? 'bg-white text-blue-900 shadow-sm font-extrabold' : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   Kirish
@@ -151,7 +151,7 @@ export default function AuthModal({
                   type="button"
                   onClick={() => { setTab('register'); setStep('credentials'); }}
                   className={`py-2.5 rounded-xl transition-all ${
-                    tab === 'register' ? 'bg-white text-slate-900 shadow-sm font-extrabold' : 'text-slate-500 hover:text-slate-900'
+                    tab === 'register' ? 'bg-white text-blue-900 shadow-sm font-extrabold' : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   Ro'yxatdan o'tish
@@ -159,7 +159,7 @@ export default function AuthModal({
               </div>
 
               {error && (
-                <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs text-center font-semibold">
+                <div className="p-3 rounded-xl bg-slate-100 border border-slate-300 text-slate-800 text-xs text-center font-semibold">
                   {error}
                 </div>
               )}
@@ -177,7 +177,7 @@ export default function AuthModal({
                         placeholder="Masalan: Sardor Rahimov"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none"
                       />
                     </div>
                   )}
@@ -194,7 +194,7 @@ export default function AuthModal({
                         placeholder="+998 90 123 45 67"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-2xl pl-11 pr-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none font-mono"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-2xl pl-11 pr-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none font-mono"
                       />
                     </div>
                   </div>
@@ -211,7 +211,7 @@ export default function AuthModal({
                         placeholder="••••••••"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-2xl pl-11 pr-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 focus:bg-white outline-none"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-2xl pl-11 pr-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none"
                       />
                     </div>
                   </div>
@@ -227,7 +227,7 @@ export default function AuthModal({
               ) : (
                 /* SMS Verification Step */
                 <form onSubmit={handleSmsSubmit} className="space-y-4 pt-2 text-center">
-                  <div className="p-4 rounded-2xl bg-sky-50 border border-sky-200 text-xs text-sky-800">
+                  <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-blue-900">
                     <p>Tasdiqlash kodi telefon raqamingizga yuborildi:</p>
                     <p className="font-mono font-bold text-slate-900 text-sm mt-1">{phone}</p>
                   </div>
@@ -244,7 +244,7 @@ export default function AuthModal({
                       placeholder="1234"
                       value={smsCode}
                       onChange={(e) => setSmsCode(e.target.value)}
-                      className="w-44 mx-auto bg-slate-50 border-2 border-sky-500 text-center rounded-2xl py-3 text-xl font-extrabold tracking-widest text-slate-900 outline-none shadow-sm"
+                      className="w-44 mx-auto bg-slate-50 border-2 border-blue-600 text-center rounded-2xl py-3 text-xl font-extrabold tracking-widest text-slate-900 outline-none shadow-sm"
                     />
                   </div>
 

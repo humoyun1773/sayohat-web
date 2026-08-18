@@ -1,28 +1,28 @@
 import React from 'react';
 import { 
-  Plane, ShieldCheck, HeartHandshake, Headphones, 
-  CreditCard, Award, CheckCircle2 
+  Plane, ShieldCheck, Headphones, 
+  CreditCard, Award 
 } from 'lucide-react';
 
 export default function WhyUs() {
   const features = [
     {
-      icon: <Plane className="w-7 h-7 text-sky-600" />,
+      icon: <Plane className="w-7 h-7 text-blue-700" />,
       title: 'To\'g\'ridan-to\'g\'ri & Arzon Aviachiptalar',
       desc: 'Uzbekistan Airways, Turkish Airlines, FlyDubai, Emirates va 200+ xalqaro aviakompaniyalar bilan rasmiy hamkorlik.'
     },
     {
-      icon: <ShieldCheck className="w-7 h-7 text-emerald-600" />,
+      icon: <ShieldCheck className="w-7 h-7 text-blue-700" />,
       title: '100% Rasmiy Viza va Sug\'urta',
       desc: 'Barcha davlatlar bo\'yicha elchixona talablariga mos to\'liq hujjatlar to\'plami, Shengen, AQSH va Dubay vizalari ko\'magi.'
     },
     {
-      icon: <Headphones className="w-7 h-7 text-amber-600" />,
+      icon: <Headphones className="w-7 h-7 text-blue-700" />,
       title: '24/7 Shaxsiy Menejer va Gid',
       desc: 'Sayohat boshidan to qaytib kelguningizcha telefon, Telegram va WhatsApp orqali doimiy qo\'llab-quvvatlash.'
     },
     {
-      icon: <CreditCard className="w-7 h-7 text-purple-600" />,
+      icon: <CreditCard className="w-7 h-7 text-blue-700" />,
       title: 'Qulay To\'lov & Bo\'lib To\'lash',
       desc: 'Click, Payme, Uzum Bank, Visa, Mastercard, xalqaro o\'tkazmalar hamda ortiqcha foizsiz qulay muddatli to\'lovlar.'
     }
@@ -34,13 +34,13 @@ export default function WhyUs() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-sky-200 text-sky-800 text-xs font-bold uppercase tracking-wider shadow-sm">
-            <Award className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-200 text-blue-900 text-xs font-bold uppercase tracking-wider shadow-sm">
+            <Award className="w-3.5 h-3.5 text-blue-700" />
             <span>Kafolatlangan Sifat va Ishonch</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Nega Minglab Sayohatchilar <br />
-            <span className="text-sky-600">
+            <span className="text-blue-700">
               LOTOS FIELDni Tanlashadi?
             </span>
           </h2>
@@ -54,9 +54,9 @@ export default function WhyUs() {
           {features.map((feat, idx) => (
             <div
               key={idx}
-              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 hover:border-sky-400 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 hover:border-blue-500 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md"
             >
-              <div className="w-14 h-14 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-6">
                 {feat.icon}
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2.5 leading-snug">
