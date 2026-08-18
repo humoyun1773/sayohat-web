@@ -24,10 +24,6 @@ export default function WhyUs({ t }) {
         {/* Section Header in Glass Card */}
         <div className="text-center max-w-4xl mx-auto mb-16 space-y-3">
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#a7f3d0] text-[#065f46] text-xs font-bold uppercase tracking-wider shadow-sm">
-              <Award className="w-3.5 h-3.5 text-[#10b981]" />
-              <span>{t.whyUs.badge}</span>
-            </div>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
               {t.whyUs.title1} <br />
               <span className="text-[#10b981]">
