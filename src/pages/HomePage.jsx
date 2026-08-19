@@ -84,7 +84,7 @@ export default function HomePage() {
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
               Samarqand, Buxoro, Xiva, Termiz va Zomin bo'ylab transport, 4★ mehmonxona, 3 mahal milliy taomlar, barcha biletlar va shaxsiy gid kiritilgan 5 kunlik unutilmas turlar.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <div className="flex items-center justify-center pt-2">
               <Link
                 to="/tours"
                 className="py-4 px-8 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-sm tracking-wide shadow-xl shadow-emerald-600/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
@@ -92,14 +92,6 @@ export default function HomePage() {
                 <span>Barcha 8+ Turlarni Ko'rish</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
-
-              <button
-                type="button"
-                onClick={openContactModal}
-                className="py-4 px-8 rounded-2xl bg-white hover:bg-slate-50 text-slate-900 font-bold text-sm tracking-wide border border-slate-200/90 shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer"
-              >
-                Bepul Maslahat Olish
-              </button>
             </div>
           </motion.div>
 
