@@ -64,7 +64,12 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
   };
 
   const handleDeleteTrip = (tripId) => {
-    if (window.confirm(lang === 'ru' ? 'Удалить эту публикацию?' : 'Ushbu sayohat kartasini o\'chirmoqchimisiz?')) {
+    const confirmMsg = lang === 'ru' 
+      ? 'Удалить эту публикацию?' 
+      : lang === 'en'
+      ? 'Delete this trip publication?'
+      : "Ushbu sayohat kartasini o'chirmoqchimisiz?";
+    if (window.confirm(confirmMsg)) {
       setTrips(prev => prev.filter(t => t.id !== tripId));
     }
   };
@@ -91,15 +96,40 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
   });
 
   const filterButtons = [
-    { id: 'all', label: lang === 'ru' ? 'Все Записи' : 'Barchasi', count: trips.length, icon: null },
-    { id: 'image', label: lang === 'ru' ? 'Фотографии' : 'Rasmlar', count: trips.filter(t => t.mediaType === 'image').length, icon: ImageIcon },
-    { id: 'video', label: lang === 'ru' ? 'Videolar' : 'Videolar', count: trips.filter(t => t.mediaType === 'video').length, icon: Video },
-    { id: 'bus', label: lang === 'ru' ? 'Автобус' : 'Avtobus', count: trips.filter(t => t.transportType === 'bus').length, icon: Bus },
-    { id: 'plane', label: lang === 'ru' ? 'Самолет' : 'Samolyot', count: trips.filter(t => t.transportType === 'plane').length, icon: Plane },
+    { 
+      id: 'all', 
+      label: lang === 'ru' ? 'Все Записи' : lang === 'en' ? 'All Entries' : 'Barchasi', 
+      count: trips.length, 
+      icon: null 
+    },
+    { 
+      id: 'image', 
+      label: lang === 'ru' ? 'Фотографии' : lang === 'en' ? 'Photos' : 'Rasmlar', 
+      count: trips.filter(t => t.mediaType === 'image').length, 
+      icon: ImageIcon 
+    },
+    { 
+      id: 'video', 
+      label: lang === 'ru' ? 'Видео' : lang === 'en' ? 'Videos' : 'Videolar', 
+      count: trips.filter(t => t.mediaType === 'video').length, 
+      icon: Video 
+    },
+    { 
+      id: 'bus', 
+      label: lang === 'ru' ? 'Автобус' : lang === 'en' ? 'Bus Tours' : 'Avtobus', 
+      count: trips.filter(t => t.transportType === 'bus').length, 
+      icon: Bus 
+    },
+    { 
+      id: 'plane', 
+      label: lang === 'ru' ? 'Самолет' : lang === 'en' ? 'Flights' : 'Samolyot', 
+      count: trips.filter(t => t.transportType === 'plane').length, 
+      icon: Plane 
+    },
   ];
 
   return (
-    <section id="travel-media" className="py-12 sm:py-20 relative overflow-hidden bg-transparent">
+    <section id="travel-media" className="py-8 sm:py-16 relative overflow-hidden bg-transparent">
       
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-10">
         
@@ -117,6 +147,8 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
             <p className="text-slate-600 text-xs sm:text-sm font-medium max-w-2xl mx-auto leading-relaxed">
               {lang === 'ru' 
                 ? 'Реальные маршруты, время отправления и прибытия, фото и видео от наших гидов и туристов.' 
+                : lang === 'en'
+                ? 'Real itineraries, departure times, and live media from our certified guides and travelers.'
                 : 'Haqiqiy avtobus va samolyot turlarimizdan foto va video hisobotlar, jo\'nash va yetib borish soatlari.'}
             </p>
           </div>
@@ -153,13 +185,13 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
         {filteredTrips.length === 0 ? (
           <div className="p-12 text-center bg-white rounded-3xl border border-slate-200 text-slate-500 max-w-md mx-auto space-y-3">
             <Video className="w-12 h-12 text-slate-300 mx-auto" />
-            <p className="font-bold text-xs sm:text-sm">Ushbu toifada hali sayohat kartalari mavjud emas.</p>
-            <button
-              onClick={() => setIsAddModalOpen(true)}
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-xs font-bold text-white cursor-pointer shadow-sm"
-            >
-              + Birinchi bo'lib qo'shish
-            </button>
+            <p className="font-bold text-xs sm:text-sm">
+              {lang === 'ru' 
+                ? 'В этой категории пока нет записей.' 
+                : lang === 'en'
+                ? 'No media entries found in this category yet.'
+                : 'Ushbu toifada hali sayohat kartalari mavjud emas.'}
+            </p>
           </div>
         ) : (
           <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -167,6 +199,10 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
               {filteredTrips.map((trip) => {
                 const isVid = trip.mediaType === 'video';
                 const isLiked = likedTrips[trip.id];
+
+                const title = (lang === 'ru' ? trip.titleRu : lang === 'en' ? trip.titleEn : trip.titleUz) || trip.title || trip.titleUz;
+                const description = (lang === 'ru' ? trip.descriptionRu : lang === 'en' ? trip.descriptionEn : trip.descriptionUz) || trip.description || trip.descriptionUz;
+                const destination = (lang === 'ru' ? trip.destinationRu : lang === 'en' ? trip.destinationEn : trip.destinationUz) || trip.destination || trip.destinationUz;
 
                 return (
                   <motion.div
@@ -193,7 +229,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                             <div className="absolute top-3 left-3 pointer-events-none">
                               <span className="bg-red-600 text-white font-black text-[10px] px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-md">
                                 <Video className="w-3 h-3" />
-                                <span>VIDEO</span>
+                                <span>{lang === 'ru' ? 'ВИДЕО' : lang === 'en' ? 'VIDEO' : 'VIDEO'}</span>
                               </span>
                             </div>
                           </div>
@@ -204,7 +240,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                           >
                             <img
                               src={trip.mediaUrl}
-                              alt={trip.title}
+                              alt={title}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -212,7 +248,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                             <div className="absolute top-3 left-3">
                               <span className="bg-emerald-600 text-white font-black text-[10px] px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-md">
                                 <ImageIcon className="w-3 h-3" />
-                                <span>RASM</span>
+                                <span>{lang === 'ru' ? 'ФОТО' : lang === 'en' ? 'PHOTO' : 'RASM'}</span>
                               </span>
                             </div>
 
@@ -224,7 +260,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                                   onOpenImageLightbox?.(trip.mediaUrl);
                                 }}
                                 className="p-2 rounded-xl bg-black/60 text-white hover:bg-emerald-600 transition-colors cursor-pointer"
-                                title="Kattalashtirish"
+                                title={lang === 'ru' ? 'Увеличить' : lang === 'en' ? 'Enlarge' : 'Kattalashtirish'}
                               >
                                 <Maximize2 className="w-3.5 h-3.5" />
                               </button>
@@ -238,23 +274,23 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                             {trip.transportType === 'plane' ? (
                               <>
                                 <Plane className="w-3 h-3 text-emerald-600 transform -rotate-45" />
-                                <span>Samolyot</span>
+                                <span>{lang === 'ru' ? 'Самолет' : lang === 'en' ? 'Airplane' : 'Samolyot'}</span>
                               </>
                             ) : (
                               <>
                                 <Bus className="w-3 h-3 text-emerald-600" />
-                                <span>Avtobus / Gazel</span>
+                                <span>{lang === 'ru' ? 'Автобус' : lang === 'en' ? 'Bus Tour' : 'Avtobus / Gazel'}</span>
                               </>
                             )}
                           </span>
                         </div>
 
-                        {/* Route Name Tag at bottom-right */}
-                        {trip.destination && (
+                        {/* Destination Tag at bottom-right */}
+                        {destination && (
                           <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
                             <span className="bg-slate-900/85 text-white font-bold text-[10px] px-2.5 py-1 rounded-xl border border-white/20 flex items-center gap-1">
                               <MapPin className="w-3 h-3 text-emerald-400" />
-                              <span>{trip.destination}</span>
+                              <span>{destination}</span>
                             </span>
                           </div>
                         )}
@@ -264,7 +300,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                       <div className="p-5 space-y-3">
                         <div className="flex items-start justify-between gap-2">
                           <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug group-hover:text-emerald-600 transition-colors">
-                            {trip.title}
+                            {title}
                           </h3>
 
                           <button
@@ -273,17 +309,17 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                             className={`p-1.5 rounded-lg transition-all cursor-pointer shrink-0 ${
                               isLiked ? 'text-red-500 bg-red-50' : 'text-slate-400 hover:text-red-500 hover:bg-slate-50'
                             }`}
-                            title="Yoqdi"
+                            title={lang === 'ru' ? 'Нравится' : lang === 'en' ? 'Like' : 'Yoqdi'}
                           >
                             <Heart className={`w-4 h-4 ${isLiked ? 'fill-red-500' : ''}`} />
                           </button>
                         </div>
 
                         <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 font-medium">
-                          {trip.description}
+                          {description}
                         </p>
 
-                        {/* Trip Specs (Date, Duration, Travelers) */}
+                        {/* Trip Specs (Date & Travelers) */}
                         <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-[11px] text-slate-500 font-medium">
                           {trip.date && (
                             <div className="flex items-center gap-1.5">
@@ -291,10 +327,10 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                               <span>{trip.date}</span>
                             </div>
                           )}
-                          {trip.travelers && (
+                          {trip.passengersCount && (
                             <div className="flex items-center gap-1.5">
                               <Users className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                              <span>{trip.travelers}</span>
+                              <span>{trip.passengersCount} {lang === 'ru' ? 'туристов' : lang === 'en' ? 'travelers' : 'sayohatchi'}</span>
                             </div>
                           )}
                         </div>
@@ -304,7 +340,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                     {/* Bottom Action Footer */}
                     <div className="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
                       <span className="text-[10px] text-slate-400 font-medium">
-                        LOTOS FIELD • Jonli Tur
+                        LOTOS FIELD • {lang === 'ru' ? 'Живой Тур' : lang === 'en' ? 'Live Tour' : 'Jonli Tur'}
                       </span>
 
                       <div className="flex items-center gap-2">
@@ -312,7 +348,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                           <button
                             onClick={() => handleDeleteTrip(trip.id)}
                             className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
-                            title="O'chirish"
+                            title={lang === 'ru' ? 'Удалить' : lang === 'en' ? 'Delete' : "O'chirish"}
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>

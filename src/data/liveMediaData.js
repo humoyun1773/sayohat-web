@@ -1,10 +1,16 @@
-// Sample verified live media and trip journeys across Uzbekistan
+// Sample verified live media and trip journeys across Uzbekistan with UZ / RU / EN localization
 export const INITIAL_LIVE_MEDIA = [
   {
     id: 'trip-1',
-    title: 'Toshkentdan Samarqandga Ertalabki VIP Avtotur',
-    origin: 'Toshkent (Janubiy Avtovokzal)',
-    destination: 'Samarqand (Registon Maydoni)',
+    titleUz: 'Toshkentdan Samarqandga Ertalabki VIP Avtotur',
+    titleRu: 'Утренний VIP Автотур из Ташкента в Самарканд',
+    titleEn: 'Morning VIP Bus Tour from Tashkent to Samarkand',
+    originUz: 'Toshkent (Janubiy Avtovokzal)',
+    originRu: 'Ташкент (Южный Автовокзал)',
+    originEn: 'Tashkent (South Bus Terminal)',
+    destinationUz: 'Samarqand (Registon Maydoni)',
+    destinationRu: 'Самарканд (Площадь Регистан)',
+    destinationEn: 'Samarkand (Registan Square)',
     departureTime: '07:30',
     arrivalTime: '11:45',
     date: '2026-08-18',
@@ -17,13 +23,21 @@ export const INITIAL_LIVE_MEDIA = [
     statusTextUz: 'Muvaffaqiyatli yetib bordi (4 soat 15 daqiqa)',
     statusTextRu: 'Успешно прибыли (4 часа 15 минут)',
     statusTextEn: 'Successfully arrived (4 hrs 15 mins)',
-    description: 'Yutong 2026 qulay avtobusimiz Samarqand Registon maydoniga yetib keldi. Sayohatchilarimiz mehmonxonaga joylashib, tushlikka yo\'l olishdi.'
+    descriptionUz: 'Yutong 2026 qulay avtobusimiz Samarqand Registon maydoniga yetib keldi. Sayohatchilarimiz mehmonxonaga joylashib, tushlikka yo\'l olishdi.',
+    descriptionRu: 'Наш комфортабельный автобус Yutong 2026 прибыл на площадь Регистан в Самарканде. Туристы заселились в 4★ отель и отправились на обед.',
+    descriptionEn: 'Our comfortable Yutong 2026 bus arrived at Registan Square in Samarkand. Travelers checked into their 4★ hotel and headed for lunch.'
   },
   {
     id: 'trip-2',
-    title: 'Toshkent ➔ Buxoro Tongi Samolyot Parvozi',
-    origin: 'Toshkent Xalqaro Aeroporti (T2)',
-    destination: 'Buxoro Xalqaro Aeroporti & Ark',
+    titleUz: 'Toshkent ➔ Buxoro Tongi Samolyot Parvozi',
+    titleRu: 'Утренний Авиарейс Ташкент ➔ Бухара',
+    titleEn: 'Morning Flight Tashkent ➔ Bukhara',
+    originUz: 'Toshkent Xalqaro Aeroporti (T2)',
+    originRu: 'Международный Аэропорт Ташкента (Т2)',
+    originEn: 'Tashkent International Airport (T2)',
+    destinationUz: 'Buxoro Xalqaro Aeroporti & Ark',
+    destinationRu: 'Аэропорт Бухары & Крепость Арк',
+    destinationEn: 'Bukhara Airport & Ark Fortress',
     departureTime: '08:15',
     arrivalTime: '09:20',
     date: '2026-08-18',
@@ -36,13 +50,21 @@ export const INITIAL_LIVE_MEDIA = [
     statusTextUz: 'Parvoz 1 soat 05 daqiqada yakunlandi',
     statusTextRu: 'Полет завершен за 1 час 05 минут',
     statusTextEn: 'Flight completed in 1 hr 05 mins',
-    description: 'Buxoroga tezyurar parvoz orqali 1 soatda yetib keldik. Aeroportdan shaxsiy transferimiz barcha sayyohlarni Ark va Labi Hovuzga olib bordi.'
+    descriptionUz: 'Buxoroga tezyurar parvoz orqali 1 soatda yetib keldik. Aeroportdan shaxsiy transferimiz barcha sayyohlarni Ark va Labi Hovuzga olib bordi.',
+    descriptionRu: 'Прибыли в Бухару прямым рейсом за 1 час. Трансфер доставил туристов в исторический центр к крепости Арк и ансамблю Ляби-Хауз.',
+    descriptionEn: 'Arrived in Bukhara via direct flight in 1 hour. Private transfer took all travelers to Ark Fortress and Lyabi-Khauz.'
   },
   {
     id: 'trip-3',
-    title: 'Xiva Ichan Qal\'aga Kechki Jonli Sayohat',
-    origin: 'Urganch Aeroporti',
-    destination: 'Xiva Ichan Qal\'a (Kalta Minor)',
+    titleUz: 'Xiva Ichan Qal\'aga Kechki Jonli Sayohat',
+    titleRu: 'Вечерняя Экскурсия по Хиве (Ичан-Кала)',
+    titleEn: 'Evening Live Tour in Khiva (Ichan Kala)',
+    originUz: 'Urganch Aeroporti',
+    originRu: 'Аэропорт Ургенч',
+    originEn: 'Urgench Airport',
+    destinationUz: 'Xiva Ichan Qal\'a (Kalta Minor)',
+    destinationRu: 'Хива Ичан-Кала (Калта-Минор)',
+    destinationEn: 'Khiva Ichan Kala (Kalta Minor)',
     departureTime: '16:00',
     arrivalTime: '16:40',
     date: '2026-08-17',
@@ -55,13 +77,21 @@ export const INITIAL_LIVE_MEDIA = [
     statusTextUz: 'Xiva kechki chiroqlari ostida',
     statusTextRu: 'Хива в вечерних огнях',
     statusTextEn: 'Khiva under evening illuminations',
-    description: 'Xiva Ichan Qal\'a bo\'ylab kechki ekskursiya va Nurullaboy saroyiga sayr. Ajoyib video lavha!'
+    descriptionUz: 'Xiva Ichan Qal\'a bo\'ylab kechki ekskursiya va Nurullaboy saroyiga sayr. Ajoyib video lavha!',
+    descriptionRu: 'Вечерняя прогулка по древней крепости Ичан-Кала и дворцу Нуруллабай. Живые видеокадры!',
+    descriptionEn: 'Evening excursion through ancient Ichan Kala and Nurullabay Palace. Stunning live video footage!'
   },
   {
     id: 'trip-4',
-    title: 'Zomin Tog\'lariga Shanba Kungi Ekspeditsiya',
-    origin: 'Toshkent (Qo\'yliq)',
-    destination: 'Zomin Milliy Bog\'i & Oyna Ko\'prik',
+    titleUz: 'Zomin Tog\'lariga Shanba Kungi Ekspeditsiya',
+    titleRu: 'Субботняя Экспедиция в Горы Заамина',
+    titleEn: 'Saturday Expedition to the Zaamin Mountains',
+    originUz: 'Toshkent (Qo\'yliq)',
+    originRu: 'Ташкент (Куйлюк)',
+    originEn: 'Tashkent (Koylyuk)',
+    destinationUz: 'Zomin Milliy Bog\'i & Oyna Ko\'prik',
+    destinationRu: 'Зааминский Парк & Стеклянный Мост',
+    destinationEn: 'Zaamin National Park & Glass Bridge',
     departureTime: '06:00',
     arrivalTime: '09:30',
     date: '2026-08-18',
@@ -74,6 +104,8 @@ export const INITIAL_LIVE_MEDIA = [
     statusTextUz: '🟢 Hozir Zomin archazorlarida',
     statusTextRu: '🟢 Сейчас в Зааминских лесах',
     statusTextEn: '🟢 Currently in Zaamin Forests',
-    description: 'Zomin tog\'larida toza archa havosi, Oyna ko\'prik va Suffa platosiga sayohat davom etmoqda.'
+    descriptionUz: 'Zomin tog\'larida toza archa havosi, Oyna ko\'prik va Suffa platosiga sayohat davom etmoqda.',
+    descriptionRu: 'Путешествие продолжается: чистый горный хвойный воздух Заамина, стеклянный мост и плато Суффа.',
+    descriptionEn: 'Journey in progress: fresh juniper mountain air of Zaamin, the suspension glass bridge, and Suffa plateau.'
   }
 ];
