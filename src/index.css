@@ -117,6 +117,9 @@
 button,
 a,
 select,
+option,
+label,
+summary,
 input[type="submit"],
 input[type="button"],
 input[type="reset"],
@@ -125,8 +128,17 @@ input[type="checkbox"],
 input[type="radio"],
 [role="button"],
 [tabindex="0"],
-.cursor-pointer {
+.cursor-pointer,
+.cursor-pointer * {
   cursor: pointer !important;
+}
+
+/* Disabled buttons and inputs */
+button:disabled,
+input:disabled,
+select:disabled,
+[disabled] {
+  cursor: not-allowed !important;
 }
 
 /* Form text inputs */
@@ -135,6 +147,7 @@ input[type="tel"],
 input[type="email"],
 input[type="number"],
 input[type="password"],
+input[type="search"],
 textarea {
   cursor: text !important;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;

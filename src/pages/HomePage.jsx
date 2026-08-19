@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { COUNTRIES, EXCHANGE_RATE, CONTACT_INFO } from '../data/travelData';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Bus, MapPin, Calendar, Star, 
-  CheckCircle2, ArrowRight, Phone, 
+  Bus, Star, 
+  ArrowRight, Phone, 
   Flame, Video, Award, 
   ChevronDown, ChevronUp, 
   Utensils, BedDouble, HelpCircle
@@ -15,27 +15,15 @@ export default function HomePage() {
   const { 
     lang, 
     currency, 
-    setSelectedCountryId, 
     openBookingModal, 
     openContactModal 
   } = useApp();
 
-  const navigate = useNavigate();
-
-  // Search Bar State
-  const [selectedDest, setSelectedDest] = useState('samarkand');
-  const [selectedTransport, setSelectedTransport] = useState('bus');
   const [openFaqIdx, setOpenFaqIdx] = useState(null);
 
   // Top 4 featured destinations
   const featuredIds = ['samarkand', 'bukhara', 'khiva', 'zaamin'];
   const featuredCountries = COUNTRIES.filter(c => featuredIds.includes(c.id));
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    setSelectedCountryId(selectedDest, selectedTransport);
-    navigate(`/tours/${selectedDest}`);
-  };
 
   const toggleFaq = (index) => {
     setOpenFaqIdx(openFaqIdx === index ? null : index);
@@ -96,97 +84,22 @@ export default function HomePage() {
             <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
               Samarqand, Buxoro, Xiva, Termiz va Zomin bo'ylab transport, 4★ mehmonxona, 3 mahal milliy taomlar, barcha biletlar va shaxsiy gid kiritilgan 5 kunlik unutilmas turlar.
             </p>
-          </motion.div>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <Link
+                to="/tours"
+                className="py-4 px-8 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-sm tracking-wide shadow-xl shadow-emerald-600/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
+              >
+                <span>Barcha 8+ Turlarni Ko'rish</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
 
-          {/* Smart Search & Booking Box with Motion */}
-          <motion.div 
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.6, ease: "easeOut" }}
-            className="w-full max-w-5xl mx-auto bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50"
-          >
-            <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-              
-              {/* Destination Selector */}
-              <div>
-                <label className="text-[11px] font-black uppercase tracking-wider text-slate-500 block mb-1.5 flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Qaysi Viloyatga?</span>
-                </label>
-                <select
-                  value={selectedDest}
-                  onChange={(e) => setSelectedDest(e.target.value)}
-                  className="w-full px-3.5 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all cursor-pointer"
-                >
-                  {COUNTRIES.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.flag} {lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Transport Mode Selector */}
-              <div>
-                <label className="text-[11px] font-black uppercase tracking-wider text-slate-500 block mb-1.5 flex items-center gap-1.5">
-                  <Bus className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Transport Turi:</span>
-                </label>
-                <select
-                  value={selectedTransport}
-                  onChange={(e) => setSelectedTransport(e.target.value)}
-                  className="w-full px-3.5 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all cursor-pointer"
-                >
-                  <option value="bus">🚌 Sayyohlik Avtobusi / Gazel</option>
-                  <option value="plane">✈️ Samolyot Parvozi (VIP)</option>
-                </select>
-              </div>
-
-              {/* Tour Duration Info */}
-              <div>
-                <label className="text-[11px] font-black uppercase tracking-wider text-slate-500 block mb-1.5 flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Tur Formati:</span>
-                </label>
-                <div className="w-full px-3.5 py-3 rounded-2xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700 flex items-center justify-between">
-                  <span>5 Kun / 4 Kecha</span>
-                  <span className="text-[10px] text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md font-extrabold">All-Inclusive</span>
-                </div>
-              </div>
-
-              {/* Search Submit Button */}
-              <div>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>Turlarni Ko'rish</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
-              </div>
-
-            </form>
-
-            {/* Quick Guarantees Pill under search */}
-            <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span className="font-semibold">Transport (Borish-kelish)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span className="font-semibold">4★ Shinam Mehmonxona</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span className="font-semibold">3 Mahal Milliy Taomlar</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span className="font-semibold">Barcha Biletlar & Tarixchi Gid</span>
-              </div>
+              <button
+                type="button"
+                onClick={openContactModal}
+                className="py-4 px-8 rounded-2xl bg-white hover:bg-slate-50 text-slate-900 font-bold text-sm tracking-wide border border-slate-200/90 shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              >
+                Bepul Maslahat Olish
+              </button>
             </div>
           </motion.div>
 
