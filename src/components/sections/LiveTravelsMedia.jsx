@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Plus, Image as ImageIcon, Video, Bus, Plane, 
+  Image as ImageIcon, Video, Bus, Plane, 
   MapPin, Calendar, Users, Trash2, 
   Maximize2, Heart
 } from 'lucide-react';
@@ -8,7 +8,7 @@ import { INITIAL_LIVE_MEDIA } from '../../data/liveMediaData';
 import AddMediaModal from '../modals/AddMediaModal';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz' }) {
+export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hideHeader = false }) {
   const [trips, setTrips] = useState(() => {
     try {
       const saved = localStorage.getItem('lotos_live_trips');
@@ -104,34 +104,23 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz' }) {
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-10">
         
         {/* Section Header Card */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-black uppercase tracking-wider">
-            <span>{lang === 'ru' ? 'Медиа Дневник Путешествий' : lang === 'en' ? 'Live Travel Media Diary' : 'Jonli Sayohatlar & Media'}</span>
+        {!hideHeader && (
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-black uppercase tracking-wider">
+              <span>{lang === 'ru' ? 'Медиа Дневник Путешествий' : lang === 'en' ? 'Live Travel Media Diary' : 'Jonli Sayohatlar & Media'}</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              {lang === 'ru' ? 'Фото и Видео Отчеты с Рейсов' : lang === 'en' ? 'Live Photos & Videos From Tours' : 'Jonli Sayohatlar, Foto & Video Lavhalar'}
+            </h2>
+
+            <p className="text-slate-600 text-xs sm:text-sm font-medium max-w-2xl mx-auto leading-relaxed">
+              {lang === 'ru' 
+                ? 'Реальные маршруты, время отправления и прибытия, фото и видео от наших гидов и туристов.' 
+                : 'Haqiqiy avtobus va samolyot turlarimizdan foto va video hisobotlar, jo\'nash va yetib borish soatlari.'}
+            </p>
           </div>
-
-          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            {lang === 'ru' ? 'Фото и Видео Отчеты с Рейсов' : lang === 'en' ? 'Live Photos & Videos From Tours' : 'Jonli Sayohatlar, Foto & Video Lavhalar'}
-          </h2>
-
-          <p className="text-slate-600 text-xs sm:text-sm font-medium max-w-2xl mx-auto leading-relaxed">
-            {lang === 'ru' 
-              ? 'Реальные маршруты, время отправления и прибытия, фото и видео от наших гидов и туристов.' 
-              : 'Haqiqiy avtobus va samolyot turlarimizdan foto va video hisobotlar, jo\'nash va yetib borish soatlari.'}
-          </p>
-
-          {/* ADD BUTTON */}
-          <div className="pt-2">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => setIsAddModalOpen(true)}
-              className="py-3 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-xs uppercase tracking-wider shadow-md shadow-emerald-600/25 flex items-center justify-center gap-2 mx-auto cursor-pointer"
-            >
-              <Plus className="w-4 h-4" />
-              <span>{lang === 'ru' ? '+ Добавить Фото / Видео' : '+ Yangi Rasm / Video Qo\'shish'}</span>
-            </motion.button>
-          </div>
-        </div>
+        )}
 
         {/* Responsive Filter Tabs Strip */}
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none px-2">
