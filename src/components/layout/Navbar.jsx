@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { 
   Bus, Menu, X, Compass, Flame, 
-  ShieldCheck, Star, Phone, ArrowRight,
-  Send, MessageCircle, MapPin, Video, Camera, Plus
+  Star, Phone, ArrowRight,
+  Send, MessageCircle, MapPin, Video,
+  Info
 } from 'lucide-react';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { CONTACT_INFO } from '../../data/travelData';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+import { useApp } from '../../context/AppContext';
 
-export default function Navbar({ 
-  lang = 'uz', 
-  onChangeLang, 
-  onOpenAddMedia,
-  t 
-}) {
+export default function Navbar() {
+  const { lang, setLang, t } = useApp();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
-  // 100% Solid Background Scroll Freeze when Mobile Modal Menu is open
+  // Scroll Freeze when Mobile Modal Menu is open
   useBodyScrollLock(mobileMenuOpen);
 
   useEffect(() => {
@@ -28,24 +28,20 @@ export default function Navbar({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: t.nav.home, href: '#hero', icon: Compass, badge: 'Asosiy' },
-    { name: t.nav.regions, href: '#destinations', icon: MapPin, badge: '8 ta Shahar' },
-    { name: t.nav.deals, href: '#deals', icon: Flame, badge: '-30% Avtotur' },
-    { name: t.nav.media || 'Jonli Media & Video', href: '#travel-media', icon: Video, badge: 'Foto/Video' },
-    { name: t.nav.location || 'Joylashuv & Xarita', href: '#location', icon: MapPin, badge: 'Ofis' },
-    { name: t.nav.reviews, href: '#reviews', icon: Star, badge: '5.0 Reyting' },
-  ];
-
-  const handleNavClick = (href) => {
+  // Close mobile menu on route change
+  useEffect(() => {
     setMobileMenuOpen(false);
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 150);
-  };
+  }, [location.pathname]);
+
+  const navLinks = [
+    { name: t.nav?.home || 'Bosh sahifa', to: '/', icon: Compass, badge: 'Asosiy' },
+    { name: t.nav?.regions || 'Viloyatlar & Turlar', to: '/tours', icon: MapPin, badge: '8 ta Shahar' },
+    { name: t.nav?.deals || 'Qaynoq Turlar', to: '/deals', icon: Flame, badge: '-30% Aksiya' },
+    { name: t.nav?.media || 'Jonli Media', to: '/media', icon: Video, badge: 'Foto/Video' },
+    { name: t.nav?.whyUs || 'Biz haqimizda', to: '/about', icon: Info, badge: 'Kafolat' },
+    { name: t.nav?.reviews || 'Sharhlar', to: '/reviews', icon: Star, badge: '5.0 Reyting' },
+    { name: t.nav?.location || 'Aloqa & Xarita', to: '/contact', icon: MapPin, badge: 'Ofis' },
+  ];
 
   return (
     <>
@@ -53,14 +49,13 @@ export default function Navbar({
         <div className={`max-w-[1536px] mx-auto rounded-2xl sm:rounded-3xl transition-all duration-300 ${
           isScrolled 
             ? 'bg-white/95 backdrop-blur-xl shadow-lg py-2 px-3 sm:px-6 border border-white/80' 
-            : 'bg-white/80 backdrop-blur-md py-2.5 sm:py-3.5 px-3 sm:px-6 border border-white/60 shadow-sm'
+            : 'bg-white/85 backdrop-blur-md py-2.5 sm:py-3.5 px-3 sm:px-6 border border-white/60 shadow-sm'
         }`}>
           <div className="flex items-center justify-between gap-2">
             
             {/* Brand Logo: LOTOS FIELD */}
-            <a 
-              href="#hero" 
-              onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
+            <Link 
+              to="/" 
               className="flex items-center gap-2 sm:gap-3 group shrink-0"
             >
               <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center shadow-md text-white group-hover:scale-105 transition-transform shrink-0">
@@ -73,57 +68,46 @@ export default function Navbar({
                   <span className="text-lg sm:text-2xl lg:text-3xl font-black text-[#10b981]">FIELD</span>
                 </div>
                 <p className="text-[8px] sm:text-[10px] tracking-widest uppercase font-bold text-slate-500 mt-0.5 hidden xs:block">
-                  {t.nav.tagline || 'Avtobus & Gazel Turlari'}
+                  {t.nav?.tagline || 'Avtobus & Samolyot Turlari'}
                 </p>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-1 bg-white/60 backdrop-blur-md px-3 py-1 rounded-2xl border border-white/80">
+            <nav className="hidden xl:flex items-center gap-1 bg-white/70 backdrop-blur-md px-2.5 py-1 rounded-2xl border border-white/80 shadow-xs">
               {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => handleNavClick(link.href)}
-                  className="px-3 py-1.5 text-xs font-bold text-slate-800 hover:text-[#10b981] hover:bg-white rounded-xl transition-all cursor-pointer whitespace-nowrap"
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) =>
+                    `px-3.5 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap ${
+                      isActive
+                        ? 'bg-[#10b981] text-white shadow-xs'
+                        : 'text-slate-800 hover:text-[#10b981] hover:bg-slate-50'
+                    }`
+                  }
                 >
                   {link.name}
-                </button>
+                </NavLink>
               ))}
             </nav>
 
             {/* Right Action Area */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 sm:gap-3">
               
-              {/* SPECIAL PROMINENT BUTTON: + ADD PHOTO & VIDEO MEDIA */}
-              <button
-                type="button"
-                onClick={() => {
-                  if (onOpenAddMedia) {
-                    onOpenAddMedia();
-                  } else {
-                    document.querySelector('#travel-media')?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="py-2 px-3 sm:px-4 rounded-xl sm:rounded-2xl bg-[#10b981] hover:bg-[#059669] text-white font-extrabold text-xs sm:text-xs tracking-wide flex items-center gap-1.5 sm:gap-2 shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0"
-                title="Rasm yoki Video qo'shish"
-              >
-                <Plus className="w-4 h-4" />
-                <span className="hidden sm:inline">Rasm / Video Qo'shish</span>
-                <span className="sm:hidden">Media +</span>
-              </button>
-
               {/* Desktop Language Switcher (UZ / RU / EN) */}
-              <div className="hidden md:flex items-center">
+              <div className="flex items-center">
                 <LanguageSwitcher
                   currentLang={lang}
-                  onChangeLang={onChangeLang}
+                  onChangeLang={setLang}
                 />
               </div>
 
               {/* Mobile Menu Hamburger Button */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-all active:scale-95 cursor-pointer lg:hidden shrink-0 ml-1"
+                className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-all active:scale-95 cursor-pointer xl:hidden shrink-0"
                 aria-label="Menyuni ochish"
               >
                 <Menu className="w-5 h-5 text-slate-900" />
@@ -157,7 +141,7 @@ export default function Navbar({
                     <span className="text-xl font-black text-slate-900">LOTOS</span>
                     <span className="text-xl font-black text-[#10b981]">FIELD</span>
                   </div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500">Avtobus & Gazel Turlari</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-500">Avtobus & Samolyot Turlari</span>
                 </div>
               </div>
 
@@ -173,64 +157,45 @@ export default function Navbar({
             {/* Modal Body with Navigation Links */}
             <div className="p-4 sm:p-6 overflow-y-auto space-y-4 modal-scrollable">
               
-              {/* PRIMARY ACTION CARD: ADD PHOTO & VIDEO */}
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  if (onOpenAddMedia) {
-                    onOpenAddMedia();
-                  }
-                }}
-                className="w-full p-4 rounded-2xl bg-gradient-to-r from-[#10b981] to-[#059669] text-white shadow-lg flex items-center justify-between cursor-pointer hover:scale-[1.02] active:scale-98 transition-all"
-              >
-                <div className="flex items-center gap-3 text-left">
-                  <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center font-bold">
-                    <Camera className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-black uppercase tracking-wider">
-                      + Rasm & Video Qo'shish
-                    </div>
-                    <div className="text-[11px] text-emerald-100 font-medium">
-                      O'z sayohatingiz kartasini joylang
-                    </div>
-                  </div>
-                </div>
-                <ArrowRight className="w-5 h-5 text-white" />
-              </button>
-
               {/* Language Selector Inside Modal */}
               <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
                 <span className="text-xs font-bold text-slate-700">Tilni tanlang:</span>
                 <LanguageSwitcher
                   currentLang={lang}
-                  onChangeLang={(l) => {
-                    onChangeLang(l);
-                  }}
+                  onChangeLang={setLang}
                 />
               </div>
 
               {/* Navigation Links List */}
               <div className="space-y-2">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block px-1">
-                  Bo'limlar
+                  Sahifalar
                 </span>
                 
                 {navLinks.map((link) => {
                   const Icon = link.icon;
+                  const isActive = location.pathname === link.to;
                   return (
-                    <button
-                      key={link.name}
-                      onClick={() => handleNavClick(link.href)}
-                      className="w-full text-left p-3.5 rounded-2xl bg-white hover:bg-[#ecfdf5] border border-slate-200/90 shadow-2xs hover:border-[#10b981]/50 transition-all flex items-center justify-between group cursor-pointer active:scale-98"
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`w-full text-left p-3.5 rounded-2xl border transition-all flex items-center justify-between group cursor-pointer active:scale-98 ${
+                        isActive
+                          ? 'bg-[#ecfdf5] border-[#10b981] shadow-xs'
+                          : 'bg-white hover:bg-slate-50 border-slate-200/90 shadow-2xs'
+                      }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-[#ecfdf5] text-[#10b981] border border-[#a7f3d0] flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform ${
+                          isActive
+                            ? 'bg-[#10b981] text-white'
+                            : 'bg-[#ecfdf5] text-[#10b981] border border-[#a7f3d0]'
+                        }`}>
                           <Icon className="w-4 h-4" />
                         </div>
                         <div>
-                          <div className="text-sm font-bold text-slate-900 group-hover:text-[#065f46] leading-tight">
+                          <div className={`text-sm font-bold leading-tight ${isActive ? 'text-[#065f46]' : 'text-slate-900'}`}>
                             {link.name}
                           </div>
                           <span className="text-[10px] text-slate-400 font-medium">
@@ -238,8 +203,10 @@ export default function Navbar({
                           </span>
                         </div>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#10b981] group-hover:translate-x-1 transition-all" />
-                    </button>
+                      <ArrowRight className={`w-4 h-4 transition-all ${
+                        isActive ? 'text-[#10b981]' : 'text-slate-400 group-hover:text-[#10b981] group-hover:translate-x-1'
+                      }`} />
+                    </Link>
                   );
                 })}
               </div>

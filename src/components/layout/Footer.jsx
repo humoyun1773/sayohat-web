@@ -1,15 +1,25 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Bus, Phone, Send, MessageCircle, Mail, 
   MapPin, Clock 
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../../data/travelData';
+import { useApp } from '../../context/AppContext';
 
-export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' }) {
+export default function Footer() {
+  const { lang, setSelectedCountryId, openContactModal, t } = useApp();
+  const navigate = useNavigate();
+
+  const handleCountryClick = (countryId) => {
+    setSelectedCountryId(countryId);
+    navigate(`/tours/${countryId}`);
+  };
+
   return (
     <footer className="relative bg-slate-950 text-white pt-16 pb-12 overflow-hidden border-t border-slate-800">
       
-      {/* 100% Verified Pure Razor-Sharp Uzbekistan Historic Heritage Twilight Background */}
+      {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src="/images/landmarks/termiz-historic.png"
@@ -25,18 +35,18 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
           
           {/* Col 1 & 2: Brand Info & Bio */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center text-white shadow-lg">
+            <Link to="/" className="flex items-center gap-3 group inline-flex">
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
                 <Bus className="w-6 h-6" />
               </div>
               <div>
                 <span className="text-2xl font-black text-white tracking-wider">LOTOS</span>{' '}
                 <span className="text-2xl font-black text-[#10b981]">FIELD</span>
               </div>
-            </div>
+            </Link>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm font-medium">
-              {t.footer.bio}
+              {t.footer?.bio || "O'zbekiston bo'ylab qulay sayyohlik avtobuslari va samolyotlarida 5 kunlik unutilmas VIP sayohatlar tashkilotchisi."}
             </p>
 
             {/* Social & Messenger Links */}
@@ -45,7 +55,7 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
                 href={CONTACT_INFO.telegram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110"
                 title="Telegram"
               >
                 <Send className="w-4 h-4" />
@@ -55,7 +65,7 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
                 href={CONTACT_INFO.whatsapp}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110"
                 title="WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -65,7 +75,7 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
                 href={CONTACT_INFO.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm font-bold text-xs"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm font-bold text-xs hover:scale-110"
                 title="Instagram"
               >
                 IG
@@ -73,7 +83,7 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
 
               <a
                 href={`tel:${CONTACT_INFO.phoneClean}`}
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110"
                 title="Qo'ng'iroq"
               >
                 <Phone className="w-4 h-4" />
@@ -84,44 +94,62 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
           {/* Col 3: O'zbekiston Viloyatlari */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              {t.footer.regionsTitle}
+              {t.footer?.regionsTitle || "Viloyatlar & Turlar"}
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
-              {COUNTRIES.map((c) => (
+              {COUNTRIES.slice(0, 7).map((c) => (
                 <li key={c.id}>
                   <button
-                    onClick={() => {
-                      onSelectCountry(c.id);
-                      document.querySelector('#countries')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="hover:text-[#10b981] transition-colors flex items-center gap-1.5 text-left"
+                    onClick={() => handleCountryClick(c.id)}
+                    className="hover:text-[#10b981] transition-colors flex items-center gap-1.5 text-left cursor-pointer"
                   >
                     <span>{c.flag}</span>
                     <span>{lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name}</span>
                   </button>
                 </li>
               ))}
+              <li>
+                <Link to="/tours" className="text-[#10b981] hover:underline font-bold inline-block pt-1">
+                  Barcha 8+ viloyatlar →
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Col 4: Xizmatlar */}
+          {/* Col 4: Sahifalar & Xizmatlar */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              {t.footer.servicesTitle}
+              Sahifalar
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
-              {t.footer.services.map((serv, idx) => (
-                <li key={idx} className="hover:text-[#10b981] cursor-pointer transition-colors">
-                  {serv}
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="hover:text-[#10b981] transition-colors">Bosh sahifa</Link>
+              </li>
+              <li>
+                <Link to="/tours" className="hover:text-[#10b981] transition-colors">Viloyatlar va Shaharlar</Link>
+              </li>
+              <li>
+                <Link to="/deals" className="hover:text-[#10b981] transition-colors">Qaynoq Chegirmalar (-30%)</Link>
+              </li>
+              <li>
+                <Link to="/media" className="hover:text-[#10b981] transition-colors">Jonli Media & Video</Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-[#10b981] transition-colors">Biz haqimizda & Kafolat</Link>
+              </li>
+              <li>
+                <Link to="/reviews" className="hover:text-[#10b981] transition-colors">Mijozlar Fikrlari (5.0 ★)</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-[#10b981] transition-colors">Ofis & Joylashuv Xaritasi</Link>
+              </li>
             </ul>
           </div>
 
           {/* Col 5: Kontakt & Manzil */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              {t.footer.contactTitle}
+              {t.footer?.contactTitle || "Bog'lanish"}
             </h4>
             <div className="space-y-3 text-xs text-slate-300">
               <div className="flex items-center gap-2">
@@ -140,7 +168,16 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#10b981] shrink-0" />
-                <span className="text-slate-300">{t.footer.workHours}</span>
+                <span className="text-slate-300">{t.footer?.workHours || "24/7 Qabul va Bron qilish"}</span>
+              </div>
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={openContactModal}
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white font-bold text-xs transition-all shadow-md cursor-pointer text-center"
+                >
+                  Xabar qoldirish
+                </button>
               </div>
             </div>
           </div>
@@ -150,14 +187,14 @@ export default function Footer({ onSelectCountry, onOpenContact, t, lang = 'uz' 
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
           <div>
-            {t.footer.copyright}
+            {t.footer?.copyright || "© 2026 LOTOS FIELD. Barcha huquqlar himoyalangan."}
           </div>
           <div className="flex items-center gap-4">
-            <span className="hover:text-white cursor-pointer transition-colors">{t.footer.privacy}</span>
+            <span className="hover:text-white cursor-pointer transition-colors">{t.footer?.privacy || "Maxfiylik siyosati"}</span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">{t.footer.terms}</span>
+            <span className="hover:text-white cursor-pointer transition-colors">{t.footer?.terms || "Foydalanish shartlari"}</span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">{t.footer.offer}</span>
+            <span className="hover:text-white cursor-pointer transition-colors">{t.footer?.offer || "Ommaviy oferta"}</span>
           </div>
         </div>
 

@@ -1,6 +1,11 @@
 import React from 'react';
-import HomePage from './pages/HomePage';
+import { AppProvider } from './context/AppContext';
+import AppRoutes from './routes/AppRoutes';
 
 export default function App() {
-  return <HomePage />;
+  return (
+    <AppProvider>
+      <AppRoutes />
+    </AppProvider>
+  );
 }
