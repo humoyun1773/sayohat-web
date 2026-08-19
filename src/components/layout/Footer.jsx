@@ -16,6 +16,16 @@ export default function Footer() {
     navigate(`/tours/${countryId}`);
   };
 
+  const navLinks = [
+    { to: '/', label: lang === 'ru' ? 'Главная' : lang === 'en' ? 'Home' : 'Bosh sahifa' },
+    { to: '/tours', label: lang === 'ru' ? 'Регионы и Города' : lang === 'en' ? 'Regions & Cities' : 'Viloyatlar va Shaharlar' },
+    { to: '/deals', label: lang === 'ru' ? 'Горящие Скидки (-30%)' : lang === 'en' ? 'Hot Deals (-30%)' : 'Qaynoq Chegirmalar (-30%)' },
+    { to: '/media', label: lang === 'ru' ? 'Живая Медиа & Видео' : lang === 'en' ? 'Live Travel Media' : 'Jonli Media & Video' },
+    { to: '/about', label: lang === 'ru' ? 'О Компании & Гарантии' : lang === 'en' ? 'About Us & Guarantees' : 'Biz haqimizda & Kafolat' },
+    { to: '/reviews', label: lang === 'ru' ? 'Отзывы Клиентов (5.0 ★)' : lang === 'en' ? 'Client Reviews (5.0 ★)' : 'Mijozlar Fikrlari (5.0 ★)' },
+    { to: '/contact', label: lang === 'ru' ? 'Контакты & Офисы' : lang === 'en' ? 'Offices & Location' : 'Ofis & Joylashuv Xaritasi' },
+  ];
+
   return (
     <footer className="relative bg-slate-950 text-white pt-16 pb-12 overflow-hidden border-t border-slate-800">
       {/* Ambient Luxury Background */}
@@ -30,7 +40,7 @@ export default function Footer() {
           
           {/* Col 1 & 2: Brand Info & Bio */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center gap-3 group inline-flex">
+            <Link to="/" className="flex items-center gap-3 group inline-flex cursor-pointer">
               <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
                 <Bus className="w-6 h-6" />
               </div>
@@ -41,7 +51,11 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm font-medium">
-              {t.footer?.bio || "O'zbekiston bo'ylab qulay sayyohlik avtobuslari va samolyotlarida 5 kunlik unutilmas VIP sayohatlar tashkilotchisi."}
+              {lang === 'ru'
+                ? 'Организатор комфортных 5-дневных VIP-путешествий по Узбекистану на туристических автобусах и авиарейсах.'
+                : lang === 'en'
+                ? 'Organizer of premier 5-day all-inclusive VIP journeys across Uzbekistan by modern coach and direct flights.'
+                : "O'zbekiston bo'ylab qulay sayyohlik avtobuslari va samolyotlarida 5 kunlik unutilmas VIP sayohatlar tashkilotchisi."}
             </p>
 
             {/* Social & Messenger Links */}
@@ -50,7 +64,7 @@ export default function Footer() {
                 href={CONTACT_INFO.telegram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110 cursor-pointer"
                 title="Telegram"
               >
                 <Send className="w-4 h-4" />
@@ -60,7 +74,7 @@ export default function Footer() {
                 href={CONTACT_INFO.whatsapp}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110 cursor-pointer"
                 title="WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -70,7 +84,7 @@ export default function Footer() {
                 href={CONTACT_INFO.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm font-bold text-xs hover:scale-110"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm font-bold text-xs hover:scale-110 cursor-pointer"
                 title="Instagram"
               >
                 IG
@@ -78,8 +92,8 @@ export default function Footer() {
 
               <a
                 href={`tel:${CONTACT_INFO.phoneClean}`}
-                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110"
-                title="Qo'ng'iroq"
+                className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#10b981] text-white border border-white/20 flex items-center justify-center transition-all shadow-sm hover:scale-110 cursor-pointer"
+                title="Phone"
               >
                 <Phone className="w-4 h-4" />
               </a>
@@ -89,7 +103,7 @@ export default function Footer() {
           {/* Col 3: O'zbekiston Viloyatlari */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              {t.footer?.regionsTitle || "Viloyatlar & Turlar"}
+              {lang === 'ru' ? 'Регионы и Туры' : lang === 'en' ? 'Regions & Tours' : "Viloyatlar & Turlar"}
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
               {COUNTRIES.slice(0, 7).map((c) => (
@@ -104,8 +118,8 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link to="/tours" className="text-[#10b981] hover:underline font-bold inline-block pt-1">
-                  Barcha 8+ viloyatlar →
+                <Link to="/tours" className="text-[#10b981] hover:underline font-bold inline-block pt-1 cursor-pointer">
+                  {lang === 'ru' ? 'Все 8+ регионов →' : lang === 'en' ? 'All 8+ regions →' : 'Barcha 8+ viloyatlar →'}
                 </Link>
               </li>
             </ul>
@@ -114,42 +128,28 @@ export default function Footer() {
           {/* Col 4: Sahifalar & Xizmatlar */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              Sahifalar
+              {lang === 'ru' ? 'Страницы' : lang === 'en' ? 'Pages' : 'Sahifalar'}
             </h4>
             <ul className="space-y-2.5 text-xs text-slate-300 font-medium">
-              <li>
-                <Link to="/" className="hover:text-[#10b981] transition-colors">Bosh sahifa</Link>
-              </li>
-              <li>
-                <Link to="/tours" className="hover:text-[#10b981] transition-colors">Viloyatlar va Shaharlar</Link>
-              </li>
-              <li>
-                <Link to="/deals" className="hover:text-[#10b981] transition-colors">Qaynoq Chegirmalar (-30%)</Link>
-              </li>
-              <li>
-                <Link to="/media" className="hover:text-[#10b981] transition-colors">Jonli Media & Video</Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-[#10b981] transition-colors">Biz haqimizda & Kafolat</Link>
-              </li>
-              <li>
-                <Link to="/reviews" className="hover:text-[#10b981] transition-colors">Mijozlar Fikrlari (5.0 ★)</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-[#10b981] transition-colors">Ofis & Joylashuv Xaritasi</Link>
-              </li>
+              {navLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="hover:text-[#10b981] transition-colors cursor-pointer">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Col 5: Kontakt & Manzil */}
           <div className="space-y-3">
             <h4 className="text-sm font-black text-white uppercase tracking-wider">
-              {t.footer?.contactTitle || "Bog'lanish"}
+              {lang === 'ru' ? 'Контакты' : lang === 'en' ? 'Contact' : "Bog'lanish"}
             </h4>
             <div className="space-y-3 text-xs text-slate-300">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#10b981] shrink-0" />
-                <a href={`tel:${CONTACT_INFO.phoneClean}`} className="text-white hover:text-[#10b981] font-mono font-bold transition-colors">
+                <a href={`tel:${CONTACT_INFO.phoneClean}`} className="text-white hover:text-[#10b981] font-mono font-bold transition-colors cursor-pointer">
                   {CONTACT_INFO.phone}
                 </a>
               </div>
@@ -163,7 +163,9 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#10b981] shrink-0" />
-                <span className="text-slate-300">{t.footer?.workHours || "24/7 Qabul va Bron qilish"}</span>
+                <span className="text-slate-300">
+                  {lang === 'ru' ? '24/7 Прием звонков и бронь' : lang === 'en' ? '24/7 Booking & Support' : '24/7 Qabul va Bron qilish'}
+                </span>
               </div>
               <div className="pt-2">
                 <button
@@ -171,7 +173,7 @@ export default function Footer() {
                   onClick={openContactModal}
                   className="w-full py-2.5 px-4 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white font-bold text-xs transition-all shadow-md cursor-pointer text-center"
                 >
-                  Xabar qoldirish
+                  {lang === 'ru' ? 'Связаться с нами' : lang === 'en' ? 'Send a Message' : 'Xabar qoldirish'}
                 </button>
               </div>
             </div>
@@ -182,14 +184,24 @@ export default function Footer() {
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
           <div>
-            {t.footer?.copyright || "© 2026 LOTOS FIELD. Barcha huquqlar himoyalangan."}
+            {lang === 'ru' 
+              ? '© 2026 LOTOS FIELD. Все права защищены.' 
+              : lang === 'en' 
+              ? '© 2026 LOTOS FIELD. All rights reserved.' 
+              : '© 2026 LOTOS FIELD. Barcha huquqlar himoyalangan.'}
           </div>
           <div className="flex items-center gap-4">
-            <span className="hover:text-white cursor-pointer transition-colors">{t.footer?.privacy || "Maxfiylik siyosati"}</span>
+            <span className="hover:text-white cursor-pointer transition-colors">
+              {lang === 'ru' ? 'Политика конфиденциальности' : lang === 'en' ? 'Privacy Policy' : 'Maxfiylik siyosati'}
+            </span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">{t.footer?.terms || "Foydalanish shartlari"}</span>
+            <span className="hover:text-white cursor-pointer transition-colors">
+              {lang === 'ru' ? 'Условия использования' : lang === 'en' ? 'Terms of Service' : 'Foydalanish shartlari'}
+            </span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">{t.footer?.offer || "Ommaviy oferta"}</span>
+            <span className="hover:text-white cursor-pointer transition-colors">
+              {lang === 'ru' ? 'Публичная оферта' : lang === 'en' ? 'Public Offer' : 'Ommaviy oferta'}
+            </span>
           </div>
         </div>
 

@@ -16,35 +16,29 @@ export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = '
   };
 
   return (
-    <section id="deals" className="py-24 relative overflow-hidden bg-white border-y border-slate-200">
+    <section id="deals" className="py-16 sm:py-24 relative overflow-hidden bg-white border-y border-slate-200">
       
-      {/* 100% Pure, Crystal-Clear Khiva Ichan Kala Background - ZERO OPACITY & NO BLACK BORDERS */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <img
-          src="/images/landmarks/khiva-ichan-kala.png"
-          alt="Khiva Ichan Kala Historical City"
-          className="w-full h-full object-cover object-center scale-120"
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-12">
         
-        {/* Header in High Contrast Glass Card */}
-        <div className="text-center max-w-4xl mx-auto mb-14 space-y-3">
-          <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-white/80 shadow-xl space-y-3">
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-              {t.deals.title1} <br />
-              <span className="text-[#10b981]">
-                {t.deals.title2}
-              </span>
-            </h2>
-            <p className="text-slate-700 text-sm sm:text-base font-medium">
-              {t.deals.desc}
-            </p>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 text-xs font-black uppercase tracking-wider">
+            <Flame className="w-4 h-4 text-amber-500 animate-pulse" />
+            <span>{t.deals?.badge || "Qaynoq Chegirmalar va Maxsus Takliflar"}</span>
           </div>
+
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+            {t.deals.title1} <br />
+            <span className="text-emerald-600">
+              {t.deals.title2}
+            </span>
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base font-medium max-w-2xl mx-auto leading-relaxed">
+            {t.deals.desc}
+          </p>
         </div>
 
-        {/* Deals Grid using shadcn/ui Cards */}
+        {/* Deals Grid using Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {HOT_DEALS.map((deal) => {
             const oldPrice = deal.oldPriceUSD || 200;
@@ -54,10 +48,14 @@ export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = '
             const badgeText = lang === 'ru' ? (deal.badgeRu || deal.badgeUz) : lang === 'en' ? (deal.badgeEn || deal.badgeUz) : deal.badgeUz;
             const inclusions = lang === 'ru' ? deal.includesRu : lang === 'en' ? deal.includesEn : deal.includesUz;
 
+            const transportText = deal.transportType === 'plane'
+              ? (lang === 'ru' ? 'Прямой авиарейс' : lang === 'en' ? 'Direct Domestic Flight' : 'To\'g\'ridan-to\'g\'ri Samolyot Reysi')
+              : (lang === 'ru' ? 'Комфортабельный автобус' : lang === 'en' ? 'Tourist Bus / Coach' : 'Qulay Sayyohlik Avtobusi');
+
             return (
               <Card 
                 key={deal.id}
-                className="overflow-hidden flex flex-col justify-between group hover:shadow-xl hover:border-[#10b981]/50 transition-all duration-300 hover:-translate-y-1.5"
+                className="overflow-hidden flex flex-col justify-between group hover:shadow-xl hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-1.5 bg-white border border-slate-200"
               >
                 <div>
                   {/* Photo & Badges */}
@@ -69,14 +67,14 @@ export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = '
                     />
                     
                     <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-                      <Badge variant="emerald" className="shadow-md flex items-center gap-1">
+                      <Badge className="bg-amber-500 text-white font-black text-[11px] shadow-md flex items-center gap-1">
                         <Flame className="w-3.5 h-3.5" />
                         <span>{badgeText}</span>
                       </Badge>
                     </div>
 
                     <div className="absolute bottom-3 right-3">
-                      <Badge variant="secondary" className="bg-white/95 backdrop-blur-md shadow-xs font-bold text-slate-900">
+                      <Badge variant="secondary" className="bg-white/95 backdrop-blur-md shadow-xs font-bold text-slate-900 text-xs">
                         {duration}
                       </Badge>
                     </div>
@@ -86,11 +84,11 @@ export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = '
                   <CardHeader className="p-5 pb-3 space-y-1.5">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
                       {deal.transportType === 'plane' ? (
-                        <Plane className="w-3.5 h-3.5 text-[#10b981] transform -rotate-45" />
+                        <Plane className="w-3.5 h-3.5 text-emerald-600 transform -rotate-45" />
                       ) : (
-                        <Bus className="w-3.5 h-3.5 text-[#10b981]" />
+                        <Bus className="w-3.5 h-3.5 text-emerald-600" />
                       )}
-                      <span>{deal.transportType === 'plane' ? 'To\'g\'ridan-to\'g\'ri Samolyot Reysi' : 'Qulay Sayyohlik Avtobusi'}</span>
+                      <span>{transportText}</span>
                     </div>
 
                     <CardTitle className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-2">
@@ -104,7 +102,7 @@ export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = '
                       <div className="space-y-1.5 pt-1">
                         {inclusions.slice(0, 3).map((item, idx) => (
                           <div key={idx} className="flex items-center gap-2 text-xs text-slate-600">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] shrink-0"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
                             <span className="truncate">{item}</span>
                           </div>
                         ))}
@@ -119,7 +117,7 @@ export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = '
                     <span className="text-[11px] text-slate-400 line-through block font-medium truncate">
                       {formatPrice(oldPrice)}
                     </span>
-                    <div className="text-sm sm:text-base font-black text-[#10b981] truncate">
+                    <div className="text-sm sm:text-base font-black text-emerald-600 truncate">
                       {formatPrice(newPrice)}
                     </div>
                   </div>
@@ -127,11 +125,11 @@ export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = '
                   <button
                     onClick={() => onOpenBooking({
                       country: dealTitle,
-                      flightClass: deal.transportType === 'plane' ? 'To\'g\'ridan-to\'g\'ri Samolyot' : 'Qulay Sayyohlik Avtobusi',
-                      hotelStar: '4★ Mehmonxona (4 kecha) + 3 mahal ovqat',
+                      flightClass: transportText,
+                      hotelStar: lang === 'ru' ? '4★ Отель (4 ночи) + 3-раз. питание' : lang === 'en' ? '4★ Hotel (4 nights) + 3 meals' : '4★ Mehmonxona (4 kecha) + 3 mahal ovqat',
                       priceUSD: newPrice
                     })}
-                    className="py-2.5 px-3.5 rounded-xl btn-primary-emerald font-bold text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all shrink-0 cursor-pointer"
+                    className="py-2.5 px-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow-md flex items-center gap-1.5 hover:scale-105 transition-all shrink-0 cursor-pointer"
                   >
                     <span>{t.deals.bookBtn}</span>
                     <ArrowRight className="w-3.5 h-3.5" />

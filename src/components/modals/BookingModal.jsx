@@ -52,34 +52,39 @@ export default function BookingModal({
         }
       }
     }
-    setIsConfirmed(false);
-  }, [bookingData, isOpen]);
+  }, [bookingData]);
 
   if (!isOpen) return null;
 
-  const currentCountry = COUNTRIES.find(c => c.id === selectedRegionId) || COUNTRIES[0];
-  const countryName = lang === 'ru' ? (currentCountry.nameRu || currentCountry.name) : lang === 'en' ? (currentCountry.nameEn || currentCountry.name) : currentCountry.name;
+  // Selected country details
+  const activeCountry = COUNTRIES.find(c => c.id === selectedRegionId) || COUNTRIES[0];
+  const countryName = lang === 'ru' ? (activeCountry.nameRu || activeCountry.name) : lang === 'en' ? (activeCountry.nameEn || activeCountry.name) : activeCountry.name;
 
-  const busPkg = currentCountry.packages ? currentCountry.packages.bus : null;
-  const planePkg = currentCountry.packages ? currentCountry.packages.plane : null;
+  // Safe pricing calculation
+  const busPkg = activeCountry.packages?.bus;
+  const planePkg = activeCountry.packages?.plane;
+  const busPrice = busPkg?.priceUSD || activeCountry.basePriceUSD || 190;
+  const planePrice = planePkg?.priceUSD || (activeCountry.basePriceUSD + 60) || 250;
 
-  const busPrice = busPkg ? busPkg.priceUSD : (currentCountry.basePriceUSD || 190);
-  const planePrice = planePkg ? planePkg.priceUSD : (busPrice + 70);
-
-  const currentPkg = modalTransport === 'plane' ? planePkg : busPkg;
   const currentPrice = modalTransport === 'plane' ? planePrice : busPrice;
   const totalPriceUSD = currentPrice * passengers;
 
-  const durationText = currentPkg 
-    ? (lang === 'ru' ? currentPkg.durationRu : lang === 'en' ? currentPkg.durationEn : currentPkg.durationUz) 
-    : currentCountry.flightDurationUz;
-  const transportLabel = currentPkg 
-    ? (lang === 'ru' ? currentPkg.transportLabelRu : lang === 'en' ? currentPkg.transportLabelEn : currentPkg.transportLabelUz) 
-    : (modalTransport === 'plane' ? 'Samolyot' : 'Avtobus');
+  // Format Price with defensive Number conversion
+  const formatPrice = (usdAmount) => {
+    const num = Number(usdAmount) || 0;
+    const som = (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
+    const usd = '$' + num.toLocaleString('en-US');
+    return `${som} (${usd})`;
+  };
 
-  // Format 9 digits nicely: e.g. 90 123 45 67
-  const formatDisplayDigits = (val) => {
-    let digits = val.replace(/\D/g, '').slice(0, 9);
+  const handlePhoneInput = (e) => {
+    const rawDigits = e.target.value.replace(/\D/g, '');
+    const cleanDigits = rawDigits.startsWith('998') ? rawDigits.slice(3) : rawDigits;
+    setPhoneDigits(cleanDigits.slice(0, 9));
+  };
+
+  const formatDisplayDigits = (digits) => {
+    if (!digits) return '';
     let res = '';
     if (digits.length > 0) res += digits.slice(0, 2);
     if (digits.length > 2) res += ' ' + digits.slice(2, 5);
@@ -88,24 +93,8 @@ export default function BookingModal({
     return res;
   };
 
-  const handlePhoneInput = (e) => {
-    const raw = e.target.value.replace(/\D/g, '');
-    setPhoneDigits(raw.slice(0, 9));
-  };
-
-  const formatPrice = (usdAmount) => {
-    const num = Number(usdAmount) || 0;
-    const som = (num * EXCHANGE_RATE).toLocaleString('uz-UZ') + ' so\'m';
-    const usd = '$' + num.toLocaleString('en-US');
-    return `${som} (${usd})`;
-  };
-
   const handleConfirmBooking = (e) => {
     e.preventDefault();
-    if (phoneDigits.length < 9) {
-      alert(lang === 'ru' ? 'Пожалуйста, введите 9-значный номер телефона полностью' : lang === 'en' ? 'Please enter your 9-digit phone number' : 'Iltimos, 9 xonali telefon raqamingizni to\'liq kiriting');
-      return;
-    }
     setIsConfirmed(true);
   };
 
@@ -113,46 +102,52 @@ export default function BookingModal({
     window.print();
   };
 
+  const selectedPkg = modalTransport === 'plane' ? planePkg : busPkg;
+  const durationText = selectedPkg 
+    ? (lang === 'ru' ? selectedPkg.durationRu : lang === 'en' ? selectedPkg.durationEn : selectedPkg.durationUz)
+    : (modalTransport === 'plane' 
+      ? (lang === 'ru' ? '✈️ Прямой авиаперелет: 50 минут' : lang === 'en' ? '✈️ Direct Flight: 50 min' : '✈️ To\'g\'ridan-to\'g\'ri Samolyot: 50 daqiqa')
+      : (lang === 'ru' ? '🚌 Комфортабельный автобус: 4-5 часов' : lang === 'en' ? '🚌 Tourist Coach: 4-5 hours' : '🚌 Qulay Sayyohlik Avtobusi: 4-5 soat'));
+
+  const transportLabel = modalTransport === 'plane'
+    ? (lang === 'ru' ? '✈️ Авиаперелет' : lang === 'en' ? '✈️ Flight Tour' : '✈️ Samolyot Reysi')
+    : (lang === 'ru' ? '🚌 Автобусный тур' : lang === 'en' ? '🚌 Coach Tour' : '🚌 Sayyohlik Avtobusi');
+
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-md modal-backdrop-animate overscroll-none touch-none"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
-      onTouchMove={(e) => {
-        if (e.target === e.currentTarget) {
-          e.preventDefault();
-        }
-      }}
     >
       <div 
-        className="relative w-full max-w-2xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col modal-card-animate"
+        className="relative w-full max-w-2xl bg-white rounded-3xl sm:rounded-[32px] shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         
-        {/* Modal Top Header */}
-        <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50 shrink-0">
+        {/* Header */}
+        <div className="px-5 py-4 sm:px-7 sm:py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#10b981] text-white flex items-center justify-center font-bold shadow-md">
-              {modalTransport === 'plane' ? <Plane className="w-5 h-5 transform -rotate-45" /> : <Bus className="w-5 h-5" />}
+            <div className="w-10 h-10 rounded-2xl bg-[#10b981] text-white flex items-center justify-center font-black shadow-md">
+              {modalTransport === 'plane' ? <Plane className="w-5 h-5" /> : <Bus className="w-5 h-5" />}
             </div>
             <div>
-              <div className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase">
-                {modalTransport === 'plane' ? '✈️ SAMOLYOT PARVOZI' : '🚌 AVTOBUS & GAZEL TURI'} • 5 KUN ALL-INCLUSIVE
-              </div>
-              <h3 className="text-base sm:text-lg font-black text-slate-900">
-                {isConfirmed ? t.bookingModal.voucherTitle : t.bookingModal.headerTitle}
+              <h3 className="text-lg font-black text-slate-900 leading-tight">
+                {isConfirmed ? (lang === 'ru' ? 'Электронный Ваучер Туриста' : lang === 'en' ? 'Digital Tourist Voucher' : 'Rasmiy Sayohat Chiptasi') : (lang === 'ru' ? 'Бронирование Тура' : lang === 'en' ? 'Tour Booking' : 'Sayohatni Bron Qilish')}
               </h3>
+              <p className="text-xs text-slate-500 font-medium">
+                {activeCountry.flag} {countryName} • {lang === 'ru' ? '5 Дней «Все Включено»' : lang === 'en' ? '5 Days All-Inclusive' : '5 Kunlik VIP Paket'}
+              </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-slate-200 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
+            className="p-2 rounded-xl bg-white text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors border border-slate-200 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Scrollable Content Body with overscroll-contain */}
+        {/* Scrollable Content Body */}
         <div 
           className="p-5 sm:p-7 overflow-y-auto space-y-5 modal-scrollable overscroll-contain"
           onTouchMove={(e) => e.stopPropagation()}
@@ -176,7 +171,7 @@ export default function BookingModal({
                     </span>
                     <h4 className="text-xl sm:text-2xl font-black text-white">{countryName}</h4>
                     <p className="text-xs text-slate-300">
-                      {modalTransport === 'plane' ? '✈️ Samolyot Parvozi' : '🚌 Sayyohlik Avtobusi'} • 5 Kun / 4 Kecha All-Inclusive
+                      {transportLabel} • {lang === 'ru' ? '5 Дней / 4 Ночи All-Inclusive' : lang === 'en' ? '5 Days / 4 Nights All-Inclusive' : '5 Kun / 4 Kecha All-Inclusive'}
                     </p>
                   </div>
                   <div className="text-right">
@@ -191,7 +186,7 @@ export default function BookingModal({
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mb-4">
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.passenger}</span>
-                    <span className="font-bold text-white truncate block">{fullName || 'Sayohatchi'}</span>
+                    <span className="font-bold text-white truncate block">{fullName || (lang === 'ru' ? 'Турист' : lang === 'en' ? 'Traveler' : 'Sayohatchi')}</span>
                   </div>
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.travelDate}</span>
@@ -199,7 +194,7 @@ export default function BookingModal({
                   </div>
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.peopleCount}</span>
-                    <span className="font-bold text-white">{passengers} kishi</span>
+                    <span className="font-bold text-white">{passengers} {lang === 'ru' ? 'чел.' : lang === 'en' ? 'pers.' : 'kishi'}</span>
                   </div>
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
                     <span className="text-slate-400 text-[10px] uppercase block font-semibold">{t.bookingModal.totalPrice}</span>
@@ -209,11 +204,13 @@ export default function BookingModal({
 
                 {/* Inclusions Strip on Ticket */}
                 <div className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/60 text-[11px] text-slate-300 space-y-1">
-                  <div className="font-bold text-[#a7f3d0]">✓ Paketga kiritilgan xizmatlar:</div>
+                  <div className="font-bold text-[#a7f3d0]">
+                    {lang === 'ru' ? '✓ Включено в тур:' : lang === 'en' ? '✓ Included Services:' : '✓ Paketga kiritilgan xizmatlar:'}
+                  </div>
                   <div>• {durationText}</div>
-                  <div>• 4 kecha 4★ hashamatli mehmonxonada tunash</div>
-                  <div>• 5 kun davomida 3 mahal to'liq milliy taomlar</div>
-                  <div>• Barcha muzey va tarixiy obidalarga kirish chiptalari & shaxsiy gid</div>
+                  <div>• {lang === 'ru' ? '4 ночи в 4★ отеле' : lang === 'en' ? '4 nights in 4★ hotel' : '4 kecha 4★ hashamatli mehmonxonada tunash'}</div>
+                  <div>• {lang === 'ru' ? '3-разовое национальное питание на 5 дней' : lang === 'en' ? '3 full daily meals for 5 days' : '5 kun davomida 3 mahal to\'liq milliy taomlar'}</div>
+                  <div>• {lang === 'ru' ? 'Входные билеты во все музеи и личный гид' : lang === 'en' ? 'All museum entry tickets and dedicated guide' : 'Barcha muzey va tarixiy obidalarga kirish chiptalari & shaxsiy gid'}</div>
                 </div>
 
                 {/* Perforated Barcode Area */}
@@ -259,15 +256,17 @@ export default function BookingModal({
 
             </div>
           ) : (
-            /* Complete Booking Form with Interactive Transport Cards & Region Selection Inside Modal */
+            /* Complete Booking Form */
             <form onSubmit={handleConfirmBooking} className="space-y-4">
               
-              {/* 1. SUPER VISUAL 2-CARD TRANSPORT SELECTOR */}
+              {/* 1. VISUAL 2-CARD TRANSPORT SELECTOR */}
               <div className="space-y-2">
                 <label className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center justify-between">
-                  <span>1. Qaysi Transportda Borasiz? (O'zingiz Tanlang):</span>
+                  <span>{lang === 'ru' ? '1. Выберите Вид Транспорта:' : lang === 'en' ? '1. Choose Transport Option:' : '1. Qaysi Transportda Borasiz?:'}</span>
                   <span className="text-[11px] text-[#10b981] font-bold">
-                    {modalTransport === 'plane' ? '✈️ Samolyot Tanlandi' : '🚌 Avtobus Tanlandi'}
+                    {modalTransport === 'plane' 
+                      ? (lang === 'ru' ? '✈️ Выбран Самолет' : lang === 'en' ? '✈️ Flight Selected' : '✈️ Samolyot Tanlandi')
+                      : (lang === 'ru' ? '🚌 Выбран Автобус' : lang === 'en' ? '🚌 Coach Selected' : '🚌 Avtobus Tanlandi')}
                   </span>
                 </label>
                 
@@ -288,7 +287,9 @@ export default function BookingModal({
                           <Bus className="w-5 h-5" />
                         </div>
                         <div>
-                          <div className="font-black text-sm text-slate-900">Qulay Avtobus / Gazel</div>
+                          <div className="font-black text-sm text-slate-900">
+                            {lang === 'ru' ? 'Комфортабельный Автобус' : lang === 'en' ? 'Comfortable Tourist Coach' : 'Qulay Sayyohlik Avtobusi'}
+                          </div>
                           <div className="text-[11px] text-slate-600 font-medium">
                             {busPkg ? (lang === 'ru' ? busPkg.durationRu : lang === 'en' ? busPkg.durationEn : busPkg.durationUz) : 'Komfort avtotur'}
                           </div>
@@ -300,7 +301,9 @@ export default function BookingModal({
                     </div>
                     
                     <div className="mt-3 pt-2.5 border-t border-slate-200/80 flex items-baseline justify-between">
-                      <span className="text-[10px] text-slate-500 font-bold uppercase">1 kishi narxi:</span>
+                      <span className="text-[10px] text-slate-500 font-bold uppercase">
+                        {lang === 'ru' ? 'Цена за 1 чел:' : lang === 'en' ? 'Price per person:' : '1 kishi narxi:'}
+                      </span>
                       <span className="text-sm font-black text-[#10b981]">{formatPrice(busPrice)}</span>
                     </div>
                   </div>
@@ -320,7 +323,9 @@ export default function BookingModal({
                           <Plane className="w-5 h-5 transform -rotate-45" />
                         </div>
                         <div>
-                          <div className="font-black text-sm text-slate-900">Samolyot Parvozi</div>
+                          <div className="font-black text-sm text-slate-900">
+                            {lang === 'ru' ? 'Прямой Авиаперелет' : lang === 'en' ? 'Direct Domestic Flight' : 'To\'g\'ridan-to\'g\'ri Samolyot'}
+                          </div>
                           <div className="text-[11px] text-slate-600 font-medium">
                             {planePkg ? (lang === 'ru' ? planePkg.durationRu : lang === 'en' ? planePkg.durationEn : planePkg.durationUz) : 'Tezkor parvoz'}
                           </div>
@@ -332,7 +337,9 @@ export default function BookingModal({
                     </div>
                     
                     <div className="mt-3 pt-2.5 border-t border-slate-200/80 flex items-baseline justify-between">
-                      <span className="text-[10px] text-slate-500 font-bold uppercase">1 kishi narxi:</span>
+                      <span className="text-[10px] text-slate-500 font-bold uppercase">
+                        {lang === 'ru' ? 'Цена за 1 чел:' : lang === 'en' ? 'Price per person:' : '1 kishi narxi:'}
+                      </span>
                       <span className="text-sm font-black text-[#10b981]">{formatPrice(planePrice)}</span>
                     </div>
                   </div>
@@ -344,7 +351,7 @@ export default function BookingModal({
               <div className="space-y-1.5">
                 <label className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#10b981]" />
-                  <span>2. Sayohat Qilinadigan Viloyat:</span>
+                  <span>{lang === 'ru' ? '2. Регион Путешествия:' : lang === 'en' ? '2. Travel Destination:' : '2. Sayohat Qilinadigan Viloyat:'}</span>
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {COUNTRIES.map(c => {
@@ -374,7 +381,7 @@ export default function BookingModal({
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
-                      5 KUN / 4 KECHA TO'LIQ PAKET (ALL-INCLUSIVE)
+                      {lang === 'ru' ? '5 ДНЕЙ / 4 НОЧИ «ВСЕ ВКЛЮЧЕНО»' : lang === 'en' ? '5 DAYS / 4 NIGHTS ALL-INCLUSIVE' : "5 KUN / 4 KECHA TO'LIQ PAKET (ALL-INCLUSIVE)"}
                     </div>
                     <div className="text-base font-extrabold text-white">
                       {countryName} ({transportLabel})
@@ -384,7 +391,9 @@ export default function BookingModal({
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[10px] text-slate-400 uppercase font-semibold">1 Kishi Uchun:</div>
+                    <div className="text-[10px] text-slate-400 uppercase font-semibold">
+                      {lang === 'ru' ? 'За 1 человека:' : lang === 'en' ? 'Per Person:' : '1 Kishi Uchun:'}
+                    </div>
                     <div className="text-lg sm:text-xl font-black text-[#10b981]">
                       {formatPrice(currentPrice)}
                     </div>
@@ -394,19 +403,19 @@ export default function BookingModal({
                 <div className="pt-2 border-t border-slate-800 grid grid-cols-2 gap-2 text-[11px] text-slate-300">
                   <div className="flex items-center gap-1">
                     <Check className="w-3.5 h-3.5 text-[#10b981]" />
-                    <span>4★ Mehmonxona (4 kecha)</span>
+                    <span>{lang === 'ru' ? '4★ Отель (4 ночи)' : lang === 'en' ? '4★ Hotel (4 nights)' : '4★ Mehmonxona (4 kecha)'}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Check className="w-3.5 h-3.5 text-[#10b981]" />
-                    <span>5 kun 3 mahal ovqat</span>
+                    <span>{lang === 'ru' ? '5 дней 3-раз. питание' : lang === 'en' ? '5 days 3 meals daily' : '5 kun 3 mahal ovqat'}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Check className="w-3.5 h-3.5 text-[#10b981]" />
-                    <span>Muzey kirish chiptalari</span>
+                    <span>{lang === 'ru' ? 'Все входные билеты' : lang === 'en' ? 'All museum tickets' : 'Muzey kirish chiptalari'}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Check className="w-3.5 h-3.5 text-[#10b981]" />
-                    <span>Shaxsiy litsenziyali gid</span>
+                    <span>{lang === 'ru' ? 'Персональный гид' : lang === 'en' ? 'Licensed tour guide' : 'Shaxsiy litsenziyali gid'}</span>
                   </div>
                 </div>
               </div>
@@ -448,7 +457,7 @@ export default function BookingModal({
                 </div>
               </div>
 
-                {/* 4. DATE AND CUSTOM LUXURY PASSENGERS STEPPER */}
+              {/* 5. DATE AND CUSTOM LUXURY PASSENGERS STEPPER */}
               <div className="space-y-3 pt-1">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
@@ -463,7 +472,7 @@ export default function BookingModal({
                   />
                 </div>
 
-                {/* Custom Luxury Passengers Counter & Presets */}
+                {/* Passengers Counter & Presets */}
                 <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-xs font-black text-slate-900 uppercase tracking-wider">
@@ -471,7 +480,7 @@ export default function BookingModal({
                       <span>{lang === 'ru' ? 'Количество Путешественников:' : lang === 'en' ? 'Number of Travelers:' : 'Sayohatchilar Soni:'}</span>
                     </div>
                     <div className="text-xs font-black text-[#10b981]">
-                      Jami: {formatPrice(totalPriceUSD)}
+                      {lang === 'ru' ? 'Всего:' : lang === 'en' ? 'Total:' : 'Jami:'} {formatPrice(totalPriceUSD)}
                     </div>
                   </div>
 
@@ -488,7 +497,7 @@ export default function BookingModal({
 
                     <div className="text-center">
                       <span className="text-base font-black text-slate-900">
-                        {passengers} {lang === 'ru' ? 'человек' : lang === 'en' ? 'guests' : 'nafar sayohatchi'}
+                        {passengers} {lang === 'ru' ? 'чел.' : lang === 'en' ? 'guests' : 'nafar sayohatchi'}
                       </span>
                       <span className="text-[11px] text-slate-400 block font-medium">
                         ({passengers} × {formatPrice(currentPrice)})
@@ -525,7 +534,7 @@ export default function BookingModal({
                 </div>
               </div>
 
-              {/* 5. CONFIRM BUTTON */}
+              {/* 6. CONFIRM BUTTON */}
               <div className="pt-2">
                 <button
                   type="submit"

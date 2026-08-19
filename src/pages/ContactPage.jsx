@@ -28,27 +28,27 @@ export default function ContactPage() {
 
   const offices = [
     {
-      city: 'Toshkent shahri (Bosh Ofis)',
-      address: 'Amir Temur shoh ko\'chasi, 107-B, Orient Business Center, 4-qavat',
+      city: lang === 'ru' ? 'г. Ташкент (Главный Офис)' : lang === 'en' ? 'Tashkent City (Head Office)' : 'Toshkent shahri (Bosh Ofis)',
+      address: lang === 'ru' ? 'Проспект Амира Темура, 107-B, Orient Business Center, 4 этаж' : lang === 'en' ? 'Amir Temur Ave, 107-B, Orient Business Center, 4th Floor' : 'Amir Temur shoh ko\'chasi, 107-B, Orient Business Center, 4-qavat',
       phone: CONTACT_INFO.phone,
-      hours: 'Dush - Shan: 09:00 - 20:00'
+      hours: lang === 'ru' ? 'Пн - Сб: 09:00 - 20:00' : lang === 'en' ? 'Mon - Sat: 09:00 - 20:00' : 'Dush - Shan: 09:00 - 20:00'
     },
     {
-      city: 'Samarqand shahri (Filial)',
-      address: 'Registon ko\'chasi, 45, Silk Road Plaza, 2-qavat',
+      city: lang === 'ru' ? 'г. Самарканд (Филиал)' : lang === 'en' ? 'Samarkand Branch' : 'Samarqand shahri (Filial)',
+      address: lang === 'ru' ? 'Улица Регистан, 45, Silk Road Plaza, 2 этаж' : lang === 'en' ? 'Registan St, 45, Silk Road Plaza, 2nd Floor' : 'Registon ko\'chasi, 45, Silk Road Plaza, 2-qavat',
       phone: '+998 (90) 821-33-22',
-      hours: 'Har kuni: 09:00 - 19:00'
+      hours: lang === 'ru' ? 'Ежедневно: 09:00 - 19:00' : lang === 'en' ? 'Daily: 09:00 - 19:00' : 'Har kuni: 09:00 - 19:00'
     },
     {
-      city: 'Buxoro shahri (Filial)',
-      address: 'Naqshbandiy ko\'chasi, 12, Eski Shahar markazi',
+      city: lang === 'ru' ? 'г. Бухара (Филиал)' : lang === 'en' ? 'Bukhara Branch' : 'Buxoro shahri (Filial)',
+      address: lang === 'ru' ? 'Улица Накшбанди, 12, Старый Город' : lang === 'en' ? 'Naqshbandi St, 12, Old City Center' : 'Naqshbandiy ko\'chasi, 12, Eski Shahar markazi',
       phone: '+998 (90) 821-33-22',
-      hours: 'Har kuni: 09:00 - 19:00'
+      hours: lang === 'ru' ? 'Ежедневно: 09:00 - 19:00' : lang === 'en' ? 'Daily: 09:00 - 19:00' : 'Har kuni: 09:00 - 19:00'
     }
   ];
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 space-y-16">
+    <div className="pt-28 sm:pt-36 pb-20 space-y-16 bg-[#fafbfc]">
       
       {/* Header */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,13 +57,13 @@ export default function ContactPage() {
             {lang === 'ru' ? 'Свяжитесь с Нами' : lang === 'en' ? 'Contact & Locations' : "Aloqa va Ofis Manzillari"}
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            {lang === 'ru' ? 'Мы Всегда на Связи 24/7' : lang === 'en' ? 'We are always at your service 24/7' : "Biz Doim Siz Bilan Aloqadamiz"}
+            {lang === 'ru' ? 'Мы Всегда на Связи 24/7' : lang === 'en' ? 'We Are Always Here For You 24/7' : "Biz Doim Siz Bilan Aloqadamiz"}
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 font-medium">
+          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
             {lang === 'ru'
-              ? 'Позвоните нам, напишите в мессенджеры или посетите наши офисы в Ташкенте и Самарканде.'
+              ? 'Позвоните нам, напишите в мессенджеры или посетите наши офисы в Ташкенте, Самарканде и Бухаре.'
               : lang === 'en'
-              ? 'Call us, reach out on messengers, or visit our branches in Tashkent and Samarkand.'
+              ? 'Call us, reach out on messengers, or visit our welcoming branches in Tashkent, Samarkand, and Bukhara.'
               : "Savollaringiz bormi yoki tur band qilmoqchimisiz? Bizga qo'ng'iroq qiling yoki to'g'ridan-to'g'ri xabar yozing."}
           </p>
         </div>
@@ -75,32 +75,36 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
               <h2 className="text-xl font-black text-white">
-                Tezkor Ma'lumotlar
+                {lang === 'ru' ? 'Прямые Контакты' : lang === 'en' ? 'Direct Contacts' : 'Tezkor Ma\'lumotlar'}
               </h2>
 
               <div className="space-y-4 text-xs sm:text-sm">
                 <a
                   href={`tel:${CONTACT_INFO.phoneClean}`}
-                  className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-emerald-500/20 border border-white/10 transition-all text-slate-200 hover:text-emerald-400 group"
+                  className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-emerald-500/20 border border-white/10 transition-all text-slate-200 hover:text-emerald-400 group cursor-pointer"
                 >
                   <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 block">Qo'ng'iroq uchun:</span>
+                    <span className="text-[10px] text-slate-400 block">
+                      {lang === 'ru' ? 'Для звонков:' : lang === 'en' ? 'Phone Line:' : 'Qo\'ng\'iroq uchun:'}
+                    </span>
                     <span className="font-bold text-white text-sm font-mono">{CONTACT_INFO.phone}</span>
                   </div>
                 </a>
 
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-emerald-500/20 border border-white/10 transition-all text-slate-200 hover:text-emerald-400 group"
+                  className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-emerald-500/20 border border-white/10 transition-all text-slate-200 hover:text-emerald-400 group cursor-pointer"
                 >
                   <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 block">Elektron pochta:</span>
+                    <span className="text-[10px] text-slate-400 block">
+                      {lang === 'ru' ? 'Электронная почта:' : lang === 'en' ? 'Email Address:' : 'Elektron pochta:'}
+                    </span>
                     <span className="font-bold text-white">{CONTACT_INFO.email}</span>
                   </div>
                 </a>
@@ -110,8 +114,12 @@ export default function ContactPage() {
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 block">Ish vaqti:</span>
-                    <span className="font-bold text-white">Dushanba - Yakshanba (24/7 Onlayn Qabul)</span>
+                    <span className="text-[10px] text-slate-400 block">
+                      {lang === 'ru' ? 'Режим работы:' : lang === 'en' ? 'Working Hours:' : 'Ish vaqti:'}
+                    </span>
+                    <span className="font-bold text-white">
+                      {lang === 'ru' ? 'Пн - Вс (24/7 Онлайн Прием)' : lang === 'en' ? 'Mon - Sun (24/7 Online Support)' : 'Dushanba - Yakshanba (24/7 Onlayn Qabul)'}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -119,14 +127,14 @@ export default function ContactPage() {
               {/* Instant Messenger buttons */}
               <div className="pt-2">
                 <span className="text-xs text-slate-400 font-bold block mb-2">
-                  Messangerlar orqali tezkor bog'lanish:
+                  {lang === 'ru' ? 'Быстрая связь в мессенджерах:' : lang === 'en' ? 'Instant messaging channels:' : 'Messangerlar orqali tezkor bog\'lanish:'}
                 </span>
                 <div className="grid grid-cols-2 gap-2">
                   <a
                     href={CONTACT_INFO.telegram}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-3 rounded-xl bg-[#229ED9] hover:bg-[#1a8bc4] text-white flex items-center justify-center gap-2 text-xs font-bold transition-all shadow-md"
+                    className="p-3 rounded-xl bg-[#229ED9] hover:bg-[#1a8bc4] text-white flex items-center justify-center gap-2 text-xs font-bold transition-all shadow-md cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
                     <span>Telegram</span>
@@ -136,7 +144,7 @@ export default function ContactPage() {
                     href={CONTACT_INFO.whatsapp}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-3 rounded-xl bg-[#25D366] hover:bg-[#1eb956] text-white flex items-center justify-center gap-2 text-xs font-bold transition-all shadow-md"
+                    className="p-3 rounded-xl bg-[#25D366] hover:bg-[#1eb956] text-white flex items-center justify-center gap-2 text-xs font-bold transition-all shadow-md cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>WhatsApp</span>
@@ -149,7 +157,7 @@ export default function ContactPage() {
             {/* Office Locations */}
             <div className="space-y-3">
               <h3 className="text-sm font-black uppercase tracking-wider text-slate-900 px-1">
-                Filiallarimiz:
+                {lang === 'ru' ? 'Наши Офисы:' : lang === 'en' ? 'Our Branches:' : 'Filiallarimiz:'}
               </h3>
               {offices.map((off, idx) => (
                 <div key={idx} className="p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-1">
@@ -170,10 +178,14 @@ export default function ContactPage() {
           <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl space-y-6">
             <div>
               <h2 className="text-2xl font-black text-slate-900">
-                Savol yoki Buyurtma Qoldiring
+                {lang === 'ru' ? 'Оставьте Заявку или Задайте Вопрос' : lang === 'en' ? 'Leave an Inquiry or Booking Request' : 'Savol yoki Buyurtma Qoldiring'}
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                Formani to'ldiring, menejerimiz 5 daqiqa ichida siz bilan bog'lanadi.
+                {lang === 'ru'
+                  ? 'Заполните форму, и наш менеджер свяжется с вами в течение 5 минут.'
+                  : lang === 'en'
+                  ? 'Fill out the form and our manager will contact you within 5 minutes.'
+                  : 'Formani to\'ldiring, menejerimiz 5 daqiqa ichida siz bilan bog\'lanadi.'}
               </p>
             </div>
 
@@ -181,24 +193,24 @@ export default function ContactPage() {
               <div className="p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
                 <h3 className="text-lg font-bold text-slate-900">
-                  Xabaringiz muvaffaqiyatli qabul qilindi!
+                  {lang === 'ru' ? 'Ваша заявка успешно принята!' : lang === 'en' ? 'Your message has been sent successfully!' : 'Xabaringiz muvaffaqiyatli qabul qilindi!'}
                 </h3>
                 <p className="text-xs text-slate-600 font-medium">
-                  Tez orada operatorimiz siz bilan bog'lanib, barcha ma'lumotlarni taqdim etadi.
+                  {lang === 'ru' ? 'Наш оператор свяжется с вами в ближайшее время.' : lang === 'en' ? 'Our tour specialist will get in touch with you shortly.' : 'Tez orada operatorimiz siz bilan bog\'lanib, barcha ma\'lumotlarni taqdim etadi.'}
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="text-xs font-bold text-slate-700 block mb-1.5">
-                    Ismingiz:
+                    {lang === 'ru' ? 'Ваше Имя:' : lang === 'en' ? 'Full Name:' : 'Ismingiz:'}
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Masalan: Sardor Alimov"
+                    placeholder={lang === 'ru' ? 'Например: Сардор Алимов' : lang === 'en' ? 'E.g. Sardor Alimov' : 'Masalan: Sardor Alimov'}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
                   />
                 </div>
@@ -206,7 +218,7 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1.5">
-                      Telefon raqamingiz:
+                      {lang === 'ru' ? 'Номер телефона:' : lang === 'en' ? 'Phone Number:' : 'Telefon raqamingiz:'}
                     </label>
                     <input
                       type="tel"
@@ -220,34 +232,34 @@ export default function ContactPage() {
 
                   <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1.5">
-                      Qiziqtirgan Viloyat:
+                      {lang === 'ru' ? 'Интересующий Регион:' : lang === 'en' ? 'Destination of Interest:' : 'Qiziqtirgan Viloyat:'}
                     </label>
                     <select
                       value={formData.region}
                       onChange={(e) => setFormData({ ...formData, region: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all cursor-pointer"
                     >
-                      <option value="samarkand">Samarqand Viloyati</option>
-                      <option value="bukhara">Buxoro Viloyati</option>
-                      <option value="khiva">Xorazm / Xiva</option>
-                      <option value="zaamin">Jizzax / Zomin</option>
-                      <option value="termez">Surxondaryo / Termiz</option>
-                      <option value="shakhrisabz">Qashqadaryo / Shahrisabz</option>
-                      <option value="fergana">Farg'ona Vodiysi</option>
-                      <option value="karakalpakstan">Qoraqalpog'iston / Nukus</option>
+                      <option value="samarkand">{lang === 'ru' ? 'Самарканд' : lang === 'en' ? 'Samarkand' : 'Samarqand Viloyati'}</option>
+                      <option value="bukhara">{lang === 'ru' ? 'Бухара' : lang === 'en' ? 'Bukhara' : 'Buxoro Viloyati'}</option>
+                      <option value="khiva">{lang === 'ru' ? 'Хорезм / Хива' : lang === 'en' ? 'Khorezm / Khiva' : 'Xorazm / Xiva'}</option>
+                      <option value="zaamin">{lang === 'ru' ? 'Джизак / Заамин' : lang === 'en' ? 'Jizzakh / Zaamin' : 'Jizzax / Zomin'}</option>
+                      <option value="termez">{lang === 'ru' ? 'Сурхандарья / Термез' : lang === 'en' ? 'Surkhandarya / Termez' : 'Surxondaryo / Termez'}</option>
+                      <option value="shakhrisabz">{lang === 'ru' ? 'Кашкадарья / Шахрисабз' : lang === 'en' ? 'Kashkadarya / Shakhrisabz' : 'Qashqadaryo / Shahrisabz'}</option>
+                      <option value="fergana">{lang === 'ru' ? 'Ферганская Долина' : lang === 'en' ? 'Fergana Valley' : 'Farg\'ona Vodiysi'}</option>
+                      <option value="karakalpakstan">{lang === 'ru' ? 'Каракалпакстан / Нукус' : lang === 'en' ? 'Karakalpakstan / Nukus' : 'Qoraqalpog\'iston / Nukus'}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label className="text-xs font-bold text-slate-700 block mb-1.5">
-                    Xabaringiz yoki maxsus talablaringiz:
+                    {lang === 'ru' ? 'Ваше сообщение или пожелания:' : lang === 'en' ? 'Your Message or Tour Preferences:' : 'Xabaringiz yoki maxsus talablaringiz:'}
                   </label>
                   <textarea
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Sayohat sanasi, kishilar soni yoki boshqa savollaringiz..."
+                    placeholder={lang === 'ru' ? 'Дата поездки, количество человек или другие вопросы...' : lang === 'en' ? 'Travel dates, group size, or questions...' : 'Sayohat sanasi, kishilar soni yoki boshqa savollaringiz...'}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all resize-none"
                   ></textarea>
                 </div>
@@ -256,7 +268,7 @@ export default function ContactPage() {
                   type="submit"
                   className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-sm tracking-wide shadow-lg shadow-emerald-600/25 hover:scale-[1.01] active:scale-98 transition-all cursor-pointer"
                 >
-                  Xabarni Yuborish
+                  {lang === 'ru' ? 'Отправить Сообщение' : lang === 'en' ? 'Send Inquiry' : 'Xabarni Yuborish'}
                 </button>
               </form>
             )}

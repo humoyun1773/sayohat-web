@@ -45,7 +45,7 @@ export default function ContactModal({ isOpen, onClose, t, lang = 'uz' }) {
   const countryOptions = [
     ...COUNTRIES.map((c) => ({
       value: c.id,
-      label: lang === 'en' ? c.nameEn : c.name,
+      label: lang === 'ru' ? (c.nameRu || c.name) : lang === 'en' ? (c.nameEn || c.name) : c.name,
       flag: c.flag
     })),
     { value: 'custom', label: lang === 'ru' ? 'Другой город или область' : lang === 'en' ? 'Other Region / City' : 'Boshqa viloyat yoki shahar', flag: '🇺🇿' }

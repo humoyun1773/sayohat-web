@@ -43,7 +43,7 @@ export default function ToursPage() {
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             {lang === 'ru' ? '5-Дневные Туры по Узбекистану' : lang === 'en' ? '5-Day All-Inclusive Uzbekistan Tours' : "O'zbekiston Bo'ylab 5 Kunlik VIP Turlar"}
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 font-medium">
+          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
             {lang === 'ru' 
               ? 'Транспорт (Автобус / Самолет), 4★ отели, 3-разовое питание, входные билеты и гид включены!'
               : lang === 'en'
@@ -151,7 +151,7 @@ export default function ToursPage() {
                     <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
                       <div>
                         <span className="text-[10px] text-emerald-300 font-bold uppercase tracking-wider block">
-                          5 Kunlik VIP Paket
+                          {lang === 'ru' ? '5-Дневный VIP Пакет' : lang === 'en' ? '5-Day VIP Package' : '5 Kunlik VIP Paket'}
                         </span>
                         <span className="text-lg font-black text-white">
                           {priceDisplay}
@@ -175,11 +175,11 @@ export default function ToursPage() {
                     <div className="space-y-1.5 pt-2 border-t border-slate-100 text-xs text-slate-600">
                       <div className="flex items-center gap-2">
                         <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>Avtobus / Samolyot transporti</span>
+                        <span>{lang === 'ru' ? 'Автобус / Авиаперелет' : lang === 'en' ? 'Bus / Flight Transport' : 'Avtobus / Samolyot transporti'}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>4★ Mehmonxona + 3 mahal ovqat</span>
+                        <span>{lang === 'ru' ? '4★ Отель + 3-раз. питание' : lang === 'en' ? '4★ Hotel + 3 daily meals' : '4★ Mehmonxona + 3 mahal ovqat'}</span>
                       </div>
                     </div>
 
@@ -187,7 +187,7 @@ export default function ToursPage() {
                     <div className="grid grid-cols-2 gap-2 pt-2">
                       <Link
                         to={`/tours/${country.id}`}
-                        className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs text-center transition-colors"
+                        className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs text-center transition-colors cursor-pointer"
                       >
                         {lang === 'ru' ? 'Подробнее' : lang === 'en' ? 'Details' : "Batafsil"}
                       </Link>
@@ -199,9 +199,9 @@ export default function ToursPage() {
                           priceUSD: country.basePriceUSD,
                           transportMode: 'bus'
                         })}
-                        className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs text-center transition-colors shadow-sm cursor-pointer hover:scale-[1.02]"
+                        className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs text-center shadow-xs transition-colors cursor-pointer"
                       >
-                        {lang === 'ru' ? 'Бронь' : lang === 'en' ? 'Book' : "Bron qilish"}
+                        {lang === 'ru' ? 'Забронировать' : lang === 'en' ? 'Book Now' : "Bron Qilish"}
                       </button>
                     </div>
                   </div>

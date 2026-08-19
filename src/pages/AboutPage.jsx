@@ -12,10 +12,26 @@ export default function AboutPage() {
   const { lang, t, openContactModal } = useApp();
 
   const stats = [
-    { number: '30,000+', label: "Mamnun Sayohatchilar", desc: "5 yil davomida O'zbekiston bo'ylab xizmat ko'rsatdik" },
-    { number: '8+', label: "Asosiy Yo'nalishlar", desc: "Samarqand, Buxoro, Xiva, Termiz, Zomin va b." },
-    { number: '100%', label: "All-Inclusive Xizmat", desc: "Transport + Mehmonxona + 3 mahal ovqat + Gid" },
-    { number: '4.99 ★', label: "Mijozlar Bahosi", desc: "Eng yuqori qulaylik va xavfsizlik darajasi" },
+    { 
+      number: '30,000+', 
+      label: lang === 'ru' ? 'Довольных Туристов' : lang === 'en' ? 'Satisfied Travelers' : "Mamnun Sayohatchilar", 
+      desc: lang === 'ru' ? 'Более 5 лет организуем туры по Узбекистану' : lang === 'en' ? 'Serving travelers across Uzbekistan for 5+ years' : "5 yil davomida O'zbekiston bo'ylab xizmat ko'rsatdik" 
+    },
+    { 
+      number: '8+', 
+      label: lang === 'ru' ? 'Главных Направлений' : lang === 'en' ? 'Primary Destinations' : "Asosiy Yo'nalishlar", 
+      desc: lang === 'ru' ? 'Самарканд, Бухара, Хива, Термез, Заамин и др.' : lang === 'en' ? 'Samarkand, Bukhara, Khiva, Termez, Zaamin, etc.' : "Samarqand, Buxoro, Xiva, Termiz, Zomin va b." 
+    },
+    { 
+      number: '100%', 
+      label: lang === 'ru' ? 'Сервис «Все Включено»' : lang === 'en' ? 'All-Inclusive Care' : "All-Inclusive Xizmat", 
+      desc: lang === 'ru' ? 'Транспорт + Отель 4★ + 3-раз. питание + Гид' : lang === 'en' ? 'Transport + 4★ Hotel + 3 Meals + Guide' : "Transport + Mehmonxona + 3 mahal ovqat + Gid" 
+    },
+    { 
+      number: '4.99 ★', 
+      label: lang === 'ru' ? 'Рейтинг Доверия' : lang === 'en' ? 'Customer Rating' : "Mijozlar Bahosi", 
+      desc: lang === 'ru' ? 'Высочайший уровень комфорта и безопасности' : lang === 'en' ? 'Highest standards of comfort and safety' : "Eng yuqori qulaylik va xavfsizlik darajasi" 
+    },
   ];
 
   return (
@@ -30,13 +46,21 @@ export default function AboutPage() {
           className="text-center max-w-3xl mx-auto space-y-4"
         >
           <span className="text-xs uppercase font-black tracking-widest text-emerald-600 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200 inline-block shadow-xs">
-            Kompaniya Haqida
+            {lang === 'ru' ? 'О Компании' : lang === 'en' ? 'About Us' : 'Kompaniya Haqida'}
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            LOTOS FIELD — O'zbekiston Bo'ylab Rasmiy Sayohat Operatoringiz
+            {lang === 'ru'
+              ? 'LOTOS FIELD — Ваш Официальный Туроператор по Узбекистану'
+              : lang === 'en'
+              ? 'LOTOS FIELD — Your Official Tour Operator in Uzbekistan'
+              : "LOTOS FIELD — O'zbekiston Bo'ylab Rasmiy Sayohat Operatoringiz"}
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 font-medium">
-            Biz har bir sayohatchiga shunchaki yo'l chiptasi emas, balki qulaylik, xavfsizlik va unutilmas xotiralarga to'la 5 kunlik mukammal dam olishni taqdim etamiz.
+          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
+            {lang === 'ru'
+              ? 'Мы предоставляем не просто билеты, а полноценный 5-дневный отдых с комфортом, безопасностью и заботой в каждой детали.'
+              : lang === 'en'
+              ? 'We provide not just transportation, but complete 5-day journeys crafted with comfort, safety, and unforgettable memories.'
+              : "Biz har bir sayohatchiga shunchaki yo'l chiptasi emas, balki qulaylik, xavfsizlik va unutilmas xotiralarga to'la 5 kunlik mukammal dam olishni taqdim etamiz."}
           </p>
         </motion.div>
 
@@ -71,7 +95,7 @@ export default function AboutPage() {
         lang={lang}
       />
 
-      {/* Our Standards & Guarantees - Clean Gradient (No Background Photo) */}
+      {/* Our Standards & Guarantees - Clean Gradient */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, scale: 0.98 }}
@@ -85,40 +109,72 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
             <div className="space-y-6">
               <span className="text-xs uppercase font-black tracking-widest text-emerald-400 bg-emerald-950/80 px-3.5 py-1.5 rounded-full border border-emerald-800/80 inline-block">
-                Rasmiy Standartlar
+                {lang === 'ru' ? 'Официальные Стандарты' : lang === 'en' ? 'Official Standards' : 'Rasmiy Standartlar'}
               </span>
               <h2 className="text-2xl sm:text-4xl font-black text-white leading-tight">
-                Har Bir Sayohatimizda 100% Sifat va Xavfsizlik Kafolati
+                {lang === 'ru'
+                  ? '100% Гарантия Качества и Безопасности в Каждой Поездке'
+                  : lang === 'en'
+                  ? '100% Quality & Safety Guarantee in Every Single Tour'
+                  : 'Har Bir Sayohatimizda 100% Sifat va Xavfsizlik Kafolati'}
               </h2>
               <p className="text-sm text-slate-300 font-medium leading-relaxed">
-                LOTOS FIELD xalqaro turizm standartlariga to'liq javob beruvchi litsenziyalangan tur operator hisoblanadi. Bizning transport parkimiz muntazam texnik ko'rikdan o'tkaziladi va har bir haydovchimiz 10 yildan ortiq tajribaga ega.
+                {lang === 'ru'
+                  ? 'LOTOS FIELD — лицензированный туроператор, отвечающий высшим стандартам туризма. Наш транспортный парк проходит регулярный техосмотр, а водители имеют стаж более 10 лет.'
+                  : lang === 'en'
+                  ? 'LOTOS FIELD is a fully licensed tour operator adhering to the highest tourism standards. Our vehicles undergo strict regular technical inspections.'
+                  : "LOTOS FIELD xalqaro turizm standartlariga to'liq javob beruvchi litsenziyalangan tur operator hisoblanadi. Bizning transport parkimiz muntazam texnik ko'rikdan o'tkaziladi."}
               </p>
 
               <div className="space-y-3 text-xs sm:text-sm text-slate-200">
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>Konditsioner va Wi-Fi bilan jihozlangan lyuks sayyohlik avtobuslari</span>
+                  <span>
+                    {lang === 'ru'
+                      ? 'Люксовые автобусы с климат-контролем и Wi-Fi'
+                      : lang === 'en'
+                      ? 'Luxury coaches equipped with AC, comfortable seating & Wi-Fi'
+                      : 'Konditsioner va Wi-Fi bilan jihozlangan lyuks sayyohlik avtobuslari'}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>Tarixiy markazlarda joylashgan qulay 4★ mehmonxonalar</span>
+                  <span>
+                    {lang === 'ru'
+                      ? 'Уютные 4★ отели в исторических центрах городов'
+                      : lang === 'en'
+                      ? 'Comfortable 4★ hotels located right in historic city centers'
+                      : 'Tarixiy markazlarda joylashgan qulay 4★ mehmonxonalar'}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>Milliy taomlar, to'y oshi va sifatli 3 mahal restoranda ovqatlanish</span>
+                  <span>
+                    {lang === 'ru'
+                      ? '3-разовое национальное питание в лучших ресторанах'
+                      : lang === 'en'
+                      ? 'Full 3-course national meals at top certified restaurants'
+                      : "Milliy taomlar, to'y oshi va sifatli 3 mahal restoranda ovqatlanish"}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>24/7 shaxsiy kurator va professional tarixchi gid hamrohligi</span>
+                  <span>
+                    {lang === 'ru'
+                      ? '24/7 персональный куратор и сертифицированный гид'
+                      : lang === 'en'
+                      ? '24/7 personal tour curator & licensed historian guide'
+                      : '24/7 shaxsiy kurator va professional tarixchi gid hamrohligi'}
+                  </span>
                 </div>
               </div>
 
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <Link
                   to="/tours"
-                  className="py-3 px-6 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs transition-all shadow-lg shadow-emerald-500/25 flex items-center gap-2 hover:scale-105"
+                  className="py-3 px-6 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs transition-all shadow-lg shadow-emerald-500/25 flex items-center gap-2 hover:scale-105 cursor-pointer"
                 >
-                  <span>Turlarni Ko'rish</span>
+                  <span>{lang === 'ru' ? 'Смотреть Туры' : lang === 'en' ? 'View Tours' : 'Turlarni Ko\'rish'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
@@ -127,7 +183,7 @@ export default function AboutPage() {
                   onClick={openContactModal}
                   className="py-3 px-6 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-all border border-white/20 cursor-pointer hover:scale-105"
                 >
-                  Savollar bormi? Bog'lanish
+                  {lang === 'ru' ? 'Есть вопросы? Связаться' : lang === 'en' ? 'Questions? Contact Us' : 'Savollar bormi? Bog\'lanish'}
                 </button>
               </div>
             </div>
@@ -137,13 +193,17 @@ export default function AboutPage() {
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-center">
                 <ShieldCheck className="w-8 h-8 text-emerald-400 mx-auto" />
                 <div className="text-xl font-black text-white">100%</div>
-                <div className="text-xs text-slate-300 font-medium">Rasmiy Litsenziya</div>
+                <div className="text-xs text-slate-300 font-medium">
+                  {lang === 'ru' ? 'Лицензия' : lang === 'en' ? 'Licensed' : 'Rasmiy Litsenziya'}
+                </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-center">
                 <Star className="w-8 h-8 text-amber-400 mx-auto" />
                 <div className="text-xl font-black text-white">4.99 ★</div>
-                <div className="text-xs text-slate-300 font-medium">Mijozlar Bahosi</div>
+                <div className="text-xs text-slate-300 font-medium">
+                  {lang === 'ru' ? 'Оценка Клиентов' : lang === 'en' ? 'Client Rating' : 'Mijozlar Bahosi'}
+                </div>
               </div>
 
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-center">
@@ -155,7 +215,9 @@ export default function AboutPage() {
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-center">
                 <Clock className="w-8 h-8 text-purple-400 mx-auto" />
                 <div className="text-xl font-black text-white">24/7</div>
-                <div className="text-xs text-slate-300 font-medium">Doimiy Aloqa</div>
+                <div className="text-xs text-slate-300 font-medium">
+                  {lang === 'ru' ? 'Поддержка' : lang === 'en' ? 'Support' : 'Doimiy Aloqa'}
+                </div>
               </div>
             </div>
 

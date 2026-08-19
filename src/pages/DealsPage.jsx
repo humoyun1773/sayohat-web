@@ -7,20 +7,26 @@ export default function DealsPage() {
   const { lang, currency, openBookingModal, t } = useApp();
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 space-y-12">
+    <div className="pt-28 sm:pt-36 pb-20 space-y-12 bg-[#fafbfc]">
       {/* Page Title & Promo Banner */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 text-xs font-black uppercase tracking-wider">
             <Flame className="w-4 h-4 text-amber-500 animate-pulse" />
-            <span>Cheklangan Vaqtli Qaynoq Chegirmalar</span>
+            <span>
+              {lang === 'ru' 
+                ? 'Горящие Скидки Ограниченного Времени' 
+                : lang === 'en' 
+                ? 'Limited Time Hot Discounts' 
+                : 'Cheklangan Vaqtli Qaynoq Chegirmalar'}
+            </span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             {lang === 'ru' ? 'Горящие Скидки и Акции' : lang === 'en' ? 'Hot Deals & Flash Sales' : "Qaynoq Chegirmalar & Maxsus Turlar"}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-600 font-medium">
+          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
             {lang === 'ru' 
               ? 'Экономьте до -30% на 5-дневные туры по Узбекистану со всеми включенными услугами!'
               : lang === 'en'
@@ -36,8 +42,12 @@ export default function DealsPage() {
               -30%
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-900">Avtobusli Turlar Chegirmasi</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Samarqand, Buxoro va Xiva yo'nalishlariga</p>
+              <h3 className="text-sm font-bold text-slate-900">
+                {lang === 'ru' ? 'Скидка на Автобусные Туры' : lang === 'en' ? 'Bus Tour Discounts' : 'Avtobusli Turlar Chegirmasi'}
+              </h3>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {lang === 'ru' ? 'По направлениям Самарканд, Бухара и Хива' : lang === 'en' ? 'For Samarkand, Bukhara, and Khiva routes' : 'Samarqand, Buxoro va Xiva yo\'nalishlariga'}
+              </p>
             </div>
           </div>
 
@@ -46,8 +56,12 @@ export default function DealsPage() {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-900">100% All-Inclusive Paket</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Mehmonxona, 3 mahal ovqat va gid ichida</p>
+              <h3 className="text-sm font-bold text-slate-900">
+                {lang === 'ru' ? 'Пакет «Все Включено» 100%' : lang === 'en' ? '100% All-Inclusive Package' : '100% All-Inclusive Paket'}
+              </h3>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {lang === 'ru' ? 'Отель 4★, 3-раз. питание и гид включены' : lang === 'en' ? '4★ Hotel, 3 meals & guide included' : 'Mehmonxona, 3 mahal ovqat va gid ichida'}
+              </p>
             </div>
           </div>
 
@@ -56,8 +70,12 @@ export default function DealsPage() {
               <Plane className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-900">VIP Samolyot Reyslari</h3>
-              <p className="text-xs text-slate-500 mt-0.5">Tez va qulay to'g'ridan-to'g'ri parvozlar</p>
+              <h3 className="text-sm font-bold text-slate-900">
+                {lang === 'ru' ? 'VIP Авиаперелеты' : lang === 'en' ? 'VIP Domestic Flights' : 'VIP Samolyot Reyslari'}
+              </h3>
+              <p className="text-xs text-slate-500 mt-0.5">
+                {lang === 'ru' ? 'Быстрые и удобные прямые рейсы' : lang === 'en' ? 'Fast & comfortable direct flights' : 'Tez va qulay to\'g\'ridan-to\'g\'ri parvozlar'}
+              </p>
             </div>
           </div>
         </div>

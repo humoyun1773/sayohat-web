@@ -282,8 +282,8 @@ export default function CountryExplorer({
                 <button
                   onClick={() => onOpenBooking({ 
                     country: countryName, 
-                    flightClass: 'Avtobus yoki Samolyot', 
-                    hotelStar: '4★ Mehmonxona (4 kecha) + 3 mahal ovqat', 
+                    flightClass: lang === 'ru' ? 'Автобус или Самолет' : lang === 'en' ? 'Coach or Flight' : 'Avtobus yoki Samolyot', 
+                    hotelStar: lang === 'ru' ? '4★ Отель (4 ночи) + 3-раз. питание' : lang === 'en' ? '4★ Hotel (4 nights) + 3 meals' : '4★ Mehmonxona (4 kecha) + 3 mahal ovqat', 
                     priceUSD: currentPrice 
                   })}
                   className="flex-1 py-3.5 px-6 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-md active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
@@ -296,10 +296,10 @@ export default function CountryExplorer({
                   target="_blank"
                   rel="noreferrer"
                   className="py-3.5 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
-                  title="Google Maps'da joylashuvni ko'rish"
+                  title="Google Maps"
                 >
                   <MapPin className="w-4 h-4 text-[#10b981]" />
-                  <span>Xarita</span>
+                  <span>{lang === 'ru' ? 'Карта' : lang === 'en' ? 'Map' : 'Xarita'}</span>
                   <ExternalLink className="w-3 h-3 text-slate-400" />
                 </a>
               </div>
@@ -308,15 +308,23 @@ export default function CountryExplorer({
           </div>
         </Card>
 
-        {/* Must-See Landmarks in Region (4 spots cards with shadcn/ui Card) */}
+        {/* Must-See Landmarks in Region */}
         {currentCountry.spots && currentCountry.spots.length > 0 && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-                {countryName}ning Mashhur Tarixiy & Ekoturizm Maskanlari
+                {lang === 'ru' 
+                  ? `Популярные исторические и эко-места: ${countryName}` 
+                  : lang === 'en' 
+                  ? `Famous Historical & Eco Landmarks in ${countryName}` 
+                  : `${countryName}ning Mashhur Tarixiy & Ekoturizm Maskanlari`}
               </h3>
-              <Badge variant="secondary" className="font-bold text-slate-600">
-                4 ta Asosiy Maskanga Chiptalar Kiritilgan
+              <Badge variant="secondary" className="font-bold text-slate-600 self-start sm:self-auto">
+                {lang === 'ru' 
+                  ? 'Билеты в 4 главных места включены' 
+                  : lang === 'en' 
+                  ? 'Tickets Included to 4 Main Sites' 
+                  : '4 ta Asosiy Maskanga Chiptalar Kiritilgan'}
               </Badge>
             </div>
 
