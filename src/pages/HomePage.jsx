@@ -67,7 +67,9 @@ export default function HomePage() {
       quoteUz: "Samarqand va Buxoro 5 kunlik avtoturiga oilaviy bordik. Avtobus juda shinam, konditsioner a'lo darajada ishladi. Mehmonxona va ovqatlar sifatiga gap yo'q. Rahmat!",
       quoteRu: "Ездили всей семьей в 5-дневный тур по Самарканду и Бухаре. Автобус комфортный, кондиционер работал отлично. Отель и 3-разовое питание на высшем уровне. Спасибо!",
       quoteEn: "Traveled with my family on the 5-day tour to Samarkand & Bukhara. The bus was modern and comfortable, hotel and 3-time meals were fantastic. Highly recommended!",
-      author: "Jasur Karimov",
+      authorUz: "Jasur Karimov",
+      authorRu: "Жасур Каримов",
+      authorEn: "Jasur Karimov",
       cityUz: "Toshkent shahri",
       cityRu: "г. Ташкент",
       cityEn: "Tashkent city",
@@ -79,7 +81,9 @@ export default function HomePage() {
       quoteUz: "Xiva Ichan Qal'asiga samolyot reysi orqali uchdik. Tarixchi gidimiz har bir bino tarixini shunchalik qiziqarli so'zlab berdiki, 5 kun bir zumda o'tib ketdi. 100% tavsiya qilaman!",
       quoteRu: "Летали прямым рейсом в Хиву (Ичан-Кала). Гид-историк так увлекательно рассказывал о каждом медресе и минарете, что 5 дней пролетели незаметно. 100% рекомендую!",
       quoteEn: "Flew directly to Khiva (Ichan Kala). Our historian guide explained the heritage so vividly that 5 days flew by instantly. 100% recommended!",
-      author: "Madina Rustamova",
+      authorUz: "Madina Rustamova",
+      authorRu: "Мадина Рустамова",
+      authorEn: "Madina Rustamova",
       cityUz: "Farg'ona shahri",
       cityRu: "г. Фергана",
       cityEn: "Fergana city",
@@ -91,7 +95,9 @@ export default function HomePage() {
       quoteUz: "Zomin tog'larida dam olish ajoyib bo'ldi. Toza havo, shinam kottej va 3 mahal mazali ovqatlar. Ayniqsa bolalarimizga juda yoqdi. LOTOS FIELD jamoasiga minnatdormiz!",
       quoteRu: "Отдых в горах Заамина превзошел все ожидания. Чистый хвойный воздух, уютные коттеджи и вкусная еда. Детям очень понравилось!",
       quoteEn: "Vacation in the Zaamin mountains was breathtaking. Crisp fresh mountain air, cozy cabins, and delicious meals. Our kids loved it!",
-      author: "Oybek Ergashev",
+      authorUz: "Oybek Ergashev",
+      authorRu: "Ойбек Эргашев",
+      authorEn: "Oybek Ergashev",
       cityUz: "Samarqand shahri",
       cityRu: "г. Самарканд",
       cityEn: "Samarkand city",
@@ -653,6 +659,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((rev, idx) => {
             const quote = lang === 'ru' ? rev.quoteRu : lang === 'en' ? rev.quoteEn : rev.quoteUz;
+            const author = lang === 'ru' ? rev.authorRu : lang === 'en' ? rev.authorEn : rev.authorUz;
             const city = lang === 'ru' ? rev.cityRu : lang === 'en' ? rev.cityEn : rev.cityUz;
             const tour = lang === 'ru' ? rev.tourRu : lang === 'en' ? rev.tourEn : rev.tourUz;
 
@@ -674,7 +681,7 @@ export default function HomePage() {
                 </div>
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <div className="text-xs font-bold text-slate-900">{rev.author}</div>
+                    <div className="text-xs font-bold text-slate-900">{author}</div>
                     <span className="text-[10px] text-slate-400">{city}</span>
                   </div>
                   <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">

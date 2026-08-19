@@ -69,7 +69,9 @@ export default function Reviews({ t, lang = 'uz' }) {
                       className="w-10 h-10 rounded-full object-cover border-2 border-emerald-500 shadow-xs"
                     />
                     <div>
-                      <h4 className="text-sm font-bold text-slate-900 leading-tight">{r.name}</h4>
+                      <h4 className="text-sm font-bold text-slate-900 leading-tight">
+                        {lang === 'ru' ? (r.nameRu || r.name) : lang === 'en' ? (r.nameEn || r.name) : (r.nameUz || r.name)}
+                      </h4>
                       <span className="text-[11px] text-slate-500 font-medium block">{roleText}</span>
                     </div>
                   </div>
