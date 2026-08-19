@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { COUNTRIES, EXCHANGE_RATE, CONTACT_INFO } from '../data/travelData';
 import { 
-  ArrowLeft, MapPin, Bus, Plane, Star, Calendar, 
-  Check, ShieldCheck, Sun, Clock, Phone, Send, 
-  MessageCircle, Sparkles, Maximize2, Share2
+  ArrowLeft, Bus, Plane, Star, 
+  Check, Clock, Phone, 
+  Maximize2
 } from 'lucide-react';
 
 export default function TourDetailsPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { 
     lang, 
     currency, 
@@ -26,7 +25,6 @@ export default function TourDetailsPage() {
   const name = (lang === 'ru' ? country.nameRu : lang === 'en' ? country.nameEn : country.name) || country.name;
   const tagline = (lang === 'ru' ? country.taglineRu : lang === 'en' ? country.taglineEn : country.taglineUz) || country.taglineUz;
   const description = (lang === 'ru' ? country.descriptionRu : lang === 'en' ? country.descriptionEn : country.descriptionUz) || country.descriptionUz;
-  const visa = (lang === 'ru' ? country.visaRu : lang === 'en' ? country.visaEn : country.visaUz) || country.visaUz;
   const bestTime = (lang === 'ru' ? country.bestTimeRu : lang === 'en' ? country.bestTimeEn : country.bestTimeUz) || country.bestTimeUz;
 
   const pkg = country.packages?.[activeTransport] || country.packages?.bus || {};
@@ -39,7 +37,6 @@ export default function TourDetailsPage() {
     || (lang === 'ru' ? country.highlightsRu : lang === 'en' ? country.highlightsEn : country.highlightsUz)
     || [];
 
-  const transportLabel = lang === 'ru' ? pkg.transportLabelRu : lang === 'en' ? pkg.transportLabelEn : pkg.transportLabelUz;
   const durationText = lang === 'ru' ? pkg.durationRu : lang === 'en' ? pkg.durationEn : pkg.durationUz;
 
   // Spots / gallery

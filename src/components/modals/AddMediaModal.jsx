@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { 
   X, Image as ImageIcon, Video, Upload, 
   MapPin, Clock, Calendar, Bus, Plane, 
-  Sparkles, CheckCircle2, AlertCircle, Plus
+  Plus
 } from 'lucide-react';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 

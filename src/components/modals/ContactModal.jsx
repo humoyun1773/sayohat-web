@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  X, Send, Phone, MessageSquare, 
-  MapPin, CheckCircle2, Headphones 
+  X, Send, Phone, 
+  CheckCircle2, Headphones 
 } from 'lucide-react';
 import { COUNTRIES } from '../../data/travelData';
 import CustomSelect from '../ui/CustomSelect';

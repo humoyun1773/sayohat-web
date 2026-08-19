@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bus, Home, ArrowLeft, Compass } from 'lucide-react';
+import { Bus, Home, Compass } from 'lucide-react';
 
 export default function NotFoundPage() {
   return (

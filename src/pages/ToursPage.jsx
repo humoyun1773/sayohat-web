@@ -4,10 +4,7 @@ import { useApp } from '../context/AppContext';
 import CountryExplorer from '../components/sections/CountryExplorer';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../data/travelData';
 import { motion } from 'framer-motion';
-import { 
-  MapPin, Bus, Plane, Calendar, Star, 
-  ArrowRight, Check, Search, Sparkles, Filter
-} from 'lucide-react';
+import { Check, Search } from 'lucide-react';
 
 export default function ToursPage() {
   const {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useApp } from '../context/AppContext';
 import LiveTravelsMedia from '../components/sections/LiveTravelsMedia';
 import { motion } from 'framer-motion';
-import { Video, Camera, Plus, Sparkles, Heart } from 'lucide-react';
+import { Camera, Plus } from 'lucide-react';
 
 export default function MediaPage() {
   const { lang, openAddMediaModal, openLightbox } = useApp();

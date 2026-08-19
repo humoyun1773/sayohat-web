@@ -1,7 +1,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import HotDeals from '../components/sections/HotDeals';
-import { Flame, Clock, ShieldCheck, Sparkles, Percent, Tag } from 'lucide-react';
+import { Flame, ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function DealsPage() {
   const { lang, currency, openBookingModal, t } = useApp();

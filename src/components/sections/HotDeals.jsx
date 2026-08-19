@@ -6,7 +6,7 @@ import { HOT_DEALS, EXCHANGE_RATE } from '../../data/travelData';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 
-export default function HotDeals({ onOpenBooking, currency = 'USD', t, lang = 'uz' }) {
+export default function HotDeals({ onOpenBooking, _currency = 'USD', t, lang = 'uz' }) {
   // Safe price formatter with defensive number fallback
   const formatPrice = (usdAmount) => {
     const num = Number(usdAmount) || 0;

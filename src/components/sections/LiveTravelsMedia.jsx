@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Plus, Image as ImageIcon, Video, Bus, Plane, 
-  MapPin, Clock, Calendar, Users, Trash2, 
-  Play, Maximize2, Sparkles, Filter, CheckCircle2,
-  Heart, Eye
+  MapPin, Calendar, Users, Trash2, 
+  Maximize2, Sparkles, Heart
 } from 'lucide-react';
 import { INITIAL_LIVE_MEDIA } from '../../data/liveMediaData';
-import { Card } from '../ui/card';
-import { Badge } from '../ui/badge';
 import AddMediaModal from '../modals/AddMediaModal';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -215,7 +212,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz' }) {
                         ) : (
                           <div 
                             className="w-full h-full relative cursor-pointer"
-                            onClick={() => onOpenImageLightbox && onOpenImageLightbox(trip.mediaUrl)}
+                            onClick={() => onOpenImageLightbox?.(trip.mediaUrl)}
                           >
                             <img
                               src={trip.mediaUrl}
@@ -236,7 +233,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz' }) {
                                 type="button"
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  onOpenImageLightbox && onOpenImageLightbox(trip.mediaUrl);
+                                  onOpenImageLightbox?.(trip.mediaUrl);
                                 }}
                                 className="p-2 rounded-xl bg-black/60 text-white hover:bg-emerald-600 transition-colors cursor-pointer"
                                 title="Kattalashtirish"

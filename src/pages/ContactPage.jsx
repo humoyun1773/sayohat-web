@@ -3,8 +3,8 @@ import { useApp } from '../context/AppContext';
 import LocationMap from '../components/sections/LocationMap';
 import { CONTACT_INFO } from '../data/travelData';
 import { 
-  Phone, Mail, MapPin, Clock, Send, 
-  MessageCircle, CheckCircle2, Building, ShieldCheck
+  Phone, Mail, Clock, Send, 
+  MessageCircle, CheckCircle2, Building
 } from 'lucide-react';
 
 export default function ContactPage() {

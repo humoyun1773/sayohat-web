@@ -4,9 +4,8 @@ import WhyUs from '../components/sections/WhyUs';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ShieldCheck, Bus, Award, Users, 
-  Clock, MapPin, Sparkles, CheckCircle2, ArrowRight,
-  Shield, Check, Star, BedDouble, Utensils
+  ShieldCheck, Bus, Clock, 
+  CheckCircle2, ArrowRight, Star
 } from 'lucide-react';
 
 export default function AboutPage() {

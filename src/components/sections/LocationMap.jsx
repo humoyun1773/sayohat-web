@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  MapPin, Navigation, Compass, ExternalLink, 
-  Phone, Clock, Train, Building2, 
-  Sparkles, CheckCircle2 
+  MapPin, Navigation, ExternalLink, 
+  Phone, Clock, Train, Building2
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../../data/travelData';
-import { Card } from '../ui/card';
 import { Badge } from '../ui/badge';
 
-export default function LocationMap({ onSelectCountry, t, lang = 'uz' }) {
+export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
   const [selectedHub, setSelectedHub] = useState('tashkent-hq');
 
   const destinationLocations = [

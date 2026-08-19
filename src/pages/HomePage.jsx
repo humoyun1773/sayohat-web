@@ -4,11 +4,11 @@ import { useApp } from '../context/AppContext';
 import { COUNTRIES, EXCHANGE_RATE, CONTACT_INFO } from '../data/travelData';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Bus, Plane, MapPin, Calendar, Star, ShieldCheck, 
-  Sparkles, CheckCircle2, ArrowRight, Phone, Send, 
-  MessageCircle, Flame, Video, Award, Clock, 
-  Users, ChevronDown, ChevronUp, Compass, Heart,
-  Utensils, BedDouble, HelpCircle, Check
+  Bus, MapPin, Calendar, Star, 
+  Sparkles, CheckCircle2, ArrowRight, Phone, 
+  Flame, Video, Award, 
+  ChevronDown, ChevronUp, 
+  Utensils, BedDouble, HelpCircle
 } from 'lucide-react';
 
 export default function HomePage() {

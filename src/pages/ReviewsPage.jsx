@@ -1,7 +1,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import Reviews from '../components/sections/Reviews';
-import { Star, MessageSquare, ShieldCheck, Heart, ThumbsUp } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 export default function ReviewsPage() {
   const { lang, t, openContactModal } = useApp();

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   X, CheckCircle2, Bus, Plane,
-  ShieldCheck, Printer, Phone, Calendar,
-  Users, MapPin, Sparkles, Check, Plus, Minus
+  ShieldCheck, Printer,
+  Users, MapPin, Check, Plus, Minus
 } from 'lucide-react';
 import { COUNTRIES, EXCHANGE_RATE } from '../../data/travelData';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
@@ -11,7 +11,7 @@ export default function BookingModal({
   isOpen, 
   onClose, 
   bookingData, 
-  currency = 'USD',
+  _currency = 'USD',
   t,
   lang = 'uz'
 }) {
