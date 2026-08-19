@@ -11,11 +11,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hideHeader = false }) {
   const [trips, setTrips] = useState(() => {
     try {
-      const saved = localStorage.getItem('lotos_live_trips');
+      const saved = localStorage.getItem('lotos_live_trips_v2');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          // Merge with initial data to ensure translations are always updated
+          return parsed.map(item => {
+            const initialMatch = INITIAL_LIVE_MEDIA.find(m => m.id === item.id);
+            return initialMatch ? { ...initialMatch, ...item, titleUz: initialMatch.titleUz, titleRu: initialMatch.titleRu, titleEn: initialMatch.titleEn, descriptionUz: initialMatch.descriptionUz, descriptionRu: initialMatch.descriptionRu, descriptionEn: initialMatch.descriptionEn, destinationUz: initialMatch.destinationUz, destinationRu: initialMatch.destinationRu, destinationEn: initialMatch.destinationEn } : item;
+          });
         }
       }
       return INITIAL_LIVE_MEDIA;
@@ -37,7 +41,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
   // Save to localStorage on change
   useEffect(() => {
     try {
-      localStorage.setItem('lotos_live_trips', JSON.stringify(trips));
+      localStorage.setItem('lotos_live_trips_v2', JSON.stringify(trips));
     } catch (e) {
       console.error(e);
     }
@@ -47,7 +51,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
   useEffect(() => {
     const handleStorage = () => {
       try {
-        const saved = localStorage.getItem('lotos_live_trips');
+        const saved = localStorage.getItem('lotos_live_trips_v2');
         if (saved) {
           setTrips(JSON.parse(saved));
         }
@@ -63,26 +67,15 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
     setTrips(prev => [newTrip, ...prev]);
   };
 
-  const handleDeleteTrip = (tripId) => {
-    const confirmMsg = lang === 'ru' 
-      ? 'Удалить эту публикацию?' 
-      : lang === 'en'
-      ? 'Delete this trip publication?'
-      : "Ushbu sayohat kartasini o'chirmoqchimisiz?";
-    if (window.confirm(confirmMsg)) {
-      setTrips(prev => prev.filter(t => t.id !== tripId));
-    }
+  const handleDeleteTrip = (id) => {
+    setTrips(prev => prev.filter(t => t.id !== id));
   };
 
-  const toggleLike = (tripId) => {
+  const toggleLike = (id) => {
     setLikedTrips(prev => {
-      const updated = { ...prev, [tripId]: !prev[tripId] };
-      try {
-        localStorage.setItem('lotos_liked_trips', JSON.stringify(updated));
-      } catch (e) {
-        console.error(e);
-      }
-      return updated;
+      const next = { ...prev, [id]: !prev[id] };
+      localStorage.setItem('lotos_liked_trips', JSON.stringify(next));
+      return next;
     });
   };
 
@@ -158,21 +151,22 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none px-2">
           {filterButtons.map((btn) => {
             const Icon = btn.icon;
-            const isActive = activeFilter === btn.id;
+            const isSelected = activeFilter === btn.id;
+
             return (
               <button
                 key={btn.id}
                 onClick={() => setActiveFilter(btn.id)}
-                className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shrink-0 border ${
-                  isActive
-                    ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
-                    : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs'
+                className={`py-2 px-3.5 sm:px-4 rounded-xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer ${
+                  isSelected
+                    ? 'bg-emerald-600 text-white shadow-md'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 shadow-2xs'
                 }`}
               >
                 {Icon && <Icon className="w-3.5 h-3.5" />}
                 <span>{btn.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                  isActive ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-500'
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-extrabold ${
+                  isSelected ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-500'
                 }`}>
                   {btn.count}
                 </span>
@@ -200,9 +194,9 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                 const isVid = trip.mediaType === 'video';
                 const isLiked = likedTrips[trip.id];
 
-                const title = (lang === 'ru' ? trip.titleRu : lang === 'en' ? trip.titleEn : trip.titleUz) || trip.title || trip.titleUz;
-                const description = (lang === 'ru' ? trip.descriptionRu : lang === 'en' ? trip.descriptionEn : trip.descriptionUz) || trip.description || trip.descriptionUz;
-                const destination = (lang === 'ru' ? trip.destinationRu : lang === 'en' ? trip.destinationEn : trip.destinationUz) || trip.destination || trip.destinationUz;
+                const title = (lang === 'ru' ? trip.titleRu : lang === 'en' ? trip.titleEn : trip.titleUz) || trip.titleUz || trip.title;
+                const description = (lang === 'ru' ? trip.descriptionRu : lang === 'en' ? trip.descriptionEn : trip.descriptionUz) || trip.descriptionUz || trip.description;
+                const destination = (lang === 'ru' ? trip.destinationRu : lang === 'en' ? trip.destinationEn : trip.destinationUz) || trip.destinationUz || trip.destination;
 
                 return (
                   <motion.div
@@ -256,8 +250,8 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
                               <button
                                 type="button"
                                 onClick={(e) => {
-                                  e.stopPropagation();
-                                  onOpenImageLightbox?.(trip.mediaUrl);
+                                   e.stopPropagation();
+                                   onOpenImageLightbox?.(trip.mediaUrl);
                                 }}
                                 className="p-2 rounded-xl bg-black/60 text-white hover:bg-emerald-600 transition-colors cursor-pointer"
                                 title={lang === 'ru' ? 'Увеличить' : lang === 'en' ? 'Enlarge' : 'Kattalashtirish'}

@@ -34,13 +34,13 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: t.nav?.home || 'Bosh sahifa', to: '/', icon: Compass, badge: 'Asosiy' },
-    { name: t.nav?.regions || 'Viloyatlar & Turlar', to: '/tours', icon: MapPin, badge: '8 ta Shahar' },
-    { name: t.nav?.deals || 'Qaynoq Turlar', to: '/deals', icon: Flame, badge: '-30% Aksiya' },
-    { name: t.nav?.media || 'Jonli Media', to: '/media', icon: Video, badge: 'Foto/Video' },
-    { name: t.nav?.whyUs || 'Biz haqimizda', to: '/about', icon: Info, badge: 'Kafolat' },
-    { name: t.nav?.reviews || 'Sharhlar', to: '/reviews', icon: Star, badge: '5.0 Reyting' },
-    { name: t.nav?.location || 'Aloqa & Xarita', to: '/contact', icon: MapPin, badge: 'Ofis' },
+    { name: t.nav?.home || (lang === 'ru' ? 'Главная' : lang === 'en' ? 'Home' : 'Bosh sahifa'), to: '/', icon: Compass, badge: lang === 'ru' ? 'Главная' : lang === 'en' ? 'Main' : 'Asosiy' },
+    { name: t.nav?.regions || (lang === 'ru' ? 'Регионы и Города' : lang === 'en' ? 'Regions & Cities' : 'Viloyatlar & Turlar'), to: '/tours', icon: MapPin, badge: lang === 'ru' ? '8+ Городов' : lang === 'en' ? '8+ Cities' : '8 ta Shahar' },
+    { name: t.nav?.deals || (lang === 'ru' ? 'Горящие Туры' : lang === 'en' ? 'Hot Deals' : 'Qaynoq Turlar'), to: '/deals', icon: Flame, badge: lang === 'ru' ? '-30% Акция' : lang === 'en' ? '-30% Promo' : '-30% Aksiya' },
+    { name: t.nav?.media || (lang === 'ru' ? 'Медиа & Видео' : lang === 'en' ? 'Media & Video' : 'Jonli Media'), to: '/media', icon: Video, badge: lang === 'ru' ? 'Фото/Видео' : lang === 'en' ? 'Media' : 'Foto/Video' },
+    { name: t.nav?.whyUs || (lang === 'ru' ? 'О Нас' : lang === 'en' ? 'About Us' : 'Biz haqimizda'), to: '/about', icon: Info, badge: lang === 'ru' ? 'Гарантии' : lang === 'en' ? 'Guarantee' : 'Kafolat' },
+    { name: t.nav?.reviews || (lang === 'ru' ? 'Отзывы' : lang === 'en' ? 'Reviews' : 'Sharhlar'), to: '/reviews', icon: Star, badge: lang === 'ru' ? '5.0 Рейтинг' : lang === 'en' ? '5.0 Rating' : '5.0 Reyting' },
+    { name: t.nav?.location || (lang === 'ru' ? 'Локация & Карты' : lang === 'en' ? 'Offices & Map' : 'Aloqa & Xarita'), to: '/contact', icon: MapPin, badge: lang === 'ru' ? 'Офис' : lang === 'en' ? 'Offices' : 'Ofis' },
   ];
 
   return (
@@ -56,7 +56,7 @@ export default function Navbar() {
             {/* Brand Logo: LOTOS FIELD */}
             <Link 
               to="/" 
-              className="flex items-center gap-2 sm:gap-3 group shrink-0"
+              className="flex items-center gap-2 sm:gap-3 group shrink-0 cursor-pointer"
             >
               <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#047857] flex items-center justify-center shadow-md text-white group-hover:scale-105 transition-transform shrink-0">
                 <Bus className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -68,7 +68,7 @@ export default function Navbar() {
                   <span className="text-lg sm:text-2xl lg:text-3xl font-black text-[#10b981]">FIELD</span>
                 </div>
                 <p className="text-[8px] sm:text-[10px] tracking-widest uppercase font-bold text-slate-500 mt-0.5 hidden xs:block">
-                  {t.nav?.tagline || 'Avtobus & Samolyot Turlari'}
+                  {t.nav?.tagline || (lang === 'ru' ? 'Автобусные и Авиа Туры' : lang === 'en' ? 'Coach & Flight Tours' : 'Avtobus & Samolyot Turlari')}
                 </p>
               </div>
             </Link>
@@ -108,7 +108,7 @@ export default function Navbar() {
               <button
                 onClick={() => setMobileMenuOpen(true)}
                 className="p-2 sm:p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-all active:scale-95 cursor-pointer xl:hidden shrink-0"
-                aria-label="Menyuni ochish"
+                aria-label="Menu"
               >
                 <Menu className="w-5 h-5 text-slate-900" />
               </button>
@@ -119,7 +119,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* MOBILE LUXURY FULL MODAL DIALOG */}
+      {/* MOBILE FULL MODAL DIALOG */}
       {mobileMenuOpen && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md modal-backdrop-animate overscroll-contain"
@@ -141,14 +141,16 @@ export default function Navbar() {
                     <span className="text-xl font-black text-slate-900">LOTOS</span>
                     <span className="text-xl font-black text-[#10b981]">FIELD</span>
                   </div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500">Avtobus & Samolyot Turlari</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-500">
+                    {lang === 'ru' ? 'Автобусные и Авиа Туры' : lang === 'en' ? 'Coach & Flight Tours' : 'Avtobus & Samolyot Turlari'}
+                  </span>
                 </div>
               </div>
 
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-2.5 rounded-full bg-slate-200/80 hover:bg-slate-300 text-slate-700 transition-colors cursor-pointer"
-                aria-label="Yopish"
+                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -159,7 +161,9 @@ export default function Navbar() {
               
               {/* Language Selector Inside Modal */}
               <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-700">Tilni tanlang:</span>
+                <span className="text-xs font-bold text-slate-700">
+                  {lang === 'ru' ? 'Выберите язык:' : lang === 'en' ? 'Select language:' : 'Tilni tanlang:'}
+                </span>
                 <LanguageSwitcher
                   currentLang={lang}
                   onChangeLang={setLang}
@@ -169,7 +173,7 @@ export default function Navbar() {
               {/* Navigation Links List */}
               <div className="space-y-2">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block px-1">
-                  Sahifalar
+                  {lang === 'ru' ? 'Страницы' : lang === 'en' ? 'Pages' : 'Sahifalar'}
                 </span>
                 
                 {navLinks.map((link) => {
@@ -214,7 +218,7 @@ export default function Navbar() {
               {/* Messengers & Fast Call */}
               <div className="pt-2 border-t border-slate-100 space-y-2.5">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block px-1">
-                  Tezkor Bog'lanish
+                  {lang === 'ru' ? 'Быстрая Связь' : lang === 'en' ? 'Fast Contact' : 'Tezkor Bog\'lanish'}
                 </span>
 
                 <div className="grid grid-cols-2 gap-2">
@@ -222,7 +226,7 @@ export default function Navbar() {
                     href={CONTACT_INFO.telegram}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-3 rounded-2xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 flex items-center justify-center gap-2 text-xs font-bold transition-all"
+                    className="p-3 rounded-2xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 flex items-center justify-center gap-2 text-xs font-bold transition-all cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
                     <span>Telegram</span>
@@ -232,7 +236,7 @@ export default function Navbar() {
                     href={CONTACT_INFO.whatsapp}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 flex items-center justify-center gap-2 text-xs font-bold transition-all"
+                    className="p-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 flex items-center justify-center gap-2 text-xs font-bold transition-all cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>WhatsApp</span>
@@ -241,7 +245,7 @@ export default function Navbar() {
 
                 <a
                   href={`tel:${CONTACT_INFO.phoneClean}`}
-                  className="w-full p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 flex items-center justify-center gap-2 text-xs font-bold transition-all"
+                  className="w-full p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 flex items-center justify-center gap-2 text-xs font-bold transition-all cursor-pointer"
                 >
                   <Phone className="w-4 h-4 text-[#10b981]" />
                   <span>{CONTACT_INFO.phone}</span>
