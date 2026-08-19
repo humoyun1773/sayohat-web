@@ -19,12 +19,16 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
       addressUz: CONTACT_INFO.addressUz,
       addressRu: CONTACT_INFO.addressRu,
       addressEn: CONTACT_INFO.addressEn,
-      metro: CONTACT_INFO.metroUz,
+      metroUz: CONTACT_INFO.metroUz,
+      metroRu: CONTACT_INFO.metroRu,
+      metroEn: CONTACT_INFO.metroEn,
       phone: CONTACT_INFO.phone,
       googleUrl: CONTACT_INFO.googleMapsUrl,
       yandexUrl: CONTACT_INFO.yandexMapsUrl,
       embedUrl: CONTACT_INFO.embedMapUrl,
-      badge: 'Bosh Ofis & Bilet Kassasi'
+      badgeUz: 'Bosh Ofis & Bilet Kassasi',
+      badgeRu: 'Главный Офис и Касса',
+      badgeEn: 'Head Office & Booking Hub'
     },
     ...COUNTRIES.map(c => ({
       id: c.id,
@@ -35,42 +39,52 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
       addressUz: `${c.name}, ${c.taglineUz}`,
       addressRu: `${c.nameRu || c.name}, ${c.taglineRu}`,
       addressEn: `${c.nameEn || c.name}, ${c.taglineEn}`,
-      metro: `${c.flightDurationUz} (Avtobus / Samolyot)`,
+      metroUz: `${c.flightDurationUz} (Avtobus / Samolyot)`,
+      metroRu: `${c.flightDurationRu} (Автобус / Самолет)`,
+      metroEn: `${c.flightDurationEn} (Coach / Flight)`,
       phone: CONTACT_INFO.phone,
       googleUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.name + ' Uzbekistan')}`,
       yandexUrl: `https://yandex.uz/maps/?text=${encodeURIComponent(c.name + ' Uzbekistan')}`,
       embedUrl: `https://maps.google.com/maps?q=${encodeURIComponent(c.name + ' Uzbekistan')}&t=&z=13&ie=UTF8&iwloc=&output=embed`,
-      badge: `${c.flag} 5 Kunlik Tur`
+      badgeUz: `${c.flag} 5 Kunlik Tur`,
+      badgeRu: `${c.flag} Тур на 5 Дней`,
+      badgeEn: `${c.flag} 5-Day Tour`
     }))
   ];
 
   const currentLoc = destinationLocations.find(l => l.id === selectedHub) || destinationLocations[0];
   const locName = lang === 'ru' ? currentLoc.nameRu : lang === 'en' ? currentLoc.nameEn : currentLoc.nameUz;
   const locAddress = lang === 'ru' ? currentLoc.addressRu : lang === 'en' ? currentLoc.addressEn : currentLoc.addressUz;
+  const locMetro = lang === 'ru' ? currentLoc.metroRu : lang === 'en' ? currentLoc.metroEn : currentLoc.metroUz;
+  const locBadge = lang === 'ru' ? currentLoc.badgeRu : lang === 'en' ? currentLoc.badgeEn : currentLoc.badgeUz;
+  const locHours = lang === 'ru' ? CONTACT_INFO.workHoursRu : lang === 'en' ? CONTACT_INFO.workHoursEn : CONTACT_INFO.workHoursUz;
 
   return (
     <section id="location" className="py-24 relative overflow-hidden bg-slate-50 border-b border-slate-200">
       
-      {/* Background Subtle Landmark Ambient */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
-        {/* Section Header in High Contrast Card */}
+        {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-12 space-y-3">
           <div className="inline-block p-4 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-lg space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-black uppercase tracking-wider">
               <MapPin className="w-3.5 h-3.5 text-[#10b981]" />
-              <span>{t.location?.badge || "Ofisimiz & Xaritalar"}</span>
+              <span>{t.location?.badge || (lang === 'ru' ? 'Наши Офисы и Карты' : lang === 'en' ? 'Our Offices & Maps' : 'Ofisimiz & Xaritalar')}</span>
             </div>
             
             <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-              {t.location?.title1 || "Bizning Bosh Ofisimiz va"}{' '}
+              {t.location?.title1 || (lang === 'ru' ? 'Наш Главный Офис и' : lang === 'en' ? 'Our Head Office and' : 'Bizning Bosh Ofisimiz va')}{' '}
               <span className="text-[#10b981]">
-                {t.location?.title2 || "Xaritadagi Joylashuv"}
+                {t.location?.title2 || (lang === 'ru' ? 'Локация на Карте' : lang === 'en' ? 'Map Location' : 'Xaritadagi Joylashuv')}
               </span>
             </h2>
             
-            <p className="text-slate-700 text-sm sm:text-base font-medium max-w-2xl mx-auto">
-              {t.location?.desc || "Toshkent shahridagi bosh ofisimizga tashrif buyurib, bepul maslahat oling yoki xarita orqali O'zbekistonning barcha 8 ta viloyatidagi qadimiy maskanlarning joylashuvini ko'ring."}
+            <p className="text-slate-700 text-sm sm:text-base font-medium max-w-2xl mx-auto leading-relaxed">
+              {t.location?.desc || (lang === 'ru' 
+                ? 'Посетите наш центральный офис в Ташкенте для бесплатной консультации или изучите расположение всех исторических направлений на интерактивной карте.'
+                : lang === 'en' 
+                ? 'Visit our central office in Tashkent for free consultation or explore destination routes on our interactive map.'
+                : "Toshkent shahridagi bosh ofisimizga tashrif buyurib, bepul maslahat oling yoki xarita orqali O'zbekistonning barcha 8 ta viloyatidagi qadimiy maskanlarning joylashuvini ko'ring.")}
             </p>
           </div>
         </div>
@@ -121,7 +135,7 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
                   href={currentLoc.googleUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all flex items-center gap-1.5 border border-white/20"
+                  className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all flex items-center gap-1.5 border border-white/20 cursor-pointer"
                 >
                   <span>Google Maps</span>
                   <ExternalLink className="w-3 h-3" />
@@ -131,7 +145,7 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
                   href={currentLoc.yandexUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-3 py-1.5 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs"
+                  className="px-3 py-1.5 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
                 >
                   <span>Yandex Maps</span>
                   <ExternalLink className="w-3 h-3" />
@@ -165,7 +179,7 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <div>
                   <Badge variant="secondary" className="text-[#065f46] bg-[#ecfdf5] border border-[#a7f3d0] font-extrabold mb-1">
-                    {currentLoc.badge}
+                    {locBadge}
                   </Badge>
                   <h3 className="text-xl font-black text-slate-900">{locName}</h3>
                 </div>
@@ -180,7 +194,7 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
                   </div>
                   <div>
                     <span className="text-slate-400 font-bold uppercase text-[10px] block">
-                      {t.location?.addressTitle || "Bosh Ofis Manzili:"}
+                      {t.location?.addressTitle || (lang === 'ru' ? 'Адрес:' : lang === 'en' ? 'Address:' : "Bosh Ofis Manzili:")}
                     </span>
                     <span className="font-extrabold text-slate-900 leading-snug block">
                       {locAddress}
@@ -195,10 +209,10 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
                   </div>
                   <div>
                     <span className="text-slate-400 font-bold uppercase text-[10px] block">
-                      {t.location?.metroTitle || "Eng Yaqin Metro:"}
+                      {t.location?.metroTitle || (lang === 'ru' ? 'Ближайшее Метро / Транспорт:' : lang === 'en' ? 'Nearest Metro / Transport:' : "Eng Yaqin Metro:")}
                     </span>
                     <span className="font-extrabold text-slate-900 leading-snug block">
-                      {currentLoc.metro}
+                      {locMetro}
                     </span>
                   </div>
                 </div>
@@ -210,10 +224,10 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
                   </div>
                   <div>
                     <span className="text-slate-400 font-bold uppercase text-[10px] block">
-                      {t.location?.hoursTitle || "Ish Vaqti:"}
+                      {t.location?.hoursTitle || (lang === 'ru' ? 'Время Работы:' : lang === 'en' ? 'Working Hours:' : "Ish Vaqti:")}
                     </span>
                     <span className="font-extrabold text-slate-900 leading-snug block">
-                      {CONTACT_INFO.workHoursUz}
+                      {locHours}
                     </span>
                   </div>
                 </div>
@@ -225,9 +239,9 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
                   </div>
                   <div>
                     <span className="text-slate-400 font-bold uppercase text-[10px] block">
-                      {t.location?.phoneTitle || "Tezkor Aloqa & Maslahat:"}
+                      {t.location?.phoneTitle || (lang === 'ru' ? 'Прямая Линия:' : lang === 'en' ? 'Hotline:' : "Tezkor Aloqa & Maslahat:")}
                     </span>
-                    <a href={`tel:${CONTACT_INFO.phoneClean}`} className="font-black text-[#10b981] hover:underline text-sm block">
+                    <a href={`tel:${CONTACT_INFO.phoneClean}`} className="font-black text-[#10b981] hover:underline text-sm block cursor-pointer">
                       {CONTACT_INFO.phone}
                     </a>
                   </div>
@@ -244,7 +258,7 @@ export default function LocationMap({ _onSelectCountry, t, lang = 'uz' }) {
                   className="flex-1 py-3.5 px-4 rounded-2xl btn-primary-emerald font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md cursor-pointer text-center"
                 >
                   <Navigation className="w-4 h-4" />
-                  <span>{t.location?.routeBtn || "Marshrut Chizish"}</span>
+                  <span>{t.location?.routeBtn || (lang === 'ru' ? 'Построить Маршрут' : lang === 'en' ? 'Get Directions' : "Marshrut Chizish")}</span>
                 </a>
               </div>
 

@@ -39,7 +39,6 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
         setMediaType('image');
       }
 
-      // Convert to persistent Data URL (base64) so it stays in localStorage
       const reader = new FileReader();
       reader.onloadend = () => {
         const result = reader.result;
@@ -53,11 +52,11 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim()) {
-      alert(lang === 'ru' ? 'Введите название поездки' : 'Sayohat nomini kiriting');
+      alert(lang === 'ru' ? 'Введите название поездки' : lang === 'en' ? 'Please enter trip title' : 'Sayohat nomini kiriting');
       return;
     }
     if (!origin.trim() || !destination.trim()) {
-      alert(lang === 'ru' ? 'Укажите откуда и куда' : 'Qayerdan va qayerga borilayotganini kiriting');
+      alert(lang === 'ru' ? 'Укажите пункт отправления и назначения' : lang === 'en' ? 'Please enter origin and destination' : 'Qayerdan va qayerga borilayotganini kiriting');
       return;
     }
 
@@ -65,22 +64,30 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
 
     const newTrip = {
       id: 'trip-' + Date.now(),
-      title: title.trim(),
-      origin: origin.trim(),
-      destination: destination.trim(),
+      titleUz: title.trim(),
+      titleRu: title.trim(),
+      titleEn: title.trim(),
+      originUz: origin.trim(),
+      originRu: origin.trim(),
+      originEn: origin.trim(),
+      destinationUz: destination.trim(),
+      destinationRu: destination.trim(),
+      destinationEn: destination.trim(),
       departureTime,
       arrivalTime,
       date,
       transportType,
       mediaType,
       mediaUrl: finalMedia,
-      author: author.trim() || 'Sayyoh / Gid',
+      author: author.trim() || (lang === 'ru' ? 'Турист / Гид' : lang === 'en' ? 'Traveler / Guide' : 'Sayyoh / Gid'),
       passengersCount: Number(passengersCount) || 1,
       status: 'arrived',
       statusTextUz: `${origin} ➔ ${destination} (${departureTime} - ${arrivalTime})`,
       statusTextRu: `${origin} ➔ ${destination} (${departureTime} - ${arrivalTime})`,
       statusTextEn: `${origin} ➔ ${destination} (${departureTime} - ${arrivalTime})`,
-      description: description.trim() || `${origin}dan ${destination}ga ${transportType === 'plane' ? 'samolyot' : 'avtobus'} safari.`
+      descriptionUz: description.trim() || `${origin}dan ${destination}ga ${transportType === 'plane' ? 'samolyot' : 'avtobus'} safari.`,
+      descriptionRu: description.trim() || `Поездка из ${origin} в ${destination} на ${transportType === 'plane' ? 'самолете' : 'автобусе'}.`,
+      descriptionEn: description.trim() || `Trip from ${origin} to ${destination} via ${transportType === 'plane' ? 'flight' : 'bus'}.`
     };
 
     onAddMedia(newTrip);
@@ -91,11 +98,6 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-md modal-backdrop-animate overscroll-none touch-none"
       onClick={onClose}
-      onTouchMove={(e) => {
-        if (e.target === e.currentTarget) {
-          e.preventDefault();
-        }
-      }}
     >
       <div 
         className="relative w-full max-w-2xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col modal-card-animate"
@@ -110,10 +112,10 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
             </div>
             <div>
               <span className="text-[10px] font-extrabold tracking-wider text-[#065f46] uppercase block">
-                YANGI SAYOHAT KUNDALIGI & MEDIA
+                {lang === 'ru' ? 'НОВАЯ МЕДИА ЗАПИСЬ' : lang === 'en' ? 'NEW TRAVEL MEDIA' : 'YANGI SAYOHAT KUNDALIGI & MEDIA'}
               </span>
               <h3 className="text-base sm:text-lg font-black text-slate-900">
-                Rasm yoki Video Bilan Sayohat Qo'shish
+                {lang === 'ru' ? 'Добавить Фото или Видео с Поездки' : lang === 'en' ? 'Add Photo or Video From Trip' : "Rasm yoki Video Bilan Sayohat Qo'shish"}
               </h3>
             </div>
           </div>
@@ -136,12 +138,12 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
             {/* 1. Trip Title */}
             <div>
               <label className="block text-xs font-black text-slate-800 uppercase tracking-wider mb-1">
-                1. Sayohat Sarlavhasi / Nomi:
+                {lang === 'ru' ? '1. Название / Заголовок Поездки:' : lang === 'en' ? '1. Trip Title / Headline:' : '1. Sayohat Sarlavhasi / Nomi:'}
               </label>
               <input
                 type="text"
                 required
-                placeholder="Masalan: Toshkentdan Samarqandga Ertalabki VIP Avtotur"
+                placeholder={lang === 'ru' ? 'Например: Утренний VIP автотур из Ташкента в Самарканд' : lang === 'en' ? 'E.g. Morning VIP coach trip from Tashkent to Samarkand' : 'Masalan: Toshkentdan Samarqandga Ertalabki VIP Avtotur'}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="w-full px-3.5 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all placeholder:text-slate-400 shadow-2xs"
@@ -151,7 +153,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
             {/* 2. Transport Choice (Bus or Plane) */}
             <div className="space-y-1.5">
               <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
-                2. Transport Turi:
+                {lang === 'ru' ? '2. Вид Транспорта:' : lang === 'en' ? '2. Transport Type:' : '2. Transport Turi:'}
               </label>
               <div className="grid grid-cols-2 gap-2.5">
                 <button
@@ -164,7 +166,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
                   }`}
                 >
                   <Bus className="w-4 h-4 text-[#10b981]" />
-                  <span>🚌 Avtobus / Gazel</span>
+                  <span>{lang === 'ru' ? '🚌 Автобус' : lang === 'en' ? '🚌 Tourist Coach' : '🚌 Avtobus / Gazel'}</span>
                 </button>
 
                 <button
@@ -177,7 +179,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
                   }`}
                 >
                   <Plane className="w-4 h-4 text-emerald-600 transform -rotate-45" />
-                  <span>✈️ Samolyot Reysi</span>
+                  <span>{lang === 'ru' ? '✈️ Самолет' : lang === 'en' ? '✈️ Flight' : '✈️ Samolyot Reysi'}</span>
                 </button>
               </div>
             </div>
@@ -187,12 +189,12 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#10b981]" />
-                  <span>Qayerdan (Jo'nash nuqtasi):</span>
+                  <span>{lang === 'ru' ? 'Откуда (Отправление):' : lang === 'en' ? 'Origin (Departure):' : 'Qayerdan (Jo\'nash nuqtasi):'}</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Masalan: Toshkent (Janubiy Avtovokzal)"
+                  placeholder={lang === 'ru' ? 'Например: Ташкент (Южный вокзал)' : lang === 'en' ? 'E.g. Tashkent (South Station)' : 'Masalan: Toshkent (Janubiy Avtovokzal)'}
                   value={origin}
                   onChange={(e) => setOrigin(e.target.value)}
                   className="w-full px-3.5 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all placeholder:text-slate-400 shadow-2xs"
@@ -202,12 +204,12 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Qayerga (Manzil):</span>
+                  <span>{lang === 'ru' ? 'Куда (Назначение):' : lang === 'en' ? 'Destination:' : 'Qayerga (Manzil):'}</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Masalan: Samarqand (Registon Maydoni)"
+                  placeholder={lang === 'ru' ? 'Например: Самарканд (Регистан)' : lang === 'en' ? 'E.g. Samarkand (Registan)' : 'Masalan: Samarqand (Registon Maydoni)'}
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
                   className="w-full px-3.5 py-3 rounded-2xl border border-slate-200 text-sm font-semibold focus:outline-none focus:border-[#10b981] focus:ring-3 focus:ring-[#10b981]/15 bg-white text-slate-900 transition-all placeholder:text-slate-400 shadow-2xs"
@@ -220,7 +222,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-[#10b981]" />
-                  <span>Jo'nash Soati:</span>
+                  <span>{lang === 'ru' ? 'Время отправления:' : lang === 'en' ? 'Departure Time:' : 'Jo\'nash Soati:'}</span>
                 </label>
                 <input
                   type="time"
@@ -234,7 +236,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-amber-500" />
-                  <span>Yetib Borish Soati:</span>
+                  <span>{lang === 'ru' ? 'Время прибытия:' : lang === 'en' ? 'Arrival Time:' : 'Yetib Borish Soati:'}</span>
                 </label>
                 <input
                   type="time"
@@ -248,7 +250,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5 text-[#10b981]" />
-                  <span>Sana:</span>
+                  <span>{lang === 'ru' ? 'Дата:' : lang === 'en' ? 'Date:' : 'Sana:'}</span>
                 </label>
                 <input
                   type="date"
@@ -264,7 +266,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
             <div className="space-y-2 p-4 bg-slate-50 rounded-2xl border border-slate-200">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-black text-slate-900 uppercase tracking-wider block">
-                  5. Rasm yoki Video Yuklash:
+                  {lang === 'ru' ? '5. Загрузить Фото или Видео:' : lang === 'en' ? '5. Upload Photo or Video:' : '5. Rasm yoki Video Yuklash:'}
                 </label>
 
                 {/* Switch Media Type */}
@@ -277,7 +279,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
                     }`}
                   >
                     <ImageIcon className="w-3.5 h-3.5" />
-                    <span>Rasm</span>
+                    <span>{lang === 'ru' ? 'Фото' : lang === 'en' ? 'Photo' : 'Rasm'}</span>
                   </button>
 
                   <button
@@ -288,7 +290,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
                     }`}
                   >
                     <Video className="w-3.5 h-3.5" />
-                    <span>Video</span>
+                    <span>{lang === 'ru' ? 'Видео' : lang === 'en' ? 'Video' : 'Video'}</span>
                   </button>
                 </div>
               </div>
@@ -302,10 +304,14 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
                   <Upload className="w-5 h-5" />
                 </div>
                 <div className="text-xs font-bold text-slate-800">
-                  Kompyuter yoki Telefondan {mediaType === 'video' ? 'Video' : 'Rasm'} tanlang
+                  {lang === 'ru' 
+                    ? `Выберите ${mediaType === 'video' ? 'видео' : 'фото'} с устройства` 
+                    : lang === 'en' 
+                    ? `Select ${mediaType === 'video' ? 'video' : 'photo'} from device` 
+                    : `Kompyuter yoki Telefondan ${mediaType === 'video' ? 'Video' : 'Rasm'} tanlang`}
                 </div>
                 <div className="text-[10px] text-slate-400">
-                  {mediaType === 'video' ? 'MP4, MOV, WEBM formatlar' : 'JPG, PNG, WEBP formatlar'}
+                  {mediaType === 'video' ? 'MP4, MOV, WEBM' : 'JPG, PNG, WEBP'}
                 </div>
                 <input
                   ref={fileInputRef}
@@ -320,7 +326,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
               <div className="pt-2">
                 <input
                   type="url"
-                  placeholder={`Yoki to'g'ridan-to'g'ri ${mediaType === 'video' ? 'video' : 'rasm'} havolasini (URL) kiriting...`}
+                  placeholder={lang === 'ru' ? 'Или введите прямую ссылку (URL)...' : lang === 'en' ? 'Or paste direct URL...' : `Yoki to'g'ridan-to'g'ri havolani (URL) kiriting...`}
                   value={mediaUrl.startsWith('data:') ? '' : mediaUrl}
                   onChange={(e) => {
                     setMediaUrl(e.target.value);
@@ -341,7 +347,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
                   <button
                     type="button"
                     onClick={() => { setPreviewUrl(''); setMediaUrl(''); }}
-                    className="absolute top-2 right-2 p-1.5 rounded-full bg-black/70 text-white hover:bg-red-600 transition-colors"
+                    className="absolute top-2 right-2 p-1.5 rounded-full bg-black/70 text-white hover:bg-red-600 transition-colors cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -354,11 +360,11 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Muallif / Gid / Sayyoh Ismi:
+                  {lang === 'ru' ? 'Имя автора / гида / туриста:' : lang === 'en' ? 'Author / Guide / Traveler Name:' : 'Muallif / Gid / Sayyoh Ismi:'}
                 </label>
                 <input
                   type="text"
-                  placeholder="Masalan: Sardor Rahimov (Gid)"
+                  placeholder={lang === 'ru' ? 'Например: Сардор Рахимов (Гид)' : lang === 'en' ? 'E.g. Sardor Rahimov (Guide)' : 'Masalan: Sardor Rahimov (Gid)'}
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:outline-none focus:border-[#10b981] bg-white text-slate-900 transition-all"
@@ -367,7 +373,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Sayohatchilar Soni:
+                  {lang === 'ru' ? 'Количество туристов:' : lang === 'en' ? 'Passenger count:' : 'Sayohatchilar Soni:'}
                 </label>
                 <input
                   type="number"
@@ -383,11 +389,11 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
             {/* Description */}
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1">
-                Sayohat Haqida Qisqacha Izoh:
+                {lang === 'ru' ? 'Краткое описание поездки:' : lang === 'en' ? 'Short Trip Description:' : 'Sayohat Haqida Qisqacha Izoh:'}
               </label>
               <textarea
                 rows={2}
-                placeholder="Yo'l taassurotlari, ob-havo va sayyohlar kayfiyati haqida..."
+                placeholder={lang === 'ru' ? 'Впечатления от поездки, погода, атмосфера...' : lang === 'en' ? 'Trip memories, weather, group impressions...' : "Yo'l taassurotlari, ob-havo va sayyohlar kayfiyati haqida..."}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:outline-none focus:border-[#10b981] bg-white text-slate-900 transition-all placeholder:text-slate-400"
@@ -401,7 +407,7 @@ export default function AddMediaModal({ isOpen, onClose, onAddMedia, lang = 'uz'
                 className="w-full py-4 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-98 transition-all"
               >
                 <Plus className="w-5 h-5" />
-                <span>SAYOHAT MEDIA KARTASINI QO'SHISH</span>
+                <span>{lang === 'ru' ? 'ДОБАВИТЬ ЗАПИСЬ' : lang === 'en' ? 'ADD MEDIA CARD' : "SAYOHAT MEDIA KARTASINI QO'SHISH"}</span>
               </button>
             </div>
 
