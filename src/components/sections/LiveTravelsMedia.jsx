@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Plus, Image as ImageIcon, Video, Bus, Plane, 
   MapPin, Calendar, Users, Trash2, 
-  Maximize2, Sparkles, Heart
+  Maximize2, Heart
 } from 'lucide-react';
 import { INITIAL_LIVE_MEDIA } from '../../data/liveMediaData';
 import AddMediaModal from '../modals/AddMediaModal';
@@ -106,7 +106,6 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz' }) {
         {/* Section Header Card */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-black uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
             <span>{lang === 'ru' ? 'Медиа Дневник Путешествий' : lang === 'en' ? 'Live Travel Media Diary' : 'Jonli Sayohatlar & Media'}</span>
           </div>
 

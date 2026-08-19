@@ -5,7 +5,7 @@ import { COUNTRIES, EXCHANGE_RATE, CONTACT_INFO } from '../data/travelData';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Bus, MapPin, Calendar, Star, 
-  Sparkles, CheckCircle2, ArrowRight, Phone, 
+  CheckCircle2, ArrowRight, Phone, 
   Flame, Video, Award, 
   ChevronDown, ChevronUp, 
   Utensils, BedDouble, HelpCircle
@@ -86,16 +86,6 @@ export default function HomePage() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center max-w-4xl mx-auto space-y-5"
           >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-emerald-500/30 text-emerald-700 text-xs sm:text-sm font-extrabold tracking-wide shadow-sm"
-            >
-              <Sparkles className="w-4 h-4 text-emerald-600 animate-spin" style={{ animationDuration: '6s' }} />
-              <span>O'zbekiston Bo'ylab 1-Raqamli VIP Sayohat Operatoringiz</span>
-            </motion.div>
-
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.15]">
               O'zbekistonning Buyuk Merosini <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700">

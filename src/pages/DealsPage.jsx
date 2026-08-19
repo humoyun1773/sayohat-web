@@ -1,7 +1,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import HotDeals from '../components/sections/HotDeals';
-import { Flame, ShieldCheck, Sparkles } from 'lucide-react';
+import { Flame, ShieldCheck, Plane } from 'lucide-react';
 
 export default function DealsPage() {
   const { lang, currency, openBookingModal, t } = useApp();
@@ -53,7 +53,7 @@ export default function DealsPage() {
 
           <div className="p-5 rounded-3xl bg-gradient-to-br from-sky-500/10 to-indigo-500/5 border border-sky-200/80 flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center shadow-md shrink-0">
-              <Sparkles className="w-6 h-6" />
+              <Plane className="w-6 h-6" />
             </div>
             <div>
               <h3 className="text-sm font-bold text-slate-900">VIP Samolyot Reyslari</h3>

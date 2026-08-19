@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Star, Sun, Shield, Compass,
-  Maximize2, Check, Sparkles, MapPin, ExternalLink
+  Maximize2, Check, MapPin, ExternalLink
 } from 'lucide-react';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../../data/travelData';
 import { Card, CardContent } from '../ui/card';
@@ -209,8 +209,7 @@ export default function CountryExplorer({
             <div className="space-y-5">
               
               <div>
-                <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#10b981] mb-1">
-                  <Sparkles className="w-4 h-4" />
+                <div className="text-xs font-extrabold uppercase tracking-wider text-[#10b981] mb-1">
                   <span>{t.regions.packageTitle}</span>
                 </div>
                 <h4 className="text-2xl font-black text-slate-900">{countryName} {t.regions.tourSuffix}</h4>
@@ -289,7 +288,6 @@ export default function CountryExplorer({
                   })}
                   className="flex-1 py-3.5 px-6 rounded-2xl btn-primary-emerald font-black text-xs sm:text-sm uppercase tracking-wider shadow-md active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4" />
                   <span>{t.regions.bookBtn}</span>
                 </button>
 
