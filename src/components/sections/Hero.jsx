@@ -46,13 +46,9 @@ export default function Hero({
   return (
     <section id="hero" className="relative min-h-[88vh] pt-28 sm:pt-36 pb-16 sm:pb-20 flex items-center justify-center overflow-hidden bg-white">
       
-      {/* 100% Pure, Crystal-Clear Samarkand Registan Background - ZERO OPACITY */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <img
-          src="/images/landmarks/samarkand-registan.png"
-          alt="Samarkand Registan Square Historical Architecture"
-          className="w-full h-full object-cover object-center scale-105"
-        />
+      {/* Ambient Gradient Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-b from-emerald-50/80 via-teal-50/40 to-transparent bg-dot-pattern">
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[650px] h-[400px] bg-emerald-400/15 blur-3xl rounded-full animate-pulse-glow"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">

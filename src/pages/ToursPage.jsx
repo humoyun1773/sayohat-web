@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import CountryExplorer from '../components/sections/CountryExplorer';
 import { COUNTRIES, CATEGORIES, EXCHANGE_RATE } from '../data/travelData';
+import { motion } from 'framer-motion';
 import { 
   MapPin, Bus, Plane, Calendar, Star, 
   ArrowRight, Check, Search, Sparkles, Filter
@@ -30,10 +31,15 @@ export default function ToursPage() {
   });
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 space-y-14">
+    <div className="pt-28 sm:pt-36 pb-20 space-y-14 bg-[#fafbfc]">
       {/* Page Header */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto space-y-4"
+        >
           <span className="text-xs uppercase font-black tracking-widest text-emerald-600 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200 inline-block shadow-xs">
             {lang === 'ru' ? 'Все Направления и Города' : lang === 'en' ? 'All Destinations & Cities' : "Barcha Viloyatlar & Shaharlar"}
           </span>
@@ -47,10 +53,15 @@ export default function ToursPage() {
               ? 'Transportation (Bus / Flight), 4★ hotels, full 3-course meals, entry tickets & tour guide included!'
               : "Avtobus yoki samolyotda transport, 4★ mehmonxona, 3 mahal to'liq ovqat, barcha biletlar va shaxsiy gid kiritilgan!"}
           </p>
-        </div>
+        </motion.div>
 
         {/* Search & Filter Bar */}
-        <div className="mt-8 p-4 sm:p-5 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.5 }}
+          className="mt-8 p-4 sm:p-5 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4"
+        >
           {/* Search Input */}
           <div className="relative w-full md:w-80">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -59,7 +70,7 @@ export default function ToursPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder={lang === 'ru' ? 'Поиск города...' : lang === 'en' ? 'Search city...' : "Shahar yoki viloyatni qidirish..."}
-              className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs font-bold text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 transition-all shadow-xs"
+              className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all shadow-xs"
             />
           </div>
 
@@ -72,14 +83,14 @@ export default function ToursPage() {
                 className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCat === cat.id
                     ? 'bg-emerald-600 text-white shadow-xs'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+                    : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200'
                 }`}
               >
                 {lang === 'ru' ? cat.nameRu : lang === 'en' ? cat.nameEn : cat.nameUz}
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Interactive Country Explorer Section */}
@@ -106,7 +117,7 @@ export default function ToursPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredList.map((country) => {
+            {filteredList.map((country, idx) => {
               const name = (lang === 'ru' ? country.nameRu : lang === 'en' ? country.nameEn : country.name) || country.name;
               const tagline = (lang === 'ru' ? country.taglineRu : lang === 'en' ? country.taglineEn : country.taglineUz) || country.taglineUz;
               const priceDisplay = currency === 'UZS'
@@ -114,8 +125,13 @@ export default function ToursPage() {
                 : `$${country.basePriceUSD}`;
 
               return (
-                <div
+                <motion.div
                   key={country.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (idx % 4) * 0.1, duration: 0.4 }}
+                  whileHover={{ y: -6 }}
                   className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-emerald-500/50 transition-all duration-300 flex flex-col group"
                 >
                   {/* Card Cover Image */}
@@ -186,13 +202,13 @@ export default function ToursPage() {
                           priceUSD: country.basePriceUSD,
                           transportMode: 'bus'
                         })}
-                        className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs text-center transition-colors shadow-sm cursor-pointer"
+                        className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs text-center transition-colors shadow-sm cursor-pointer hover:scale-[1.02]"
                       >
                         {lang === 'ru' ? 'Бронь' : lang === 'en' ? 'Book' : "Bron qilish"}
                       </button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

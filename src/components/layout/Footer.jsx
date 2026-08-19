@@ -18,15 +18,10 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-slate-950 text-white pt-16 pb-12 overflow-hidden border-t border-slate-800">
-      
-      {/* Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <img
-          src="/images/landmarks/termiz-historic.png"
-          alt="Uzbekistan Historic Heritage Complex"
-          className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
-        />
-        <div className="absolute inset-0 bg-slate-950/85"></div>
+      {/* Ambient Luxury Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
