@@ -96,8 +96,8 @@ export default function Navbar() {
             {/* Right Action Area */}
             <div className="flex items-center gap-2 sm:gap-3">
               
-              {/* Desktop Language Switcher (UZ / RU / EN) */}
-              <div className="flex items-center">
+              {/* Desktop Language Switcher (UZ / RU / EN) - Hidden on Mobile/Tablet */}
+              <div className="hidden xl:flex items-center">
                 <LanguageSwitcher
                   currentLang={lang}
                   onChangeLang={setLang}
