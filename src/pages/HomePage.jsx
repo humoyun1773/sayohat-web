@@ -8,6 +8,7 @@ import {
   Flame, Video, Award, ChevronDown, ChevronUp, 
   Utensils, BedDouble, HelpCircle
 } from 'lucide-react';
+import PhotoGallery from '../components/sections/PhotoGallery';
 
 export default function HomePage() {
   const { 
@@ -632,7 +633,12 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. VERIFIED CUSTOMER REVIEWS SPOTLIGHT */}
+      {/* 6. GRAND PHOTO GALLERY: Rich Visual Travel Moments */}
+      {/* ========================================================================= */}
+      <PhotoGallery />
+
+      {/* ========================================================================= */}
+      {/* 7. VERIFIED CUSTOMER REVIEWS SPOTLIGHT */}
       {/* ========================================================================= */}
       <section className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         

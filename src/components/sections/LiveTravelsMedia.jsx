@@ -11,15 +11,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hideHeader = false }) {
   const [trips, setTrips] = useState(() => {
     try {
-      const saved = localStorage.getItem('lotos_live_trips_v2');
+      const saved = localStorage.getItem('lotos_live_trips_v3');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Merge with initial data to ensure translations are always updated
-          return parsed.map(item => {
-            const initialMatch = INITIAL_LIVE_MEDIA.find(m => m.id === item.id);
-            return initialMatch ? { ...initialMatch, ...item, titleUz: initialMatch.titleUz, titleRu: initialMatch.titleRu, titleEn: initialMatch.titleEn, descriptionUz: initialMatch.descriptionUz, descriptionRu: initialMatch.descriptionRu, descriptionEn: initialMatch.descriptionEn, destinationUz: initialMatch.destinationUz, destinationRu: initialMatch.destinationRu, destinationEn: initialMatch.destinationEn } : item;
-          });
+          const userCustomTrips = parsed.filter(item => !INITIAL_LIVE_MEDIA.some(init => init.id === item.id));
+          return [...INITIAL_LIVE_MEDIA, ...userCustomTrips];
         }
       }
       return INITIAL_LIVE_MEDIA;
@@ -41,7 +38,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
   // Save to localStorage on change
   useEffect(() => {
     try {
-      localStorage.setItem('lotos_live_trips_v2', JSON.stringify(trips));
+      localStorage.setItem('lotos_live_trips_v3', JSON.stringify(trips));
     } catch (e) {
       console.error(e);
     }
@@ -51,7 +48,7 @@ export default function LiveTravelsMedia({ onOpenImageLightbox, lang = 'uz', hid
   useEffect(() => {
     const handleStorage = () => {
       try {
-        const saved = localStorage.getItem('lotos_live_trips_v2');
+        const saved = localStorage.getItem('lotos_live_trips_v3');
         if (saved) {
           setTrips(JSON.parse(saved));
         }

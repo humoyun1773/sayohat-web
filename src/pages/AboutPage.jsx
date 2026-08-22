@@ -95,6 +95,72 @@ export default function AboutPage() {
         lang={lang}
       />
 
+      {/* Photo Showcase of Fleet & Hotels */}
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs uppercase font-black tracking-widest text-emerald-600 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200 inline-block">
+            {lang === 'ru' ? 'Наш Сервис в Кадрах' : lang === 'en' ? 'Our Service in Photos' : 'Xizmatlarimiz Rasmlarda'}
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            {lang === 'ru' ? 'Премиальный Комфорт и Забота о Каждом Госте' : lang === 'en' ? 'Premium Comfort & Dedicated Hospitality' : 'Har Bir Mehmonimiz Uchun Oliy Darajadagi Qulaylik'}
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 relative group h-64 bg-slate-900">
+            <img 
+              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" 
+              alt="VIP Coaches" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4 text-white">
+              <span className="text-xs font-black block">{lang === 'ru' ? 'VIP Автобусы Yutong 2026' : lang === 'en' ? 'Yutong 2026 VIP Coaches' : 'Yutong 2026 VIP Avtobuslar'}</span>
+              <span className="text-[10px] text-slate-300 font-medium">{lang === 'ru' ? 'Кондиционер, Wi-Fi, мягкие кресла' : lang === 'en' ? 'AC, Wi-Fi, ergonomic reclining seats' : 'Konditsioner, Wi-Fi, qulay o\'rindiqlar'}</span>
+            </div>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 relative group h-64 bg-slate-900">
+            <img 
+              src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80" 
+              alt="4 Star Hotel" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4 text-white">
+              <span className="text-xs font-black block">{lang === 'ru' ? '4★ Исторические Отели' : lang === 'en' ? '4★ Historic Boutique Hotels' : '4★ Tarixiy Mehmonxonalar'}</span>
+              <span className="text-[10px] text-slate-300 font-medium">{lang === 'ru' ? 'В шаге от Регистана и Ляби-Хауз' : lang === 'en' ? 'Steps from Registan and Lyabi-Khauz' : 'Registon va Labi Hovuz yonida'}</span>
+            </div>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 relative group h-64 bg-slate-900">
+            <img 
+              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" 
+              alt="National Feast" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4 text-white">
+              <span className="text-xs font-black block">{lang === 'ru' ? '3-Разовое Питание' : lang === 'en' ? '3-Course Gourmet Meals' : '3 Mahal Mazali Milliy Taomlar'}</span>
+              <span className="text-[10px] text-slate-300 font-medium">{lang === 'ru' ? 'Самаркандский плов, шашлыки, самса' : lang === 'en' ? 'Authentic pilaf, kebabs, tandoor somsa' : 'Samarqand oshi, shashlik, somsalar'}</span>
+            </div>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 relative group h-64 bg-slate-900">
+            <img 
+              src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80" 
+              alt="Historian Guides" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4 text-white">
+              <span className="text-xs font-black block">{lang === 'ru' ? 'Лицензированные Гиды' : lang === 'en' ? 'Licensed Historian Guides' : 'Shaxsiy Tarixchi Gidlar'}</span>
+              <span className="text-[10px] text-slate-300 font-medium">{lang === 'ru' ? 'Глубокие знания истории и забота' : lang === 'en' ? 'Deep cultural immersion and care' : 'Tarixiy obidalar bo\'ylab ekskursiya'}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Our Standards & Guarantees - Clean Gradient */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
