@@ -1206,12 +1206,12 @@ export const REVIEWS = [
 ];
 
 export const CONTACT_INFO = {
-  phone: '+998 (90) 123-45-67',
-  phoneClean: '+998901234567',
+  phone: '+998 (91) 951-73-35',
+  phoneClean: '+998919517335',
   secondaryPhone: '+998 (71) 200-88-99',
   telegram: 'https://t.me/lotos_field_tour',
   telegramUser: '@lotos_field_tour',
-  whatsapp: 'https://wa.me/998901234567',
+  whatsapp: 'https://wa.me/998919517335',
   instagram: 'https://instagram.com/lotos.field',
   email: 'info@lotosfield.uz',
   addressUz: 'Toshkent shahri, Yunusobod tumani, Amir Temur shoh ko\'chasi, 107-B bino',
