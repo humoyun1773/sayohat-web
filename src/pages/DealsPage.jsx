@@ -10,18 +10,18 @@ export default function DealsPage() {
     <div className="pt-24 sm:pt-28 pb-20 space-y-12 bg-transparent">
       {/* Page Title & Promo Banner with Background Image */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-slate-950 p-8 sm:p-14 text-white shadow-xl border border-slate-800">
+        <div className="relative rounded-3xl overflow-hidden bg-white p-8 sm:p-14 text-slate-900 shadow-xl border border-slate-200">
           
           {/* Crystal Clear Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700"
             style={{ backgroundImage: `url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1800&q=80')` }}
           ></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white/95"></div>
 
           <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-black uppercase tracking-wider backdrop-blur-md">
-              <Flame className="w-4 h-4 text-amber-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-black uppercase tracking-wider shadow-xs">
+              <Flame className="w-4 h-4 text-amber-500 animate-pulse" />
               <span>
                 {lang === 'ru' 
                   ? 'Горящие Скидки Ограниченного Времени' 
@@ -31,11 +31,11 @@ export default function DealsPage() {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+            <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
               {lang === 'ru' ? 'Горящие Скидки и Акции' : lang === 'en' ? 'Hot Deals & Flash Sales' : "Qaynoq Chegirmalar & Maxsus Turlar"}
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
               {lang === 'ru' 
                 ? 'Экономьте до -30% на 5-дневные туры по Узбекистану со всеми включенными услугами!'
                 : lang === 'en' 

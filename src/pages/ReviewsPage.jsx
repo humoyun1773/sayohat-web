@@ -10,28 +10,28 @@ export default function ReviewsPage() {
     <div className="pt-24 sm:pt-28 pb-20 space-y-12 bg-transparent">
       {/* Header Banner with Background Photo */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-slate-950 p-8 sm:p-14 text-white shadow-xl border border-slate-800">
+        <div className="relative rounded-3xl overflow-hidden bg-white p-8 sm:p-14 text-slate-900 shadow-xl border border-slate-200">
           
           {/* Crystal Clear Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700"
             style={{ backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80')` }}
           ></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white/95"></div>
 
           <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-black uppercase tracking-wider backdrop-blur-md">
-              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-black uppercase tracking-wider shadow-xs">
+              <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
               <span>
                 {lang === 'ru' ? '4.99 ★ Оценка Реальных Клиентов' : lang === 'en' ? '4.99 ★ Verified Customer Rating' : '4.99 ★ Haqiqiy Mijozlar Bahosi'}
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+            <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
               {lang === 'ru' ? 'Отзывы Наших Путешественников' : lang === 'en' ? 'Verified Traveler Reviews' : "Sayohatchilarimizning Haqiqiy Fikrlari"}
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
               {lang === 'ru'
                 ? 'Более 30,000 довольных туристов выбрали LOTOS FIELD для комфортных 5-дневных поездок.'
                 : lang === 'en'

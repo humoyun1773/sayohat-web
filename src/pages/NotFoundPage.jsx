@@ -7,15 +7,15 @@ export default function NotFoundPage() {
   const { lang } = useApp();
 
   return (
-    <div className="relative min-h-[85vh] flex items-center justify-center pt-28 pb-16 px-4 bg-slate-950">
+    <div className="relative min-h-[85vh] flex items-center justify-center pt-28 pb-16 px-4 bg-transparent">
       {/* Crystal Clear Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url('https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=1800&q=80')` }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-slate-950/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white/95"></div>
 
-      <div className="relative z-10 max-w-md w-full text-center space-y-6 bg-slate-900/90 backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-slate-800 shadow-2xl text-white">
+      <div className="relative z-10 max-w-md w-full text-center space-y-6 bg-white/95 backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-2xl text-slate-900">
         <div className="w-20 h-20 rounded-3xl bg-emerald-50 text-emerald-600 border border-emerald-200 mx-auto flex items-center justify-center shadow-inner">
           <Compass className="w-10 h-10 animate-spin" style={{ animationDuration: '10s' }} />
         </div>
