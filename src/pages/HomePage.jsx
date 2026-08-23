@@ -112,13 +112,19 @@ export default function HomePage() {
     <div className="space-y-16 sm:space-y-24 pb-20">
       
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION: Clean Ambient Gradient Mesh (No Background Photos) */}
+      {/* 1. HERO SECTION: Rich Panoramic Background Photo with Elegant Dark Overlay */}
       {/* ========================================================================= */}
-      <section className="relative pt-32 sm:pt-40 pb-16 overflow-hidden bg-gradient-to-b from-emerald-50/50 via-white to-[#fafbfc] border-b border-slate-200/80">
+      <section className="relative pt-32 sm:pt-40 pb-20 overflow-hidden bg-slate-950 text-white border-b border-slate-800">
         
-        {/* Ambient Subtle Mesh Glows */}
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-emerald-200/40 via-teal-200/30 to-sky-200/30 blur-3xl -z-10 rounded-full pointer-events-none animate-pulse-glow"></div>
-        <div className="absolute inset-0 bg-dot-pattern opacity-60 -z-10"></div>
+        {/* Full-bleed Background Photo */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=2000&q=80')` }}
+        ></div>
+        
+        {/* Dark & Gradient Overlay for Perfect Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950/95 backdrop-blur-[2px]"></div>
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-emerald-500/20 blur-3xl -z-0 rounded-full pointer-events-none"></div>
 
         <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-10">
           
@@ -129,32 +135,37 @@ export default function HomePage() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center max-w-4xl mx-auto space-y-5"
           >
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.15]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-black uppercase tracking-wider backdrop-blur-md">
+              <Bus className="w-4 h-4 text-emerald-400" />
+              <span>{lang === 'ru' ? '5-Дневные VIP Туры «Все Включено»' : lang === 'en' ? '5-Day VIP All-Inclusive Tours' : 'O\'zbekiston Bo\'ylab 5 Kunlik VIP Turlar'}</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15] drop-shadow-md">
               {lang === 'ru' ? (
                 <>
                   Откройте Великое Наследие Узбекистана <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400">
                     В Полном Пакете All-Inclusive!
                   </span>
                 </>
               ) : lang === 'en' ? (
                 <>
                   Discover the Great Heritage of Uzbekistan <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400">
                     In Full All-Inclusive VIP Package!
                   </span>
                 </>
               ) : (
                 <>
                   O'zbekistonning Buyuk Merosini <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400">
                     To'liq All-Inclusive Paketda
                   </span> Kashf Eting!
                 </>
               )}
             </h1>
 
-            <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-200 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
               {lang === 'ru'
                 ? '5-дневные незабываемые туры в Самарканд, Бухару, Хиву, Термез и Заамин: транспорт, 4★ отель, 3-разовое питание, все билеты и персональный гид.'
                 : lang === 'en'
@@ -165,7 +176,7 @@ export default function HomePage() {
             <div className="flex items-center justify-center pt-2">
               <Link
                 to="/tours"
-                className="py-4 px-8 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-sm tracking-wide shadow-xl shadow-emerald-600/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
+                className="py-4 px-8 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-sm tracking-wide shadow-xl shadow-emerald-500/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 cursor-pointer"
               >
                 <span>
                   {lang === 'ru' ? 'Смотреть Все 8+ Туров' : lang === 'en' ? 'Explore All 8+ Tours' : 'Barcha 8+ Turlarni Ko\'rish'}
@@ -175,34 +186,34 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Key Metrics Trust Row */}
+          {/* Key Metrics Trust Row (Glassmorphism on Dark BG) */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto"
           >
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 text-center shadow-sm hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300">
-              <div className="text-xl sm:text-2xl font-black text-slate-900">30,000+</div>
-              <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
+            <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center shadow-lg hover:border-emerald-400/50 hover:-translate-y-1 transition-all duration-300">
+              <div className="text-xl sm:text-2xl font-black text-white">30,000+</div>
+              <div className="text-[11px] text-slate-300 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Путешественников' : lang === 'en' ? 'Happy Travelers' : 'Sayohatchilar'}
               </div>
             </div>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 text-center shadow-sm hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300">
-              <div className="text-xl sm:text-2xl font-black text-emerald-600">8+</div>
-              <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
+            <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center shadow-lg hover:border-emerald-400/50 hover:-translate-y-1 transition-all duration-300">
+              <div className="text-xl sm:text-2xl font-black text-emerald-400">8+</div>
+              <div className="text-[11px] text-slate-300 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Регионов и Маршрутов' : lang === 'en' ? 'Regions & Routes' : 'Barcha Yo\'nalishlar'}
               </div>
             </div>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 text-center shadow-sm hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300">
-              <div className="text-xl sm:text-2xl font-black text-amber-500">4.99 ★</div>
-              <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
+            <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center shadow-lg hover:border-emerald-400/50 hover:-translate-y-1 transition-all duration-300">
+              <div className="text-xl sm:text-2xl font-black text-amber-400">4.99 ★</div>
+              <div className="text-[11px] text-slate-300 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Оценка Клиентов' : lang === 'en' ? 'Customer Rating' : 'Mijozlar Bahosi'}
               </div>
             </div>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 text-center shadow-sm hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300">
-              <div className="text-xl sm:text-2xl font-black text-slate-900">100%</div>
-              <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
+            <div className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center shadow-lg hover:border-emerald-400/50 hover:-translate-y-1 transition-all duration-300">
+              <div className="text-xl sm:text-2xl font-black text-white">100%</div>
+              <div className="text-[11px] text-slate-300 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Официальная Гарантия' : lang === 'en' ? 'Official Guarantee' : 'Rasmiy Kafolat'}
               </div>
             </div>

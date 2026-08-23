@@ -48,24 +48,34 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 space-y-16 bg-[#fafbfc]">
+    <div className="pt-24 sm:pt-28 pb-20 space-y-16 bg-[#fafbfc]">
       
-      {/* Header */}
+      {/* Header with Background Photo */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-xs uppercase font-black tracking-widest text-emerald-600 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200 inline-block shadow-xs">
-            {lang === 'ru' ? 'Свяжитесь с Нами' : lang === 'en' ? 'Contact & Locations' : "Aloqa va Ofis Manzillari"}
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            {lang === 'ru' ? 'Мы Всегда на Связи 24/7' : lang === 'en' ? 'We Are Always Here For You 24/7' : "Biz Doim Siz Bilan Aloqadamiz"}
-          </h1>
-          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
-            {lang === 'ru'
-              ? 'Позвоните нам, напишите в мессенджеры или посетите наши офисы в Ташкенте, Самарканде и Бухаре.'
-              : lang === 'en'
-              ? 'Call us, reach out on messengers, or visit our welcoming branches in Tashkent, Samarkand, and Bukhara.'
-              : "Savollaringiz bormi yoki tur band qilmoqchimisiz? Bizga qo'ng'iroq qiling yoki to'g'ridan-to'g'ri xabar yozing."}
-          </p>
+        <div className="relative rounded-3xl overflow-hidden bg-slate-950 p-8 sm:p-14 text-white shadow-xl border border-slate-800">
+          
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35 scale-105 transition-transform duration-700"
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=80')` }}
+          ></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80"></div>
+
+          <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4">
+            <span className="text-xs uppercase font-black tracking-widest text-emerald-400 bg-emerald-950/80 px-4 py-1.5 rounded-full border border-emerald-800 inline-block shadow-xs">
+              {lang === 'ru' ? 'Свяжитесь с Нами' : lang === 'en' ? 'Contact & Locations' : "Aloqa va Ofis Manzillari"}
+            </span>
+            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+              {lang === 'ru' ? 'Мы Всегда на Связи 24/7' : lang === 'en' ? 'We Are Always Here For You 24/7' : "Biz Doim Siz Bilan Aloqadamiz"}
+            </h1>
+            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">
+              {lang === 'ru'
+                ? 'Позвоните нам, напишите в мессенджеры или посетите наши офисы в Ташкенте, Самарканде и Бухаре.'
+                : lang === 'en'
+                ? 'Call us, reach out on messengers, or visit our welcoming branches in Tashkent, Samarkand, and Bukhara.'
+                : "Savollaringiz bormi yoki tur band qilmoqchimisiz? Bizga qo'ng'iroq qiling yoki to'g'ridan-to'g'ri xabar yozing."}
+            </p>
+          </div>
         </div>
 
         {/* Contact Form & Direct Contacts Grid */}

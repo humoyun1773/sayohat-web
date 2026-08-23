@@ -28,29 +28,39 @@ export default function ToursPage() {
   });
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 space-y-14 bg-[#fafbfc]">
-      {/* Page Header */}
+    <div className="pt-24 sm:pt-28 pb-20 space-y-14 bg-[#fafbfc]">
+      {/* Page Header with Panoramic Background Image */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto space-y-4"
-        >
-          <span className="text-xs uppercase font-black tracking-widest text-emerald-600 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200 inline-block shadow-xs">
-            {lang === 'ru' ? 'Все Направления и Города' : lang === 'en' ? 'All Destinations & Cities' : "Barcha Viloyatlar & Shaharlar"}
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            {lang === 'ru' ? '5-Дневные Туры по Узбекистану' : lang === 'en' ? '5-Day All-Inclusive Uzbekistan Tours' : "O'zbekiston Bo'ylab 5 Kunlik VIP Turlar"}
-          </h1>
-          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
-            {lang === 'ru' 
-              ? 'Транспорт (Автобус / Самолет), 4★ отели, 3-разовое питание, входные билеты и гид включены!'
-              : lang === 'en'
-              ? 'Transportation (Bus / Flight), 4★ hotels, full 3-course meals, entry tickets & tour guide included!'
-              : "Avtobus yoki samolyotda transport, 4★ mehmonxona, 3 mahal to'liq ovqat, barcha biletlar va shaxsiy gid kiritilgan!"}
-          </p>
-        </motion.div>
+        <div className="relative rounded-3xl overflow-hidden bg-slate-950 p-8 sm:p-14 text-white shadow-xl border border-slate-800">
+          
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105 transition-transform duration-700"
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1800&q=80')` }}
+          ></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80"></div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 text-center max-w-3xl mx-auto space-y-4"
+          >
+            <span className="text-xs uppercase font-black tracking-widest text-emerald-400 bg-emerald-950/80 px-4 py-1.5 rounded-full border border-emerald-800 inline-block shadow-xs">
+              {lang === 'ru' ? 'Все Направления и Города' : lang === 'en' ? 'All Destinations & Cities' : "Barcha Viloyatlar & Shaharlar"}
+            </span>
+            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+              {lang === 'ru' ? '5-Дневные Туры по Узбекистану' : lang === 'en' ? '5-Day All-Inclusive Uzbekistan Tours' : "O'zbekiston Bo'ylab 5 Kunlik VIP Turlar"}
+            </h1>
+            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">
+              {lang === 'ru' 
+                ? 'Транспорт (Автобус / Самолет), 4★ отели, 3-разовое питание, входные билеты и гид включены!'
+                : lang === 'en'
+                ? 'Transportation (Bus / Flight), 4★ hotels, full 3-course meals, entry tickets & tour guide included!'
+                : "Avtobus yoki samolyotda transport, 4★ mehmonxona, 3 mahal to'liq ovqat, barcha biletlar va shaxsiy gid kiritilgan!"}
+            </p>
+          </motion.div>
+        </div>
 
         {/* Search & Filter Bar */}
         <motion.div 

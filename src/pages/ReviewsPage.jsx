@@ -7,28 +7,38 @@ export default function ReviewsPage() {
   const { lang, t, openContactModal } = useApp();
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 space-y-12 bg-[#fafbfc]">
-      {/* Header Banner */}
+    <div className="pt-24 sm:pt-28 pb-20 space-y-12 bg-[#fafbfc]">
+      {/* Header Banner with Background Photo */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 text-xs font-black uppercase tracking-wider">
-            <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
-            <span>
-              {lang === 'ru' ? '4.99 ★ Оценка Реальных Клиентов' : lang === 'en' ? '4.99 ★ Verified Customer Rating' : '4.99 ★ Haqiqiy Mijozlar Bahosi'}
-            </span>
+        <div className="relative rounded-3xl overflow-hidden bg-slate-950 p-8 sm:p-14 text-white shadow-xl border border-slate-800">
+          
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35 scale-105 transition-transform duration-700"
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80')` }}
+          ></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80"></div>
+
+          <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4">
+            <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-black uppercase tracking-wider backdrop-blur-md">
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+              <span>
+                {lang === 'ru' ? '4.99 ★ Оценка Реальных Клиентов' : lang === 'en' ? '4.99 ★ Verified Customer Rating' : '4.99 ★ Haqiqiy Mijozlar Bahosi'}
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight drop-shadow-sm">
+              {lang === 'ru' ? 'Отзывы Наших Путешественников' : lang === 'en' ? 'Verified Traveler Reviews' : "Sayohatchilarimizning Haqiqiy Fikrlari"}
+            </h1>
+
+            <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">
+              {lang === 'ru'
+                ? 'Более 30,000 довольных туристов выбрали LOTOS FIELD для комфортных 5-дневных поездок.'
+                : lang === 'en'
+                ? 'Over 30,000 satisfied tourists chose LOTOS FIELD for memorable 5-day journeys.'
+                : "Biz bilan Samarqand, Buxoro, Xiva va boshqa viloyatlarga sayohat qilgan mijozlarning xolis sharhlari."}
+            </p>
           </div>
-
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            {lang === 'ru' ? 'Отзывы Наших Путешественников' : lang === 'en' ? 'Verified Traveler Reviews' : "Sayohatchilarimizning Haqiqiy Fikrlari"}
-          </h1>
-
-          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
-            {lang === 'ru'
-              ? 'Более 30,000 довольных туристов выбрали LOTOS FIELD для комфортных 5-дневных поездок.'
-              : lang === 'en'
-              ? 'Over 30,000 satisfied tourists chose LOTOS FIELD for memorable 5-day journeys.'
-              : "Biz bilan Samarqand, Buxoro, Xiva va boshqa viloyatlarga sayohat qilgan mijozlarning xolis sharhlari."}
-          </p>
         </div>
 
         {/* Rating Breakdown Cards */}
