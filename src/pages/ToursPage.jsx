@@ -33,12 +33,12 @@ export default function ToursPage() {
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden bg-slate-950 p-8 sm:p-14 text-white shadow-xl border border-slate-800">
           
-          {/* Background Image */}
+          {/* Crystal Clear Background Image */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105 transition-transform duration-700"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700"
             style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1800&q=80')` }}
           ></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/60"></div>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

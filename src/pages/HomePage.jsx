@@ -116,15 +116,14 @@ export default function HomePage() {
       {/* ========================================================================= */}
       <section className="relative pt-32 sm:pt-40 pb-20 overflow-hidden bg-slate-950 text-white border-b border-slate-800">
         
-        {/* Full-bleed Background Photo */}
+        {/* Full-bleed Crystal Clear Background Photo */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=2000&q=80')` }}
         ></div>
         
-        {/* Dark & Gradient Overlay for Perfect Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950/95 backdrop-blur-[2px]"></div>
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-emerald-500/20 blur-3xl -z-0 rounded-full pointer-events-none"></div>
+        {/* Crisp Gradient Overlay for Perfect Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-slate-950/35 to-slate-950/65"></div>
 
         <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-10">
           
