@@ -7,7 +7,7 @@ export default function DealsPage() {
   const { lang, currency, openBookingModal, t } = useApp();
 
   return (
-    <div className="pt-24 sm:pt-28 pb-20 space-y-12 bg-[#fafbfc]">
+    <div className="pt-24 sm:pt-28 pb-20 space-y-12 bg-transparent">
       {/* Page Title & Promo Banner with Background Image */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden bg-slate-950 p-8 sm:p-14 text-white shadow-xl border border-slate-800">

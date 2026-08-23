@@ -31,7 +31,18 @@ export default function MainLayout() {
   } = useApp();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased relative">
+      {/* Full Website Fixed Background Image */}
+      <div className="fixed inset-0 -z-30 pointer-events-none overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=2400&q=80" 
+          alt="Uzbekistan Background" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+      {/* Subtle Dark Glass Overlay */}
+      <div className="fixed inset-0 -z-20 bg-gradient-to-b from-slate-950/90 via-slate-950/80 to-slate-950/95 pointer-events-none"></div>
+
       {/* Scroll to top on every route navigation */}
       <ScrollToTop />
 
@@ -39,7 +50,7 @@ export default function MainLayout() {
       <Navbar />
 
       {/* Main Page Body Rendered by React Router */}
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         <Outlet />
       </main>
 

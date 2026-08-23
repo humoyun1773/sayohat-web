@@ -35,7 +35,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="pt-24 sm:pt-28 pb-20 space-y-16 bg-[#fafbfc]">
+    <div className="pt-24 sm:pt-28 pb-20 space-y-16 bg-transparent">
       
       {/* Header Banner with Background Photo */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
