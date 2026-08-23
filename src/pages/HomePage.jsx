@@ -112,30 +112,25 @@ export default function HomePage() {
     <div className="space-y-16 sm:space-y-24 pb-20">
       
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION: Rich Panoramic Background Photo with Elegant Dark Overlay */}
       {/* ========================================================================= */}
+      {/* 1. HERO SECTION: 100% Crystal Clear HD Background with Luxury White Card */}
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION: Bright & Clean Luxury White Theme with Scenic Background */}
-      {/* ========================================================================= */}
-      <section className="relative pt-32 sm:pt-40 pb-20 overflow-hidden bg-white text-slate-900 border-b border-slate-200">
+      <section className="relative pt-32 sm:pt-40 pb-20 overflow-hidden bg-slate-900/10 text-slate-900">
         
-        {/* Full-bleed Crystal Clear Background Photo */}
+        {/* Full-bleed 100% Crystal Clear Background Photo (No Dimming / No Wash) */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=2000&q=80')` }}
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=2000&q=90')` }}
         ></div>
-        
-        {/* Crisp Light Gradient (Keeps Photo Vibrant while Ensuring Perfect Readability) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-[#f8fafc]"></div>
 
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-10">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-8">
           
-          {/* Hero Main Titles with Framer Motion */}
+          {/* Hero Main Titles in Pure White Luxury Floating Card */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center max-w-4xl mx-auto space-y-5"
+            className="text-center max-w-4xl mx-auto space-y-5 bg-white/95 backdrop-blur-xl p-8 sm:p-14 rounded-3xl shadow-2xl border border-white/90"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-black uppercase tracking-wider shadow-xs">
               <Bus className="w-4 h-4 text-emerald-600" />
@@ -188,32 +183,32 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Key Metrics Trust Row (Bright White Cards) */}
+          {/* Key Metrics Trust Row (Bright White Floating Cards) */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto"
           >
-            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-md hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
+            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-lg hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
               <div className="text-xl sm:text-2xl font-black text-slate-900">30,000+</div>
               <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Путешественников' : lang === 'en' ? 'Happy Travelers' : 'Sayohatchilar'}
               </div>
             </div>
-            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-md hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
+            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-lg hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
               <div className="text-xl sm:text-2xl font-black text-emerald-600">8+</div>
               <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Регионов и Маршрутов' : lang === 'en' ? 'Regions & Routes' : 'Barcha Yo\'nalishlar'}
               </div>
             </div>
-            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-md hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
+            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-lg hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
               <div className="text-xl sm:text-2xl font-black text-amber-500">4.99 ★</div>
               <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Оценка Клиентов' : lang === 'en' ? 'Customer Rating' : 'Mijozlar Bahosi'}
               </div>
             </div>
-            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-md hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
+            <div className="p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 text-center shadow-lg hover:border-emerald-400 hover:-translate-y-1 transition-all duration-300">
               <div className="text-xl sm:text-2xl font-black text-slate-900">100%</div>
               <div className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
                 {lang === 'ru' ? 'Официальная Гарантия' : lang === 'en' ? 'Official Guarantee' : 'Rasmiy Kafolat'}

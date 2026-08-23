@@ -8,18 +8,18 @@ export default function ReviewsPage() {
 
   return (
     <div className="pt-24 sm:pt-28 pb-20 space-y-12 bg-transparent">
-      {/* Header Banner with Background Photo */}
+      {/* Header Banner with 100% Crystal Clear Background Photo */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-white p-8 sm:p-14 text-slate-900 shadow-xl border border-slate-200">
+        <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 min-h-[340px] flex items-center justify-center p-6 sm:p-12">
           
-          {/* Crystal Clear Background Image */}
+          {/* 100% Crystal Clear Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80')` }}
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=85')` }}
           ></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white/95"></div>
 
-          <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4">
+          {/* Floating Pure White Content Card */}
+          <div className="relative z-10 text-center max-w-3xl mx-auto space-y-4 bg-white/95 backdrop-blur-xl p-6 sm:p-10 rounded-3xl shadow-2xl border border-white/90">
             <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-black uppercase tracking-wider shadow-xs">
               <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
               <span>
