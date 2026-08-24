@@ -1,8 +1,9 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
+import PageLoader from '../ui/PageLoader';
 import { Send, MessageCircle, Phone } from 'lucide-react';
 import { CONTACT_INFO } from '../../data/travelData';
 import { useApp } from '../../context/AppContext';
@@ -38,9 +39,29 @@ export default function MainLayout() {
     t
   } = useApp();
 
-  const [currentBgIdx, setCurrentBgIdx] = React.useState(0);
+  const location = useLocation();
+  const [currentBgIdx, setCurrentBgIdx] = useState(0);
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
-  React.useEffect(() => {
+  // Initial load transition
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Route change page loading animation
+  useEffect(() => {
+    setIsPageLoading(true);
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+    }, 450);
+    return () => clearTimeout(timer);
+  }, [location.pathname, location.search]);
+
+  // Background slider timer
+  useEffect(() => {
     const timer = setInterval(() => {
       setCurrentBgIdx((prev) => (prev + 1) % BACKGROUND_IMAGES.length);
     }, 4500);
@@ -140,6 +161,9 @@ export default function MainLayout() {
         onAddMedia={handleAddNewTrip}
         lang={lang}
       />
+
+      {/* Global Multilingual Route & Page Loader */}
+      <PageLoader isLoading={isPageLoading} lang={lang} />
     </div>
   );
 }
