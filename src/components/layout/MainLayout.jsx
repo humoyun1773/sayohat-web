@@ -13,6 +13,14 @@ import BookingModal from '../modals/BookingModal';
 import ImageLightboxModal from '../modals/ImageLightboxModal';
 import AddMediaModal from '../modals/AddMediaModal';
 
+const BACKGROUND_IMAGES = [
+  '/images/plane-bg-1.png',
+  '/images/plane-bg-2.png',
+  '/images/plane-bg-3.png',
+  '/images/plane-bg-4.png',
+  '/images/plane-bg-5.png',
+];
+
 export default function MainLayout() {
   const {
     lang,
@@ -30,15 +38,29 @@ export default function MainLayout() {
     t
   } = useApp();
 
+  const [currentBgIdx, setCurrentBgIdx] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBgIdx((prev) => (prev + 1) % BACKGROUND_IMAGES.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased relative">
-      {/* Full Website Fixed Background Image - 100% Crystal Clear Without Any Opacity */}
-      <div className="fixed inset-0 -z-30 pointer-events-none overflow-hidden">
-        <img 
-          src="/images/plane-bg.png" 
-          alt="Uzbekistan Travel Background" 
-          className="w-full h-full object-cover object-center"
-        />
+      {/* Full Website Fixed Alternating Background Slider - 100% Crystal Clear Without Any Opacity */}
+      <div className="fixed inset-0 -z-30 pointer-events-none overflow-hidden bg-slate-900">
+        {BACKGROUND_IMAGES.map((imgSrc, index) => (
+          <img
+            key={imgSrc}
+            src={imgSrc}
+            alt={`Travel Background ${index + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+              index === currentBgIdx ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
       </div>
 
       {/* Scroll to top on every route navigation */}
