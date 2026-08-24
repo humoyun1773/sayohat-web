@@ -15,7 +15,7 @@ export default function MediaPage() {
           {/* 100% Crystal Clear Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1800&q=85')` }}
+            style={{ backgroundImage: `url('/images/fiat-retro.png')` }}
           ></div>
 
           {/* Floating Pure White Content Card */}

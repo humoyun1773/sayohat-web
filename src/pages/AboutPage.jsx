@@ -44,7 +44,7 @@ export default function AboutPage() {
           {/* 100% Crystal Clear Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-700"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1800&q=85')` }}
+            style={{ backgroundImage: `url('/images/scrooge-bg.png')` }}
           ></div>
 
           {/* Floating Pure White Content Card */}

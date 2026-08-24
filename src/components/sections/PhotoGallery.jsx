@@ -5,6 +5,30 @@ import { useApp } from '../../context/AppContext';
 
 export const GALLERY_PHOTOS = [
   {
+    id: 'g-plane',
+    category: 'transport',
+    titleUz: 'Sayohat Samolyoti va Moviy Osmon',
+    titleRu: 'Туристический Авиарейс и Небо',
+    titleEn: 'Travel Flight & Blue Sky',
+    locationUz: 'O\'zbekiston Bo\'ylab',
+    locationRu: 'По всему Узбекистану',
+    locationEn: 'Across Uzbekistan',
+    image: '/images/plane-bg.png',
+    span: 'col-span-1 sm:col-span-2 row-span-2'
+  },
+  {
+    id: 'g-scrooge',
+    category: 'culture',
+    titleUz: 'VIP Sayohat & Moliyaviy Barqarorlik',
+    titleRu: 'VIP Путешествия и Премиум Сервис',
+    titleEn: 'VIP Travel & Golden Service',
+    locationUz: 'LOTOS FIELD Club',
+    locationRu: 'LOTOS FIELD Club',
+    locationEn: 'LOTOS FIELD Club',
+    image: '/images/scrooge-bg.png',
+    span: 'col-span-1 sm:col-span-2'
+  },
+  {
     id: 'g-1',
     category: 'samarkand',
     titleUz: 'Registon Maydoni Tillakori jilosi',
@@ -14,7 +38,7 @@ export const GALLERY_PHOTOS = [
     locationRu: 'г. Самарканд',
     locationEn: 'Samarkand City',
     image: '/images/landmarks/samarkand-registan.png',
-    span: 'col-span-1 sm:col-span-2 row-span-2'
+    span: 'col-span-1 sm:col-span-2'
   },
   {
     id: 'g-2',
@@ -41,112 +65,88 @@ export const GALLERY_PHOTOS = [
     span: 'col-span-1'
   },
   {
-    id: 'g-4',
+    id: 'g-suv',
+    category: 'transport',
+    titleUz: 'Qashqadaryo & Hisor Tog\' Yo\'llari (SUV)',
+    titleRu: 'Горные маршруты Кашкадарьи и Гиссара',
+    titleEn: 'Kashkadarya & Hissar Mountain SUV Roads',
+    locationUz: 'Qashqadaryo viloyati',
+    locationRu: 'Кашкадарьинская область',
+    locationEn: 'Kashkadarya Region',
+    image: '/images/honda-suv.png',
+    span: 'col-span-1 sm:col-span-2'
+  },
+  {
+    id: 'g-fiat',
+    category: 'transport',
+    titleUz: 'Toshkent va Samarqand Shahar Sayrlari',
+    titleRu: 'Городские Экскурсии и Автопарк',
+    titleEn: 'City Excursions & Modern Auto Fleet',
+    locationUz: 'Shahar sayohatlari',
+    locationRu: 'Городские туры',
+    locationEn: 'City Tours',
+    image: '/images/fiat-retro.png',
+    span: 'col-span-1'
+  },
+  {
+    id: 'g-shahrisabz',
+    category: 'samarkand',
+    titleUz: 'Amir Temur Oqsaroy Majmuasi',
+    titleRu: 'Дворец Аксарай Амира Тимура',
+    titleEn: 'Amir Timur Ak-Saray Palace',
+    locationUz: 'Qashqadaryo, Shahrisabz',
+    locationRu: 'Шахрисабз',
+    locationEn: 'Shahrisabz',
+    image: '/images/landmarks/oqsaroy-shahrisabz.png',
+    span: 'col-span-1'
+  },
+  {
+    id: 'g-termiz',
     category: 'nature',
-    titleUz: 'Zomin Milliy Bog\'i va Suffa archazori',
-    titleRu: 'Зааминский парк и леса плато Суффа',
-    titleEn: 'Zaamin National Park & Suffa Forest',
+    titleUz: 'Surxondaryo Hakim at-Termiziy va Sangardak',
+    titleRu: 'Сурхандарья: Термез и Сангардак',
+    titleEn: 'Surkhandarya Termez & Sangardak',
+    locationUz: 'Surxondaryo, Termiz',
+    locationRu: 'Сурхандарья, Термез',
+    locationEn: 'Surkhandarya, Termez',
+    image: '/images/landmarks/termiz-historic.png',
+    span: 'col-span-1'
+  },
+  {
+    id: 'g-zomin',
+    category: 'nature',
+    titleUz: 'Zomin Milliy Bog\'i & Osma Shisha Ko\'prik',
+    titleRu: 'Зааминский парк и Стеклянный Мост',
+    titleEn: 'Zaamin National Park & Glass Bridge',
     locationUz: 'Jizzax, Zomin',
     locationRu: 'Джизак, Заамин',
     locationEn: 'Jizzakh, Zaamin',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/landmarks/uzbekistan-mountains.png',
     span: 'col-span-1 sm:col-span-2'
   },
   {
-    id: 'g-5',
-    category: 'samarkand',
-    titleUz: 'Shohi Zinda moviy koshinlari',
-    titleRu: 'Лазурные мозаики Шахи-Зинда',
-    titleEn: 'Shah-i Zinda Turquoise Mosaics',
-    locationUz: 'Samarqand',
-    locationRu: 'Самарканд',
-    locationEn: 'Samarkand',
-    image: 'https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1'
-  },
-  {
-    id: 'g-6',
-    category: 'nature',
-    titleUz: 'Chimgan va Amirsoy baland tog\'lari',
-    titleRu: 'Горы Чимгана и курорт Амирсой',
-    titleEn: 'Chimgan Peaks & Amirsoy Resort',
-    locationUz: 'Toshkent viloyati',
-    locationRu: 'Ташкентская область',
-    locationEn: 'Tashkent Region',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1'
-  },
-  {
-    id: 'g-7',
-    category: 'food',
-    titleUz: 'An\'anaviy Samarqand To\'y Oshi',
-    titleRu: 'Традиционный Самаркандский Плов',
-    titleEn: 'Traditional Samarkand Pilaf Feast',
-    locationUz: 'Milliy Dasturxon',
-    locationRu: 'Национальная Кухня',
-    locationEn: 'Traditional Cuisine',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1'
-  },
-  {
-    id: 'g-8',
-    category: 'culture',
-    titleUz: 'Rishton moviy kulolchiligi',
-    titleRu: 'Риштанская лазурная керамика',
-    titleEn: 'Rishtan Cobalt Ceramic Art',
-    locationUz: 'Farg\'ona vodiysi',
-    locationRu: 'Ферганская долина',
-    locationEn: 'Fergana Valley',
-    image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1'
-  },
-  {
-    id: 'g-9',
-    category: 'bukhara',
-    titleUz: 'Labi Hovuz va Nodir Devonbegi',
-    titleRu: 'Ансамбль Ляби-Хауз в лучах заката',
-    titleEn: 'Lyabi-Khauz Ensemble at Sunset',
-    locationUz: 'Buxoro markazi',
-    locationRu: 'Центр Бухары',
-    locationEn: 'Bukhara Center',
-    image: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1 sm:col-span-2'
-  },
-  {
-    id: 'g-10',
-    category: 'nature',
-    titleUz: 'Charvoq ko\'li zumrad suvlari',
-    titleRu: 'Бирюзовые воды Чарвакского озера',
-    titleEn: 'Emerald Waters of Charvak Lake',
-    locationUz: 'Bo\'stonliq tumani',
-    locationRu: 'Бостанлыкский район',
-    locationEn: 'Bostanlyk District',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1'
-  },
-  {
-    id: 'g-11',
-    category: 'hotels',
-    titleUz: '4★ Shinam va Sharqona Mehmonxonalar',
-    titleRu: '4★ Уютные и Аутентичные Отели',
-    titleEn: '4★ Luxury & Heritage Boutique Hotels',
-    locationUz: 'Samarqand & Buxoro',
-    locationRu: 'Самарканд и Бухара',
-    locationEn: 'Samarkand & Bukhara',
-    image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1'
-  },
-  {
-    id: 'g-12',
+    id: 'g-tashkent',
     category: 'transport',
-    titleUz: 'Yutong 2026 Zamonaviy Sayyohlik Avtobuslari',
-    titleRu: 'Туристические Автобусы Yutong 2026',
-    titleEn: 'Modern Yutong 2026 Tourist Coaches',
-    locationUz: 'O\'zbekiston bo\'ylab',
-    locationRu: 'По всему Узбекистану',
-    locationEn: 'Across Uzbekistan',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
-    span: 'col-span-1 sm:col-span-2'
+    titleUz: 'Toshkent Teleminorasi & Poytaxt Manzarasi',
+    titleRu: 'Ташкентская Телебашня и Панорама',
+    titleEn: 'Tashkent TV Tower & Capital View',
+    locationUz: 'Toshkent shahri',
+    locationRu: 'г. Ташкент',
+    locationEn: 'Tashkent City',
+    image: '/images/landmarks/tashkent-tv-tower.png',
+    span: 'col-span-1'
+  },
+  {
+    id: 'g-driver',
+    category: 'transport',
+    titleUz: 'Professional Haydovchilar & Transfer Xizmati',
+    titleRu: 'Профессиональные Водители и Трансфер',
+    titleEn: 'Professional Drivers & VIP Transfer',
+    locationUz: '24/7 Xizmat',
+    locationRu: '24/7 Сервис',
+    locationEn: '24/7 Service',
+    image: '/images/taxi-driver.png',
+    span: 'col-span-1'
   }
 ];
 

@@ -115,12 +115,12 @@ export default function HomePage() {
       {/* ========================================================================= */}
       {/* 1. HERO SECTION: 100% Crystal Clear HD Background with Luxury White Card */}
       {/* ========================================================================= */}
-      <section className="relative pt-32 sm:pt-40 pb-20 overflow-hidden bg-slate-900/10 text-slate-900">
+      <section className="relative pt-32 sm:pt-40 pb-20 overflow-hidden text-slate-900">
         
         {/* Full-bleed 100% Crystal Clear Background Photo (No Dimming / No Wash) */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1626293952701-d7faef141154?auto=format&fit=crop&w=2000&q=90')` }}
+          style={{ backgroundImage: `url('/images/plane-bg.png')` }}
         ></div>
 
         <div className="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-8">

@@ -31,17 +31,15 @@ export default function MainLayout() {
   } = useApp();
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100/50 text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased relative">
-      {/* Full Website Fixed Background Image - 100% Crystal Clear */}
+    <div className="min-h-screen flex flex-col bg-transparent text-slate-900 selection:bg-emerald-500 selection:text-white font-sans antialiased relative">
+      {/* Full Website Fixed Background Image - 100% Crystal Clear Without Any Opacity */}
       <div className="fixed inset-0 -z-30 pointer-events-none overflow-hidden">
         <img 
           src="/images/plane-bg.png" 
           alt="Uzbekistan Travel Background" 
-          className="w-full h-full object-cover object-top opacity-90 scale-100"
+          className="w-full h-full object-cover object-center"
         />
       </div>
-      {/* Subtle Transparent Backing for high readability */}
-      <div className="fixed inset-0 -z-20 bg-slate-100/60 backdrop-blur-[2px] pointer-events-none"></div>
 
       {/* Scroll to top on every route navigation */}
       <ScrollToTop />
