@@ -35,13 +35,13 @@ export default function MainLayout() {
       {/* Full Website Fixed Background Image - 100% Crystal Clear */}
       <div className="fixed inset-0 -z-30 pointer-events-none overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=2400&q=85" 
-          alt="Uzbekistan Background" 
-          className="w-full h-full object-cover"
+          src="/images/plane-bg.png" 
+          alt="Uzbekistan Travel Background" 
+          className="w-full h-full object-cover object-top opacity-90 scale-100"
         />
       </div>
-      {/* Subtle Transparent Backing */}
-      <div className="fixed inset-0 -z-20 bg-slate-900/10 pointer-events-none"></div>
+      {/* Subtle Transparent Backing for high readability */}
+      <div className="fixed inset-0 -z-20 bg-slate-100/60 backdrop-blur-[2px] pointer-events-none"></div>
 
       {/* Scroll to top on every route navigation */}
       <ScrollToTop />

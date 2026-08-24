@@ -761,7 +761,7 @@ export const COUNTRIES = [
     taglineUz: 'UNESCO Boysun Madaniyati, Sangardak Sharsharasi va Hakim at-Termiziy',
     taglineRu: 'Культура Байсуна (ЮНЕСКО), Водопад Сангардак и Термез',
     taglineEn: 'UNESCO Boysun Culture, Sangardak Waterfall & Termez Heritage',
-    coverImage: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
+    coverImage: '/images/landmarks/termiz-historic.png',
     visaUz: '5 kun / 4 kecha to\'liq hamma xarajatlar kiritilgan',
     visaRu: '5 дней / 4 ночи «Все включено»',
     visaEn: '5 Days / 4 Nights All-Inclusive',
