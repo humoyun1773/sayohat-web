@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
-  Bus, Phone, Send, MessageCircle, Mail, 
-  MapPin, Clock 
+  Bus, Phone, Send, MessageCircle 
 } from 'lucide-react';
 import { CONTACT_INFO, COUNTRIES } from '../../data/travelData';
 import { useApp } from '../../context/AppContext';
@@ -152,20 +151,6 @@ export default function Footer() {
                 <a href={`tel:${CONTACT_INFO.phoneClean}`} className="text-white hover:text-[#10b981] font-mono font-bold transition-colors cursor-pointer">
                   {CONTACT_INFO.phone}
                 </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#10b981] shrink-0" />
-                <span className="text-slate-200 font-medium">{CONTACT_INFO.email}</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#10b981] shrink-0 mt-0.5" />
-                <span className="text-slate-300">{lang === 'ru' ? CONTACT_INFO.addressRu : lang === 'en' ? CONTACT_INFO.addressEn : CONTACT_INFO.addressUz}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#10b981] shrink-0" />
-                <span className="text-slate-300">
-                  {lang === 'ru' ? '24/7 Прием звонков и бронь' : lang === 'en' ? '24/7 Booking & Support' : '24/7 Qabul va Bron qilish'}
-                </span>
               </div>
               <div className="pt-2">
                 <button
