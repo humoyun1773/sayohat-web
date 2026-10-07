@@ -36,13 +36,13 @@ export default function ContactPage() {
     {
       city: lang === 'ru' ? 'г. Самарканд (Филиал)' : lang === 'en' ? 'Samarkand Branch' : 'Samarqand shahri (Filial)',
       address: lang === 'ru' ? 'Улица Регистан, 45, Silk Road Plaza, 2 этаж' : lang === 'en' ? 'Registan St, 45, Silk Road Plaza, 2nd Floor' : 'Registon ko\'chasi, 45, Silk Road Plaza, 2-qavat',
-      phone: '+998 (90) 821-33-22',
+      phone: '+998 (90) 123-45-68',
       hours: lang === 'ru' ? 'Ежедневно: 09:00 - 19:00' : lang === 'en' ? 'Daily: 09:00 - 19:00' : 'Har kuni: 09:00 - 19:00'
     },
     {
       city: lang === 'ru' ? 'г. Бухара (Филиал)' : lang === 'en' ? 'Bukhara Branch' : 'Buxoro shahri (Filial)',
       address: lang === 'ru' ? 'Улица Накшбанди, 12, Старый Город' : lang === 'en' ? 'Naqshbandi St, 12, Old City Center' : 'Naqshbandiy ko\'chasi, 12, Eski Shahar markazi',
-      phone: '+998 (90) 821-33-22',
+      phone: '+998 (90) 123-45-69',
       hours: lang === 'ru' ? 'Ежедневно: 09:00 - 19:00' : lang === 'en' ? 'Daily: 09:00 - 19:00' : 'Har kuni: 09:00 - 19:00'
     }
   ];
@@ -235,7 +235,7 @@ export default function ContactPage() {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+998 (91) 951-73-35"
+                      placeholder="+998 (90) 123-45-67"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all font-mono"
                     />
                   </div>
